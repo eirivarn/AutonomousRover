@@ -1,7 +1,7 @@
 from threading import Thread, RLock
 from time import sleep
 
-import Constants as Const
+from Constants import *
 from LineBehavior import FollowLine
 import RoboHat
 from Wheel import Wheel
@@ -19,11 +19,11 @@ class RoverHandler:
         self.actionLock = RLock()
 
         # Hardware
-        self.LWheel = Wheel(7,
-                            11)
+        self.LWheel = Wheel(left_speedPin,
+                            left_directionPin)
 
-        self.RWheel = Wheel(13,
-                            15)
+        self.RWheel = Wheel(right_speedPin,
+                            right_directionPin)
 
         # Behaviors
         self.behavior = FollowLine(self)
