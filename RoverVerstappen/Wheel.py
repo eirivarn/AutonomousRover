@@ -54,7 +54,7 @@ class Wheel(TimedHardwareLoop):
     """
 
 
-    def __init__(self, speedPin, directionPin):
+    def __init__(self):
         super().__init__(delay=0.05)
 
         # Set up Wheel Controls
@@ -64,12 +64,6 @@ class Wheel(TimedHardwareLoop):
 
         # Set up Wheel Hardware
         # self.encoder = Encoder(encoderPin)
-
-        GPIO.setup(directionPin, GPIO.OUT)
-    
-        GPIO.setup(speedPin, GPIO.OUT)
-        self.speed_pwm = GPIO.PWM(speedPin, 20)
-        self.speed_pwm.start(0)
 
     def setSpeed(self, speed, relative=False):
         """

@@ -32,6 +32,10 @@
 # turnreverse(leftSpeed, rightSpeed): Moves backwards in an arc by setting different speeds. 0 <= leftSpeed,rightSpeed <= 100
 # ======================================================================
 
+LS = 7
+LD = 11
+RS = 13
+RD = 15
 
 # ======================================================================
 # UltraSonic Functions
@@ -70,9 +74,9 @@ def init():
     # use physical pin numbering
     GPIO.setmode(GPIO.BOARD)
 
-    p = LS
+    #p = LS
     q = LD
-    a = RS
+    #a = RS
     b = RD
 
     # use pwm on inputs so motors don't go too fast
