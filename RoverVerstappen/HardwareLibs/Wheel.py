@@ -54,7 +54,7 @@ class Wheel(TimedHardwareLoop):
     """
 
 
-    def __init__(self, wheelPinA, wheelPinB, encoderPinA, encoderPinB):
+    def __init__(self, speedPin, encoderPin):
         super().__init__(delay=0.05)
 
         # Set up Wheel Controls
@@ -63,15 +63,11 @@ class Wheel(TimedHardwareLoop):
         self.lastError = 0  # Last error
 
         # Set up Wheel Hardware
-        self.encoder = Encoder(encoderPinA, encoderPinB)
-
-        GPIO.setup(wheelPinA, GPIO.OUT)
-        self.A_PWM = GPIO.PWM(wheelPinA, 20)
-        self.A_PWM.start(0)
-
-        GPIO.setup(wheelPinB, GPIO.OUT)
-        self.B_PWM = GPIO.PWM(wheelPinB, 20)
-        self.B_PWM.start(0)
+        self.encoder = Encoder(encoderPin)
+    
+        GPIO.setup(speedPin, GPIO.OUT)
+        self.speed_pwm = GPIO.PWM(speedPin, 20)
+        self.speed_pwm.start(0)
 
     def setSpeed(self, speed, relative=False):
         """
@@ -82,7 +78,6 @@ class Wheel(TimedHardwareLoop):
             self.speed += speed
         else:
             self.speed = speed
-
 
 
         # Kickstart the motor so that there's some velocity values and tick responses
@@ -108,19 +103,16 @@ class Wheel(TimedHardwareLoop):
 
         # Set motor PWMs
         if power > 0:
-            self.A_PWM.ChangeDutyCycle(power)
-            self.B_PWM.ChangeDutyCycle(0)
-            self.A_PWM.ChangeFrequency(power + 5)
+            self.speed_pwm.ChangeDutyCycle(power)
+            self.speed_pwm.ChangeFrequency(power + 5)
 
         if power < 0:
             power = abs(power)
-            self.A_PWM.ChangeDutyCycle(0)
-            self.B_PWM.ChangeDutyCycle(power)
-            self.B_PWM.ChangeFrequency(power + 5)
+            self.speed_pwm.ChangeDutyCycle(power)
+            self.speed_pwm.ChangeFrequency(power + 5)
 
         if power == 0:
-            self.A_PWM.ChangeDutyCycle(0)
-            self.B_PWM.ChangeDutyCycle(0)
+            self.speed_pwm.ChangeDutyCycle(0)
 
     def getSpeed(self):
         return self.encoder.getVelocity()
