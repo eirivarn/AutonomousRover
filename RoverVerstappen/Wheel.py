@@ -148,7 +148,7 @@ class Wheel(TimedHardwareLoop):
         kD = 0.05
 
         # Get the change in power necessary
-        velocity  = self.encoder.getVelocity()
+        velocity  = self.speed
         error     = self.speed - velocity
         errChange = error - self.lastError
 
