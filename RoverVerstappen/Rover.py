@@ -70,8 +70,8 @@ class RoverHandler:
         print("Robot| Closing Robot Thread")
 
         # Safely close main threads
-        # self.stopped = True
-        # self.mainThread.join(2)
+        self.stopped = True
+        self.mainThread.join(2)
 
 
         # In case the thread didn't close, use the lock when closing up
