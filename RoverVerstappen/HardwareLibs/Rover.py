@@ -4,7 +4,6 @@ from time import sleep
 import Constants as Const
 from Behaviors.LineBehavior import FollowLine
 from HardwareLibs import RoboHat
-from HardwareLibs.Camera import PanTiltPiCamera
 from HardwareLibs.Wheel import Wheel
 
 
@@ -19,17 +18,11 @@ class RoverHandler:
         self.actionLock = RLock()
 
         # Hardware
-        self.LWheel = Wheel(Const.leftWheelPinA,
-                            Const.leftWheelPinB,
-                            Const.leftEncoderPinA,
-                            Const.leftEncoderPinB)
+        self.LWheel = Wheel(Const.left_speedPin,
+                            Const.left_directionPin)
 
-        self.RWheel = Wheel(Const.rightWheelPinA,
-                            Const.rightWheelPinB,
-                            Const.rightEncoderPinA,
-                            Const.rightEncoderPinB)
-
-        self.camera = PanTiltPiCamera(Const.cameraPanPin, Const.cameraTiltPin)
+        self.RWheel = Wheel(Const.right_speedPin,
+                            Const.right_directionPin)
 
         # Behaviors
         self.behavior = FollowLine(self)
@@ -84,7 +77,6 @@ class RoverHandler:
         with self.actionLock:
             self.LWheel.close()
             self.RWheel.close()
-            self.camera.close()
 
             RoboHat.cleanup()
 
