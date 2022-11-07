@@ -2,9 +2,9 @@ from threading import Thread, RLock
 from time import sleep
 
 import Constants as Const
-from Behaviors.LineBehavior import FollowLine
-from HardwareLibs import RoboHat
-from HardwareLibs.Wheel import Wheel
+from LineBehavior import FollowLine
+import RoboHat
+import Wheel
 
 
 class RoverHandler:
