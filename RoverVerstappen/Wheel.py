@@ -10,6 +10,10 @@ global startTime
 startTime  = time()
 getRunTime = lambda: time() - startTime
 
+#Setting PIN mode
+GPIO.setmode(GPIO.BOARD)
+
+
 
 class TimedHardwareLoop:
     """
