@@ -1,10 +1,11 @@
 from threading import Thread, RLock
 from time import sleep
 
-from Constants import *
+import Constants as Const
 from LineBehavior import FollowLine
 import RoboHat
 from Wheel import Wheel
+
 
 
 class RoverHandler:
@@ -18,19 +19,19 @@ class RoverHandler:
         self.actionLock = RLock()
 
         # Hardware
-        self.LWheel = Wheel(left_speedPin,
-                            left_directionPin)
+        self.LWheel = Wheel(7,
+                            11)
 
-        self.RWheel = Wheel(right_speedPin,
-                            right_directionPin)
+        self.RWheel = Wheel(13,
+                            15)
 
         # Behaviors
         self.behavior = FollowLine(self)
 
         # Threading
         self.stopped = False
-        # self.mainThread = Thread(target=self.mainThread)
-        # self.mainThread.start()
+        self.mainThread = Thread(target=self.mainThread)
+        self.mainThread.start()
 
     def mainThread(self):
         while not self.stopped:
