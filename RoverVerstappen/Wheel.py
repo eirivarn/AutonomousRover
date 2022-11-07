@@ -70,7 +70,7 @@ class Wheel(TimedHardwareLoop):
         # self.encoder = Encoder(encoderPin)
 
         GPIO.setup(speedPin, GPIO.OUT)
-
+        GPIO.setup(directionPin, GPIO.OUT)
     
         GPIO.setup(speedPin, GPIO.OUT)
         self.speed_pwm = GPIO.PWM(speedPin, 20)

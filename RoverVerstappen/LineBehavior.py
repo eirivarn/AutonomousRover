@@ -95,13 +95,13 @@ class FollowLine:
         # Pick the point to move towards
         highestPoint = sorted(line, key=lambda l: l[1])[0]
         print(line, highestPoint)
-        # self.moveTowards(highestPoint)
+        self.moveTowards(highestPoint)
 
 
     # Robot Control Functions
     def moveTowards(self, point):
         """
-        Move towards a Line
+        #Move towards a Line
         :param point: [x, y]
         :return:
         """
@@ -133,19 +133,19 @@ class FollowLine:
 
         print("Left: ", lSpeed, "\tRight: ", rSpeed, "\txMag", xMag, "\tyMag", yMag)
 
-        # if point[0] < horzMiddle:
-        #     print("Left")
-        #     lWheel.setSpeed(0)
-        #     rWheel.setSpeed(self.targetSpeed)
-        #     return
-        #
-        # if point[0] > horzMiddle:
-        #     print("Right")
-        #     lWheel.setSpeed(self.targetSpeed)
-        #     rWheel.setSpeed(0)
-        #     return
+        if point[0] < horzMiddle:
+             print("Left")
+             lWheel.setSpeed(0)
+             rWheel.setSpeed(self.targetSpeed)
+             return
+        
+        if point[0] > horzMiddle:
+             print("Right")
+             lWheel.setSpeed(self.targetSpeed)
+             rWheel.setSpeed(0)
+             return
 
-        """
+        
         lowerThresh = 89
         upperThresh = 91
         # Straight
@@ -168,7 +168,7 @@ class FollowLine:
             lWheel.setSpeed(self.targetSpeed)
             rWheel.setSpeed(self.targetSpeed*.5)
             return
-        """
+        
 
     # Line Identification Functions
     def __findLines(self, hueLow, hueHigh):
@@ -252,9 +252,9 @@ class FollowLine:
 
 
         # # Limit each combo to minSamples, keeping only the longest lines
-        # lineCombos = [sorted(combo, key= lambda c: (c[0] - c[2]) ** 2 + (c[1] - c[3]) ** 2, reverse=True)
-        #               for combo in lineCombos]
-        # lineCombos = [combo[:minLinesForCombo] for combo in lineCombos]
+        lineCombos = [sorted(combo, key= lambda c: (c[0] - c[2]) ** 2 + (c[1] - c[3]) ** 2, reverse=True)
+                       for combo in lineCombos]
+        lineCombos = [combo[:minLinesForCombo] for combo in lineCombos]
 
 
         # Filter and Average Combo Groups Format: [[L1], [L2], [L3]]
@@ -268,27 +268,27 @@ class FollowLine:
 
 
         # # Draw Line Combos and Final Lines
-        # img = self.rover.camera.read()
-        # for i, combo in enumerate(lineCombos):
-        #     for x1, y1, x2, y2 in combo:
-        #         x1 *= 10
-        #         y1 *= 10
-        #         x2 *= 10
-        #         y2 *= 10
-        #
-        #         cv2.line(img, (x1, y1), (x2, y2), (80*i, 80*i, 80*i), 2)
-        #
-        # if len(averagedCombos):
-        #     for p1, p2 in averagedCombos:
-        #         x1 = p1[0]
-        #         y1 = p1[1]
-        #         x2 = p2[0]
-        #         y2 = p2[1]
-        #
-        #         cv2.line(img, (x1, y1), (x2, y2), (80, 80, 80), 8)
-        #
-        # cv2.imshow('final', img)
-        # cv2.waitKey(2500)
+        img = self.rover.camera.read()
+        for i, combo in enumerate(lineCombos):
+             for x1, y1, x2, y2 in combo:
+                 x1 *= 10
+                 y1 *= 10
+                 x2 *= 10
+                 y2 *= 10
+        
+                 cv2.line(img, (x1, y1), (x2, y2), (80*i, 80*i, 80*i), 2)
+        
+        if len(averagedCombos):
+             for p1, p2 in averagedCombos:
+                 x1 = p1[0]
+                 y1 = p1[1]
+                 x2 = p2[0]
+                 y2 = p2[1]
+        
+                 cv2.line(img, (x1, y1), (x2, y2), (80, 80, 80), 8)
+        
+        cv2.imshow('final', img)
+        cv2.waitKey(2500)
 
         return averagedCombos
 
