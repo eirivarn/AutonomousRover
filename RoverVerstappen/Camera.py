@@ -39,7 +39,7 @@ class PiVideoStream:
         return self
 
     def update(self):
-        # rotationMatrix = None
+        rotationMatrix = None
 
         # Keep looping infinitely until the thread is stopped
         for frame in self.stream:
