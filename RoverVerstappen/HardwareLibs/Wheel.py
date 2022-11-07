@@ -115,7 +115,8 @@ class Wheel(TimedHardwareLoop):
             self.speed_pwm.ChangeDutyCycle(0)
 
     def getSpeed(self):
-        return self.encoder.getVelocity()
+        return self.speed
+        #return self.encoder.getVelocity()
 
     def update(self):
         """
