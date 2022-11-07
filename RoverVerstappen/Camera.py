@@ -39,17 +39,17 @@ class PiVideoStream:
         return self
 
     def update(self):
-        rotationMatrix = None
+        #rotationMatrix = None
 
         # Keep looping infinitely until the thread is stopped
         for frame in self.stream:
             frame = frame.array
 
              # FIRST RUN ONLY: Get basic information about the frame, and the rotation matrix
-            if rotationMatrix is None:
-                self.h, self.w = frame.shape[:2]
-                center = (self.w / 2, self.h / 2)
-                rotationMatrix = cv2.getRotationMatrix2D(center, 180, 1.0)
+            #if rotationMatrix is None:
+            #    self.h, self.w = frame.shape[:2]
+            #    center = (self.w / 2, self.h / 2)
+            #    rotationMatrix = cv2.getRotationMatrix2D(center, 180, 1.0)
 
             # Rotate the picture so it's oriented correctly
             frame = cv2.flip(frame, 1)
