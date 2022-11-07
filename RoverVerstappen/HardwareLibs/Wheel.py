@@ -1,4 +1,4 @@
-from RoverVerstappen import Constants
+from documents.Verstappen.AutonomousRover import Constants
 import RPi.GPIO as GPIO
 from collections import namedtuple
 from time import time
