@@ -73,7 +73,7 @@ def init():
     p = LS
     q = LD
     a = RS
-    b =RD
+    b = RD
 
     # use pwm on inputs so motors don't go too fast
     GPIO.setup(LS, GPIO.OUT)
