@@ -78,31 +78,11 @@ class PiVideoStream:
 
 
 class PanTiltPiCamera(PiVideoStream):
-    def __init__(self, panPin, tiltPin):
+    def __init__(self):
         super().__init__()
         super().start()
 
-        self.panPin  = panPin
-        self.tltPin = tiltPin
-
-        startServos()
-
-        # Set servos to the initial position
-        self.panRot = -1
-        self.tltRot = -1
-        self.setPose(pan = 0, tilt = -50)
-
-    def setPose(self, pan=None, tilt=None):
-        pan += panOffset
-
-        if pan is not None and pan != self.panRot:
-            setServo(self.panPin, pan)
-            self.panRot = pan
-
-        if tilt is not None and tilt != self.tltRot:
-            setServo(self.tltPin, tilt)
-            self.tltRot = tilt
-
+        
 
     def close(self):
         super().close()

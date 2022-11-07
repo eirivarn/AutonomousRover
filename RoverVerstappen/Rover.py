@@ -5,6 +5,8 @@ from Constants import *
 from LineBehavior import FollowLine
 import RoboHat
 from Wheel import Wheel
+from Camera import PanTiltPiCamera
+
 
 
 
@@ -25,6 +27,8 @@ class RoverHandler:
         self.RWheel = Wheel(right_speedPin,
                             right_directionPin)
 
+        self.camera = PanTiltPiCamera(self)
+        
         # Behaviors
         self.behavior = FollowLine(self)
 
