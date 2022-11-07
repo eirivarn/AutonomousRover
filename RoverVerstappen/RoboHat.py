@@ -51,12 +51,6 @@
 # Import all necessary libraries
 import RPi.GPIO as GPIO, sys, threading, time, os, subprocess
 
-# Pins 35, 36 Left Motor
-# Pins 32, 33 Right Motor
-LS = 7
-LD = 11
-RS = 13
-RD = 15
 
 # Define Sonar Pin (Uses same pin for both Ping and Echo)
 #sonar = 38
@@ -76,9 +70,9 @@ def init():
     # use physical pin numbering
     GPIO.setmode(GPIO.BOARD)
 
-    #p LS
+    p = LS
     q = LD
-    #a RS
+    a = RS
     b =RD
 
     # use pwm on inputs so motors don't go too fast
