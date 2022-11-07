@@ -4,7 +4,7 @@ from time import sleep
 from Constants import *
 from LineBehavior import FollowLine
 import RoboHat
-import Wheel
+from Wheel import Wheel
 
 
 class RoverHandler:
