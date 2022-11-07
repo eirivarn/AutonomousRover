@@ -63,7 +63,7 @@ class Wheel(TimedHardwareLoop):
         self.lastError = 0  # Last error
 
         # Set up Wheel Hardware
-        self.encoder = Encoder(encoderPin)
+        # self.encoder = Encoder(encoderPin)
     
         GPIO.setup(speedPin, GPIO.OUT)
         self.speed_pwm = GPIO.PWM(speedPin, 20)
