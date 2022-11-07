@@ -14,7 +14,7 @@ class RoverHandler:
     """
 
     def __init__(self):
-        RoboHat.init()
+        #RoboHat.init()
 
         self.actionLock = RLock()
 
@@ -79,6 +79,6 @@ class RoverHandler:
             self.LWheel.close()
             self.RWheel.close()
 
-            RoboHat.cleanup()
+            #RoboHat.cleanup()
 
 
