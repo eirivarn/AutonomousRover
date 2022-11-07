@@ -75,11 +75,6 @@ def init():
 
     # use physical pin numbering
     GPIO.setmode(GPIO.BOARD)
-    # print GPIO.RPI_REVISION
-
-    # set up digital line detectors as inputs
-    GPIO.setup(lineRight, GPIO.IN)  # Right line sensor
-    GPIO.setup(lineLeft, GPIO.IN)  # Left line sensor
 
     #p LS
     q = LD
