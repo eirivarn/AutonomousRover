@@ -20,3 +20,5 @@ left_directionPin = 11
 right_speedPin = 13
 right_directionPin = 15
 
+###### PAN/TILT CONSTANTS
+panOffset = 15  # Degree offset
