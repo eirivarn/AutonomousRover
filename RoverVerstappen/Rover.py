@@ -27,8 +27,8 @@ class RoverHandler:
         self.RWheel = Wheel(right_speedPin,
                             right_directionPin)
 
-        self.camera = PanTiltPiCamera(self)
-        
+        self.camera = PanTiltPiCamera()
+
         # Behaviors
         self.behavior = FollowLine(self)
 
