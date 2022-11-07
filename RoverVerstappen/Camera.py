@@ -1,4 +1,4 @@
-from HardwareLibs.RoboHat import startServos, stopServos, setServo
+from RoboHat import startServos, stopServos, setServo
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 from threading import Thread
