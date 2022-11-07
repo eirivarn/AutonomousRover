@@ -34,8 +34,8 @@ class RoverHandler:
 
         # Threading
         self.stopped = False
-        # self.mainThread = Thread(target=self.mainThread)
-        # self.mainThread.start()
+        self.mainThread = Thread(target=self.mainThread)
+        self.mainThread.start()
 
     def mainThread(self):
         while not self.stopped:
