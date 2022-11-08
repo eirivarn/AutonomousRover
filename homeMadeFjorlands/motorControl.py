@@ -10,6 +10,8 @@ class motorControl:
  
         self.leftMotor = DCmotor(self.lSpeedPin ,self.lDirPin)
         self.rightMotor = DCmotor(self.rSpeedPin ,self.rDirPin)
+
+        self.prevAngle, self.prevDist = 0, 0
  
     def drive(self, speedLeft, speedRight):
         if speedLeft < 0:
@@ -24,6 +26,12 @@ class motorControl:
 
 
         print('Speed left: ', speedLeft, 'Speed right: ', speedRight)
+
+
+    def setAngLDist(self, angle, dist):
+        if angle != self.prevAngle:
+            self.prevAngle = angle
+            self.curv(angle/10)
 
 
     def forward(self, speed):

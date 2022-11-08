@@ -4,7 +4,7 @@ from motorControl import motorControl
 if __name__ == "__main__":
     print("\n\nStarting!\n")
     motor = motorControl()
-    lineDetector = LineDetector()
+    lineDetector = LineDetector(motor)
     lineDetector.analyzeStrip()
 
     while input('>') != 'q':
@@ -12,4 +12,3 @@ if __name__ == "__main__":
 
     lineDetector.quit()
     motor.quit()
-    
