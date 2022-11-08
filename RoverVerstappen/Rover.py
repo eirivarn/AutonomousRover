@@ -5,9 +5,6 @@ from LineBehavior import FollowLine
 from Wheel import Wheel
 from Camera import PiVideoStream
 
-
-
-
 class RoverHandler:
     """
     Initializes and starts a thread where it loops over sensors and logs data as it comes in.
@@ -43,23 +40,6 @@ class RoverHandler:
                 # Do Behavior Updates
                 self.behavior.update()
         self.close()
-
-    def setMoveRadius(self, speed, radius):
-        """
-        Sets both wheels
-        :param speed: Positive means forward, negative means backwards, 0 means stop
-        """
-
-        if radius == 0: return
-
-        vL = speed * (1 + distBetweenWheels / (2 * radius))
-        vR = speed * (1 - distBetweenWheels / (2 * radius))
-
-        print("vL ", vL, "\tvR", vR)
-
-        with self.actionLock:
-            self.LWheel.setSpeed(vL)
-            self.RWheel.setSpeed(vR)
 
     def close(self):
         # Run this when ending the main python script
