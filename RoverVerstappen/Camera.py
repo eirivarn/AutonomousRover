@@ -45,7 +45,7 @@ class PiVideoStream:
         for frame in self.stream:
             frame = frame.array
 
-             # FIRST RUN ONLY: Get basic information about the frame, and the rotation matrix
+            # FIRST RUN ONLY: Get basic information about the frame, and the rotation matrix
             if rotationMatrix is None:
                 self.h, self.w = frame.shape[:2]
                 center = (self.w / 2, self.h / 2)

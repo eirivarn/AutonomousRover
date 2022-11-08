@@ -75,10 +75,10 @@ class FollowLine:
 
 
     def update(self):
-        lowRed  = [150, 75, 75]
-        highRed = [30, 255, 255]
+        lowblack  = [0, 0, 0]
+        highblack = [250, 50, 50]
 
-        lines = self.__findLines(lowRed, highRed)
+        lines = self.__findLines(lowblack, highblack)
         self.map.addLineFrame(lines)
 
         line = self.map.getCurrentLine()  # Gets direction of the currently followed line
