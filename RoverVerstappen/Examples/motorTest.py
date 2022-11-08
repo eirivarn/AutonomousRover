@@ -10,12 +10,12 @@
 
 import time
 
-from HardwareLibs import RoboHat
+import RoboHat
 
 speed = 80
-print "Tests the motors at speed = 80%"
-print "Forward, Reverse, Spin Right, Spin Left, Stop, then repeat"
-print "Press Ctrl-C to stop"
+print ("Tests the motors at speed = 80%")
+print ("Forward, Reverse, Spin Right, Spin Left, Stop, then repeat")
+print ("Press Ctrl-C to stop")
 print
 
 RoboHat.init()
@@ -24,19 +24,19 @@ RoboHat.init()
 try:
     while True:
         RoboHat.forward(speed)
-        print 'Forward'
+        print ('Forward')
         time.sleep(3)
         RoboHat.reverse(speed)
-        print 'Reverse'
+        print ('Reverse')
         time.sleep(3)
         RoboHat.spinRight(speed)
-        print 'Spin Right'
+        print ('Spin Right')
         time.sleep(3)
         RoboHat.spinLeft(speed)
-        print 'Spin Left'
+        print ('Spin Left')
         time.sleep(3)
         RoboHat.stop()
-        print 'Stop'
+        print ('Stop')
         time.sleep(3)
 
 except KeyboardInterrupt:
