@@ -31,7 +31,12 @@ class motorControl:
     def setAngLDist(self, angle, dist):
         if angle != self.prevAngle:
             self.prevAngle = angle
-            self.curv(angle/10)
+            #self.curv(angle/10)
+            speed = 30
+            self.forward(speed)
+            lSpeed = speed + angle
+            rSpeed = speed - angle
+            self.drive(lSpeed, rSpeed)
 
 
     def forward(self, speed):
