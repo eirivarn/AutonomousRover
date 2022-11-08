@@ -24,6 +24,10 @@ class PiVideoStream:
         self.h       = 0
         self.w       = 0
 
+        # start
+        super().__init__()
+        super().start()
+
 
     def start(self):
         # Start the thread to read frames from the video stream

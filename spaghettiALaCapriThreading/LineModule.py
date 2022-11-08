@@ -1,43 +1,22 @@
-import time
-from Utils import *
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 import cv2
-from Image import Image
-
+from Utils import lineAngle, clamp
+import numpy as np
+import time
+import VisionUtils
+from motorControl import motorControl
 
 class LineDetector:
     
     def __init__(self, motorControler):    
         #__start filming and setting video dimensions__
         self.camera = PiCamera()
-        self.camera.resolution = (640, 368)
-        self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
+        self.camera.resolution = (640, 360)
+        #camera.rotation = 180
+        self.rawCapture = PiRGBArray(self.camera, size=(640, 360))
+        self.motorController = motorControler
         time.sleep(0.1)
-        self.font = cv2.FONT_HERSHEY_SIMPLEX
-        self.N_SLICES = 4
-        self.images = []
-        self.breakLoop = False
-        for _ in range(self.N_SLICES):
-            self.images.append(Image())
-        
-
-
-    def startVideoCapture(self):
-        time.sleep(0.0001)
-        for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
-            time.sleep(0.0001)
-            image = frame.array
-            combos, img = self.findLines(image, (0,0,0), (30,30,30))
-            cv2.imshow('Image', img)
-
-            self.rawCapture.truncate(0)
-            print('i')
-
-            if cv2.waitKey(1) & 0xff == ord('q'):
-                break
-
-
     
     def improveLine(self,pic):
         kernel = np.ones((3,3),np.uint8)
@@ -52,10 +31,6 @@ class LineDetector:
             ang = -(90-ang)
         return ang
 
-<<<<<<< HEAD
-    def findLines(self, img, hueLow, hueHigh):
-        # # find line in a frame, and return the avrage line and the img frame.
-=======
     def analyzeStrip(self):
         c = -1
         time.sleep(0.0001)
@@ -90,47 +65,6 @@ class LineDetector:
                 cv2.putText(image, str(lateralOffset)+"dist", (360,330),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#te>
                 cv2.drawContours(image, blackContours,-1,(0,0,255),1)#draws all black contour lines
         
-    def analyzeStrip(self):
-        c = -1
-        time.sleep(0.0001)
-        for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
-            time.sleep(0.0001)
-            image = frame.array
-
-            #self.__findLines(image, (0,0,0), (50,50,50))
-            
-            #differentiate black black areas
-            blackAreas = cv2.inRange(image, (0,0,0), (50,50,50))
-            blackAreas = self.improveLine(blackAreas)
-            blackContours, hierarchy = cv2.findContours(blackAreas.copy(),cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-            if len(blackContours) > 0:
-                c = max(blackContours, key=cv2.contourArea) #biggest black contour area
-                xb, yb, wb, hb = cv2.boundingRect(c) #bounding box rectangle
-                contourbox = cv2.minAreaRect(c) #contour tape rectangle
-                (xc, yc), (wc,hc), angle = contourbox
-                #determine angle and lateral offset
-                angle = self.preProcessAngle(angle,wc,hc)
-                lateralOffset = int(320-xb-wb/2)
-                
-                self.motorController.setAngLDist(int(angle), int(lateralOffset))
-                
-                #Write boxes and lines to image
-                cv2.rectangle(image,(xb,yb),(xb+wb,yb+hb),(0,255,0),2) #Bounding box
-                cv2.line(image, (int(xb+wb/2), yb), (int(xb+wb/2), yb+hb),(0,255,0), 2) #bounding box centerline
-                cv2.line(image,(int(xb+wb/2), int(yb+hb/2)), (320, int(yb+hb/2)),(0,0,255), 1)# distance line
-                cv2.line(image, (320, 10), (320, 350),(0,0,255), 1)#center line
-                cv2.drawContours(image, [np.int0(cv2.boxPoints(contourbox))],0,(255,0,0), 2)#draw contourBox
-                cv2.putText(image, f"{str(int(angle))}deg", (360,300),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#text>
-                cv2.putText(image, str(lateralOffset)+"dist", (360,330),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#te>
-                cv2.drawContours(image, blackContours,-1,(0,0,255),1)#draws all black contour lines
-        
-            #display video
-            #cv2.imshow("Blackline",blackLine)
-            cv2.imshow("Image", image)
-            self.rawCapture.truncate(0)
-            if cv2.waitKey(1) & 0xff == ord('q'):
-                break
-
             #display video
             #cv2.imshow("Blackline",blackLine)
             cv2.imshow("Image", image)
@@ -141,8 +75,6 @@ class LineDetector:
     '''# Line Identification Functions
     def __findLines(self, img, hueLow, hueHigh):
         img   = self.camera.read()
-        img   = self.camera.read()
->>>>>>> b33b4a6 (kjøh)
 
         rImg  = VisionUtils.isolateColor(img,   hueLow,  hueHigh)
         rGray = cv2.cvtColor(rImg, cv2.COLOR_BGR2GRAY)
@@ -151,18 +83,26 @@ class LineDetector:
         # Make the image small to reduce line-finding processing times
         small = cv2.resize(rThresh, (64, 48), interpolation=cv2.INTER_AREA)
 
+
+
+
         # lines = cv2.HoughLinesP(edges, 1, np.pi, threshold=25, minLineLength=50, maxLineGap=10)
         lines = cv2.HoughLinesP(small, 1, np.pi/200, threshold=25, minLineLength=20, maxLineGap=10)
 
-        if lines is None: return [], img
+
+        if lines is None: return []
+
+        cv2.imshow('final', rThresh)
+        cv2.waitKey(2500)
 
         # If lines were found, combine them until you have 1 average for each 'direction' of tape in the photo
         lines = [line[0] for line in lines]
-        combinedLines, img = self.combineLines(lines, img)
+        combinedLines = self.__combineLines(lines, img)
 
-        return combinedLines, img
 
-    def combineLines(self, unsortedLines, img):
+        return combinedLines
+
+    def __combineLines(self, unsortedLines, img):
         """ Combines similar lines into one large 'average' line """
 
         maxAngle = 45
@@ -226,7 +166,7 @@ class LineDetector:
 
             avgLine = (np.sum(combo, axis=0) / len(combo)).astype(int)
             avgLine *= 10  # Rescale to screen size
-            averagedCombos.append(Line(avgLine[:2], avgLine[2:]))  
+            averagedCombos.append(Line(avgLine[:2], avgLine[2:]))  ##TODO skal det stå line eller Line??
 
 
         # # Draw Line Combos and Final Lines
@@ -256,5 +196,5 @@ class LineDetector:
 
 
     def quit(self):
-        self.breakLoop = True
         cv2.destroyAllWindows()
+
