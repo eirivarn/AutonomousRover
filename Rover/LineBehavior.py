@@ -83,13 +83,6 @@ class FollowLine:
 
         line = self.map.getCurrentLine()  # Gets direction of the currently followed line
 
-        if line is None:
-            self.framesSinceLine += 1
-            if self.framesSinceLine > 50:
-                self.rover.LWheel.setSpeed(0)
-                self.rover.RWheel.setSpeed(0)
-            return
-
         self.framesSinceLine = 0
 
         # Pick the point to move towards
