@@ -85,11 +85,6 @@ class FollowLine:
 
         self.framesSinceLine = 0
 
-        # Pick the point to move towards
-        highestPoint = sorted(line, key=lambda l: l[1])[0]
-        print(line, highestPoint)
-        self.moveTowards(highestPoint)
-
 
     # Robot Control Functions
     def moveTowards(self, point):
