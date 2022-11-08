@@ -1,4 +1,3 @@
-from Constants import *
 import RPi.GPIO as GPIO
 from collections import namedtuple
 from time import time
