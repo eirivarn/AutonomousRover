@@ -75,8 +75,8 @@ class FollowLine:
 
 
     def update(self):
-        lowblack  = [0, 0, 0]
-        highblack = [250, 50, 50]
+        lowblack  = [150, 75, 75]
+        highblack = [30, 255, 255]
 
         lines = self.__findLines(lowblack, highblack)
         self.map.addLineFrame(lines)
