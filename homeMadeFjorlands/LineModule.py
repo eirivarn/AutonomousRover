@@ -14,7 +14,7 @@ class LineDetector:
         self.camera.resolution = (640, 360)
         #camera.rotation = 180
         self.rawCapture = PiRGBArray(self.camera, size=(640, 360))
-        self.motroController = motorControler
+        self.motorController = motorControler
         time.sleep(0.1)
     
     def improveLine(self,pic):
