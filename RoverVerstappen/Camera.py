@@ -39,7 +39,7 @@ class PiVideoStream:
         return self
 
     def update(self):
-        #rotationMatrix = None
+        rotationMatrix = None
 
         # Keep looping infinitely until the thread is stopped
         for frame in self.stream:
@@ -54,7 +54,7 @@ class PiVideoStream:
             # Rotate the picture so it's oriented correctly
             frame = cv2.flip(frame, 1)
             frame = cv2.flip(frame, 0)
-            #frame = cv2.warpAffine(frame, rotationMatrix, (self.w, self.h))
+            frame = cv2.warpAffine(frame, rotationMatrix, (self.w, self.h))
 
             self.frame = frame
             self.frameID += 1
