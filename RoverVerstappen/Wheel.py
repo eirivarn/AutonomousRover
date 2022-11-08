@@ -12,8 +12,6 @@ getRunTime = lambda: time() - startTime
 #Setting PIN mode
 GPIO.setmode(GPIO.BOARD)
 
-
-
 class TimedHardwareLoop:
     """
     This will help classes that are in some main loop that need an "update" function of some sort that depends on time.
@@ -62,11 +60,6 @@ class Wheel(TimedHardwareLoop):
 
         # Set up Wheel Controls
         self.speed = 0
-        self.power = 0
-        self.lastError = 0  # Last error
-
-        # Set up Wheel Hardware
-        # self.encoder = Encoder(encoderPin)
 
         GPIO.setup(speedPin, GPIO.OUT)
         GPIO.setup(directionPin, GPIO.OUT)
