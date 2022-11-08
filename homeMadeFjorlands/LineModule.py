@@ -154,7 +154,9 @@ class LineDetector:
 
     def analyzeStrip(self):
         c = -1
+        time.sleep(0.0001)
         for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
+            time.sleep(0.0001)
             image = frame.array
 
             self.__findLines(image, (0,0,0), (50,50,50))
