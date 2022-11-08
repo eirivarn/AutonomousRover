@@ -33,9 +33,6 @@ class RoverHandler:
             sleep(.001)  # Let other threads do stuff
 
             with self.actionLock:
-                # Do Hardware Updates
-                self.LWheel.update()
-                self.RWheel.update()
 
                 # Do Behavior Updates
                 self.behavior.update()
