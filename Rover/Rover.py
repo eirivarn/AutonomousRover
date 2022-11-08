@@ -19,6 +19,7 @@ class RoverHandler:
         self.RWheel = Wheel(13, 15)
 
         self.camera = PiVideoStream()
+        self.camera.start()
 
         # Behaviors
         self.behavior = FollowLine(self)
