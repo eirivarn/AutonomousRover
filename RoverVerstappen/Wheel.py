@@ -72,7 +72,6 @@ class Wheel(TimedHardwareLoop):
         GPIO.setup(speedPin, GPIO.OUT)
         GPIO.setup(directionPin, GPIO.OUT)
     
-        GPIO.setup(speedPin, GPIO.OUT)
         self.speed_pwm = GPIO.PWM(speedPin, 20)
         self.speed_pwm.start(0)
 

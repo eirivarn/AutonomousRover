@@ -60,8 +60,8 @@ class RoverHandler:
 
         if radius == 0: return
 
-        vL = speed * (1 + Const.distBetweenWheels / (2 * radius))
-        vR = speed * (1 - Const.distBetweenWheels / (2 * radius))
+        vL = speed * (1 + distBetweenWheels / (2 * radius))
+        vR = speed * (1 - distBetweenWheels / (2 * radius))
 
         print("vL ", vL, "\tvR", vR)
 
@@ -82,7 +82,5 @@ class RoverHandler:
         with self.actionLock:
             self.LWheel.close()
             self.RWheel.close()
-
-            #RoboHat.cleanup()
 
 
