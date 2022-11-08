@@ -8,13 +8,13 @@ import VisionUtils
 from motorControl import motorControl
 
 class LineDetector:
-    def __init__(self, controller):    
+    def __init__(self, motorControler):    
         #__start filming and setting video dimensions__
         self.camera = PiCamera()
         self.camera.resolution = (640, 360)
         #camera.rotation = 180
         self.rawCapture = PiRGBArray(self.camera, size=(640, 360))
-        self.controller = controller
+        self.motroController = motorControler
         time.sleep(0.1)
     
     def improveLine(self,pic):
@@ -30,7 +30,7 @@ class LineDetector:
             ang = -(90-ang)
         return ang
 
-    # Line Identification Functions
+    '''# Line Identification Functions
     def __findLines(self, img, hueLow, hueHigh):
         #img   = self.rover.camera.read()
 
@@ -150,7 +150,7 @@ class LineDetector:
         cv2.imshow('final', img)
         cv2.waitKey(2500)
 
-        return averagedCombos
+        return averagedCombos'''
 
     def analyzeStrip(self):
         c = -1
@@ -174,7 +174,7 @@ class LineDetector:
                 angle = self.preProcessAngle(angle,wc,hc)
                 lateralOffset = int(320-xb-wb/2)
                 
-                self.controller.setAngLDist(int(angle), int(lateralOffset))
+                self.motorController.setAngLDist(int(angle), int(lateralOffset))
                 
                 #Write boxes and lines to image
                 cv2.rectangle(image,(xb,yb),(xb+wb,yb+hb),(0,255,0),2) #Bounding box
