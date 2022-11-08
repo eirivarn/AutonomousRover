@@ -1,11 +1,9 @@
 from threading import Thread, RLock
 from time import sleep
 
-from Constants import *
 from LineBehavior import FollowLine
-import RoboHat
 from Wheel import Wheel
-from Camera import PanTiltPiCamera
+from Camera import PiVideoStream
 
 
 
@@ -16,18 +14,14 @@ class RoverHandler:
     """
 
     def __init__(self):
-        #RoboHat.init()
-
         self.actionLock = RLock()
 
         # Hardware
-        self.LWheel = Wheel(left_speedPin,
-                            left_directionPin)
+        self.LWheel = Wheel(7, 11)
 
-        self.RWheel = Wheel(right_speedPin,
-                            right_directionPin)
+        self.RWheel = Wheel(13, 15)
 
-        self.camera = PanTiltPiCamera()
+        self.camera = PiVideoStream()
 
         # Behaviors
         self.behavior = FollowLine(self)

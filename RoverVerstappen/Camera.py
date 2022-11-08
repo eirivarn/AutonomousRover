@@ -1,8 +1,6 @@
-from RoboHat import startServos, stopServos, setServo
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 from threading import Thread
-from Constants import panOffset
 import cv2
 
 
@@ -75,15 +73,3 @@ class PiVideoStream:
         # Indicate that the thread should be stopped
         print("PiVideoStream| Closing Video Thread")
         self.stopped = True
-
-
-class PanTiltPiCamera(PiVideoStream):
-    def __init__(self):
-        super().__init__()
-        super().start()
-        
-
-    def close(self):
-        super().close()
-        print("PanTiltPiCamera| Stopping Servos")
-        stopServos()
