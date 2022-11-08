@@ -159,8 +159,8 @@ class LineDetector:
             time.sleep(0.0001)
             image = frame.array
 
-            self.__findLines(image, (0,0,0), (50,50,50))
-            '''
+            #self.__findLines(image, (0,0,0), (50,50,50))
+            
             #differentiate black black areas
             blackAreas = cv2.inRange(image, (0,0,0), (50,50,50))
             blackAreas = self.improveLine(blackAreas)
@@ -191,7 +191,9 @@ class LineDetector:
             cv2.imshow("Image", image)
             self.rawCapture.truncate(0)
             if cv2.waitKey(1) & 0xff == ord('q'):
-                break'''
+                break
 
-    cv2.destroyAllWindows()
+
+    def quit(self):
+        cv2.destroyAllWindows()
 
