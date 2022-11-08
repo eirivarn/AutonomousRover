@@ -81,7 +81,6 @@ class PanTiltPiCamera(PiVideoStream):
     def __init__(self):
         super().__init__()
         super().start()
-
         
 
     def close(self):
