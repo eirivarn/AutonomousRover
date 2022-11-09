@@ -1,5 +1,5 @@
-from LineModule import *
-from motorControl import motorControl
+from spaghettiLineModule import *
+from spaghettiRover import motorControl
 
 if __name__ == "__main__":
     print("\n\nStarting!\n")
