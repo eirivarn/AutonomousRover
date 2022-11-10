@@ -66,7 +66,7 @@ class FindLine:
             cv2.circle(img, (points[0][1], start_height), 2, (255,0,0), -1)
             cv2.circle(img, (middle, start_height), 2, (0,0,255), -1)
 
-            print(int((middle-320)/int(sys.argv[1])))
+            #print(int((middle-320)/int(sys.argv[1])))
             #Direction(int((middle - 320)/float(sys.argv[1])))
         else:
             start_height -= 5
