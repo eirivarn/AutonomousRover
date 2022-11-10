@@ -22,7 +22,7 @@ class FindLine:
         for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
             time.sleep(0.0001)
             image = frame.array
-            img = self.findLines(image)
+            img = self.findLine(image)
             if img == []:
                 break
 
