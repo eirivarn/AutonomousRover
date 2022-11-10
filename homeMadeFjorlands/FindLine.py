@@ -40,9 +40,9 @@ class FindLine:
         #img.shape = (h,w) # set the correct dimensions for the numpy array for easier access to rows, now rows are columns
 
         #start_time = time.clock()
-        gImg = cv2.cvtColor(img, cv2.COLOR_BRG2GRAY)
+        gImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        img_rgb = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB) # Drawing color points requires RGB image
+        #img_rgb = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB) # Drawing color points requires RGB image
         # ret, thresh = cv2.threshold(img, 105, 255, cv2.THRESH_BINARY)
         thresh = cv2.adaptiveThreshold(gImg,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2)
 
