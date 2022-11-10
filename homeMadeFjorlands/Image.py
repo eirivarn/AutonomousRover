@@ -80,5 +80,5 @@ class Image:
     def getShape(self):
         return self.image.shape[:2]
 
-    def cropImage(self, part, sl):
-        return self.image[part:part+sl, 0:self.width]
+    def cropImage(self, part, sl, width):
+        return self.image[part:part+sl, 0:width]
