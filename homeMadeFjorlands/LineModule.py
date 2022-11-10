@@ -13,7 +13,7 @@ class LineDetector:
         self.camera = PiCamera()
         self.camera.resolution = (640, 360)
         #camera.rotation = 180
-        self.rawCapture = PiRGBArray(self.camera, size=(640, 360))
+        self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
         self.motorController = motorControler
         time.sleep(0.1)
     
