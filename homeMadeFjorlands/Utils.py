@@ -4,7 +4,7 @@ import time
 from Image import *
 
 def SlicePart(img, images, slices):
-    height, width = img.shape[:2]
+    height, width = img.getShape()
     sl = int(height/slices);
     
     processedImages = []
