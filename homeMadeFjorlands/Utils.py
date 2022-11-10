@@ -3,15 +3,18 @@ import cv2
 import time
 from Image import *
 
-def SlicePart(im, images, slices):
-    height, width = im.shape[:2]
+def SlicePart(img, images, slices):
+    height, width = img.shape[:2]
     sl = int(height/slices);
     
+    processedImages = []
     for i in range(slices):
         part = sl*i
-        crop_img = im[part:part+sl, 0:width]
+        crop_img = img[part:part+sl, 0:width]
         images[i].image = crop_img
-        images[i].Process()
+        image = images[i].Process()
+        processedImages.append[image]
+    return processedImages
     
 def RepackImages(images):
     img = images[0].image
