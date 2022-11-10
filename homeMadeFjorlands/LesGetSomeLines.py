@@ -7,7 +7,8 @@ from Image import Image
 
 
 class LesGetSomeLines:
-    def __init__(self):
+    def __init__(self, isHeadless):
+        self.isHeadless = isHeadless
         self.camera = PiCamera()
         self.camera.resolution = (640, 368)
         self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
@@ -37,7 +38,9 @@ class LesGetSomeLines:
                 repackedImg = RepackImages(self.images)
             
             printInfo(self.images)
-            cv2.imshow('Image', repackedImg)
+
+            if not self.isHeadless:
+                cv2.imshow('Image', repackedImg)
             self.rawCapture.truncate(0)
            
             if cv2.waitKey(1) & 0xff == ord('q'):
