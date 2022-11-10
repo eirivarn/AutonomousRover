@@ -5,10 +5,7 @@ if __name__ == "__main__":
     print("\n\nStarting!\n")
     motor = motorControl()
     lineDetector = LineDetector(motor)
-    lineDetector.analyzeStrip()
-
-    while input('>') != 'q':
-        pass
+    lineDetector.startVideoCapture()
 
     lineDetector.quit()
     motor.quit()
