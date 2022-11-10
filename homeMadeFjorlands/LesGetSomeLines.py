@@ -27,12 +27,7 @@ class LesGetSomeLines:
 
             image = frame.array
             removedBgImg = RemoveBackground(image, True)
-            #images = []
             direction = 0
-            
-            #for _ in range(self.N_SLICES):
-             #   img = Image()
-              #  images.append(img)
             
             if removedBgImg is not None:
                 SlicePart(removedBgImg, self.images, self.N_SLICES)
@@ -41,6 +36,7 @@ class LesGetSomeLines:
                 
                 repackedImg = RepackImages(self.images)
             
+            printInfo(self.images)
             cv2.imshow('Image', repackedImg)
             self.rawCapture.truncate(0)
            

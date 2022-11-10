@@ -47,3 +47,14 @@ def RemoveBackground(image, b):
     else:
         return image
     #////////////////COLOR SELECTION/////////////
+
+def printInfo(images):
+    i = 0
+    mainString =''
+    for image in images:
+        contour = image.getMainContour()
+        dir = image.getDir()
+        string = '| i' + i +' dir;' + dir + ' cont;' + contour
+        mainString += string
+        i += 1
+    print(mainString)

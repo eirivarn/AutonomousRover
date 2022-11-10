@@ -86,3 +86,6 @@ class Image:
     
     def getImage(self):
         return self.image
+
+    def getMainContour(self):
+        return self.MainContour
