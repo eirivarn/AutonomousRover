@@ -30,7 +30,7 @@ class LesGetSomeLines:
                 img = Image()
                 self.Images.append(img)
             
-            if img is not None:
+            if removedBgImg is not None:
                 SlicePart(removedBgImg, self.Images, self.N_SLICES)
                 for i in range(self.N_SLICES):
                     self.direction += self.Images[i].getDir()
