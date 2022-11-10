@@ -77,3 +77,5 @@ class Image:
                         if self.getContourCenter(self.MainContour) != 0:
                             self.contourCenterX = self.getContourCenter(self.MainContour)[0]
                             
+    def getShape(self):
+        return self.image.shape[:2]
