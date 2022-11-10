@@ -13,7 +13,7 @@ class LesGetSomeLines:
         self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
         time.sleep(0.1)
         self.font = cv2.FONT_HERSHEY_SIMPLEX
-        self.N_SLICES = 8
+        self.N_SLICES = 4
         self.images = []
         for _ in range(self.N_SLICES):
             self.images.append(Image())
