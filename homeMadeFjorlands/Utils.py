@@ -52,9 +52,9 @@ def printInfo(images):
     i = 0
     mainString =''
     for image in images:
-        area, w, h = image.getMainContourInfo()
+        area, w, offset = image.getMainContourInfo()
         dir = image.getDir()
-        string = '\n | i:' + str(i) +' dir:' + str(dir) + ' area:' + str(area) + ' w:' + str(w)# + ' h:' + str(h)
+        string = '\n| i:' + str(i) +'\t| dir:' + str(dir) + '\t| area:' + str(area) + '\t| w:' + str(w) + '\t| dist:' + str(offset)
         mainString += string
         i += 1
     print(mainString)

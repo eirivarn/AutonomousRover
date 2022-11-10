@@ -91,4 +91,5 @@ class Image:
         contour = self.MainContour
         area = cv2.contourArea(contour)
         x,y,w,h = cv2.boundingRect(contour)
-        return area, w, h
+        offset = self.middleX-self.contourCenterX
+        return area, w, offset
