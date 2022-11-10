@@ -87,5 +87,8 @@ class Image:
     def getImage(self):
         return self.image
 
-    def getMainContour(self):
-        return self.MainContour
+    def getMainContourInfo(self):
+        contour = self.MainContour
+        area = cv2.contourArea(contour)
+        x,y,w,h = cv2.boundingRect(contour)
+        return area, w, h
