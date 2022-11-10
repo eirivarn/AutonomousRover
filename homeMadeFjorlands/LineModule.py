@@ -151,7 +151,7 @@ class LineDetector:
             cv2.imshow('Image', img)
             print('i')
 
-            if cv2.waitKey(0) & 0xff == ord('q'):
+            if cv2.waitKey(1) & 0xff == ord('q'):
                 break
 
     def analyzeStrip(self):
