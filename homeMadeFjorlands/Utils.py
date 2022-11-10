@@ -1,83 +1,49 @@
 import numpy as np
+import cv2
+import time
+from Image import *
 
+def SlicePart(im, images, slices):
+    height, width = im.shape[:2]
+    sl = int(height/slices);
+    
+    for i in range(slices):
+        part = sl*i
+        crop_img = im[part:part+sl, 0:width]
+        images[i].image = crop_img
+        images[i].Process()
+    
+def RepackImages(images):
+    img = images[0].image
+    for i in range(len(images)):
+        if i == 0:
+            img = np.concatenate((img, images[1].image), axis=0)
+        if i > 1:
+            img = np.concatenate((img, images[i].image), axis=0)
+            
+    return img
 
-def lineAngle(p1, p2):
-    # Get the angle between a line segment and the horizontal axis, clockwise
-    return np.rad2deg(np.arctan2(p1[1] - p2[1], p1[0] - p2[0]))
+def Center(moments):
+    if moments["m00"] == 0:
+        return 0
+        
+    x = int(moments["m10"]/moments["m00"])
+    y = int(moments["m01"]/moments["m00"])
 
-def clamp(val, low, max):
-    # Clamp a value between a min and max
-
-    if val < low:
-        return low
-
-    elif val > max:
-        return max
-
-    return val
-
-
-def sign(val):
-    # Return the sign of a value. 0 is positive
-    if val < 0:
-        return -1
-    return 1
-
-
-class FpsTimer:
-    """
-    This module helps keep scripts at a certain FPS. The Interpreter script uses this, as does the VideoThread.
-    This will effectively decide whether or not to wait, and how much to wait, and time how long a script is taking
-    inside of a loop.
-
-    Usage example:
-
-            fpsTimer = FpsTimer(fps=24)
-
-            while True:
-                fpsTimer.wait()
-                if not fpsTimer.ready(): continue
-
-                ### Script goes here ###
-    """
-
-    def __init__(self, fps):
-
-        self.fps       = fps
-        self.stepDelay = (1.0 / float(fps))
-        self.lastTime  = float(1)  # The first time is 1, so the script will always run immediately
-        self.isReady   = False
-        self.mode      = 1
-
-        self.currentFPS = 0
-
-    def wait(self):
-        elapsedTime = time() - self.lastTime
-
-
-        # Check if the current FPS is less than the goal. If so, run immediately
-        if not elapsedTime == 0:
-            fps = 1.0 / elapsedTime
-            if fps < self.fps:
-                self.currentFPS = fps
-                self.isReady = True
-                return
-
-        # Since the current FPS is higher than desired, wait the appropriate amount of time
-        waitTime = self.stepDelay - elapsedTime
-        if waitTime > .01:
-            sleep(waitTime)
-            self.currentFPS = 1.0 / (time() - self.lastTime)
-
-        # Calculate FPS again
-        self.isReady = True
-        return
-
-    def ready(self):
-
-        if self.isReady:
-            self.lastTime = time()
-            self.isReady = False
-            return True
-        else:
-            return False
+    return x, y
+    
+def RemoveBackground(image, b):
+    up = 100
+    # create NumPy arrays from the boundaries
+    lower = np.array([0, 0, 0], dtype = "uint8")
+    upper = np.array([up, up, up], dtype = "uint8")
+    #----------------COLOR SELECTION-------------- (Remove any area that is whiter than 'upper')
+    if b == True:
+        mask = cv2.inRange(image, lower, upper)
+        image = cv2.bitwise_and(image, image, mask = mask)
+        image = cv2.bitwise_not(image, image, mask = mask)
+        image = (255-image)
+        return image
+    else:
+        return image
+    #////////////////COLOR SELECTION/////////////
