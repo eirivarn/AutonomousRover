@@ -26,6 +26,7 @@ class LineDetector:
             image = frame.array
             combos, img = self.findLines(image, (0,0,0), (80,80,80))
             cv2.imshow('Image', img)
+            self.rawCapture.truncate(0)
             print('i')
 
             if cv2.waitKey(1) & 0xff == ord('q'):
