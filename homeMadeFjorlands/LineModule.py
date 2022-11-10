@@ -12,9 +12,9 @@ class LineDetector:
     def __init__(self, motorControler):    
         #__start filming and setting video dimensions__
         self.camera = PiCamera()
-        self.camera.resolution = (640, 368)
+        self.camera.resolution = (640, 360)
         #camera.rotation = 180
-        self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
+        self.rawCapture = PiRGBArray(self.camera, size=(640, 360))
         self.motorController = motorControler
         time.sleep(0.1)
     
@@ -147,7 +147,7 @@ class LineDetector:
         for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
             time.sleep(0.0001)
             image = frame.array
-            combos, img = self.findLines(image, (0,0,0), (0,0,0.39216))
+            combos, img = self.findLines(image, (0,0,0), (80,80,80))
             cv2.imshow(img)
 
             if cv2.waitKey(0) & 0xff == ord('q'):
