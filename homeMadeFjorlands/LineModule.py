@@ -39,10 +39,10 @@ class LineDetector:
         ret, rThresh = cv2.threshold(rGray, 50, 255, cv2.THRESH_BINARY)
 
         # Make the image small to reduce line-finding processing times
-        small = cv2.resize(rThresh, (64, 48), interpolation=cv2.INTER_AREA)
+        #small = cv2.resize(rThresh, (64, 48), interpolation=cv2.INTER_AREA)
 
         # lines = cv2.HoughLinesP(edges, 1, np.pi, threshold=25, minLineLength=50, maxLineGap=10)
-        lines = cv2.HoughLinesP(small, 1, np.pi/200, threshold=25, minLineLength=20, maxLineGap=10)
+        lines = cv2.HoughLinesP(rThresh, 1, np.pi/200, threshold=25, minLineLength=20, maxLineGap=10)
 
         if lines is None: return [], img
 
