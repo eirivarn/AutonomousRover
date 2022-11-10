@@ -5,12 +5,12 @@ from Image import *
 
 def SlicePart(img, images, slices):
     height, width = img.getShape()
-    sl = int(height/slices);
+    sl = int(height/slices)
     
     processedImages = []
     for i in range(slices):
         part = sl*i
-        crop_img = img[part:part+sl, 0:width]
+        crop_img = img.cropImage(part, sl)
         images[i].image = crop_img
         image = images[i].Process()
         processedImages.append[image]
