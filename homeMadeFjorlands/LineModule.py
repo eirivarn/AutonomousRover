@@ -50,9 +50,12 @@ class LineDetector:
         return ang
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     def findLines(self, img, hueLow, hueHigh):
         # # find line in a frame, and return the avrage line and the img frame.
 =======
+=======
+>>>>>>> 445d01f2b526ae8f6807906909cf702f48fa4b2b
     def analyzeStrip(self):
         c = -1
         time.sleep(0.0001)
@@ -97,6 +100,7 @@ class LineDetector:
     '''# Line Identification Functions
     def __findLines(self, img, hueLow, hueHigh):
         img   = self.camera.read()
+<<<<<<< HEAD
 >>>>>>> b33b4a6 (kjøh)
 
         rImg  = VisionUtils.isolateColor(img,   hueLow,  hueHigh)
@@ -213,6 +217,8 @@ class LineDetector:
 '''# Line Identification Functions
     def __findLines(self, img, hueLow, hueHigh):
         #img   = self.rover.camera.read()
+=======
+>>>>>>> 445d01f2b526ae8f6807906909cf702f48fa4b2b
 
         rImg  = VisionUtils.isolateColor(img,   hueLow,  hueHigh)
         rGray = cv2.cvtColor(rImg, cv2.COLOR_BGR2GRAY)
@@ -330,4 +336,13 @@ class LineDetector:
         cv2.imshow('final', img)
         cv2.waitKey(2500)
 
+<<<<<<< HEAD
         return averagedCombos'''
+=======
+        return averagedCombos'''
+
+
+    def quit(self):
+        cv2.destroyAllWindows()
+
+>>>>>>> 445d01f2b526ae8f6807906909cf702f48fa4b2b
