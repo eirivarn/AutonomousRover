@@ -29,15 +29,11 @@ class FpsTimer:
     This module helps keep scripts at a certain FPS. The Interpreter script uses this, as does the VideoThread.
     This will effectively decide whether or not to wait, and how much to wait, and time how long a script is taking
     inside of a loop.
-
     Usage example:
-
             fpsTimer = FpsTimer(fps=24)
-
             while True:
                 fpsTimer.wait()
                 if not fpsTimer.ready(): continue
-
                 ### Script goes here ###
     """
 

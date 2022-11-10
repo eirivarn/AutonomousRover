@@ -8,7 +8,7 @@ class DCmotor:
  
         self.speed = 0
        
-        GPIO.setwarnings(False)           
+        GPIO.setwarnings(False)            
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.speedPin, GPIO.OUT)
         GPIO.setup(self.directionPin, GPIO.OUT)
