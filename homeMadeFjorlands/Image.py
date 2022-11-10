@@ -3,8 +3,8 @@ import cv2
 
 class Image:
     
-    def __init__(self):
-        self.image = None
+    def __init__(self, image):
+        self.image = image
         self.contourCenterX = 0
         self.MainContour = None
         
