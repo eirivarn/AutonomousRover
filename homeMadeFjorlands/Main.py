@@ -1,10 +1,11 @@
 from LineModule import *
 from motorControl import motorControl
+from FindLine import FindLine
 
 if __name__ == "__main__":
     print("\n\nStarting!\n")
     motor = motorControl()
-    lineDetector = LineDetector(motor)
+    lineDetector = FindLine()
     lineDetector.startVideoCapture()
 
     lineDetector.quit()
