@@ -83,3 +83,6 @@ class Image:
 
     def cropImage(self, part, sl, width):
         return self.image[part:part+sl, 0:width]
+
+    def getDir(self):
+        return self.dir

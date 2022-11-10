@@ -33,7 +33,7 @@ class LesGetSomeLines:
             if img is not None:
                 self.Images = SlicePart(img, self.Images, self.N_SLICES)
                 for i in range(self.N_SLICES):
-                    self.direction += self.Images[i].dir
+                    self.direction += self.Images[i].getDir()
                 
                 repackedImg = RepackImages(self.Images)
             
