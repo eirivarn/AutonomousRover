@@ -14,6 +14,9 @@ class LesGetSomeLines:
         time.sleep(0.1)
         self.font = cv2.FONT_HERSHEY_SIMPLEX
         self.N_SLICES = 8
+        self.images = []
+        for _ in range(self.N_SLICES):
+            self.images.append(Image())
         
 
 
@@ -24,19 +27,19 @@ class LesGetSomeLines:
 
             image = frame.array
             removedBgImg = RemoveBackground(image, True)
-            images = []
+            #images = []
             direction = 0
             
-            for _ in range(self.N_SLICES):
-                img = Image()
-                images.append(img)
+            #for _ in range(self.N_SLICES):
+             #   img = Image()
+              #  images.append(img)
             
             if removedBgImg is not None:
-                SlicePart(removedBgImg, images, self.N_SLICES)
+                SlicePart(removedBgImg, self.images, self.N_SLICES)
                 for i in range(self.N_SLICES):
-                    direction += images[i].getDir()
+                    direction += self.images[i].getDir()
                 
-                repackedImg = RepackImages(images)
+                repackedImg = RepackImages(self.images)
             
             cv2.imshow('Image', repackedImg)
             self.rawCapture.truncate(0)
