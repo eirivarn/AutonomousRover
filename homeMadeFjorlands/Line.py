@@ -1,4 +1,4 @@
-from homeMadeFjorlands.Utils import lineAngle
+from Utils import lineAngle
 
 
 class Line:
