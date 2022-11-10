@@ -60,6 +60,7 @@ class FindLine:
               #  BaseSpeed(Speed)
 
             middle = (points[0][0] + points[0][1]) / 2
+            print(points[0][0], points[0][1], middle)
 
             cv2.circle(img, (points[0][0], start_height), 2, (255,0,0), -1)
             cv2.circle(img, (points[0][1], start_height), 2, (255,0,0), -1)
