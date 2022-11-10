@@ -7,13 +7,11 @@ def SlicePart(img, images, slices):
     height, width = img.shape[:2]
     sl = int(height/slices)
     
-    #processedImages = []
     for i in range(slices):
         part = sl*i
-        images[i].cropImage(part, sl, width)
+        crop_img = img[part:part+sl, 0:width]
+        images[i].setImage(crop_img)
         images[i].Process()
-        #processedImages.append(image)
-    #return processedImages
     
 def RepackImages(images):
     img = images[0].image

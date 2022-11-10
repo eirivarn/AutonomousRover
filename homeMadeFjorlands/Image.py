@@ -3,8 +3,8 @@ import cv2
 
 class Image:
     
-    def __init__(self, image):
-        self.image = image
+    def __init__(self):
+        self.image = None
         self.contourCenterX = 0
         self.MainContour = None
         self.dir = 0
@@ -78,11 +78,8 @@ class Image:
                         if self.getContourCenter(self.MainContour) != 0:
                             self.contourCenterX = self.getContourCenter(self.MainContour)[0]
                             
-    def getShape(self):
-        return self.image.shape[:2]
-
-    def cropImage(self, part, sl, width):
-        self.image = self.image[part:part+sl, 0:width]
-
     def getDir(self):
         return self.dir
+
+    def setImage(self, image):
+        self.image = image
