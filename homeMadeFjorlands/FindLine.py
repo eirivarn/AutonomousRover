@@ -59,7 +59,7 @@ class FindLine:
             #if GetSpeed() == 0: # if is stopped but finds a line
               #  BaseSpeed(Speed)
 
-            middle = (points[0][0] + points[0][1]) / 2
+            middle = np.floor((points[0][0] + points[0][1]) / 2)
             print(points[0][0], points[0][1], middle)
 
             cv2.circle(img, (points[0][0], start_height), 2, (255,0,0), -1)
