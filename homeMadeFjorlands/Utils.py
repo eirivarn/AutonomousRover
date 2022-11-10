@@ -14,12 +14,12 @@ def SlicePart(img, images, slices):
         images[i].Process()
     
 def RepackImages(images):
-    img = images[0].image
+    img = images[0].getImage()
     for i in range(len(images)):
         if i == 0:
-            img = np.concatenate((img, images[1].image), axis=0)
+            img = np.concatenate((img, images[1].getImage()), axis=0)
         if i > 1:
-            img = np.concatenate((img, images[i].image), axis=0)
+            img = np.concatenate((img, images[i].getImage()), axis=0)
             
     return img
 

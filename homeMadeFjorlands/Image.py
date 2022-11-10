@@ -83,3 +83,6 @@ class Image:
 
     def setImage(self, image):
         self.image = image
+    
+    def getImage(self):
+        return self.image
