@@ -55,20 +55,10 @@ def printInfo(images):
         area, w, offset = image.getMainContourInfo()
         dir = image.getDir()
         mainString[i] = [dir, area, w, offset]
-        #string = '\n| i:' + str(i) +'\t| dir:' + str(dir) + '\t| area:' + str(area) + '\t| w:' + str(w) + '\t| dist:' + str(offset)
-        #mainString += string
         i += 1
 
-    ## Python program to print the data
-   # mainString = {1: ["Python", 33.2, 'UP'],
-    #2: ["Java", 23.54, 'DOWN'],
-    #3: ["Ruby", 17.22, 'UP'],
-    #10: ["Lua", 10.55, 'DOWN'],
-    #5: ["Groovy", 9.22, 'DOWN'],
-    #6: ["C", 1.55, 'UP']
-    #}
-    print ("{:<5} {:<12} {:<12} {:<12}".format('i','Dir','Area','Width', 'Distance'))
+    print ("\n{:<8} {:<15} {:<15} {:<15} {:<15}".format('i','Dir','Area','Width', 'Distance'))
     for k, v in mainString.items():
         dir, area, w, offset = v
-        print ("{:<8} {:<15} {:<10} {:<10}".format(k, dir, area, w, offset))    
-    print(mainString)
+        print ("{:<8} {:<15} {:<15} {:<15} {:<15}".format(k, dir, area, w, offset))    
+    
