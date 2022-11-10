@@ -148,7 +148,7 @@ class LineDetector:
             time.sleep(0.0001)
             image = frame.array
             combos, img = self.findLines(image, (0,0,0), (80,80,80))
-            cv2.imshow(img)
+            cv2.imshow('Image', img)
 
             if cv2.waitKey(0) & 0xff == ord('q'):
                 break
