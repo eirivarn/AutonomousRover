@@ -12,11 +12,26 @@ class LineDetector:
     def __init__(self, motorControler):    
         #__start filming and setting video dimensions__
         self.camera = PiCamera()
-        self.camera.resolution = (640, 360)
+        self.camera.resolution = (640, 368)
         #camera.rotation = 180
-        self.rawCapture = PiRGBArray(self.camera, size=(640, 360))
+        self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
         self.motorController = motorControler
         time.sleep(0.1)
+
+
+    def startVideoCapture(self):
+        time.sleep(0.0001)
+        for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
+            time.sleep(0.0001)
+            image = frame.array
+            combos, img = self.findLines(image, (0,0,0), (80,80,80))
+            cv2.imshow('Image', img)
+            print('i')
+
+            if cv2.waitKey(1) & 0xff == ord('q'):
+                break
+
+
     
     def improveLine(self,pic):
         kernel = np.ones((3,3),np.uint8)
@@ -140,19 +155,6 @@ class LineDetector:
                  cv2.line(img, (x1, y1), (x2, y2), (80, 80, 80), 8)
 
         return averagedCombos, img
-
-
-    def startVideoCapture(self):
-        time.sleep(0.0001)
-        for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
-            time.sleep(0.0001)
-            image = frame.array
-            combos, img = self.findLines(image, (0,0,0), (80,80,80))
-            cv2.imshow('Image', img)
-            print('i')
-
-            if cv2.waitKey(1) & 0xff == ord('q'):
-                break
 
     def analyzeStrip(self):
         c = -1
