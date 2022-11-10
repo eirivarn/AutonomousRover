@@ -1,3 +1,4 @@
+from Line import Line
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 import cv2
@@ -11,7 +12,7 @@ class LineDetector:
     def __init__(self, motorControler):    
         #__start filming and setting video dimensions__
         self.camera = PiCamera()
-        self.camera.resolution = (640, 360)
+        self.camera.resolution = (640, 368)
         #camera.rotation = 180
         self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
         self.motorController = motorControler
@@ -43,7 +44,7 @@ class LineDetector:
         # lines = cv2.HoughLinesP(edges, 1, np.pi, threshold=25, minLineLength=50, maxLineGap=10)
         lines = cv2.HoughLinesP(small, 1, np.pi/200, threshold=25, minLineLength=20, maxLineGap=10)
 
-        if lines is None: return []
+        if lines is None: return [], img
 
         # If lines were found, combine them until you have 1 average for each 'direction' of tape in the photo
         lines = [line[0] for line in lines]
@@ -115,7 +116,7 @@ class LineDetector:
 
             avgLine = (np.sum(combo, axis=0) / len(combo)).astype(int)
             avgLine *= 10  # Rescale to screen size
-            averagedCombos.append(Line(avgLine[:2], avgLine[2:]))  ##TODO skal det stå line eller Line??
+            averagedCombos.append(Line(avgLine[:2], avgLine[2:]))  
 
 
         # # Draw Line Combos and Final Lines
