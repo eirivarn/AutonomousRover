@@ -54,11 +54,14 @@ def printInfo(images):
     for image in images:
         area, w, offset = image.getMainContourInfo()
         dir = image.getDir()
-        mainString[i] = [dir, area, w, offset]
+        crossFound = ''
+        if image.crossFound():
+            crossFound = 'CROSS!'
+        mainString[i] = [dir, area, w, offset, crossFound]
         i += 1
 
-    print ("\n{:<8} {:<15} {:<15} {:<15} {:<15}".format('i','Dir','Area','Width', 'Distance'))
+    print ("\n{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format('i','Dir','Area','Width', 'Distance', 'Corss'))
     for k, v in mainString.items():
-        dir, area, w, offset = v
-        print ("{:<8} {:<15} {:<15} {:<15} {:<15}".format(k, dir, area, w, offset))    
+        dir, area, w, offset, crossFound = v
+        print ("{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format(k, dir, area, w, offset, crossFound))    
     

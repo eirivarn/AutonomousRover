@@ -93,3 +93,9 @@ class Image:
         x,y,w,h = cv2.boundingRect(contour)
         offset = self.middleX-self.contourCenterX
         return area, w, offset
+
+    def crossFound(self):
+        x,y,w,h = cv2.boundingRect(self.MainContour)
+        if w > 300:
+            return True
+        return False
