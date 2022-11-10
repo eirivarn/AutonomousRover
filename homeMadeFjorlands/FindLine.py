@@ -38,6 +38,7 @@ class FindLine:
         h = img.shape[0]
         w = img.shape[1]
         start_height = h - 5
+        no_points_count=0
         #img.shape = (h,w) # set the correct dimensions for the numpy array for easier access to rows, now rows are columns
 
         #start_time = time.clock()
@@ -70,7 +71,7 @@ class FindLine:
             start_height -= 5
             start_height = start_height % h
             no_points_count += 1
-            Speed -= 0.1
+            #Speed -= 0.1
             #BaseSpeed(Speed)
             #if Speed <= 0:
              #   return []        
