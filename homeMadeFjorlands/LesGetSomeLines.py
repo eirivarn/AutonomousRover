@@ -23,7 +23,7 @@ class LesGetSomeLines:
             time.sleep(0.0001)
 
             image = frame.array
-            removedBgImg = RemoveBackground(image, False)
+            removedBgImg = RemoveBackground(image, True)
             images = []
             direction = 0
             
