@@ -54,7 +54,7 @@ def printInfo(images):
     for image in images:
         contour = image.getMainContour()
         dir = image.getDir()
-        string = '| i' + i +' dir;' + dir + ' cont;' + contour
+        string = '| i' + str(i) +' dir;' + str(dir) + ' cont;' + str(contour)
         mainString += string
         i += 1
     print(mainString)
