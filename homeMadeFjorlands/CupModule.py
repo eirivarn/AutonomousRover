@@ -38,7 +38,7 @@ class CupModule:
             image = frame.array
             
             self.result, self.objectInfo = self.getObjects(image,0.45,0.2, objects=['cup','bowl'])
-
+            print(self.objectInfo)
 
             if not self.isHeadless and self.result != None:
                 cv2.imshow('Image', self.result)
