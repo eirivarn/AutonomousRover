@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     victory = False
 
-    task1 = Task1(motor, lineModule)
+    task1 = Task1(motor, lineModule, cupModule)
     task1.execute()
     if task1.completed():
         task2 = Task2(motor, lineModule)
