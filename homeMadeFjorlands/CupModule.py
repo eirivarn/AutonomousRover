@@ -63,7 +63,7 @@ class CupModule:
             for classId, confidence, box in zip(classIds.flatten(),confs.flatten(),bbox):
                 className = self.classNames[classId - 1]
                 print(box)
-                (x1, y1) ,(x2, y2) = box
+                [x1,y1,x2,y2] = box
                 xCenter = (x1+x2)/2
                 yCenter = (y1+y2)/2
                 center = (xCenter, yCenter)
