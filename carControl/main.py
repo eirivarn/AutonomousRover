@@ -5,8 +5,8 @@ from servo import servo
 from getkey import getkey, keys
  
 #settings:
-turnSpeed = 30
-speed = 100
+turnSpeed = 100
+speed = 40
 curvRate = 0
 curvRateNew = 5
 curvRateSenitivity = 2

@@ -39,11 +39,11 @@ class CupModule:
 
             image = frame.array
             
-            self.result, self.objectInfo = self.getObjects(image,0.45,0.2, objects=['cup','bowl'])
+            img, self.objectInfo = self.getObjects(image,0.45,0.2, objects=['cup','bowl'])
             print(self.objectInfo)
 
-            if not self.isHeadless and self.result != None:
-                cv2.imshow('Image', self.result)
+            if not self.isHeadless: # and self.result != None:
+                cv2.imshow('Cup', img)
             self.rawCapture.truncate(0)
            
             if cv2.waitKey(1) & 0xff == ord('q'):
@@ -62,14 +62,16 @@ class CupModule:
         if len(classIds) != 0:
             for classId, confidence, box in zip(classIds.flatten(),confs.flatten(),bbox):
                 className = self.classNames[classId - 1]
-                print(box)
-                [x1,y1,x2,y2] = box
-                xCenter = (x1+x2)/2
-                yCenter = (y1+y2)/2
-                center = (xCenter, yCenter)
+                #print(box)
+                
                 if className in objects: 
-                    objectInfo.append([box, center, className])
+                    [x1,y1,x2,y2] = box
+                    xCenter = int(x1+x2/2)
+                    yCenter = int(y1+y2/2)
+                    center = (xCenter, yCenter)
+                    objectInfo.append([box, center, className, confidence])
                     if (draw):
+                        
                         cv2.rectangle(img, box, color=(0,255,0), thickness=2)
                         cv2.circle(img, (xCenter, yCenter), 3, (255,0,255), thickness=-1)
                         cv2.putText(img,self.classNames[classId-1].upper(),(box[0]+10,box[1]+30),
@@ -77,7 +79,7 @@ class CupModule:
                         cv2.putText(img,str(round(confidence*100,2)),(box[0]+200,box[1]+30),
                         cv2.FONT_HERSHEY_COMPLEX,1,(0,255,0),2)
                         
-                        time.sleep = 2
+                        #time.sleep = 2
         
         return img,objectInfo
 
