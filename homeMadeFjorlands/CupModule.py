@@ -73,7 +73,7 @@ class CupModule:
                     if (draw):
                         
                         cv2.rectangle(img, box, color=(0,255,0), thickness=2)
-                        cv2.circle(img, (x1, y1), 3, (255,0,255), thickness=-1)
+                        cv2.circle(img, (x2, y2), 3, (255,0,255), thickness=-1)
                         cv2.putText(img,self.classNames[classId-1].upper(),(box[0]+10,box[1]+30),
                         cv2.FONT_HERSHEY_COMPLEX,1,(0,255,0),2)
                         cv2.putText(img,str(round(confidence*100,2)),(box[0]+200,box[1]+30),
