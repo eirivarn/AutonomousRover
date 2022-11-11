@@ -4,7 +4,7 @@ from Task3 import Task3
 from Task4 import Task4
 from Victory import Victory, Fail
 from LineModule import LineModule
-from MotorControl import MotorControl
+from motorControl import MotorControl
 
 
 if __name__ == "__main__":
