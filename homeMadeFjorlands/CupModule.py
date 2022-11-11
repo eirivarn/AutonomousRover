@@ -65,11 +65,11 @@ class CupModule:
                 #print(box)
                 
                 if className in objects: 
-                    [x2,y1,x1,y2] = box
+                    [y1,x1,y2,x2] = box
                     xCenter = int((x2-x1)/2)
                     yCenter = int((y2-y1)/2)
                     center = (xCenter, yCenter)
-                    objectInfo.append([box, center, className])
+                    objectInfo.append([box, center, className, confidence])
                     if (draw):
                         
                         cv2.rectangle(img, box, color=(0,255,0), thickness=2)
