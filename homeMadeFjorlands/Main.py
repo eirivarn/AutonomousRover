@@ -1,31 +1,25 @@
-import threading
 from Task1 import Task1
 from Task2 import Task2
 from Task3 import Task3
 from Task4 import Task4
 from Victory import Victory, Fail
-from Utils import initPiCam
 from motorControl import MotorControl
 from LineModule import LineModule
 from CupModule import CupModule
+from CaptureImage import CaptureImage
 
 
 if __name__ == "__main__":
 
     print("\n\nStarting!\n")
 
-    camera = initPiCam()
     motor = MotorControl()
-    lineModule = LineModule(False, camera)
-    cupModule = CupModule(False, camera)
+    lineModule = LineModule(False)
+    cupModule = CupModule(False)
 
+    camera = CaptureImage(motor, lineModule, cupModule)
 
-    lineCaptureThread = threading.Thread(target=lineModule.startVideoCapture)
-    lineCaptureThread.start()
-
-    cupCaptureThread = threading.Thread(target=cupModule.startVideoCapture)
-    cupCaptureThread.start()
-    
+    camera.startVideoCapture()
     
     
     '''

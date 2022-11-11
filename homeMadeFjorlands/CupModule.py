@@ -4,13 +4,8 @@ from picamera import PiCamera
 from picamera.array import PiRGBArray
 
 class CupModule:
-    def __init__(self, isHedless, camera):
+    def __init__(self, isHedless):
         self.isHeadless = isHedless
-        self.camera = camera
-        self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
-        time.sleep(0.1)
-
-        self.breakLoop = False
         self.classNames = []
         self.classFile = "/home/pi/Desktop/Object_Detection_Files/coco.names"
         with open(self.classFile,"rt") as f:
@@ -27,30 +22,18 @@ class CupModule:
         self.result = None
         self.objectInfo = None
 
+        self.info = None   #TODO lag get info funk
 
-    def startVideoCapture(self):
-        time.sleep(0.0001)
+
+    def analyzeImage(self, image):
+        img, self.objectInfo = self.getObjects(image,0.6,0.2, objects=['cup','bowl'])
+        print(self.objectInfo)
+
+        if not self.isHeadless: 
+            cv2.imshow('Cup', img)
         self.rawCapture.truncate(0)
 
-        for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
-            time.sleep(0.0001)
-
-            image = frame.array
-            
-            img, self.objectInfo = self.getObjects(image,0.45,0.2, objects=['cup','bowl'])
-            print(self.objectInfo)
-
-            if not self.isHeadless: # and self.result != None:
-                cv2.imshow('Cup', img)
-            self.rawCapture.truncate(0)
-           
-            if cv2.waitKey(1) & 0xff == ord('q'):
-                break
-            
-            if self.breakLoop:
-                self.breakLoop = False
-                break
-
+        return self.info   #TODO info
 
 
     def getObjects(self, img, thres, nms, draw=True, objects=[]):
@@ -60,7 +43,6 @@ class CupModule:
         if len(classIds) != 0:
             for classId, confidence, box in zip(classIds.flatten(),confs.flatten(),bbox):
                 className = self.classNames[classId - 1]
-                #print(box)
                 
                 if className in objects: 
                     [x1,y1,x2,y2] = box
@@ -76,9 +58,7 @@ class CupModule:
                         cv2.FONT_HERSHEY_COMPLEX,1,(0,255,0),2)
                         cv2.putText(img,str(round(confidence*100,2)),(box[0]+200,box[1]+30),
                         cv2.FONT_HERSHEY_COMPLEX,1,(0,255,0),2)
-                        
-                        #time.sleep = 2
-        
+                                
         return img,objectInfo
 
 
