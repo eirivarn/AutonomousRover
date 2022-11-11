@@ -1,11 +1,37 @@
-from motorControl import motorControl
-from LesGetSomeLines import LesGetSomeLines
+from Task1 import Task1
+from Task2 import Task2
+from Task3 import Task3
+from Task4 import Task4
+from Victory import Victory, Fail
+from LineModule import LineModule
+from MotorControl import MotorControl
+
 
 if __name__ == "__main__":
-    print("\n\nStarting!\n")
-    motor = motorControl()
-    lineDetector = LesGetSomeLines(True)
-    lineDetector.startVideoCapture()
 
-    lineDetector.quit()
-    motor.quit()
+    print("\n\nStarting!\n")
+
+    motor = MotorControl()
+    lineModule = LineModule(True)
+    cupModule = CupModule(True)
+
+    victory = False
+
+    task1 = Task1(motor, lineModule)
+    task1.execute()
+    if task1.completed():
+        task2 = Task2(motor, lineModule)
+        task2.execute()
+        if task2.completed():
+            task3 = Task3(motor, lineModule)
+            task3.execute()
+            if task3.completed():
+                task4 = Task4(motor, lineModule)
+                task4.execute()
+                if task4.completed():
+                    Victory(motor, lineModule)
+                    vitory = True
+    if not vitory:
+        Fail(motor, lineModule)
+
+    lineModule.startVideoCapture()

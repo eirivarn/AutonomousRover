@@ -1,7 +1,7 @@
 from DCmotor import DCmotor
  
  
-class motorControl:
+class MotorControl:
     def __init__(self):
         self.lSpeedPin = 7
         self.lDirPin = 11
