@@ -39,11 +39,11 @@ class CupModule:
 
             image = frame.array
             
-            self.result, self.objectInfo = self.getObjects(image,0.45,0.2, objects=['cup','bowl'])
+            img, self.objectInfo = self.getObjects(image,0.45,0.2, objects=['cup','bowl'])
             print(self.objectInfo)
 
-            if not self.isHeadless and self.result != None:
-                cv2.imshow('Image', self.result)
+            if not self.isHeadless: # and self.result != None:
+                cv2.imshow('Cup', img)
             self.rawCapture.truncate(0)
            
             if cv2.waitKey(1) & 0xff == ord('q'):
