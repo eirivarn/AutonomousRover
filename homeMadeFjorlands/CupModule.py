@@ -65,7 +65,7 @@ class CupModule:
                 #print(box)
                 
                 if className in objects: 
-                    [x2,y2,x1,y1] = box
+                    [x2,y1,x1,y2] = box
                     xCenter = int((x2-x1)/2)
                     yCenter = int((y2-y1)/2)
                     center = (xCenter, yCenter)
