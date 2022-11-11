@@ -1,4 +1,4 @@
-from motorControl import motorControl
+from motorControl import MotorControl
 from LineModule import LineModule
 
 def Victory(motorControl, lineModule):

@@ -1,8 +1,8 @@
-import motorControl
-import LineModule
+from motorControl import MotorControl
+from LineModule import LineModule
 
-motor = motorControl.motorControl()
-lineModule = LineModule.LineDetector(motor)
+motor = MotorControl()
+lineModule = LineModule(False)
 
 lineModule.quit()
 motor.quit()
