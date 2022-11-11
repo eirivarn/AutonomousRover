@@ -13,10 +13,10 @@ if __name__ == "__main__":
     print("\n\nStarting!\n")
 
     motor = MotorControl()
-    #lineModule = LineModule(False)
-    cupModule = CupModule(False)
-    cupModule.startVideoCapture()
-    
+    lineModule = LineModule(False)
+    #cupModule = CupModule(False)
+    #cupModule.startVideoCapture()
+    lineModule.startVideoCapture()
     '''
     def doCourse():
         victory = False
