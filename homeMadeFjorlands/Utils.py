@@ -48,6 +48,8 @@ def RemoveBackground(image, b):
         return image
     #////////////////COLOR SELECTION/////////////
 
+
+#/////////////////prettyPrint///////////////
 def printInfo(images):
     i = 0
     mainString ={}
@@ -65,3 +67,12 @@ def printInfo(images):
         dir, area, w, offset, crossFound = v
         print ("{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format(k, dir, area, w, offset, crossFound))    
     
+
+#////////////Camera//////////////
+from picamera import PiCamera
+
+def initPiCam():
+    camera = PiCamera()
+    camera.resolution = (640, 368)
+
+    return camera

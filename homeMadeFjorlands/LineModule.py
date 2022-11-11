@@ -7,10 +7,10 @@ from Image import Image
 
 
 class LineModule:
-    def __init__(self, isHeadless):
+    def __init__(self, isHeadless, camera):
         self.isHeadless = isHeadless
-        self.camera = PiCamera()
-        self.camera.resolution = (640, 368)
+        self.camera = camera
+        
         self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
         time.sleep(0.1)
         self.font = cv2.FONT_HERSHEY_SIMPLEX

@@ -4,11 +4,9 @@ from picamera import PiCamera
 from picamera.array import PiRGBArray
 
 class CupModule:
-    def __init__(self, isHedless):
+    def __init__(self, isHedless, camera):
         self.isHeadless = isHedless
-
-        self.camera = PiCamera()
-        self.camera.resolution = (640, 368)
+        self.camera = camera
         self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
         time.sleep(0.1)
 

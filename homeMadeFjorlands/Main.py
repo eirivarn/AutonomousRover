@@ -1,8 +1,10 @@
+import threading
 from Task1 import Task1
 from Task2 import Task2
 from Task3 import Task3
 from Task4 import Task4
 from Victory import Victory, Fail
+from Utils import initPiCam
 from motorControl import MotorControl
 from LineModule import LineModule
 from CupModule import CupModule
@@ -12,10 +14,19 @@ if __name__ == "__main__":
 
     print("\n\nStarting!\n")
 
+    camera = initPiCam()
     motor = MotorControl()
-    #lineModule = LineModule(False)
-    cupModule = CupModule(False)
-    cupModule.startVideoCapture()
+    lineModule = LineModule(False, camera)
+    cupModule = CupModule(False, camera)
+
+
+    lineCaptureThread = threading.Thread(target=lineModule.startVideoCapture, args=(False,camera))
+    lineCaptureThread.start()
+    
+    cupCaptureThread = threading.Thread(target=cupModule.startVideoCapture, args=(False,camera))
+    cupCaptureThread.start()
+    
+    
     
     '''
     def doCourse():
