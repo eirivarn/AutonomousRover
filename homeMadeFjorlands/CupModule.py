@@ -66,8 +66,8 @@ class CupModule:
                 
                 if className in objects: 
                     [x1,y1,x2,y2] = box
-                    xCenter = int((x1+x2)/2)
-                    yCenter = int((y1+y2)/2)
+                    xCenter = int((x2-x1)/2)
+                    yCenter = int((y2-y1)/2)
                     center = (xCenter, yCenter)
                     objectInfo.append([box, center, className])
                     if (draw):
