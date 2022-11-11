@@ -32,6 +32,8 @@ class CupModule:
 
     def startVideoCapture(self):
         time.sleep(0.0001)
+        self.rawCapture.truncate(0)
+
         for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
             time.sleep(0.0001)
 
