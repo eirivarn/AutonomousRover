@@ -68,11 +68,3 @@ def printInfo(images):
         print ("{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format(k, dir, area, w, offset, crossFound))    
     
 
-#////////////Camera//////////////
-from picamera import PiCamera
-
-def initPiCam():
-    camera = PiCamera()
-    camera.resolution = (640, 368)
-
-    return camera
