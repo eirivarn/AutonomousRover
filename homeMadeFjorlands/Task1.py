@@ -1,4 +1,4 @@
-from MotorControl import MotorControl
+from motorControl import MotorControl
 from LineModule import LineModule
 from CupModule import CupModule
 

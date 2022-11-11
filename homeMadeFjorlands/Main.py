@@ -3,7 +3,7 @@ from Task2 import Task2
 from Task3 import Task3
 from Task4 import Task4
 from Victory import Victory, Fail
-from MotorControl import MotorControl
+from motorControl import MotorControl
 from LineModule import LineModule
 from CupModule import CupModule
 
