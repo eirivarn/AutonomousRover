@@ -63,13 +63,15 @@ class CupModule:
             for classId, confidence, box in zip(classIds.flatten(),confs.flatten(),bbox):
                 className = self.classNames[classId - 1]
                 print(box)
-                [x1,y1,x2,y2] = box
-                xCenter = (x1+x2)/2
-                yCenter = (y1+y2)/2
-                center = (xCenter, yCenter)
+                
                 if className in objects: 
+                    [x1,y1,x2,y2] = box
+                    xCenter = (x1+x2)/2
+                    yCenter = (y1+y2)/2
+                    center = (xCenter, yCenter)
                     objectInfo.append([box, center, className])
                     if (draw):
+                        
                         cv2.rectangle(img, box, color=(0,255,0), thickness=2)
                         cv2.circle(img, (xCenter, yCenter), 3, (255,0,255), thickness=-1)
                         cv2.putText(img,self.classNames[classId-1].upper(),(box[0]+10,box[1]+30),
