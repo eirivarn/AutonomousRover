@@ -62,10 +62,10 @@ class CupModule:
         if len(classIds) != 0:
             for classId, confidence, box in zip(classIds.flatten(),confs.flatten(),bbox):
                 className = self.classNames[classId - 1]
-                print(box)
+                #print(box)
                 
                 if className in objects: 
-                    [x1,y1,x2,y2] = box
+                    [x1,x2,y1,y2] = box
                     xCenter = int((x2-x1)/2)
                     yCenter = int((y2-y1)/2)
                     center = (xCenter, yCenter)
