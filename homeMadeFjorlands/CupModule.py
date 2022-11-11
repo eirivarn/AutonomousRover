@@ -1,9 +1,17 @@
 import time
 import cv2
+from picamera import PiCamera
+from picamera.array import PiRGBArray
 
 class CupModule:
     def __init__(self, isHedless):
         self.isHeadless = isHedless
+
+        self.camera = PiCamera()
+        self.camera.resolution = (640, 368)
+        self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
+        time.sleep(0.1)
+
         self.breakLoop = False
         self.classNames = []
         self.classFile = "/home/pi/Desktop/Object_Detection_Files/coco.names"
