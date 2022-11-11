@@ -20,10 +20,10 @@ if __name__ == "__main__":
     cupModule = CupModule(False, camera)
 
 
-    lineCaptureThread = threading.Thread(target=lineModule.startVideoCapture, args=(False,camera))
+    lineCaptureThread = threading.Thread(target=lineModule.startVideoCapture)
     lineCaptureThread.start()
-    
-    cupCaptureThread = threading.Thread(target=cupModule.startVideoCapture, args=(False,camera))
+
+    cupCaptureThread = threading.Thread(target=cupModule.startVideoCapture)
     cupCaptureThread.start()
     
     
