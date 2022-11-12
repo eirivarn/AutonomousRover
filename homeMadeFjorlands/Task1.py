@@ -3,7 +3,7 @@ import Main
 from time import sleep
 
 
-class ExecuteTask(Task):
+class Task1(Task):
     def __init__(self, motorContorl, lineModule, cupModule):
         super().__init__(motorContorl, lineModule, cupModule)
         self.speed = 0
