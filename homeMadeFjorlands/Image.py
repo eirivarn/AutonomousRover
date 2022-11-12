@@ -100,7 +100,6 @@ class Image:
         return self.middleX-self.contourCenterX
 
 
-    
 
     def crossFound(self):
         x,y,w,h = cv2.boundingRect(self.MainContour)
