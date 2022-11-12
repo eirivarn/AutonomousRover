@@ -31,11 +31,12 @@ class LineModule:
         
         printInfo(self.images)
         
-        crossFound = Image.crossFound(self.images)
 
         if not self.isHeadless:
             cv2.imshow('Image', repackedImg)
         #self.rawCapture.truncate(0)  TODO finn ut om denne skal stå her
+        
+        crossFound = Image.crossFound(self.images)
 
         return line, crossFound #TODO    skal returne line - liste av avstand fra linje til senter av bildet
 
