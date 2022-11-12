@@ -1,7 +1,5 @@
-import time
 from Utils import *
-from picamera import PiCamera
-from picamera.array import PiRGBArray
+#from picamera.array import PiRGBArray
 import cv2
 from Image import Image
 
@@ -37,7 +35,7 @@ class LineModule:
 
         if not self.isHeadless:
             cv2.imshow('Image', repackedImg)
-        self.rawCapture.truncate(0)
+        #self.rawCapture.truncate(0)  TODO finn ut om denne skal stå her
 
         return line, crossFound  #TODO    skal returne line - liste av avstand fra linje til senter av bildet
 

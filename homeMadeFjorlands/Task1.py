@@ -4,14 +4,13 @@ from time import sleep
 
 
 class Task1(Task):
-    speed = 0
-    cupDistBuffer = 5
-    lineDistBuffer = 2
-    firstTime6 = True
+    def __init__(self, motorContorl, lineModule, cupModule):
+        super().__init__(motorContorl, lineModule, cupModule)
+        self.speed = 0
+        self.cupDistBuffer = 5
+        self.lineDistBuffer = 2
 
     def update(self, image):
-        global speed, cupDistBuffer
-        #self.image = image
 
         if self.subTask == 1: #follow line to cross
             self.subTask1(image)
@@ -53,9 +52,9 @@ class Task1(Task):
 
     def subTask1(self,image):
         line, crossFound = self.lineModule.analyzeImage(image)
-        self.motorControl.followLine(line, speed)
+        self.motorControl.followLine(line, self.speed)
         if crossFound:
-            self.motorControl.goToCross(speed)
+            self.motorControl.goToCross(self.speed)
             self.subtask = 2
 
     def subTask2(self,image):
@@ -64,7 +63,7 @@ class Task1(Task):
             self.motorControl.turnLeft()
         else:
             self.motorControl.turnToPos(cupPos)
-        if cupPos in range(-cupDistBuffer, cupDistBuffer):
+        if cupPos in range(-self.cupDistBuffer, self.cupDistBuffer):
             self.subTask = 3
     
     def subTask3(self,image):
@@ -80,14 +79,13 @@ class Task1(Task):
         self.subTask = 5 
 
     def subTask5(self,image):
-        global lineDistBuffer
         line, crossFound = self.lineModule.analyzeImage(image)
         if line == []:
             self.motorControl.turnLeft()
         else:
             pos = line[2]
             self.motorControl.turnToPos(pos)  #TODO kan være vilket som helst line-punkt, bør testes
-            if pos in range(-lineDistBuffer, lineDistBuffer):
+            if pos in range(-self.lineDistBuffer, self.lineDistBuffer):
                 self.subTask = 6
 
     def subTask6(self):
@@ -102,7 +100,7 @@ class Task1(Task):
         else:
             pos = line[2]
             self.motorControl.turnToPos(pos)  #TODO kan være vilket som helst line-punkt, bør testes
-            if pos in range(-lineDistBuffer, lineDistBuffer):
+            if pos in range(-self.lineDistBuffer, self.lineDistBuffer):
                 self.subTask = 8
 
     def subTask8(self):
@@ -122,5 +120,5 @@ class Task1(Task):
         else:
             pos = line[2]
             self.motorControl.turnToPos(pos)  #TODO kan være vilket som helst line-punkt, bør testes
-            if pos in range(-lineDistBuffer, lineDistBuffer):
+            if pos in range(-self.lineDistBuffer, self.lineDistBuffer):
                 self.subTask = 11
