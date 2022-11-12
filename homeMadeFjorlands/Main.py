@@ -19,6 +19,7 @@ if __name__ == "__main__":
 
     camera = CaptureImage(motor, lineModule, cupModule)
 
+    global activeTask
     activeTask = 1
 
     camera.startVideoCapture()
@@ -41,4 +42,5 @@ def update(image):
         Victory(motor, lineModule)
 
 def setActiveTask(task):
+    global activeTask
     activeTask = task
