@@ -7,7 +7,7 @@ from motorControl import MotorControl
 from LineModule import LineModule
 from CupModule import CupModule
 from CaptureImage import CaptureImage
-from Task import Task
+
 
 if __name__ == "__main__":
 
