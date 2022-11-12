@@ -13,6 +13,9 @@ class MotorControl:
 
         self.prevAngle, self.prevDist = 0, 0
  
+    def followLine(line, baseSpeed):
+        pass  ## TODO line er en liste med avstand fra linjen til senter av bildet
+
     def drive(self, speedLeft, speedRight):
         if speedLeft < 0:
             self.leftMotor.backward(abs(speedLeft))

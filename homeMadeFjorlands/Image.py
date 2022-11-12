@@ -93,11 +93,17 @@ class Image:
         contour = self.MainContour
         area = cv2.contourArea(contour)
         x,y,w,h = cv2.boundingRect(contour)
-        offset = self.middleX-self.contourCenterX
+        offset = self.getOffset()
         return area, w, offset
+
+    def getOffset(self):
+        return self.middleX-self.contourCenterX
+
+
+    
 
     def crossFound(self):
         x,y,w,h = cv2.boundingRect(self.MainContour)
-        if w > 300:
+        if w > 300:  ## TODO lagre variabel i variabelliste
             return True
         return False

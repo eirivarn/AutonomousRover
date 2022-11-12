@@ -68,3 +68,8 @@ def printInfo(images):
         print ("{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format(k, dir, area, w, offset, crossFound))    
     
 
+def crossFound(images):
+    for image in images:
+        if image.crossFound():
+            return True
+    return False
