@@ -13,7 +13,7 @@ class MotorControl:
 
         self.prevAngle, self.prevDist = 0, 0
  
-    def followLine(line, baseSpeed):
+    def followLine(self, line, baseSpeed):
         pass  ## TODO line er en liste med avstand fra linjen til senter av bildet
 
 
