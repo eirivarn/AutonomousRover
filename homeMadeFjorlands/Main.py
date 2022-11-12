@@ -19,6 +19,11 @@ if __name__ == "__main__":
 
     camera = CaptureImage(motor, lineModule, cupModule)
 
+    task1 = Task1(motor, lineModule, cupModule)
+    task2 = Task2(motor, lineModule, cupModule)
+    task3 = Task3(motor, lineModule, cupModule)
+    task4 = Task4(motor, lineModule, cupModule)
+
     global activeTask
     activeTask = 1
 
@@ -27,19 +32,19 @@ if __name__ == "__main__":
     
 def update(image):
     if activeTask == 1:
-        task1 = Task1(motor, lineModule, cupModule)
-        task1.update(image)
+        task = task1
     elif activeTask == 2:
-        task2 = Task2(motor, lineModule, cupModule)
-        task2.update(image)
+        task = task2
     elif activeTask == 3:
-        task3 = Task3(motor, lineModule, cupModule)
-        task3.update(image)
+        task = task3
     elif activeTask == 4:
-        task4 = Task4(motor, lineModule, cupModule)
-        task4.update(image)
+        task = task4
     elif activeTask == 5:
         Victory(motor, lineModule)
+        return
+
+    task.update(image)    
+
 
 def setActiveTask(task):
     global activeTask
