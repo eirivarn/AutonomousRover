@@ -1,5 +1,5 @@
 from Task import Task
-import Main
+from Main import *
 from time import sleep
 
 
