@@ -14,14 +14,14 @@ class CaptureImage:
         self.image = None
 
     
-    def startVideoCapture(self):
+    def startVideoCapture(self, rover):
         time.sleep(0.0001)
         for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
             time.sleep(0.0001)
 
             self.image = frame.array
             
-            super.update(self.image)
+            rover.update(self.image)
   
             if cv2.waitKey(1) & 0xff == ord('q'):
                 break
