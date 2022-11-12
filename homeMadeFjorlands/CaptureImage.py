@@ -2,11 +2,6 @@ import time
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 import cv2
-from motorControl import MotorControl
-from LineModule import LineModule
-from CupModule import CupModule
-import Main
-
 
 
 class CaptureImage:
@@ -29,7 +24,7 @@ class CaptureImage:
 
             self.image = frame.array
             
-            Main.update(self.image)
+            super.update(self.image)
   
             if cv2.waitKey(1) & 0xff == ord('q'):
                 break
