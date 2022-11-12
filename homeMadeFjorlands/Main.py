@@ -1,4 +1,4 @@
-from Task1 import Task1
+from Task1 import ExecuteTask
 from Task2 import Task2
 from Task3 import Task3
 from Task4 import Task4
@@ -7,7 +7,7 @@ from motorControl import MotorControl
 from LineModule import LineModule
 from CupModule import CupModule
 from CaptureImage import CaptureImage
-from Task import Task
+
 
 if __name__ == "__main__":
 

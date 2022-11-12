@@ -1,9 +1,3 @@
-from motorControl import MotorControl
-from LineModule import LineModule
-from CupModule import CupModule
-import Main
-
-
 class Task:
     def __init__(self, motorContorl, lineModule, cupModule):
         self.motorControl = motorContorl

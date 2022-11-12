@@ -1,9 +1,9 @@
 from Task import Task
-import Main
+from Main import *
 from time import sleep
 
 
-class Task1(Task):
+class ExecuteTask(Task):
     def __init__(self, motorContorl, lineModule, cupModule):
         super().__init__(motorContorl, lineModule, cupModule)
         self.speed = 0
