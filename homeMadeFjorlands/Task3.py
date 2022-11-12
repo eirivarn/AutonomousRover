@@ -3,7 +3,7 @@ from Task import Task
 import Main
 
 
-class Task2(Task):
+class Task3(Task):
     def __init__(self, motorContorl, lineModule, cupModule):
         super().__init__(motorContorl, lineModule, cupModule)
         self.speed = 40  #sett en safe og trygg speed gjennom hinderløpa
