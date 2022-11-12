@@ -9,7 +9,7 @@ from Task2 import Task2
 from Task3 import Task3
 from Task4 import Task4
 
-class Rover():
+class Robot():
 
     def __init__(self):
         self.motor = MotorControl()
