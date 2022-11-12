@@ -1,5 +1,4 @@
 from Task import Task
-import Main 
 from time import sleep
 
 
@@ -43,7 +42,7 @@ class Task1(Task):
             self.subTask10(image)
 
         elif self.subTask == 11: #task is complete
-            Main.setActiveTask(2)
+            super.setActiveTask(2)
 
         else:
             print('Error in task1. subTaskCount out of bounce')

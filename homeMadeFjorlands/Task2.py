@@ -18,7 +18,7 @@ class Task2(Task):
                 self.subtask = 2
 
         if self.subTask == 2:    #task 2 complete
-            Main.setActiveTask(3)
+            super.setActiveTask(3)
 
         else:
             print('Error in task2. subTaskCount out of bounce')

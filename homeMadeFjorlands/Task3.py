@@ -20,7 +20,7 @@ class Task3(Task):
             self.subTask3(image)
 
         if self.subTask == 4:    #task 2 complete
-            Main.setActiveTask(4)
+            super.setActiveTask(4)
 
         else:
             print('Error in task3. subTaskCount out of bounce')
