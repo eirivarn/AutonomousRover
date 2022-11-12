@@ -4,5 +4,5 @@ if __name__ == "__main__":
 
     print("\n\nStarting!\n")
     robot = Rover()
-    robot.camera.startVideoCapture
-    robot.update()
+    image = robot.camera.startVideoCapture
+    robot.update(image)
