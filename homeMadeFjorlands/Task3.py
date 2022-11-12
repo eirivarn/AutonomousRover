@@ -1,14 +1,7 @@
-class Task3:
-    def __init__(self, motorContorl, lineModule):
-        self.motorControl = motorContorl
-        self.lineModule = lineModule
-        self.completed = False
-       
+from Task import Task
 
-    def execute(self):
-        #TODO
+
+class Task3(Task):
+
+    def update(self, image):
         pass
-
-     
-    def completed(self):
-        return self.completed
