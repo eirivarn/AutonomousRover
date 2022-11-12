@@ -1,5 +1,4 @@
 from Task import Task
-import Main
 
 
 class Task2(Task):
