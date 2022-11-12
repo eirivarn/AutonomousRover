@@ -5,6 +5,7 @@ import cv2
 from motorControl import MotorControl
 from LineModule import LineModule
 from CupModule import CupModule
+import Main
 
 
 
@@ -27,11 +28,8 @@ class CaptureImage:
             time.sleep(0.0001)
 
             self.image = frame.array
-
-            self.lineModule.analyzeImage(self.image)
-
-            self.cupModule.analyzeImage(self.image)
-
-
+            
+            Main.update(self.image)
+  
             if cv2.waitKey(1) & 0xff == ord('q'):
                 break
