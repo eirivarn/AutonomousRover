@@ -1,9 +1,8 @@
 from Task import Task
-import Main 
 from time import sleep
 
 
-class ExecuteTask(Task):
+class Task1(Task):
     def __init__(self, motorContorl, lineModule, cupModule):
         super().__init__(motorContorl, lineModule, cupModule)
         self.speed = 0
@@ -43,7 +42,7 @@ class ExecuteTask(Task):
             self.subTask10(image)
 
         elif self.subTask == 11: #task is complete
-            Main.setActiveTask(2)
+            super.setActiveTask(2)
 
         else:
             print('Error in task1. subTaskCount out of bounce')
@@ -53,9 +52,9 @@ class ExecuteTask(Task):
     def subTask1(self,image):
         line, crossFound = self.lineModule.analyzeImage(image)
         self.motorControl.followLine(line, self.speed)
-        if crossFound:
-            self.motorControl.goToCross(self.speed)
-            self.subtask = 2
+        #if crossFound:
+        #    self.motorControl.goToCross(self.speed)
+        #    self.subtask = 2
 
     def subTask2(self,image):
         cupPos, cupInImage = self.cupModule.analyzeImage(image)

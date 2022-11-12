@@ -1,5 +1,4 @@
 from Utils import *
-#from picamera.array import PiRGBArray
 import cv2
 from Image import Image
 
@@ -31,13 +30,12 @@ class LineModule:
         
         printInfo(self.images)
         
-        crossFound = crossFound(self.images)
 
         if not self.isHeadless:
             cv2.imshow('Image', repackedImg)
-        #self.rawCapture.truncate(0)  TODO finn ut om denne skal stå her
 
-        return line, crossFound  #TODO    skal returne line - liste av avstand fra linje til senter av bildet
+        crossFound(self.images)
+        return line, crossFound #TODO    skal returne line - liste av avstand fra linje til senter av bildet
 
     def quit(self):
         cv2.destroyAllWindows()

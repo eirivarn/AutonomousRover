@@ -2,34 +2,28 @@ import time
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 import cv2
-from motorControl import MotorControl
-from LineModule import LineModule
-from CupModule import CupModule
-import Main
-
 
 
 class CaptureImage:
 
-    def __init__(self, motor, lineModule, cupModule):
+    def __init__(self):
         
         self.camera = PiCamera()
-        self.camera.resolution = (640, 368)
-        self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
+        self.camera.resolution = (640, 480)
+        self.rawCapture = PiRGBArray(self.camera, size=(640, 480))
         self.image = None
-        self.motor = motor
-        self.lineModule = lineModule
-        self.cupModule = cupModule
 
     
-    def startVideoCapture(self):
-        time.sleep(0.0001)
+    def startVideoCapture(self, rover):
+        time.sleep(0.1)
         for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
             time.sleep(0.0001)
 
             self.image = frame.array
+            frame.truncate(0)
             
-            Main.update(self.image)
+            rover.update(self.image)
+
   
             if cv2.waitKey(1) & 0xff == ord('q'):
                 break
