@@ -1,5 +1,4 @@
 from Utils import *
-from picamera.array import PiRGBArray
 import cv2
 from Image import Image
 
@@ -34,7 +33,6 @@ class LineModule:
 
         if not self.isHeadless:
             cv2.imshow('Image', repackedImg)
-            image.rawCapture.truncate(0)
 
         return line #TODO    skal returne line - liste av avstand fra linje til senter av bildet
 
