@@ -19,8 +19,8 @@ class CaptureImage:
         for frame in self.camera.capture_continuous(self.rawCapture, format=("bgr"), use_video_port=True):
             time.sleep(0.0001)
 
-            self.image = frame
-            self.image.truncate(0)
+            self.image = frame.array
+            frame.truncate(0)
             
             rover.update(self.image)
 
