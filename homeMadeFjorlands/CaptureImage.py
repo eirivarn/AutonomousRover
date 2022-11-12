@@ -6,15 +6,13 @@ import cv2
 
 class CaptureImage:
 
-    def __init__(self, motor, lineModule, cupModule):
+    def __init__(self, motor):
         
         self.camera = PiCamera()
         self.camera.resolution = (640, 368)
         self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
         self.image = None
         self.motor = motor
-        self.lineModule = lineModule
-        self.cupModule = cupModule
 
     
     def startVideoCapture(self):

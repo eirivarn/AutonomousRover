@@ -11,12 +11,12 @@ from Task4 import Task4
 
 class Rover():
 
-    def __init__(self, lineModule, cupModule):
+    def __init__(self):
         self.motor = MotorControl()
         self.lineModule = LineModule(False)
         self.cupModule = CupModule(False)
 
-        self.camera = CaptureImage(self.motor, lineModule, cupModule)
+        self.camera = CaptureImage(self.motor)
         
         self.activeTask = 1
 
