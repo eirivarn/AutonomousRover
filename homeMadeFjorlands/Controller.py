@@ -15,10 +15,10 @@ class Rover():
         self.motor = MotorControl()
         self.lineModule = LineModule(False)
         self.cupModule = CupModule(False)
-
-        self.camera = CaptureImage(self.motor)
+        self.camera = CaptureImage()
         
         self.activeTask = 1
+
 
     def update(self, image):
         if self.activeTask == 1:

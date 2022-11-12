@@ -12,7 +12,6 @@ class CaptureImage:
         self.camera.resolution = (640, 368)
         self.rawCapture = PiRGBArray(self.camera, size=(640, 368))
         self.image = None
-        self.motor = motor
 
     
     def startVideoCapture(self):
