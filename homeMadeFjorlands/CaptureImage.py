@@ -6,7 +6,7 @@ import cv2
 
 class CaptureImage:
 
-    def __init__(self, motor):
+    def __init__(self):
         
         self.camera = PiCamera()
         self.camera.resolution = (640, 368)
