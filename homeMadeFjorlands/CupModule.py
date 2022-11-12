@@ -1,7 +1,5 @@
 import time
 import cv2
-from picamera import PiCamera
-from picamera.array import PiRGBArray
 
 class CupModule:
     def __init__(self, isHedless):
@@ -33,6 +31,9 @@ class CupModule:
             cv2.imshow('Cup', img)
         self.rawCapture.truncate(0)
 
+        #TODO cupPos dist from center of cup to center of image
+        #TODO cupInImage bool
+        #TODO cupIsClose bool
         return self.info   #TODO info
 
 

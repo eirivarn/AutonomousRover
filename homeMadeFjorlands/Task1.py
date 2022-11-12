@@ -1,61 +1,126 @@
 from Task import Task
 import Main
+from time import sleep
 
 
 class Task1(Task):
     speed = 0
     cupDistBuffer = 5
+    lineDistBuffer = 2
+    firstTime6 = True
 
     def update(self, image):
         global speed, cupDistBuffer
-        self.image = image
+        #self.image = image
+
         if self.subTask == 1: #follow line to cross
-            line, crossFound = self.lineModule.analyzeImage(image)
-            self.motorControl.followLine(line, speed)
-            if crossFound:
-                self.motorControl.goToCross(speed)
-                self.subtask = 2
+            self.subTask1(image)
         
         elif self.subTask == 2:  #turn left untill cup is in center
-            cupPos, cupInImage = self.cupModule.analyzeImage(image)
-            if not cupInImage:
-                self.motorControl.turnLeft()
-            else:
-                self.motorControl.turnToPos(cupPos)
-            if cupPos in range(-cupDistBuffer, cupDistBuffer):
-                self.subTask = 3
+            self.subTask2(image)
             
         elif self.subTask == 3:  #turn drive forward to cup
-            cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
-            if cupIsClose:
-                self.subTask = 4
-                return 
-            self.motorControl.goToCup(cupPos)
+            self.subTask3(image)
             
         elif self.subTask == 4: #pick up cup
-            self.servo.close()
-            self.subTask = 5            
-
+            self.subTask4()
+                       
         elif self.subTask == 5: # turn 90 deg to main line
-            self.motorControl.turnLeft()
-            #TODO
+            self.subTask5(image)
             
-        elif self.subTask == 6: #turn 90 deg to side line
-            self.motorControl.turnLeft()
-            #TODO
+        elif self.subTask == 6: #turn right for 2 sek TODO adjust this variable
+            self.subTask6()
             
-        elif self.subTask == 7: #drop cup
-            self.servo.open()
+        elif self.subTask == 7:  #keep turning to the sideline
+            self.subTask7(image)
             
+        elif self.subTask == 8: #drop cup
+            self.subTask8()
+            
+        elif self.subTask == 9: #turn left for 2 sek TODO adjust this variable
+            self.subTask9()
+        
+        elif self.subTask == 10: # keep turning to main line
+            self.subTask10(image)
 
-        elif self.subTask == 8: #turn back to main line and task 1 is complete
-
-
+        elif self.subTask == 11: #task is complete
             Main.setActiveTask(2)
 
+        else:
+            print('Error in task1. subTaskCount out of bounce')
 
 
 
+    def subTask1(self,image):
+        line, crossFound = self.lineModule.analyzeImage(image)
+        self.motorControl.followLine(line, speed)
+        if crossFound:
+            self.motorControl.goToCross(speed)
+            self.subtask = 2
 
-
+    def subTask2(self,image):
+        cupPos, cupInImage = self.cupModule.analyzeImage(image)
+        if not cupInImage:
+            self.motorControl.turnLeft()
+        else:
+            self.motorControl.turnToPos(cupPos)
+        if cupPos in range(-cupDistBuffer, cupDistBuffer):
+            self.subTask = 3
     
+    def subTask3(self,image):
+        cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
+        if cupIsClose:
+            self.motorControl.stop()
+            self.subTask = 4
+            return
+        self.motorControl.goToCup(cupPos)
+
+    def subTask4(self):
+        self.servo.close()
+        self.subTask = 5 
+
+    def subTask5(self,image):
+        global lineDistBuffer
+        line, crossFound = self.lineModule.analyzeImage(image)
+        if line == []:
+            self.motorControl.turnLeft()
+        else:
+            pos = line[2]
+            self.motorControl.turnToPos(pos)  #TODO kan være vilket som helst line-punkt, bør testes
+            if pos in range(-lineDistBuffer, lineDistBuffer):
+                self.subTask = 6
+
+    def subTask6(self):
+        self.motorControl.turnRight()
+        sleep(2)
+        self.subTask = 7
+
+    def subTask7(self,image):
+        line, crossFound = self.lineModule.analyzeImage(image)
+        if line == []:
+            self.motorControl.turnRight()
+        else:
+            pos = line[2]
+            self.motorControl.turnToPos(pos)  #TODO kan være vilket som helst line-punkt, bør testes
+            if pos in range(-lineDistBuffer, lineDistBuffer):
+                self.subTask = 8
+
+    def subTask8(self):
+        self.servo.open()
+        self.subTask = 9
+
+
+    def subTask9(self):
+        self.motorControl.turnLeft()
+        sleep(2)
+        self.subTask = 10
+
+    def subTask10(self,image):
+        line, crossFound = self.lineModule.analyzeImage(image)
+        if line == []:
+            self.motorControl.turnLeft()
+        else:
+            pos = line[2]
+            self.motorControl.turnToPos(pos)  #TODO kan være vilket som helst line-punkt, bør testes
+            if pos in range(-lineDistBuffer, lineDistBuffer):
+                self.subTask = 11

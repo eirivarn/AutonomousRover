@@ -16,6 +16,19 @@ class MotorControl:
     def followLine(line, baseSpeed):
         pass  ## TODO line er en liste med avstand fra linjen til senter av bildet
 
+
+    def turnToPos(pos):
+        pass #TODO
+    
+    def goToCup(cupPos):
+        pass #TODO basicly same as follow line exept 1point exept list of points
+
+    def goToCross(speed):
+        pass #TODO
+
+
+
+
     def drive(self, speedLeft, speedRight):
         if speedLeft < 0:
             self.leftMotor.backward(abs(speedLeft))
