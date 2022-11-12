@@ -52,9 +52,9 @@ class Task1(Task):
     def subTask1(self,image):
         line, crossFound = self.lineModule.analyzeImage(image)
         self.motorControl.followLine(line, self.speed)
-        if crossFound:
-            self.motorControl.goToCross(self.speed)
-            self.subtask = 2
+        #if crossFound:
+        #    self.motorControl.goToCross(self.speed)
+        #    self.subtask = 2
 
     def subTask2(self,image):
         cupPos, cupInImage = self.cupModule.analyzeImage(image)
