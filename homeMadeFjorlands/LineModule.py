@@ -16,7 +16,6 @@ class LineModule:
 
 
     def analyzeImage(self, image):
-        image = frame.array
         #differentiate black black areas
         blackAreas = cv2.inRange(image, (0,0,0), (50,50,50))
         blackAreas = self.improveLine(blackAreas)
