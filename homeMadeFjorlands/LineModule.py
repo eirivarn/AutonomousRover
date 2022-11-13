@@ -42,8 +42,6 @@ class LineModule:
             angle = self.preProcessAngle(angle,wc,hc)
             lateralOffset = int(320-xb-wb/2)
             
-            self.controller.setAngLDist(int(angle), int(lateralOffset))
-            
             #Write boxes and lines to image
             cv2.rectangle(image,(xb,yb),(xb+wb,yb+hb),(0,255,0),2) #Bounding box
             cv2.line(image, (int(xb+wb/2), yb), (int(xb+wb/2), yb+hb),(0,255,0), 2) #bounding box centerline
