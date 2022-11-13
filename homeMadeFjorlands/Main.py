@@ -3,12 +3,15 @@ from getkey import getkey
 from threading import Event, Thread
 
 if __name__ == "__main__":
+    robot = Robot()
+
     SHUTDOWN = Event()
 
     def shutdown_on_key():
             while True:
                 key_pressed = getkey(blocking=True)
                 if key_pressed == 'q':
+                    robot.motor.quit()
                     SHUTDOWN.set()
                     return
 
@@ -16,8 +19,8 @@ if __name__ == "__main__":
     t.start()
 
     while not SHUTDOWN.is_set():
+
         print("\n\nStarting!\n")
-        robot = Robot()
         image = robot.camera.startVideoCapture(robot)
         robot.update(image)
 
