@@ -26,9 +26,9 @@ class MotorControl:
         elif (lateralOffset > 0 and angle == 0):
             self.curve(lateralOffset/10, speed)
         elif (lateralOffset < 0 and angle < 0):
-            self.forward(speed)
+            self.curve(lateralOffset/10, speed)
         elif (lateralOffset > 0 and angle > 0):
-            self.forward(speed)
+            self.curve(lateralOffset/10, speed)
         elif (lateralOffset > 0 and angle < 0):  
             self.curve(angle*self.ap - lateralOffset*self.kp, speed)
         elif (lateralOffset < 0 and angle > 0):
