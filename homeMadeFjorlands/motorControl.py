@@ -22,17 +22,17 @@ class MotorControl:
         if (lateralOffset == 0 and angle == 0):
             self.forward(speed)
         elif (lateralOffset < 0 and angle == 0):
-            self.curve(lateralOffset/10)
+            self.curve(lateralOffset/10, speed)
         elif (lateralOffset > 0 and angle == 0):
-            self.curve(lateralOffset/10)
+            self.curve(lateralOffset/10, speed)
         elif (lateralOffset < 0 and angle < 0):
             self.forward(speed)
         elif (lateralOffset > 0 and angle > 0):
             self.forward(speed)
         elif (lateralOffset > 0 and angle < 0):  
-            self.curve(angle*self.ap - lateralOffset*self.kp)
+            self.curve(angle*self.ap - lateralOffset*self.kp, speed)
         elif (lateralOffset < 0 and angle > 0):
-            self.curve(angle*self.ap + lateralOffset*self.kp)
+            self.curve(angle*self.ap + lateralOffset*self.kp, speed)
         
 
     def turnToPos(pos):
@@ -76,14 +76,13 @@ class MotorControl:
         self.rightMotor.forward(speed)
         self.leftMotor.backward(speed)
  
-    def curve(self, curvRate):  #pos curvRate curves to the left, neg curvs right
-        leftSpeed = self.leftMotor.getSpeed()
-        rightSpeed = self.rightMotor.getSpeed()
-        if leftSpeed+curvRate<100 or rightSpeed-curvRate>100:
-            curvRates = [100-leftSpeed, 100-rightSpeed]
-            curvRate = min(curvRates)
-        self.leftMotor.forward(leftSpeed + curvRate)
-        self.rightMotor.forward(rightSpeed - curvRate)
+    def curve(self, curvRate, speed):
+        if curvRate < 0:  #pos curvRate curves to the left, neg curvs right
+            self.leftMotor.forward(speed + curvRate*-1)
+            self.rightMotor.forward(speed)
+        if curvRate > 0:  #pos curvRate curves to the left, neg curvs right
+            self.leftMotor.forward(speed)
+            self.rightMotor.forward(speed+ curvRate)
         print('curve', curvRate)
  
        
