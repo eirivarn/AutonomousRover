@@ -75,9 +75,8 @@ class MotorControl:
     def curv(self, curvRate):  #pos curvRate curves to the left, neg curvs right
         leftSpeed = self.leftMotor.getSpeed()
         rightSpeed = self.rightMotor.getSpeed()
-        if 
-        self.leftMotor.forward(leftSpeed*curvRate/100)
-        self.rightMotor.forward(rightSpeed*curvRate/100)
+        self.leftMotor.forward(leftSpeed + curvRate/100)
+        self.rightMotor.forward(rightSpeed + curvRate/100)
         print('curve', curvRate)
  
        
