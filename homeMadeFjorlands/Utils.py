@@ -60,6 +60,9 @@ def preProcessAngle(ang, w, h):
         ang = -(90-ang)
     return ang
 
+angle = 0
+lateralOffset = 0
+
 def ekstraBox(image):
     #differentiate black black areas
         blackAreas = cv2.inRange(image, (0,0,0), (50,50,50))
@@ -102,7 +105,7 @@ def printInfo(images):
     print ("\n{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format('i','Dir','Area','Width', 'Distance', 'Corss'))
     for k, v in mainString.items():
         dir, area, w, offset, crossFound = v
-        print ("{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format(k, dir, area, w, offset, crossFound))    
+        print ("{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format(k, angle, area, w, lateralOffset, crossFound))    
     
 
 def crossFound(images):
