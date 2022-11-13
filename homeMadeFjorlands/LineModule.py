@@ -30,7 +30,7 @@ class LineModule:
                 line.append(self.images[i].getDir()) ##TODO usikker på om getDir eller getOffset er riktig
             repackedImg = RepackImages(self.images)
 
-        ekstraBox(repackedImg)
+        ekstraBox(self, repackedImg)
         printInfo(self.images)
         
 
