@@ -19,19 +19,19 @@ class MotorControl:
         self.ap = 1
  
     def followLine(self, line, angle, lateralOffset ,speed):
-        if (lateralOffset == 0 & angle) == 0:
+        if (lateralOffset == 0 & angle == 0):
             self.forward(speed)
-        if (lateralOffset < 0 & angle) == 0:
+        if (lateralOffset < 0 & angle == 0):
             self.curve(lateralOffset/10)
-        if (lateralOffset > 0 & angle) == 0:
+        if (lateralOffset > 0 & angle == 0):
             self.curve(lateralOffset/10)
-        if (lateralOffset < 0 & angle) < 0:
+        if (lateralOffset < 0 & angle < 0):
             self.forward(speed)
-        if (lateralOffset > 0 & angle) > 0:
+        if (lateralOffset > 0 & angle > 0):
             self.forward(speed)
-        if (lateralOffset > 0 & angle) < 0:  
+        if (lateralOffset > 0 & angle < 0):  
             self.curve(angle*self.ap - lateralOffset*self.kp)
-        if (lateralOffset < 0 & angle) > 0:
+        if (lateralOffset < 0 & angle > 0):
             self.curve(angle*self.ap + lateralOffset*self.kp)
         
 
