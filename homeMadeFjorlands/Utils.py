@@ -71,7 +71,7 @@ def ekstraBox(image):
             contourbox = cv2.minAreaRect(c) #contour tape rectangle
             (xc, yc), (wc,hc), angle = contourbox
             #determine angle and lateral offset
-            angle = self.preProcessAngle(angle,wc,hc)
+            angle = preProcessAngle(angle,wc,hc)
             lateralOffset = int(320-xb-wb/2)
             
             #Write boxes and lines to image
