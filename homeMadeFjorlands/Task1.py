@@ -50,7 +50,7 @@ class Task1(Task):
 
 
     def subTask1(self,image):
-        line, atCross = self.lineModule.analyzeImage(image)
+        line, atCross, angle, lateralOffset = self.lineModule.analyzeImage(image)
         self.motorControl.followLine(line, self.speed)
         if atCross:
             self.subtask = 2
