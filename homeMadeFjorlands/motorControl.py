@@ -23,22 +23,22 @@ class MotorControl:
             self.forward(speed)
 
         elif (lateralOffset < 0 and angle == 0):
-            self.curveLeft(lateralOffset/10, speed)
+            self.curveRight(-lateralOffset/10, speed)
 
         elif (lateralOffset > 0 and angle == 0):
-            self.curveRight(lateralOffset/10, speed)
-
-        elif (lateralOffset < 0 and angle < 0):
             self.curveLeft(lateralOffset/10, speed)
 
+        elif (lateralOffset < 0 and angle < 0):
+            self.curveRight(-lateralOffset/10, speed)
+
         elif (lateralOffset > 0 and angle > 0):
-            self.curveRight(lateralOffset/10, speed)
+            self.curveLeft(lateralOffset/10, speed)
 
         elif (lateralOffset > 0 and angle < 0):  
-            self.curveRight(angle*self.ap + lateralOffset*self.kp, speed)
+            self.curveLeft(-angle*self.ap + lateralOffset*self.kp, speed)
 
         elif (lateralOffset < 0 and angle > 0):
-            self.curveLeft(angle*self.ap + lateralOffset*self.kp, speed)
+            self.curveRight(angle*self.ap - lateralOffset*self.kp, speed)
         
 
     def turnToPos(pos):
