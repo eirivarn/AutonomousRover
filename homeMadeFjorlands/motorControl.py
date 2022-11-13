@@ -15,14 +15,30 @@ class MotorControl:
 
         self.prevAngle, self.prevDist = 0, 0
 
-        self.kp = 0.2
+        self.kp = 0.75
         self.ap = 1
  
-    def followLine(self, line, angle, lateralOffset ,speed):
-        self.forward(speed)
-        self.curv(angle*self.ap + lateralOffset*self.kp)
+    def followLine(self, line, angle, lateralOffset ,speed, error):
 
-        pass  ## TODO line er en liste med avstand fra linjen til senter av bildet
+        self.forward(speed)
+        curvRate = angle*self.ap + error*self.kp
+        leftSpeed = self.leftMotor.getSpeed()
+        rightSpeed = self.rightMotor.getSpeed()
+        if curvRate == 0:
+            self.forward
+            return
+        elif curvRate < 0: 
+            curvRate = 100 - curvRate
+            self.leftMotor.forward(leftSpeed*curvRate/100)
+            self.rightMotor.forward(rightSpeed)
+            return
+        elif curvRate < 0: 
+            curvRate = curvRate*-1
+            curvRate = 100 - curvRate
+            self.leftMotor.forward(leftSpeed*curvRate/100)
+            self.rightMotor.forward(rightSpeed)
+            return
+
 
     def turnToPos(pos):
         pass #TODO
@@ -66,14 +82,7 @@ class MotorControl:
         self.leftMotor.backward(speed)
  
     def curv(self, curvRate):  #pos curvRate curves to the left, neg curvs right
-        leftSpeed = self.leftMotor.getSpeed()
-        rightSpeed = self.rightMotor.getSpeed()
-        if curvRate < 0: 
-            self.leftMotor.forward(leftSpeed + curvRate/10)
-            self.rightMotor.forward(rightSpeed)
-        if curvRate < 0: 
-            self.leftMotor.forward(leftSpeed + curvRate/10)
-            self.rightMotor.forward(rightSpeed)
+        
         print('curve', curvRate)
  
        
