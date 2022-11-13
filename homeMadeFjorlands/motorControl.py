@@ -82,6 +82,8 @@ class MotorControl:
         if leftSpeed+curvRate<100 or rightSpeed-curvRate>100:
             curvRates = [100-leftSpeed, 100-rightSpeed]
             curvRate = min(curvRates)
+        self.leftMotor.forward(leftSpeed + curvRate)
+        self.rightMotor.forward(rightSpeed - curvRate)
         print('curve', curvRate)
  
        
