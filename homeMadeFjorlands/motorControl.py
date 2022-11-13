@@ -27,7 +27,7 @@ class MotorControl:
         avarageOffput = line[0]+line[1]+line[2]+line[3]
         self.forward(30)
 
-        self.curv(lineAngle*self.ap+avarageOffput*self.kp)
+        self.curv(lineAngle*self.ap+abs(avarageOffput*self.kp))
 
         pass  ## TODO line er en liste med avstand fra linjen til senter av bildet
 
@@ -75,12 +75,7 @@ class MotorControl:
     def curv(self, curvRate):  #pos curvRate curves to the left, neg curvs right
         leftSpeed = self.leftMotor.getSpeed()
         rightSpeed = self.rightMotor.getSpeed()
-        if curvRate == 0:
-            return
-        elif curvRate > 0: 
-            curvRate = 100 - curvRate
-        elif curvRate < 0:
-            curvRate = curvRate*-1
+        if 
         self.leftMotor.forward(leftSpeed*curvRate/100)
         self.rightMotor.forward(rightSpeed*curvRate/100)
         print('curve', curvRate)
