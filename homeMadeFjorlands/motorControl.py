@@ -1,5 +1,5 @@
 from DCmotor import DCmotor
- 
+import numpy as np
  
 class MotorControl:
     def __init__(self):
@@ -12,8 +12,25 @@ class MotorControl:
         self.rightMotor = DCmotor(self.rSpeedPin ,self.rDirPin)
 
         self.prevAngle, self.prevDist = 0, 0
+
+        self.kp = 0.75
+        self.ap = 1
  
     def followLine(self, line, Speed):
+
+        angle1 = np.arctan((line[0]-line[1])/170)
+        angle2 = np.arctan((line[1]-line[2])/170)
+        angle3 = np.arctan((line[2]-line[3])/170)
+        lineAngle = np.arctan((line[0]-line[3])/170)
+
+        self.forward(20)
+
+        self.curve(lineAngle*self.ap+line[2]*self.kp)
+
+
+
+
+
         pass  ## TODO line er en liste med avstand fra linjen til senter av bildet
 
     def turnToPos(pos):
@@ -22,33 +39,6 @@ class MotorControl:
     def goToCup(cupPos):
         pass #TODO basicly same as follow line exept 1point exept list of points
 
-
-
-
-    def drive(self, speedLeft, speedRight):
-        if speedLeft < 0:
-            self.leftMotor.backward(abs(speedLeft))
-        else:
-            self.leftMotor.forward(speedLeft)
-
-        if speedRight < 0:
-            self.rightMotor.backward(abs(speedRight))
-        else:
-            self.rightMotor.forward(speedRight)        
-
-
-        print('Speed left: ', speedLeft, 'Speed right: ', speedRight)
-
-
-    def setAngLDist(self, angle, dist):
-        if angle != self.prevAngle:
-            self.prevAngle = angle
-            #self.curv(angle/10)
-            speed = 30
-            self.forward(speed)
-            lSpeed = speed + angle
-            rSpeed = speed - angle
-            self.drive(lSpeed, rSpeed)
 
 
     def forward(self, speed):
@@ -87,14 +77,14 @@ class MotorControl:
     def curv(self, curvRate):  #pos curvRate curves to the left, neg curvs right
         leftSpeed = self.leftMotor.getSpeed()
         rightSpeed = self.rightMotor.getSpeed()
-        #if leftSpeed+curvRate<100 or rightSpeed-curvRate>100:
-        #    curvRates = [100-leftSpeed, 100-rightSpeed]
-        #    curvRate = min(curvRates)
+        if leftSpeed+curvRate<100 or rightSpeed-curvRate>100:
+            curvRates = [100-leftSpeed, 100-rightSpeed]
+            curvRate = min(curvRates)
        
  
         self.leftMotor.forward(leftSpeed + curvRate)
         self.rightMotor.forward(rightSpeed - curvRate)
-        print(curvRate)
+        print("Curverate: " + curvRate)
  
        
     def getSpeed(self):
