@@ -15,7 +15,7 @@ class MotorControl:
 
         self.prevAngle, self.prevDist = 0, 0
 
-        self.kp = 0.5
+        self.kp = 0.2
         self.ap = 1
  
     def followLine(self, line, angle, lateralOffset ,speed):
@@ -29,10 +29,10 @@ class MotorControl:
             self.curveLeft(lateralOffset/10, speed)
 
         elif (lateralOffset < 0 and angle < 0):
-            self.curveRight(-lateralOffset/10, speed)
+            self.curveRight(-lateralOffset/self.kp, speed)
 
         elif (lateralOffset > 0 and angle > 0):
-            self.curveLeft(lateralOffset/10, speed)
+            self.curveLeft(lateralOffset*self.kp, speed)
 
         elif (lateralOffset > 0 and angle < 0):  
             self.curveLeft(-angle*self.ap + lateralOffset*self.kp, speed)
