@@ -60,8 +60,7 @@ def preProcessAngle(ang, w, h):
         ang = -(90-ang)
     return ang
 
-angle = 0
-lateralOffset = 0
+
 
 def ekstraBox(image):
     #differentiate black black areas
@@ -86,28 +85,29 @@ def ekstraBox(image):
             cv2.putText(image, f"{str(int(angle))}deg", (360,300),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#text>
             cv2.putText(image, str(lateralOffset)+"dist", (360,330),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#te>
             cv2.drawContours(image, blackContours,-1,(0,0,255),1)
+            
     
 
 
-#/////////////////prettyPrint///////////////
-def printInfo(images):
-    i = 0
-    mainString ={}
-    for image in images:
-        area, w, offset = image.getMainContourInfo()
-        dir = image.getDir()
-        crossFound = ''
-        if image.crossFound():
-            crossFound = 'CROSS!'
-        mainString[i] = [dir, area, w, offset, crossFound]
-        i += 1
-
-    print ("\n{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format('i','Dir','Area','Width', 'Distance', 'Corss'))
-    for k, v in mainString.items():
-        dir, area, w, offset, crossFound = v
-        print ("{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format(k, angle, area, w, lateralOffset, crossFound))    
-    
-
+##/////////////////prettyPrint///////////////
+#def printInfo(images):
+#    i = 0
+#    mainString ={}
+#    for image in images:
+#        area, w, offset = image.getMainContourInfo()
+#        dir = image.getDir()
+#        crossFound = ''
+#        if image.crossFound():
+#            crossFound = 'CROSS!'
+#        mainString[i] = [dir, area, w, offset, crossFound]
+#        i += 1
+#
+#    print ("\n{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format('i','Dir','Area','Width', 'Distance', 'Corss'))
+#    for k, v in mainString.items():
+#        dir, area, w, offset, crossFound = v
+#        print ("{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format(k, angle, area, w, lateralOffset, crossFound))    
+#    
+#
 def crossFound(images):
     crossLocation = [0,0,0,0]
     for i in range(3):
