@@ -9,7 +9,7 @@ class LineModule:
         self.font = cv2.FONT_HERSHEY_SIMPLEX
         self.N_SLICES = 4
         self.images = []
-        self.crossTracker = [[],[],[],[]]
+        self.crossTracker = [0,0,0,0]
         
         for _ in range(self.N_SLICES):
             self.images.append(Image())        
@@ -20,7 +20,6 @@ class LineModule:
         direction = 0
         atCross = False
         line = []
-        self.crossTracker.pop(0)
         
 
         if removedBgImg is not None:
@@ -37,10 +36,10 @@ class LineModule:
         if not self.isHeadless:
             cv2.imshow('Image', repackedImg)
         
-        crossLocation = crossFound(self.images)
+        crossLocation = crossFound(self.images, self.crossTracker)
         self.crossTracker.append(crossLocation)
 
-        if self.crossTracker == [[1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1]]:
+        if self.crossTracker == [1,1,1,1]:
             atCross = True
         return line, atCross, angle, lateralOffset
 
