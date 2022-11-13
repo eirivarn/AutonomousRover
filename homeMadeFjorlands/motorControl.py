@@ -18,15 +18,9 @@ class MotorControl:
         self.kp = 0.2
         self.ap = 1
  
-    def followLine(self, line, Speed):
-
-        angle1 = np.arctan((line[0]-line[1])/170)
-        angle2 = np.arctan((line[1]-line[2])/170)
-        angle3 = np.arctan((line[2]-line[3])/170)
-        lineAngle = np.arctan((line[0]-line[3])/170)
-        self.forward(30)
-
-        self.curv(lineAngle*self.ap + line[3]*self.kp)
+    def followLine(self, line, angle, lateralOffset ,speed):
+        self.forward(speed)
+        self.curv(angle*self.ap + lateralOffset*self.kp)
 
         pass  ## TODO line er en liste med avstand fra linjen til senter av bildet
 

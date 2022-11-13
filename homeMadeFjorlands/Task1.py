@@ -5,7 +5,7 @@ from time import sleep
 class Task1(Task):
     def __init__(self, motorContorl, lineModule, cupModule):
         super().__init__(motorContorl, lineModule, cupModule)
-        self.speed = 0
+        self.speed = 20
         self.cupDistBuffer = 5
         self.lineDistBuffer = 2
 
@@ -51,7 +51,7 @@ class Task1(Task):
 
     def subTask1(self,image):
         line, atCross, angle, lateralOffset = self.lineModule.analyzeImage(image)
-        self.motorControl.followLine(line, self.speed)
+        self.motorControl.followLine(line, angle, lateralOffset, self.speed)
         if atCross:
             self.subtask = 2
 
