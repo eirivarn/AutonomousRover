@@ -15,8 +15,8 @@ class MotorControl:
 
         self.prevAngle, self.prevDist = 0, 0
 
-        self.kp = 0.2
-        self.ap = 1
+        self.kp = 0.5
+        self.ap = 1.5
  
     def followLine(self, line, angle, lateralOffset ,speed):
         if (lateralOffset == 0 and angle == 0):
