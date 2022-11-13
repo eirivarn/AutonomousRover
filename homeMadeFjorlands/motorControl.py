@@ -21,18 +21,24 @@ class MotorControl:
     def followLine(self, line, angle, lateralOffset ,speed):
         if (lateralOffset == 0 and angle == 0):
             self.forward(speed)
+
         elif (lateralOffset < 0 and angle == 0):
-            self.curve(lateralOffset/10, speed)
+            self.curveLeft(lateralOffset/10, speed)
+
         elif (lateralOffset > 0 and angle == 0):
-            self.curve(lateralOffset/10, speed)
+            self.curveRight(lateralOffset/10, speed)
+
         elif (lateralOffset < 0 and angle < 0):
-            self.curve(lateralOffset/10, speed)
+            self.curveLeft(lateralOffset/10, speed)
+
         elif (lateralOffset > 0 and angle > 0):
-            self.curve(lateralOffset/10, speed)
+            self.curveRight(lateralOffset/10, speed)
+
         elif (lateralOffset > 0 and angle < 0):  
-            self.curve(angle*self.ap - lateralOffset*self.kp, speed)
+            self.curveRight(angle*self.ap + lateralOffset*self.kp, speed)
+
         elif (lateralOffset < 0 and angle > 0):
-            self.curve(angle*self.ap + lateralOffset*self.kp, speed)
+            self.curveLeft(angle*self.ap + lateralOffset*self.kp, speed)
         
 
     def turnToPos(pos):
@@ -76,14 +82,15 @@ class MotorControl:
         self.rightMotor.forward(speed)
         self.leftMotor.backward(speed)
  
-    def curve(self, curvRate, speed):
-        if curvRate < 0:  #pos curvRate curves to the left, neg curvs right
-            self.leftMotor.forward(speed + curvRate)
-            self.rightMotor.forward(speed)
-        if curvRate > 0:  #pos curvRate curves to the left, neg curvs right
-            self.leftMotor.forward(speed)
-            self.rightMotor.forward(speed+ curvRate)
-        print('curve', curvRate)
+    def curveLeft(self, curveRate, speed):
+        self.leftMotor.forward(speed)
+        self.rightMotor.forward(speed + curveRate)
+        print('curve left', curveRate)
+
+    def curveRight(self, curveRate, speed):
+        self.leftMotor.forward(speed + curveRate)
+        self.rightMotor.forward(speed)
+        print('curve right', curveRate)
  
        
     def getSpeed(self):
