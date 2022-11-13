@@ -19,7 +19,7 @@ class LineModule:
         
         removedBgImg = RemoveBackground(image, True)
         direction = 0
-        
+        atCross = False
         line = []
         self.crossTracker.pop(0)
         
@@ -42,7 +42,7 @@ class LineModule:
 
         if self.crossTracker == [[1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1]]:
             atCross = True
-        return line, atCross #TODO    skal returne line - liste av avstand fra linje til senter av bildet
+        return line, atCross 
 
     def quit(self):
         cv2.destroyAllWindows()
