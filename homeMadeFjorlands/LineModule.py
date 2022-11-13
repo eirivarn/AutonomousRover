@@ -22,18 +22,13 @@ class LineModule:
         
         line = []
         self.crossTracker.pop(0)
-        crossLocation = [0,0,0,0]
         
-        atCross = False
 
         if removedBgImg is not None:
             SlicePart(removedBgImg, self.images, self.N_SLICES)
             for i in range(self.N_SLICES):
                 direction += self.images[i].getDir()
                 line.append(self.images[i].getDir()) ##TODO usikker på om getDir eller getOffset er riktig
-                if crossFound(self.images[i]):
-                    crossLocation[i] = 1 
-            self.crossTracker.append(crossLocation)
             repackedImg = RepackImages(self.images)
         
         printInfo(self.images)
@@ -41,8 +36,10 @@ class LineModule:
 
         if not self.isHeadless:
             cv2.imshow('Image', repackedImg)
-            
-            
+        
+        crossLocation = crossFound(self.images)
+        self.crossTracker.append(crossLocation)
+
         if self.crossTracker == [[1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1]]:
             atCross = True
         return line, atCross #TODO    skal returne line - liste av avstand fra linje til senter av bildet

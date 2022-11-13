@@ -27,10 +27,6 @@ class MotorControl:
 
         self.curve(lineAngle*self.ap+line[2]*self.kp)
 
-
-
-
-
         pass  ## TODO line er en liste med avstand fra linjen til senter av bildet
 
     def turnToPos(pos):

@@ -69,7 +69,9 @@ def printInfo(images):
     
 
 def crossFound(images):
-    for image in images:
-        if image.crossFound():
-            return True
-    return False
+    crossLocation = [0,0,0,0]
+    for i in range(3):
+        if images[i].crossFound():
+            crossLocation[i] = 1 
+
+    return  crossLocation
