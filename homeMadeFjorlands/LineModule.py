@@ -29,7 +29,7 @@ class LineModule:
                 line.append(self.images[i].getDir()) ##TODO usikker på om getDir eller getOffset er riktig
             repackedImg = RepackImages(self.images)
 
-        angle, lateralOffset, error = ekstraBox(repackedImg)
+        angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
         
 
@@ -41,7 +41,7 @@ class LineModule:
 
         if self.crossTracker == [1,1,1,1]:
             atCross = True
-        return line, atCross, angle, lateralOffset, error
+        return line, atCross, angle, lateralOffset
 
     def quit(self):
         cv2.destroyAllWindows()

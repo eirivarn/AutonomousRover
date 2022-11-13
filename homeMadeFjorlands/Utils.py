@@ -85,8 +85,7 @@ def ekstraBox(image):
             cv2.putText(image, f"{str(int(angle))}deg", (360,300),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#text>
             cv2.putText(image, str(lateralOffset)+"dist", (360,330),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#te>
             cv2.drawContours(image, blackContours,-1,(0,0,255),1)
-            error = int(xc - 320)
-            return angle, lateralOffset, error
+            return angle, lateralOffset
 
 def crossFound(images, crossTracker):
     crossLocation = crossTracker
