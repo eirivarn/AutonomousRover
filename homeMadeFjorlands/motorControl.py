@@ -1,5 +1,7 @@
 from DCmotor import DCmotor
 import numpy as np
+from servo import servo
+from getkey import getkey, keys
  
 class MotorControl:
     def __init__(self):
@@ -23,7 +25,7 @@ class MotorControl:
         angle3 = np.arctan((line[2]-line[3])/170)
         lineAngle = np.arctan((line[0]-line[3])/170)
 
-        self.forward(20)
+        self.forward(30)
 
         self.curv(lineAngle*self.ap+line[2]*self.kp)
 
