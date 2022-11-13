@@ -60,10 +60,10 @@ def preProcessAngle(ang, w, h):
         ang = -(90-ang)
     return ang
 
-def ekstraBox(self, image):
+def ekstraBox(image):
     #differentiate black black areas
         blackAreas = cv2.inRange(image, (0,0,0), (50,50,50))
-        blackAreas = self.improveLine(blackAreas)
+        blackAreas = improveLine(blackAreas)
         blackContours, hierarchy = cv2.findContours(blackAreas.copy(),cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         if len(blackContours) > 0:
             c = max(blackContours, key=cv2.contourArea) #biggest black contour area
