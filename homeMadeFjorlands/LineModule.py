@@ -13,6 +13,19 @@ class LineModule:
         
         for _ in range(self.N_SLICES):
             self.images.append(Image())        
+    
+    def improveLine(self,pic):
+        kernel = np.ones((3,3),np.uint8)
+        pic = cv2.erode(pic, kernel, iterations=4)
+        pic = cv2.dilate(pic, kernel, iterations=4)
+        return pic
+    
+    def preProcessAngle(self,ang, w, h):
+        if ang > 45 and w>h:
+            ang = -(90-ang)
+        elif ang <= 45 and h<w:
+            ang = -(90-ang)
+        return ang
 
 
     def analyzeImage(self, image):
