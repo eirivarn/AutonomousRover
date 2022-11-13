@@ -78,11 +78,11 @@ class MotorControl:
  
     def curve(self, curvRate, speed):
         if curvRate < 0:  #pos curvRate curves to the left, neg curvs right
-            self.leftMotor.forward(speed + curvRate*-1)
+            self.leftMotor.forward(speed + curvRate)
             self.rightMotor.forward(speed)
         if curvRate > 0:  #pos curvRate curves to the left, neg curvs right
             self.leftMotor.forward(speed)
-            self.rightMotor.forward(speed+ curvRate)
+            self.rightMotor.forward(speed+ curvRate*-1)
         print('curve', curvRate)
  
        
