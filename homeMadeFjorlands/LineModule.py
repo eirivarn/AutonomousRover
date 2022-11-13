@@ -31,7 +31,7 @@ class LineModule:
             repackedImg = RepackImages(self.images)
 
         ekstraBox(repackedImg)
-        printInfo(self.images)
+        #printInfo(self.images)
         
 
         if not self.isHeadless:
