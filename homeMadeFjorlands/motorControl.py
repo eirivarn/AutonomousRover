@@ -25,7 +25,7 @@ class MotorControl:
 
         self.forward(20)
 
-        self.curve(lineAngle*self.ap+line[2]*self.kp)
+        self.curv(lineAngle*self.ap+line[2]*self.kp)
 
         pass  ## TODO line er en liste med avstand fra linjen til senter av bildet
 
