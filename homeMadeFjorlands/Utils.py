@@ -63,6 +63,8 @@ def preProcessAngle(ang, w, h):
 
 
 def ekstraBox(image):
+        angle = 999
+        lateralOffset = 999
     #differentiate black black areas
         blackAreas = cv2.inRange(image, (0,0,0), (50,50,50))
         blackAreas = improveLine(blackAreas)
