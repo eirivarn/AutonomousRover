@@ -35,8 +35,16 @@ class LineModule:
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
 
-    
+        x = np.array()    
+        for i in range(self.N_SLICES):
+            x.append(self.const.resolution*i + self.const.resolution/2)
+        y = np.array(line)
+        regressor = LinearRegression(x,y)
+        regressor.fit(100, 0.001)
+        yPred = regressor.predict(x)
 
+        angle = np.arctan((yPred(10)-yPred(0))/10)
+        
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
         
@@ -46,7 +54,7 @@ class LineModule:
         
         atCross = self.robot.crossConfirmed()
 
-        return line, atCross, angle, offset
+        return line, atCross, angle, yPred
 
     def quit(self):
         cv2.destroyAllWindows()
