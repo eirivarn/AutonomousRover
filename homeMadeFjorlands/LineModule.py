@@ -39,9 +39,10 @@ class LineModule:
         y = np.array(line)
         regressor = LinearRegression(x,y)
         regressor.fit(100, 0.001)
-        yPred = regressor.predict(self.const.resolution[1]/2) - 320
 
-        angle = np.arctan((yPred[10]-yPred[0])/10)
+        offset = (regressor.predict(self.const.resolution[1]/2)) - 320
+
+        angle = np.arctan((regressor.predict(10)-regressor.predict(0))/10)
         
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
@@ -52,7 +53,7 @@ class LineModule:
         
         atCross = self.robot.crossConfirmed()
 
-        return line, atCross, angle, yPred
+        return line, atCross, angle, offset
 
     def quit(self):
         cv2.destroyAllWindows()
