@@ -43,3 +43,5 @@ def test1(image):
     if cupPos in range(-cupDistBuffer, cupDistBuffer):
         
         print("Subtask 2 complete")
+
+startVideoCapture()
