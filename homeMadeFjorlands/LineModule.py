@@ -41,8 +41,11 @@ class LineModule:
         regressor.fit(100, 0.001)
 
         offset = (regressor.predict(self.const.resolution[1]/2)) - 320
-
+        print(offset)
         angle = np.arctan((regressor.predict(10)-regressor.predict(0))/10)
+        print(angle)
+
+
         
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
