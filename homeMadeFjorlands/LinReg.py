@@ -58,7 +58,7 @@ def test(theta, x):
 	y = theta[0] + theta[1]*x[0] + theta[2]*x[1]
 	print("Price of house: ", y)
 
-x,y = load_data("house_price_data.txt")
+x,y = load_data("test.txt")
 y = np.reshape(y, (46,1))
 x = np.hstack((np.ones((x.shape[0],1)), x))
 theta = np.zeros((x.shape[1], 1))
