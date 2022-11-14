@@ -3,7 +3,7 @@ import cv2
 from Image import Image
 
 import numpy as np
-from sklearn.linear_model import LinearRegression
+#from sklearn.linear_model import LinearRegression
 
 class LineModule:
     def __init__(self, isHeadless, robot, const):
@@ -40,14 +40,16 @@ class LineModule:
         pixelsBetweenReadings = self.const.resolution / self.N_SLICES
         for i in range(self.N_SLICES):
             y.append(pixelsBetweenReadings/2 + pixelsBetweenReadings*i)
-        model = LinearRegression().fit(x,y)
-        angle = np.degreesarctan(model.predict(100) - model.predict(0)/100)
-        offset = model.predict(240) - 320
+        #model = LinearRegression().fit(x,y)
+        #angle = np.degreesarctan(model.predict(100) - model.predict(0)/100)
+        #offset = model.predict(240) - 320
 
 
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
         
+        angle = 0
+        offset = 0
 
         if not self.isHeadless:
             cv2.imshow('Image', repackedImg)
