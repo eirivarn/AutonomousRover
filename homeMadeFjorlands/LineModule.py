@@ -34,7 +34,7 @@ class LineModule:
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
         
-
+        ##/////////linReg line
         y = np.array(line).reshape(-1,1)
         x = []
         pixelsBetweenReadings = self.const.resolution / self.N_SLICES
