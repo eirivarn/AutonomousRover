@@ -38,26 +38,7 @@ class Task4(Task):
         pass
     def subTask7(self, image):
         pass
-    def subTask(self, image):
+    def subTask8(self, image):
         pass
-    def subTask(self, image):
-        pass
-    def subTask(self, image):
-        pass
-    def subTask(self, image):
-        pass
-    def subTask(self, image):
-        pass
-    def subTask(self, image):
-        pass
-    def subTask(self, image):
-        pass
-    def subTask(self, image):
-        pass
-    def subTask(self, image):
-        pass
-    def subTask(self, image):
-        pass
-    def subTask(self, image):
-        pass
+    
     
