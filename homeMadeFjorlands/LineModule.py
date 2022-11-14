@@ -35,6 +35,7 @@ class LineModule:
             repackedImg = RepackImages(self.images)
 
 
+
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
         
