@@ -24,3 +24,5 @@ class Const:
         self.cupIsClose = 100
 
         self.i_line = 2
+
+        self.resolution = (640, 380)

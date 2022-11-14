@@ -2,6 +2,8 @@ from Utils import *
 import cv2
 from Image import Image
 
+import numpy as np
+from sklearn.linear_model import LinearRegression
 
 class LineModule:
     def __init__(self, isHeadless, robot, const):
@@ -11,9 +13,9 @@ class LineModule:
         self.N_SLICES = 4
         self.images = []
         self.const = const
-        
+
         for _ in range(self.N_SLICES):
-            self.images.append(Image(self.const))        
+            self.images.append(Image())        
 
 
     def analyzeImage(self, image):
@@ -31,7 +33,19 @@ class LineModule:
                 if self.images[i].crossFound():
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
-            angle, lateralOffset= ekstraBox(repackedImg)
+        
+
+        y = np.array(line).reshape(-1,1)
+        x = []
+        pixelsBetweenReadings = self.const.resolution / self.N_SLICES
+        for i in range(self.N_SLICES):
+            y.append(pixelsBetweenReadings/2 + pixelsBetweenReadings*i)
+        model = LinearRegression().fit(x,y)
+        angle = np.degreesarctan(model.predict(100) - model.predict(0)/100)
+        offset = model.predict(240) - 320
+
+
+        #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
         
 
@@ -40,7 +54,7 @@ class LineModule:
         
         atCross = self.robot.crossConfirmed()
 
-        return line, atCross, angle, lateralOffset
+        return line, atCross, angle, offset
 
     def quit(self):
         cv2.destroyAllWindows()
