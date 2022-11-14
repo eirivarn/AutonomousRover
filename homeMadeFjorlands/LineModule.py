@@ -13,7 +13,7 @@ class LineModule:
         self.const = const
 
         for _ in range(self.N_SLICES):
-            self.images.append(Image(), const)        
+            self.images.append(Image(const),)        
 
 
     def analyzeImage(self, image):
