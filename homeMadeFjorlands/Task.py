@@ -1,5 +1,6 @@
 class Task:
-    def __init__(self, motorContorl, lineModule, cupModule):
+    def __init__(self, motorContorl, lineModule, cupModule, const):
+        self.const = const
         self.motorControl = motorContorl
         self.lineModule = lineModule
         self.cupModule = cupModule

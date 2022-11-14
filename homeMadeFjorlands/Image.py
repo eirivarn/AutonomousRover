@@ -3,15 +3,16 @@ import cv2
 
 class Image:
     
-    def __init__(self):
+    def __init__(self, consts):
         self.image = None
         self.contourCenterX = 0
         self.MainContour = None
         self.dir = 0
+        self.consts = consts
         
     def Process(self):
         imgray = cv2.cvtColor(self.image,cv2.COLOR_BGR2GRAY) #Convert to Gray Scale
-        ret, thresh = cv2.threshold(imgray,100,255,cv2.THRESH_BINARY_INV) #Get Threshold
+        ret, thresh = cv2.threshold(imgray,self.consts.threshGrey,255,cv2.THRESH_BINARY_INV) #Get Threshold
 
         self.contours, _ = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE) #Get contour
         
@@ -99,10 +100,8 @@ class Image:
     def getOffset(self):
         return self.middleX-self.contourCenterX
 
-
-
     def crossFound(self):
         x,y,w,h = cv2.boundingRect(self.MainContour)
-        if w > 300:  ## TODO lagre variabel i variabelliste
+        if w > self.consts.crossWidth:  
             return True
         return False

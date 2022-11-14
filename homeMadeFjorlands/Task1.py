@@ -3,11 +3,11 @@ from time import sleep
 
 
 class Task1(Task):
-    def __init__(self, motorContorl, lineModule, cupModule):
-        super().__init__(motorContorl, lineModule, cupModule)
-        self.speed = 18
-        self.cupDistBuffer = 5
-        self.lineDistBuffer = 2
+    def __init__(self, motorContorl, lineModule, cupModule, const):
+        super().__init__(motorContorl, lineModule, cupModule, const)
+        self.speed = self.const.speed
+        self.cupDistBuffer = self.const.cupDistBuffer
+        self.lineDistBuffer = self.const.lineDistBuffer
 
     def update(self, image):
 
@@ -86,8 +86,8 @@ class Task1(Task):
         if line == []:
             self.motorControl.turnLeft()
         else:
-            pos = line[2]
-            self.motorControl.turnToPos(pos)  #TODO kan være vilket som helst line-punkt, bør testes
+            pos = line[self.const.i_line]
+            self.motorControl.turnToPos(pos)  
             if pos in range(-self.lineDistBuffer, self.lineDistBuffer):
                 self.subTask = 6
 
@@ -101,8 +101,8 @@ class Task1(Task):
         if line == []:
             self.motorControl.turnRight()
         else:
-            pos = line[2]
-            self.motorControl.turnToPos(pos)  #TODO kan være vilket som helst line-punkt, bør testes
+            pos = line[self.const.i_line]
+            self.motorControl.turnToPos(pos)  
             if pos in range(-self.lineDistBuffer, self.lineDistBuffer):
                 self.subTask = 8
 
@@ -121,7 +121,7 @@ class Task1(Task):
         if line == []:
             self.motorControl.turnLeft()
         else:
-            pos = line[2]
-            self.motorControl.turnToPos(pos)  #TODO kan være vilket som helst line-punkt, bør testes
+            pos = line[self.const.i_line]
+            self.motorControl.turnToPos(pos)
             if pos in range(-self.lineDistBuffer, self.lineDistBuffer):
                 self.subTask = 11

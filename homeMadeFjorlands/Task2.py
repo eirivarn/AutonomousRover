@@ -2,9 +2,10 @@ from Task import Task
 
 
 class Task2(Task):
-    def __init__(self, motorContorl, lineModule, cupModule):
-        super().__init__(motorContorl, lineModule, cupModule)
-        self.speed = 70  #tør me å vinna??
+    def __init__(self, motorContorl, lineModule, cupModule, const):
+        super().__init__(motorContorl, lineModule, cupModule, const)
+        self.speed = self.const.need4speed 
+        
         self.subTask = 1
 
     def update(self, image):

@@ -4,15 +4,16 @@ from Image import Image
 
 
 class LineModule:
-    def __init__(self, isHeadless, robot):
+    def __init__(self, isHeadless, robot, const):
         self.isHeadless = isHeadless
         self.robot = robot
         self.font = cv2.FONT_HERSHEY_SIMPLEX
         self.N_SLICES = 4
         self.images = []
+        self.const = const
         
         for _ in range(self.N_SLICES):
-            self.images.append(Image())        
+            self.images.append(Image(self.const))        
 
 
     def analyzeImage(self, image):

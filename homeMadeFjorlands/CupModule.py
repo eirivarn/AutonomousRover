@@ -1,8 +1,9 @@
 import cv2
 
 class CupModule:
-    def __init__(self, isHedless):
+    def __init__(self, isHedless ,const):
         self.isHeadless = isHedless
+        self.const = const
         self.classNames = []
         self.classFile = "/home/pi/Desktop/Object_Detection_Files/coco.names"
         with open(self.classFile,"rt") as f:
@@ -29,7 +30,7 @@ class CupModule:
         height, width  = image.shape[:2]
         self.middleX = int(width/2) #Get X coordenate of the middle point
 
-        img, self.objectInfo = self.getObjects(image,0.55,0.2, objects=['cup','bowl']) #TODO set variable for conf/thres
+        img, self.objectInfo = self.getObjects(image,self.const.cupConfidence,0.2, objects=self.const.cupObjects)
         print(self.objectInfo)
 
         if not self.isHeadless: 
@@ -74,7 +75,7 @@ class CupModule:
 
     def cupIsClose(self):
         #TODO   enten return yCenter>terskel, eller let etter screenshot i bunn av bildet.
-        return self.yCenter > 100  #TODO null peiling på hva terskelen bør være
+        return self.yCenter > self.const.cupIsClose
 
     def quit(self):
         self.breakLoop = True

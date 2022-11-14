@@ -16,16 +16,16 @@ class Robot():
     def __init__(self):
         self.const = Const()
         self.motor = MotorControl(self.const)
-        self.lineModule = LineModule(False, self)
+        self.lineModule = LineModule(False, self, self.const)
         self.cupModule = CupModule(False)
         self.camera = CaptureImage()
         
-        self.task1 = Task1(self.motor, self.lineModule, self.cupModule)
-        self.task2 = Task2(self.motor, self.lineModule, self.cupModule)
-        self.task3 = Task3(self.motor, self.lineModule, self.cupModule)
-        self.task4 = Task4(self.motor, self.lineModule, self.cupModule)
+        self.task1 = Task1(self.motor, self.lineModule, self.cupModule, self.const)
+        self.task2 = Task2(self.motor, self.lineModule, self.cupModule, self.const)
+        self.task3 = Task3(self.motor, self.lineModule, self.cupModule, self.const)
+        self.task4 = Task4(self.motor, self.lineModule, self.cupModule, self.const)
 
-        self.n_slices = 4
+        self.n_slices = self.const.n_slices
         self.crossConfidence = np.zeros(self.n_slices)
         self.completeList = np.zeros(self.n_slices,)
         for i in range(len(self.completeList)):

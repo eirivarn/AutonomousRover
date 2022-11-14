@@ -3,9 +3,9 @@ from Task import Task
 
 
 class Task3(Task):
-    def __init__(self, motorContorl, lineModule, cupModule):
-        super().__init__(motorContorl, lineModule, cupModule)
-        self.speed = 40  #sett en safe og trygg speed gjennom hinderløpa
+    def __init__(self, motorContorl, lineModule, cupModule, const):
+        super().__init__(motorContorl, lineModule, cupModule, const)
+        self.speed = self.const.speed  #sett en safe og trygg speed gjennom hinderløpa
         self.subTask = 1
 
     def update(self, image):
