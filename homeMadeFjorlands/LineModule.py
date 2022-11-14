@@ -31,8 +31,7 @@ class LineModule:
                 if self.images[i].crossFound():
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
-
-        angle, lateralOffset= ekstraBox(repackedImg)
+            angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
         
 
