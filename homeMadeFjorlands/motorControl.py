@@ -50,9 +50,9 @@ class MotorControl:
         
 
     def turnToPos(self, pos):
-        if pos < 0:
+        if pos > 0:
             self.turnRight(self.turnSpeed)
-        elif pos > 0:
+        elif pos < 0:
             self.turnLeft(self.turnSpeed)
         elif pos in range(-self.const.posDistBuffer, self.const.posDistBuffer):
             self.stop()
