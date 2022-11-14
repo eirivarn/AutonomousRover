@@ -27,7 +27,7 @@ class LineModule:
             SlicePart(removedBgImg, self.images, self.N_SLICES)
             for i in range(self.N_SLICES):
                 direction += self.images[i].getDir()
-                line.append(self.images[i].getDir()) ##TODO usikker på om getDir eller getOffset er riktig
+                line.append(self.images[i].getOffset()) ##TODO usikker på om getDir eller getOffset er riktig
                 if self.images[i].crossFound():
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
