@@ -32,7 +32,7 @@ class LineModule:
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
 
-        x = np.array()    
+        x = np.array([])    
         for i in range(self.N_SLICES):
             x.append(self.const.resolution*i + self.const.resolution/2)
         y = np.array(line)
