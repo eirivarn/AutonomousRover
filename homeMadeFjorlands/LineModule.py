@@ -32,9 +32,10 @@ class LineModule:
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
 
-        x = np.array([])    
+        x = []
         for i in range(self.N_SLICES):
             x.append(self.const.resolution*i + self.const.resolution/2)
+        x = np.array(x)
         y = np.array(line)
         regressor = LinearRegression(x,y)
         regressor.fit(100, 0.001)
