@@ -1,3 +1,4 @@
+from statistics import LinearRegression
 from Utils import *
 import cv2
 from Image import Image
@@ -34,7 +35,7 @@ class LineModule:
 
         x = []
         for i in range(self.N_SLICES):
-            x.append(self.const.resolution*i + self.const.resolution/2)
+            x.append(self.const.resolution(1)*i + self.const.resolution(1)/2)
         x = np.array(x)
         y = np.array(line)
         regressor = LinearRegression(x,y)
