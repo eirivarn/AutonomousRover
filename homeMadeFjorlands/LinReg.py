@@ -1,71 +1,84 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.datasets import make_regression
+import pandas as pd
 
-class LinearRegression:
-    def fit(self, X, y, method, learning_rate=0.01, iterations=500, batch_size=32):
-        X = np.concatenate([X, np.ones_like(y)], axis=1)
-        rows, cols = X.shape
-        if method == 'solve':
-            if rows >= cols == np.linalg.matrix_rank(X):
-                self.weights = np.matmul(
-                    np.matmul(
-                        np.linalg.inv(
-                            np.matmul(
-                                X.transpose(),
-                                X)),
-                        X.transpose()),
-                    y)
-            else:
-                print('X has not full column rank. method=\'solve\' cannot be used.')
-        elif method == 'sgd':
-            self.weights = np.random.normal(scale=1/cols, size=(cols, 1))
-            for i in range(iterations):
-                Xy = np.concatenate([X, y], axis=1)
-                np.random.shuffle(Xy)
-                X, y = Xy[:, :-1], Xy[:, -1:]
-                for j in range(int(np.ceil(rows/batch_size))):
-                    start, end = batch_size*j, np.min([batch_size*(j+1), rows])
-                    Xb, yb = X[start:end], y[start:end]
-                    gradient = 2*np.matmul(
-                        Xb.transpose(),
-                        (np.matmul(Xb,
-                                   self.weights)
-                         - yb))
-                    self.weights -= learning_rate*gradient
-        else:
-            print(f'Unknown method: \'{method}\'')
-        
-        return self
-    
-    def predict(self, X):
-        if not hasattr(self, 'weights'):
-            print('Cannot predict. You should call the .fit() method first.')
-            return
-        
-        X = np.concatenate([X, np.ones((X.shape[0], 1))], axis=1)
-        
-        if X.shape[1] != self.weights.shape[0]:
-            print(f'Shapes do not match. {X.shape[1]} != {self.weights.shape[0]}')
-            return
-        
-        return np.matmul(X, self.weights)
-    
-    def rmse(self, X, y):
-        y_hat = self.predict(X)
-        
-        if y_hat is None:
-            return
-        
-        return np.sqrt(((y_hat - y)**2).mean())
+#variables to store mean and standard deviation for each feature
+mu = []
+std = []
 
-/CODE/grpc $ ldd /usr/local/lib/python3.9/dist-packages/grpc/_cython/cygrpc.cpython-39-arm-linux-gnueabihf.so
-        linux-vdso.so.1 (0xbeef7000)
-        /usr/lib/arm-linux-gnueabihf/libarmmem-${PLATFORM}.so => /usr/lib/arm-linux-gnueabihf/libarmmem-v7l.so (0xb698b000)
-        libpthread.so.0 => /lib/arm-linux-gnueabihf/libpthread.so.0 (0xb695f000)
-        libatomic.so.1 => /lib/arm-linux-gnueabihf/libatomic.so.1 (0xb6946000)
-        libstdc++.so.6 => /lib/arm-linux-gnueabihf/libstdc++.so.6 (0xb67be000)
-        libm.so.6 => /lib/arm-linux-gnueabihf/libm.so.6 (0xb674f000)
-        libc.so.6 => /lib/arm-linux-gnueabihf/libc.so.6 (0xb65fb000)
-        /lib/ld-linux-armhf.so.3 (0xb6fcc000)
-        libgcc_s.so.1 => /lib/arm-linux-gnueabihf/libgcc_s.so.1 (0xb65ce000)
+def load_data(filename):
+	df = pd.read_csv(filename, sep=",", index_col=False)
+	df.columns = ["housesize", "rooms", "price"]
+	data = np.array(df, dtype=float)
+	plot_data(data[:,:2], data[:, -1])
+	normalize(data)
+	return data[:,:2], data[:, -1]
+
+def plot_data(x, y):
+	plt.xlabel('house size')
+	plt.ylabel('price')
+	plt.plot(x[:,0], y, 'bo')
+	plt.show()
+
+def normalize(data):
+	for i in range(0,data.shape[1]-1):
+		data[:,i] = ((data[:,i] - np.mean(data[:,i]))/np.std(data[:, i]))
+		mu.append(np.mean(data[:,i]))
+		std.append(np.std(data[:, i]))
+
+
+def h(x,theta):
+	return np.matmul(x, theta)
+
+def cost_function(x, y, theta):
+	return ((h(x, theta)-y).T@(h(x, theta)-y))/(2*y.shape[0])
+
+def gradient_descent(x, y, theta, learning_rate=0.1, num_epochs=10):
+	m = x.shape[0]
+	J_all = []
+	
+	for _ in range(num_epochs):
+		h_x = h(x, theta)
+		cost_ = (1/m)*(x.T@(h_x - y))
+		theta = theta - (learning_rate)*cost_
+		J_all.append(cost_function(x, y, theta))
+
+	return theta, J_all 
+
+def plot_cost(J_all, num_epochs):
+	plt.xlabel('Epochs')
+	plt.ylabel('Cost')
+	plt.plot(num_epochs, J_all, 'm', linewidth = "5")
+	plt.show()
+
+def test(theta, x):
+	x[0] = (x[0] - mu[0])/std[0]
+	x[1] = (x[1] - mu[1])/std[1]
+
+	y = theta[0] + theta[1]*x[0] + theta[2]*x[1]
+	print("Price of house: ", y)
+
+x,y = load_data("house_price_data.txt")
+y = np.reshape(y, (46,1))
+x = np.hstack((np.ones((x.shape[0],1)), x))
+theta = np.zeros((x.shape[1], 1))
+learning_rate = 0.1
+num_epochs = 50
+theta, J_all = gradient_descent(x, y, theta, learning_rate, num_epochs)
+J = cost_function(x, y, theta)
+print("Cost: ", J)
+print("Parameters: ", theta)
+
+#for testing and plotting cost 
+n_epochs = []
+jplot = []
+count = 0
+for i in J_all:
+	jplot.append(i[0][0])
+	n_epochs.append(count)
+	count += 1
+jplot = np.array(jplot)
+n_epochs = np.array(n_epochs)
+plot_cost(jplot, n_epochs)
+
+test(theta, [1600, 3])
