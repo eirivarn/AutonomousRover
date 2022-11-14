@@ -17,8 +17,8 @@ class Robot():
         self.const = Const()
         self.motor = MotorControl(self.const)
         self.lineModule = LineModule(False, self, self.const)
-        self.cupModule = CupModule(False)
-        self.camera = CaptureImage()
+        self.cupModule = CupModule(False, self.const)
+        self.camera = CaptureImage(self.const)
         
         self.task1 = Task1(self.motor, self.lineModule, self.cupModule, self.const)
         self.task2 = Task2(self.motor, self.lineModule, self.cupModule, self.const)
