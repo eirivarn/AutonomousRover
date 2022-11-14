@@ -1,6 +1,7 @@
 from Utils import *
 import cv2
 from Image import Image
+import LinReg
 
 import numpy as np
 from sklearn.linear_model import LinearRegression
@@ -34,7 +35,7 @@ class LineModule:
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
 
-
+    
 
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
