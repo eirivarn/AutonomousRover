@@ -1,8 +1,7 @@
-from statistics import LinearRegression
 from Utils import *
 import cv2
 from Image import Image
-import LinReg
+from LinReg import *
 
 class LineModule:
     def __init__(self, isHeadless, robot, const):
@@ -40,7 +39,7 @@ class LineModule:
         y = np.array(line)
         regressor = LinearRegression(x,y)
         regressor.fit(100, 0.001)
-        yPred = regressor.predict(x)
+        yPred = regressor.predict(self.const.resolution(1)/2) - 320
 
         angle = np.arctan((yPred(10)-yPred(0))/10)
         
