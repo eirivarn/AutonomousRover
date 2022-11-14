@@ -4,11 +4,17 @@ from servo import servo
 from getkey import getkey, keys
  
 class MotorControl:
-    def __init__(self):
-        self.lSpeedPin = 7
-        self.lDirPin = 11
-        self.rSpeedPin = 13
-        self.rDirPin = 15
+    def __init__(self, const):
+        self.const = const
+
+        self.turnSpeed = self.const.turnSpeed
+        self.speed = self.const.speed
+
+
+        self.lSpeedPin = self.const.lSpeedPin
+        self.lDirPin = self.const.lDirPin
+        self.rSpeedPin = self.const.rSpeedPin
+        self.rDirPin = self.const.rDirPin
  
         self.leftMotor = DCmotor(self.lSpeedPin ,self.lDirPin)
         self.rightMotor = DCmotor(self.rSpeedPin ,self.rDirPin)
@@ -41,12 +47,19 @@ class MotorControl:
             self.curveRight(angle*self.ap - lateralOffset*self.kp, speed)
         
 
-    def turnToPos(pos):
-        pass 
+    def turnToPos(self, pos):
+        if pos < 0:
+            self.turnRight(self.turnSpeed)
+        elif pos > 0:
+            self.turnLeft(self.turnSpeed)
+        elif pos in range(-self.const.posDistBuffer, self.const.posDistBuffer):
+            self.stop()
     
-    def goToCup(cupPos):
-        pass #TODO basicly same as follow line exept 1point exept list of points
-
+    def goToCup(self, cupPos):
+        if cupPos in range(-self.const.cupPosBuffer, self.const.cupPosBuffer):
+            self.curve(cupPos, self.speed)
+        else:
+            self.turnToPos(cupPos)
 
 
     def forward(self, speed):
@@ -83,7 +96,7 @@ class MotorControl:
         self.leftMotor.backward(speed)
  
     def curveLeft(self, curveRate, speed):
-        self.leftMotor.forward(speed - + curveRate)
+        self.leftMotor.forward(speed - curveRate)
         self.rightMotor.forward(speed + curveRate)
         print('curve left', curveRate)
 
@@ -92,6 +105,10 @@ class MotorControl:
         self.rightMotor.forward(speed - curveRate)
         print('curve right', curveRate)
  
+    def curve(self, curveRate, speed):
+        self.leftMotor.forward(speed + curveRate)
+        self.rightMotor.forward(speed - curveRate)
+        print('curve right', curveRate)
        
     def getSpeed(self):
         return self.leftMotor.getSpeed()

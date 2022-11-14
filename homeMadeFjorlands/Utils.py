@@ -87,14 +87,6 @@ def ekstraBox(image):
             cv2.drawContours(image, blackContours,-1,(0,0,255),1)
             return angle, lateralOffset
 
-def crossFound(images, crossTracker):
-    crossLocation = crossTracker
-    for i in range(4):
-        if images[i].crossFound():
-            crossLocation[i] = 1 
-    return  crossLocation
-    
-
 
 ##/////////////////prettyPrint///////////////
 #def printInfo(images):

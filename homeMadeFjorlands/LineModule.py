@@ -4,12 +4,12 @@ from Image import Image
 
 
 class LineModule:
-    def __init__(self, isHeadless):
+    def __init__(self, isHeadless, robot):
         self.isHeadless = isHeadless
+        self.robot = robot
         self.font = cv2.FONT_HERSHEY_SIMPLEX
         self.N_SLICES = 4
         self.images = []
-        self.crossTracker = [0,0,0,0]
         
         for _ in range(self.N_SLICES):
             self.images.append(Image())        
@@ -27,6 +27,8 @@ class LineModule:
             for i in range(self.N_SLICES):
                 direction += self.images[i].getDir()
                 line.append(self.images[i].getDir()) ##TODO usikker på om getDir eller getOffset er riktig
+                if self.images[i].crossFound():
+                    self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
 
         angle, lateralOffset= ekstraBox(repackedImg)
@@ -36,11 +38,8 @@ class LineModule:
         if not self.isHeadless:
             cv2.imshow('Image', repackedImg)
         
-        crossLocation = crossFound(self.images, self.crossTracker)
-        self.crossTracker.append(crossLocation)
+        atCross = self.robot.crossConfirmed()
 
-        if self.crossTracker == [1,1,1,1]:
-            atCross = True
         return line, atCross, angle, lateralOffset
 
     def quit(self):

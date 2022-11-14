@@ -16,7 +16,6 @@ class DCmotor:
         self.speed_pwm.start(0)
        
     def forward(self, speed):
-        #print("Driving forward")
         GPIO.output(self.directionPin, 1)
         if speed > 100:
             speed = 100
@@ -28,7 +27,6 @@ class DCmotor:
             self.backward(-speed)
    
     def backward(self, speed):
-        #print("Driving backward")
         GPIO.output(self.directionPin, 0)
         if speed > 100:
             speed = 100
