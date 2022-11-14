@@ -34,17 +34,6 @@ class LineModule:
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
         
-        
-        pi@mypi:~/CODE/grpc $ ldd /usr/local/lib/python3.9/dist-packages/grpc/_cython/cygrpc.cpython-39-arm-linux-gnueabihf.so
-        linux-vdso.so.1 (0xbeef7000)
-        /usr/lib/arm-linux-gnueabihf/libarmmem-${PLATFORM}.so => /usr/lib/arm-linux-gnueabihf/libarmmem-v7l.so (0xb698b000)
-        libpthread.so.0 => /lib/arm-linux-gnueabihf/libpthread.so.0 (0xb695f000)
-        libatomic.so.1 => /lib/arm-linux-gnueabihf/libatomic.so.1 (0xb6946000)
-        libstdc++.so.6 => /lib/arm-linux-gnueabihf/libstdc++.so.6 (0xb67be000)
-        libm.so.6 => /lib/arm-linux-gnueabihf/libm.so.6 (0xb674f000)
-        libc.so.6 => /lib/arm-linux-gnueabihf/libc.so.6 (0xb65fb000)
-        /lib/ld-linux-armhf.so.3 (0xb6fcc000)
-        libgcc_s.so.1 => /lib/arm-linux-gnueabihf/libgcc_s.so.1 (0xb65ce000)
 
 
         #angle, lateralOffset= ekstraBox(repackedImg)
