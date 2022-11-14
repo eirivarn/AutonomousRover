@@ -1,84 +1,75 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 
-#variables to store mean and standard deviation for each feature
-mu = []
-std = []
+matrix = np.array(A.values,'float')
+matrix[0:5,:]    #first 5 rows of data
+data = np.array([[194.33333333,   7.526     ],
+       [188.33333333,   7.509     ],
+       [124.        ,   7.501     ],
+       [123.        ,   7.498     ],
+       [164.33333333,   7.413     ]])
 
-def load_data(filename):
-	df = pd.read_csv(filename, sep=",", index_col=False)
-	df.columns = ["housesize", "rooms", "price"]
-	data = np.array(df, dtype=float)
-	plot_data(data[:,:2], data[:, -1])
-	normalize(data)
-	return data[:,:2], data[:, -1]
+X = matrix[:,0]
+y = matrix[:,1]
 
-def plot_data(x, y):
-	plt.xlabel('house size')
-	plt.ylabel('price')
-	plt.plot(x[:,0], y, 'bo')
-	plt.show()
+X = X/(np.max(X)) 
 
-def normalize(data):
-	for i in range(0,data.shape[1]-1):
-		data[:,i] = ((data[:,i] - np.mean(data[:,i]))/np.std(data[:, i]))
-		mu.append(np.mean(data[:,i]))
-		std.append(np.std(data[:, i]))
+import matplotlib.pyplot as plt
+plt.plot(X,y,'bo')
+plt.ylabel('Happiness Score')
+plt.xlabel('Alcohol consumption')
+plt.legend(['Happiness Score'])
+plt.title('Alcohol_Vs_Happiness')
+plt.grid()
+plt.show()
 
+def computecost(x,y,theta):
+    
+    a = 1/(2*m)
+    b = np.sum(((x@theta)-y)**2)
+    j = (a)*(b)
+    return j
 
-def h(x,theta):
-	return np.matmul(x, theta)
+print(computecost(x,y,theta))
 
-def cost_function(x, y, theta):
-	return ((h(x, theta)-y).T@(h(x, theta)-y))/(2*y.shape[0])
+#initialising parameter
+m = np.size(y)
+X = X.reshape([122,1])
+x = np.hstack([np.ones_like(X),X])
+theta = np.zeros([2,1])
+print(theta,'\n',m)
 
-def gradient_descent(x, y, theta, learning_rate=0.1, num_epochs=10):
-	m = x.shape[0]
-	J_all = []
-	
-	for _ in range(num_epochs):
-		h_x = h(x, theta)
-		cost_ = (1/m)*(x.T@(h_x - y))
-		theta = theta - (learning_rate)*cost_
-		J_all.append(cost_function(x, y, theta))
+def gradient(x,y,theta):
+    
+    alpha = 0.00001
+    iteration = 2000
+#gradient descend algorithm
+    J_history = np.zeros([iteration, 1]);
+    for iter in range(0,2000):
+        
+        error = (x @ theta) -y
+        temp0 = theta[0] - ((alpha/m) * np.sum(error*x[:,0]))
+        temp1 = theta[1] - ((alpha/m) * np.sum(error*x[:,1]))
+        theta = np.array([temp0,temp1]).reshape(2,1)
+        J_history[iter] = (1 / (2*m) ) * (np.sum(((x @ theta)-y)**2))   #compute J value for each iteration 
+    return theta, J_history
 
-	return theta, J_all 
+theta , J = gradient(x,y,theta)
+print(theta)
 
-def plot_cost(J_all, num_epochs):
-	plt.xlabel('Epochs')
-	plt.ylabel('Cost')
-	plt.plot(num_epochs, J_all, 'm', linewidth = "5")
-	plt.show()
+theta , J = gradient(x,y,theta)
+print(J)
 
-def test(theta, x):
-	x[0] = (x[0] - mu[0])/std[0]
-	x[1] = (x[1] - mu[1])/std[1]
+#plot linear fit for our theta
+plt.plot(X,y,'bo')
+plt.plot(X,x@theta,'-')
+plt.axis([0,1,3,7])
+plt.ylabel('Happiness Score')
+plt.xlabel('Alcohol consumption')
+plt.legend(['HAPPY','LinearFit'])
+plt.title('Alcohol_Vs_Happiness')
+plt.grid()
+plt.show()
 
-	y = theta[0] + theta[1]*x[0] + theta[2]*x[1]
-	print("Price of house: ", y)
-
-x,y = load_data("test.txt")
-y = np.reshape(y, (46,1))
-x = np.hstack((np.ones((x.shape[0],1)), x))
-theta = np.zeros((x.shape[1], 1))
-learning_rate = 0.1
-num_epochs = 50
-theta, J_all = gradient_descent(x, y, theta, learning_rate, num_epochs)
-J = cost_function(x, y, theta)
-print("Cost: ", J)
-print("Parameters: ", theta)
-
-#for testing and plotting cost 
-n_epochs = []
-jplot = []
-count = 0
-for i in J_all:
-	jplot.append(i[0][0])
-	n_epochs.append(count)
-	count += 1
-jplot = np.array(jplot)
-n_epochs = np.array(n_epochs)
-plot_cost(jplot, n_epochs)
-
-test(theta, [1600, 3])
+predict1 = [1,(164/np.max(matrix[:,0]))] @ theta #normalising the input value, 1 is for intercept term so not need to normalise
+print(predict1)
