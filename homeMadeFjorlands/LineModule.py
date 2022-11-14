@@ -34,13 +34,13 @@ class LineModule:
 
         x = []
         for i in range(self.N_SLICES):
-            x[i] = (self.const.resolution[1]*i + self.const.resolution[1]/4)
+            x.append(self.const.resolution[1]*i + self.const.resolution[1]/4)
         x = np.array(x)
         y = np.array(line)
         regressor = LinearRegression(x,y)
         regressor.fit(100, 0.001)
 
-        offset = (regressor.predict(self.const.resolution[1]/2)) - 320
+        offset = (regressor.predict(self.const.resolution[1]/2)) - self.const.resolution[1]/2
         print(offset)
         angle = np.arctan((regressor.predict(10)-regressor.predict(0))/10)
         print(angle)
