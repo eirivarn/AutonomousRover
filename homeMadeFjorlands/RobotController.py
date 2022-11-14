@@ -64,6 +64,6 @@ class Robot():
             self.crossConfidence[i] = 1
 
     def crossConfirmed(self):
-        return self.crossConfidence == self.completeList
+        return (self.crossConfidence == self.completeList).all()
 
         
