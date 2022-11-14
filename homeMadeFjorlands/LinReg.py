@@ -22,7 +22,7 @@ class LinearRegression:
              
             #Updating Parameters
             self.m = self.m - lr * D_m
-            self.c = self.b - lr * D_c
+            self.b = self.b - lr * D_b
              
     def predict(self , inp):
         y_pred = self.m * inp + self.b 
