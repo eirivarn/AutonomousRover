@@ -15,7 +15,7 @@ class LineModule:
         self.const = const
 
         for _ in range(self.N_SLICES):
-            self.images.append(Image(const))        
+            self.images.append(Image())        
 
 
     def analyzeImage(self, image):
@@ -33,16 +33,7 @@ class LineModule:
                 if self.images[i].crossFound():
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
-        
-        ##/////////linReg line
-        y = np.array(line).reshape(-1,1)
-        x = []
-        pixelsBetweenReadings = self.const.resolution / self.N_SLICES
-        for i in range(self.N_SLICES):
-            y.append(pixelsBetweenReadings/2 + pixelsBetweenReadings*i)
-        model = LinearRegression().fit(x,y)
-        angle = np.degreesarctan(model.predict(100) - model.predict(0)/100)
-        offset = model.predict(240) - 320
+        ≈
 
 
         #angle, lateralOffset= ekstraBox(repackedImg)
