@@ -112,7 +112,7 @@ class Task1(Task):
 
 
     def subTask9(self):
-        self.motorControl.turnLeft()
+        self.motorControl.turnLeft() 
         sleep(2)
         self.subTask = 10
 
