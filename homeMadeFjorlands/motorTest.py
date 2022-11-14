@@ -37,7 +37,7 @@ def test1(image):
     print("Executing subtask 2")
     cupPos, cupInImage, cupIsClose = cupModule.analyzeImage(image)
     if not cupInImage:
-        motorControl.turnLeft(80)
+        motorControl.turnLeft(50)
     else:
         motorControl.turnToPos(cupPos)
     if cupPos in range(-cupDistBuffer, cupDistBuffer):
