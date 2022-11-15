@@ -49,19 +49,20 @@ class LineModule:
 
         self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
         
-        angle = np.arctan((self.const.resolution[1]/4)/(self.predict(self.const.resolution[1]-self.const.resolution[1]/8)-self.predict(self.const.resolution[1]/5/8)))
+        y0 = self.const.resolution[1]*7/8
+        x0 = self.predict(self.const.resolution[1]*7/8)
+
+        y3 = self.const.resolution[1]*1/8
+        x3 = self.predict(self.const.resolution[1]*1/8)
+
+
+        angle = np.arctan((y0 - y3)/(x0 - x3))
         offset = self.predict(self.const.resolution[1]/2)
 
         ##////////Printing linReg line
-        x0 = int(self.predict(self.const.resolution[1]/8))
-        y0 = int(self.const.resolution[1]/8)
-
-        x1 = int(self.predict(self.const.resolution[1]-self.const.resolution[1]/8))
-        y1 = int(self.const.resolution[1] - self.const.resolution[1]/8)
-
-        image = repackedImg
-        line_thickness = 2
-        cv2.line(image, (x0, y0), (x1, y1), (255, 32, 0), thickness=line_thickness)
+        #image = repackedImg
+        #line_thickness = 2
+        #cv2.line(image, (x0, y0), (x1, y1), (255, 32, 0), thickness=line_thickness)
 
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
