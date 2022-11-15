@@ -34,10 +34,12 @@ class LineModule:
 
         
         x = []
+        y = []
         for i in range(self.N_SLICES):
             x.append(self.const.resolution[1]*i/4 + self.const.resolution[1]/4)
+            y.append(line[i]+self.const.resolution[0]/2)
         x = np.array(x)
-        y = np.array(line)
+        y = np.array(y)
 
         m = (len(x) * np.sum(x*y) - np.sum(x) * np.sum(y)) / (len(x)*np.sum(x*x) - np.sum(x) ** 2)
         b = (np.sum(y) - m *np.sum(x)) / len(x)
