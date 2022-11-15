@@ -60,9 +60,9 @@ class LineModule:
         offset = self.predict(self.const.resolution[1]/2)
 
         ##////////Printing linReg line
-        #image = repackedImg
-        #line_thickness = 2
-        #cv2.line(image, (x0, y0), (x1, y1), (255, 32, 0), thickness=line_thickness)
+        image = repackedImg
+        line_thickness = 2
+        cv2.line(image, (x0, y0), (x3, y3), (255, 32, 0), thickness=line_thickness)
 
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
