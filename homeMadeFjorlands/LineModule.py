@@ -39,7 +39,7 @@ class LineModule:
         x = np.array(x)
         y = np.array(line)
         regressor = LinearRegression(x,y)
-        regressor.fit(1000, 0.0001)
+        regressor.fit(100, 0.0001)
 
         offset = (regressor.predict(self.const.resolution[1]/2)) - self.const.resolution[1]/2
         print(offset)
