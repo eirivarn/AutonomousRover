@@ -36,7 +36,7 @@ class LineModule:
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
 
-        
+        ##/////////Making LinReg line
         x = []
         y = []
         for i in range(self.N_SLICES):
@@ -55,6 +55,14 @@ class LineModule:
         angle = np.arctan((self.predict(line[1]) - self.predict(line[0]))/10)
         offset = self.predict(self.const.resolution[1]/2)
 
+        ##////////Printing linReg line
+        width, height = 800, 600
+        x1, y1 = self.predict(line[1]), y[1]
+        x0, y0 = self.predict(line[0]), y[0]
+        image = repackedImg
+        line_thickness = 2
+        cv2.line(image, (x1, y1), (x0, y0), (0, 255, 0), thickness=line_thickness)
+
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
         
@@ -64,6 +72,8 @@ class LineModule:
         
         atCross = self.robot.crossConfirmed()
 
+
+        ##///////////Printing information
         print ("\n{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format('Angle','Offset', 'Cross'))
         print ("{:<8} {:<15} {:<15} {:<15} {:<15} {:<15}".format(angle, offset, atCross))   
 
