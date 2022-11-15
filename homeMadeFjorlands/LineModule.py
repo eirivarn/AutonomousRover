@@ -46,18 +46,19 @@ class LineModule:
         y = np.array(y)
 
         A = np.vstack([x, np.ones(len(x))]).T
+
         self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
 
-        line = []
+        predLine = []
         for i in range(self.N_SLICES):
-            line.append(self.predict(i))
+            predLine.append(self.predict(i*self.const.resolution[1]/4))
         
-        angle = np.arctan((self.predict(line[1]) - self.predict(line[0]))/120)
+        angle = np.arctan((self.predict(predLine[1]) - self.predict(predLine[0]))/120)
         offset = self.predict(self.const.resolution[1]/2)
 
         ##////////Printing linReg line
-        x0, y0 = int(self.predict(line[0])), int(y[0])
-        x1, y1 = int(self.predict(line[3])), int(y[1])
+        x0, y0 = int(self.predict(predLine[0])), int(y[0])
+        x1, y1 = int(self.predict(predLine[3])), int(y[1])
 
         image = repackedImg
         line_thickness = 2
