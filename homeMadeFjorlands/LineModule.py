@@ -35,8 +35,8 @@ class LineModule:
         x = []
         for i in range(self.N_SLICES):
             x.append(self.const.resolution[1]*i/4 + self.const.resolution[1]/4)
-        x = np.array(x).iloc[:,0]
-        y = np.array(line).iloc[:,1]
+        x = np.array(x.iloc[:,0])
+        y = np.array(line.iloc[:,1])
         regressor = LinearRegression(x,y)
         regressor.fit(1000, 0.0001)
 
