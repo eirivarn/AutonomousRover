@@ -75,7 +75,7 @@ class LineModule:
 
         ##///////////Printing information
         print ("\n{:<8} {:<15} {:<15} ".format('Angle','Offset', 'Cross'))
-        print ("{:<8} {:<15} {:<15} ".format(angle, offset, atCross))   
+        print ("{:<8} {:<15} {:<15} ".format("{0:.3f}".format(angle), "{0:.3f}".format(offset), atCross))   
 
         return line, atCross, angle, offset
 
