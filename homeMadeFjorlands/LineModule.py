@@ -56,7 +56,7 @@ class LineModule:
         x3 = self.predict(self.const.resolution[1]*1/8)
 
 
-        angle = np.arctan((y0 - y3)/(x0 - x3))
+        angle = np.tan((y0 - y3)/(x0 - x3))
         offset = self.predict(self.const.resolution[1]/2)
 
         ##////////Printing linReg line
