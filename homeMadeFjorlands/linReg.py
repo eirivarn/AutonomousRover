@@ -1,7 +1,7 @@
 import numpy as np
 
-x = np.array([0, 1, 2, 3])
-y = np.array([-1, 0.2, 0.9, 2.1])
+x = np.array([-1, -1, -1, -1])
+y = np.array([60, 180, 240,  360])
 
 A = np.vstack([x, np.ones(len(x))]).T
 
