@@ -49,14 +49,17 @@ class LineModule:
 
         self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
         
+        print(self.m)
+        print(self.c)
+        
         angle = np.arctan(self.predict(100)-self.predict(10))/90
         offset = self.predict(self.const.resolution[1]/2)
 
         ##////////Printing linReg line
-        x0 = int(self.const.resolution[0]/2) - int(self.predict(self.const.resolution[1]/8))
+        x0 = int(self.predict(self.const.resolution[1]/8))
         y0 = int(self.const.resolution[1]/8)
 
-        x1 = int(self.const.resolution[0]/2) - int(self.predict(self.const.resolution[1]-self.const.resolution[1]/8))
+        x1 = int(self.predict(self.const.resolution[1]-self.const.resolution[1]/8))
         y1 = int(self.const.resolution[1] - self.const.resolution[1]/8)
 
         image = repackedImg
