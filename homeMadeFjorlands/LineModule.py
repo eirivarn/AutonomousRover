@@ -52,7 +52,7 @@ class LineModule:
         for i in range(self.N_SLICES):
             line.append(self.predict(i))
         
-        angle = np.arctan((self.predict(line[10]) - self.predict(line[0]))/10)
+        angle = np.arctan((self.predict(line[1]) - self.predict(line[0]))/10)
         offset = self.predict(self.const.resolution[1]/2)
 
         #angle, lateralOffset= ekstraBox(repackedImg)
