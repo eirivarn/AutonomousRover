@@ -79,7 +79,7 @@ class LineModule:
 
         return list, atCross, angle, offset
 
-    def predict_x(self, y):
+    def predict(self, y):
         f_y = (y - self.c)/self.m
         return f_y
 
