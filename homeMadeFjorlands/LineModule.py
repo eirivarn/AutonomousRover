@@ -13,6 +13,9 @@ class LineModule:
         self.images = []
         self.const = const
 
+        self.m = 0
+        self.c = 0
+
         for _ in range(self.N_SLICES):
             self.images.append(Image(const),)        
 
@@ -43,7 +46,7 @@ class LineModule:
         y = np.array(y)
 
         A = np.vstack([x, np.ones(len(x))]).T
-        m, c = np.linalg.lstsq(A, y, rcond=None)[0]
+        self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
 
         line = []
         for i in range(self.N_SLICES):
@@ -64,7 +67,7 @@ class LineModule:
         return line, atCross, angle, offset
 
     def predict(self, x):
-        return m*c + c
+        return self.m*x + self.c
 
     def quit(self):
         cv2.destroyAllWindows()
