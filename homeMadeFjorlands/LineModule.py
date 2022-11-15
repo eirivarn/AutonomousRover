@@ -1,6 +1,7 @@
 from Utils import *
 import cv2
 from Image import Image
+import numpy as np
 
 
 class LineModule:
@@ -20,14 +21,14 @@ class LineModule:
         removedBgImg = RemoveBackground(image, True)
         direction = 0
         atCross = False
-        line = []
+        list = []
         
 
         if removedBgImg is not None:
             SlicePart(removedBgImg, self.images, self.N_SLICES)
             for i in range(self.N_SLICES):
                 direction += self.images[i].getDir()
-                line.append(self.images[i].getOffset()) ##TODO usikker på om getDir eller getOffset er riktig
+                list.append(self.images[i].getOffset()) 
                 if self.images[i].crossFound():
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
@@ -36,10 +37,20 @@ class LineModule:
         x = []
         y = []
         for i in range(self.N_SLICES):
-            x.append(self.const.resolution[1]*i/4 + self.const.resolution[1]/4)
-            y.append(line[i])
-        x = np.array(x)
+            y.append(self.const.resolution[1]*i/4 + self.const.resolution[1]/4)
+
+        x = np.array(list)
         y = np.array(y)
+
+        A = np.vstack([x, np.ones(len(x))]).T
+        m, c = np.linalg.lstsq(A, y, rcond=None)[0]
+
+        line = []
+        for i in range(self.N_SLICES):
+            line.append(self.predict(m,c,i))
+        
+        angle = np.arctan((self.predict(line[10]) - self.predict(line[0]))/10)
+        offset = self.predict(self.const.resolution[1]/2)
 
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
@@ -51,6 +62,9 @@ class LineModule:
         atCross = self.robot.crossConfirmed()
 
         return line, atCross, angle, offset
+
+    def predict(self, x):
+        return m*c + c
 
     def quit(self):
         cv2.destroyAllWindows()
