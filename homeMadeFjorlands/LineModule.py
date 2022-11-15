@@ -33,17 +33,19 @@ class LineModule:
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
 
+        
         x = []
         for i in range(self.N_SLICES):
             x.append(self.const.resolution[1]*i/4 + self.const.resolution[1]/4)
         x = np.array(x)
         y = np.array(line)
-        regressor = LinearRegression(x,y)
-        regressor.fit(100, 0.0001)
 
-        offset = (regressor.predict(self.const.resolution[1]/2)) - self.const.resolution[1]/2
+        m = (len(x) * np.sum(x*y) - np.sum(x) * np.sum(y)) / (len(x)*np.sum(x*x) - np.sum(x) ** 2)
+        b = (np.sum(y) - m *np.sum(x)) / len(x)
+
+        offset = m*self.const.resolution[1]/2 - b - self.const.resolution[1]/2
         print(offset)
-        angle = np.arctan((regressor.predict(10)-regressor.predict(0))/10)
+        angle = np.arctan((m*10 - 2*b)/10)
         print(angle)
 
 
