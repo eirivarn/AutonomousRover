@@ -2,6 +2,7 @@ from Utils import *
 import cv2
 from Image import Image
 import numpy as np
+import math 
 
 
 class LineModule:
@@ -56,7 +57,7 @@ class LineModule:
         x3 = self.predict(self.const.resolution[1]*1/8)
 
 
-        angle = np.tan((y0 - y3)/(x0 - x3))
+        angle = math.degrees(np.arctan(self.m))
         offset = self.predict(self.const.resolution[1]/2)
 
         ##////////Printing linReg line
