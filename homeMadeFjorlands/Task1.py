@@ -9,6 +9,8 @@ class Task1(Task):
         self.cupDistBuffer = self.const.cupDistBuffer
         self.lineDistBuffer = self.const.lineDistBuffer
 
+        self.subtasks = [False, False, False, False, False, False, False, False, False, False]   
+
     def update(self, image):
 
         if self.subTask == 1: #follow line to cross
@@ -50,23 +52,26 @@ class Task1(Task):
 
 
     def subTask1(self,image):
-        print("Executing Task 1")
-        print("Executing subtask 1")
+        if self.subTask[0] == False:
+            self.subtask[0] = True
+            print("Following line to cross")
         line, atCross, angle, lateralOffset = self.lineModule.analyzeImage(image)
         self.motorControl.followLine(line, angle, lateralOffset, self.speed)
         if atCross:
-            print("Subtask 1 complete")
+            print("At cross")
             self.subtask = 2
 
     def subTask2(self,image):
-        print("Executing subtask 2")
+        if self.subTask[1] == False:
+            print("Localize cup")
+            self.subtask[1] = True
         cupPos, cupInImage = self.cupModule.analyzeImage(image)
         if not cupInImage:
             self.motorControl.turnLeft()
         else:
             self.motorControl.turnToPos(cupPos)
         if cupPos in range(-self.cupDistBuffer, self.cupDistBuffer):
-            print("Subtask 2 complete")
+            
             self.subTask = 3
     
     def subTask3(self,image):
