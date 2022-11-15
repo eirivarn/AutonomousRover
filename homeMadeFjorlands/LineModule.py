@@ -62,7 +62,7 @@ class LineModule:
         ##////////Printing linReg line
         image = repackedImg
         line_thickness = 2
-        cv2.line(image, (int(x3), int(y3)), (int(x0), int(y0)), (255, 32, 0), thickness=line_thickness)
+        cv2.line(image, (340 - int(x3), 340 - int(y3)), (int(x0), int(y0)), (255, 32, 0), thickness=line_thickness)
 
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
