@@ -53,8 +53,8 @@ class LineModule:
         offset = self.predict(self.const.resolution[1]/2)
 
         ##////////Printing linReg line
-        x0, y0 = self.predict(self.const.resolution[1]/8)
-        x1, y1 = self.predict(self.const.resolution[1]-self.const.resolution[1]/8)
+        x0, y0 = int(self.predict(self.const.resolution[1]/8)), int(self.const.resolution[1]/8)
+        x1, y1 = int(self.predict(self.const.resolution[1]-self.const.resolution[1]/8)), int(self.const.resolution[1]-self.const.resolution[1]/8)
 
         image = repackedImg
         line_thickness = 2
