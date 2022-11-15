@@ -40,25 +40,21 @@ class LineModule:
         x = []
         y = []
         for i in range(self.N_SLICES):
-            y.append(self.const.resolution[1]*i/4 + self.const.resolution[1]/4)
+            y.append(self.const.resolution[1]*i/8 + self.const.resolution[1]/4)
 
         x = np.array(list)
         y = np.array(y)
 
         A = np.vstack([x, np.ones(len(x))]).T
 
-        m, c = np.linalg.lstsq(A, y, rcond=None)[0]
-
-        predLine = []
-        for i in range(self.N_SLICES):
-            predLine.append(m*(i*self.const.resolution[1]/4)+c)
+        self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
         
-        angle = np.arctan((m*self.const.resolution[1]/4)-m*(self.const.resolution[1]- self.const.resolution[1]/4)/self.const.resolution[1]*3/4)
-        offset = (m*self.const.resolution[1]/2+c)
+        angle = np.arctan(self.predict(100)-self.predict(10))/90
+        offset = 
 
         ##////////Printing linReg line
-        x0, y0 = int(self.predict(predLine[0])), int(y[0])
-        x1, y1 = int(self.predict(predLine[3])), int(y[1])
+        x0, y0 = self.predict(self.const.resolution[1]/8)
+        x1, y1 = self.predict(self.const.resolution[1]-self.const.resolution[1]*i/8)
 
         image = repackedImg
         line_thickness = 2
@@ -79,6 +75,10 @@ class LineModule:
         print ("{:<8} {:<15} {:<15} ".format("{0:.3f}".format(angle), "{0:.3f}".format(offset), atCross))   
 
         return predLine, atCross, angle, offset
+
+    def predict(self, x):
+        f_x = self.m*x +self.c
+        return f_x
 
     def quit(self):
         cv2.destroyAllWindows()
