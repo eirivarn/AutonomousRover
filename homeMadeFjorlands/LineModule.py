@@ -1,8 +1,7 @@
 from Utils import *
 import cv2
 from Image import Image
-from LinReg import *
-import numpy as np
+
 
 class LineModule:
     def __init__(self, isHeadless, robot, const):
