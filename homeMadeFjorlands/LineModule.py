@@ -47,11 +47,11 @@ class LineModule:
 
         A = np.vstack([x, np.ones(len(x))]).T
 
-        self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
+        m, c = np.linalg.lstsq(A, y, rcond=None)[0]
 
         predLine = []
         for i in range(self.N_SLICES):
-            predLine.append(self.predict(i*self.const.resolution[1]/4))
+            predLine.append(m*(i*self.const.resolution[1]/4)+c)
         
         angle = np.arctan((self.predict(predLine[1]) - self.predict(predLine[0]))/120)
         offset = self.predict(self.const.resolution[1]/2)
@@ -79,9 +79,6 @@ class LineModule:
         print ("{:<8} {:<15} {:<15} ".format("{0:.3f}".format(angle), "{0:.3f}".format(offset), atCross))   
 
         return predLine, atCross, angle, offset
-
-    def predict(self, x):
-        return self.m*x + self.c
 
     def quit(self):
         cv2.destroyAllWindows()
