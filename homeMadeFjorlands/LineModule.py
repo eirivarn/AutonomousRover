@@ -42,7 +42,7 @@ class LineModule:
         m = (len(x) * np.sum(x*y) - np.sum(x) * np.sum(y)) / (len(x)*np.sum(x*x) - np.sum(x) ** 2)
         b = (np.sum(y) - m *np.sum(x)) / len(x)
 
-        offset = m*self.const.resolution[1]/2 - b 
+        offset = (m*self.const.resolution[1]/2 - b) - self.const.resolution[0]/2
         print(offset)
         angle = np.arctan((m*10 - 2*b)/10)
         print(angle)
