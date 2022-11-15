@@ -40,7 +40,7 @@ class LineModule:
         x = []
         y = []
         for i in range(self.N_SLICES):
-            y.append(self.const.resolution[1]*i/8 + self.const.resolution[1]/4)
+            y.append(self.const.resolution[1]/8 + self.const.resolution[1]/4*i)
 
         x = np.array(list)
         y = np.array(y)
