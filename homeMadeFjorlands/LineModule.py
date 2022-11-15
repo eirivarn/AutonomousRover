@@ -50,11 +50,11 @@ class LineModule:
         self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
         
         angle = np.arctan(self.predict(100)-self.predict(10))/90
-        offset = 
+        offset = self.predict(self.const.resolution[1]/2)
 
         ##////////Printing linReg line
         x0, y0 = self.predict(self.const.resolution[1]/8)
-        x1, y1 = self.predict(self.const.resolution[1]-self.const.resolution[1]*i/8)
+        x1, y1 = self.predict(self.const.resolution[1]-self.const.resolution[1]/8)
 
         image = repackedImg
         line_thickness = 2
