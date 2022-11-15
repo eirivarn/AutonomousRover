@@ -2,8 +2,6 @@ from Utils import *
 import cv2
 from Image import Image
 
-import numpy as np
-from sklearn.linear_model import LinearRegression
 
 class LineModule:
     def __init__(self, isHeadless, robot, const):
@@ -15,7 +13,7 @@ class LineModule:
         self.const = const
 
         for _ in range(self.N_SLICES):
-            self.images.append(Image())        
+            self.images.append(Image(const),)        
 
 
     def analyzeImage(self, image):
@@ -29,12 +27,19 @@ class LineModule:
             SlicePart(removedBgImg, self.images, self.N_SLICES)
             for i in range(self.N_SLICES):
                 direction += self.images[i].getDir()
-                line.append(self.images[i].getDir()) ##TODO usikker på om getDir eller getOffset er riktig
+                line.append(self.images[i].getOffset()) ##TODO usikker på om getDir eller getOffset er riktig
                 if self.images[i].crossFound():
                     self.robot.updateCrossConf(i)
             repackedImg = RepackImages(self.images)
-        
 
+        
+        x = []
+        y = []
+        for i in range(self.N_SLICES):
+            x.append(self.const.resolution[1]*i/4 + self.const.resolution[1]/4)
+            y.append(line[i])
+        x = np.array(x)
+        y = np.array(y)
 
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
