@@ -78,7 +78,7 @@ class LineModule:
         print ("\n{:<8} {:<15} {:<15} ".format('Angle','Offset', 'Cross'))
         print ("{:<8} {:<15} {:<15} ".format("{0:.3f}".format(angle), "{0:.3f}".format(offset), atCross))   
 
-        return line, atCross, angle, offset
+        return predLine, atCross, angle, offset
 
     def predict(self, x):
         return self.m*x + self.c
