@@ -52,13 +52,13 @@ class LineModule:
         for i in range(self.N_SLICES):
             line.append(self.predict(i))
         
-        angle = np.arctan((self.predict(line[1]) - self.predict(line[0]))/10)
+        angle = np.arctan((self.predict(line[1]) - self.predict(line[0]))/120)
         offset = self.predict(self.const.resolution[1]/2)
 
         ##////////Printing linReg line
-        width, height = 800, 600
-        x1, y1 = int(self.predict(line[1])), int(y[1])
         x0, y0 = int(self.predict(line[0])), int(y[0])
+        x1, y1 = int(self.predict(line[3])), int(y[1])
+
         image = repackedImg
         line_thickness = 2
         cv2.line(image, (x0, y0), (x1, y1), (255, 32, 0), thickness=line_thickness)
