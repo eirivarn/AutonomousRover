@@ -2,6 +2,7 @@ from Utils import *
 import cv2
 from Image import Image
 from LinReg import *
+import numpy as np
 
 class LineModule:
     def __init__(self, isHeadless, robot, const):
@@ -35,8 +36,8 @@ class LineModule:
         x = []
         for i in range(self.N_SLICES):
             x.append(self.const.resolution[1]*i/4 + self.const.resolution[1]/4)
-        x = np.array(x.iloc[:,0])
-        y = np.array(line.iloc[:,1])
+        x = np.array(x)
+        y = np.array(line)
         regressor = LinearRegression(x,y)
         regressor.fit(1000, 0.0001)
 
