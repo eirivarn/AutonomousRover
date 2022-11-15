@@ -79,9 +79,9 @@ class LineModule:
 
         return list, atCross, angle, offset
 
-    def predict(self, x):
-        f_x = self.m*x +self.c
-        return f_x
+    def predict_x(self, y):
+        f_y = (y - self.c)/self.m
+        return f_y
 
     def quit(self):
         cv2.destroyAllWindows()
