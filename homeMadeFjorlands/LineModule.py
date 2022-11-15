@@ -49,9 +49,6 @@ class LineModule:
 
         self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
         
-        print(self.m)
-        print(self.c)
-        
         angle = np.arctan(self.predict(100)-self.predict(10))/90
         offset = self.predict(self.const.resolution[1]/2)
 
