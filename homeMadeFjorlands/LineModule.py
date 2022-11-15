@@ -54,7 +54,7 @@ class LineModule:
             predLine.append(m*(i*self.const.resolution[1]/4)+c)
         
         angle = np.arctan((m*self.const.resolution[1]/4)-m*(self.const.resolution[1]- self.const.resolution[1]/4)/self.const.resolution[1]*3/4)
-        offset = self.predict(self.const.resolution[1]/2)
+        offset = (m*self.const.resolution[1]/2+c)
 
         ##////////Printing linReg line
         x0, y0 = int(self.predict(predLine[0])), int(y[0])
