@@ -9,6 +9,7 @@ class Image:
         self.MainContour = None
         self.dir = 0
         self.consts = consts
+        self.middleX
         
     def Process(self):
         imgray = cv2.cvtColor(self.image,cv2.COLOR_BGR2GRAY) #Convert to Gray Scale
