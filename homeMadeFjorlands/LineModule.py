@@ -61,7 +61,7 @@ class LineModule:
         x0, y0 = self.predict(line[0]), y[0]
         image = repackedImg
         line_thickness = 2
-        cv2.line(image, (0, 0), (200, 200), (0, 32, 0), thickness=line_thickness)
+        cv2.line(image, (0, 0), (200, 200), (255, 32, 0), thickness=line_thickness)
 
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
