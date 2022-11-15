@@ -49,7 +49,7 @@ class LineModule:
 
         self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
         
-        angle = np.arctan(self.predict(100)-self.predict(10))/90
+        angle = np.arctan((self.const.resolution[1]/4)/(self.predict(self.const.resolution[1]-self.const.resolution[1]/8)-self.predict(self.const.resolution[1]/5/8)))
         offset = self.predict(self.const.resolution[1]/2)
 
         ##////////Printing linReg line
