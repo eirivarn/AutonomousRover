@@ -50,9 +50,11 @@ class LineModule:
 
         self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
         
+        # x og y position ved øverste punk
         y0 = self.const.resolution[1]*7/8
         x0 = self.predict(self.const.resolution[1]*7/8)
 
+        # x og y position ved nederste punkt
         y3 = self.const.resolution[1]*1/8
         x3 = self.predict(self.const.resolution[1]*1/8)
 
