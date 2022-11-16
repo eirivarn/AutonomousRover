@@ -35,7 +35,7 @@ class Const:
         self.lowBlue =  (90 , 50 , 50 )
         self.highRed1 = (20 , 255, 255)
         self.lowRed1 =  (0  , 50 , 50 )
-        self.highRed2 = (180, 255, 255)
+        self.highRed2 = (179, 255, 255)
         self.lowRed2 =  (160, 50 , 50 )
         self.highWhite =(179, 10 , 255)
         self.lowWhite = (0  , 0  , 235)
