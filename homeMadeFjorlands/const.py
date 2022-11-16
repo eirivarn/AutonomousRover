@@ -30,11 +30,13 @@ class Const:
         self.resolution = (640, 380)
 
 
-        ## //// Cup colors //// hsv
-        self.highBlue = (130,255,255)
-        self.lowBlue = (90,120,150)
-        self.highRed = (20, 255,  255)
-        self.lowRed = (160, 175, 175)
-        self.highWhite = (180,25,255)
-        self.lowWhite = (0, 0, 225)
-        ## ////////////////////
+        ## //// Cup colors //// hsv ///
+        self.highBlue = (130, 255, 255)
+        self.lowBlue =  (90 , 50 , 50 )
+        self.highRed1 = (20 , 255, 255)
+        self.lowRed1 =  (0  , 50 , 50 )
+        self.highRed2 = (180, 255, 255)
+        self.lowRed2 =  (160, 50 , 50 )
+        self.highWhite =(180, 10 , 255)
+        self.lowWhite = (0  , 0  , 235)
+        ## ////////////////////////////

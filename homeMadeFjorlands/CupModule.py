@@ -11,8 +11,10 @@ class CupModule:
         self.yCenter = 0
         self.highBlue = const.highBlue
         self.lowBlue = const.lowBlue
-        self.highRed = const.highRed
-        self.lowRed = const.lowRed
+        self.highRed1 = const.highRed1
+        self.lowRed1 = const.lowRed1
+        self.highRed2 = const.highRed2
+        self.lowRed2 = const.lowRed2
         self.highWhite = const.highWhite
         self.lowWhite = const.lowWhite
 
@@ -28,11 +30,11 @@ class CupModule:
         hsv = cv2.cvtColor(blurredImage, cv2.COLOR_BGR2HSV)
 
         maskBlue = cv2.inRange(hsv, self.lowBlue, self.highBlue)
-        maskRed = cv2.inRange(hsv, self.lowRed, self.highRed)
+        maskRed1 = cv2.inRange(hsv, self.lowRed1, self.highRed1)
+        maskRed2 = cv2.inRange(hsv, self.lowRed2, self.highRed2)
         maskWhite = cv2.inRange(hsv, self.lowWhite, self.highWhite)
 
-        mask = maskBlue & maskRed & maskWhite
-        #mask = maskWhite
+        mask = maskBlue & maskRed1 & maskRed2 & maskWhite
         '''_, contourBlue, _ = cv2.findContours(maskBlue,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
         _, contourRed, _ = cv2.findContours(maskRed,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
         _, contourWhite, _ = cv2.findContours(maskWhite,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
