@@ -2,7 +2,7 @@ import numpy as np
 
 class Const:
     def __init__(self):
-        self.speed = 60
+        self.speed = 100
         self.turnSpeed = 19
         self.cupDistBuffer = 2
         self.cupPosBuffer = 70
