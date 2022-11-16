@@ -48,7 +48,7 @@ class CupModule:
                 cv2.drawContours(image, contour, -1, (0,255,0), 3)
                 self.xCenter = x + w/2
                 self.yCenter = y + h/2
-                cv2.circle(image, (self.xCenter, self.yCenter), 3, (255,0,255), thickness=-1)
+                #cv2.circle(image, (self.xCenter, self.yCenter), 3, (255,0,255), thickness=-1)
                 cupInImage = True
         
         cv2.imshow('Cup', image)
