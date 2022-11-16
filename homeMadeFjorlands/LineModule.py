@@ -74,7 +74,7 @@ class LineModule:
         y3= self.flipPoint(inverted_y3)
         x3 = self.flipPoint(inverted_x3)
 
-        cv2.line(repackedImg, (x0, y3), (x3, y0), (0, 255, 0), thickness=3)
+        cv2.line(repackedImg, (x0, y3), (x3, y0), (255, 20, 0), thickness=3)
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
 
