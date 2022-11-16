@@ -37,10 +37,10 @@ class MotorControl:
             self.curveLeft(lateralOffset/10, speed)
 
         elif (lateralOffset < 0 and angle < 0):
-            self.curveRight(-lateralOffset*self.kp, speed)
+            self.forward(speed)
 
         elif (lateralOffset > 0 and angle > 0):
-            self.curveLeft(lateralOffset*self.kp, speed)
+            self.forward(speed)
 
         elif (lateralOffset > 0 and angle < 0):  
             self.curveLeft(-angle*self.ap + lateralOffset*self.kp, speed)
