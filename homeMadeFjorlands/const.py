@@ -26,3 +26,13 @@ class Const:
         self.i_line = 2
 
         self.resolution = (640, 380)
+
+
+        ## //// Cup colors //// rbg gbr
+        self.highBlue = (30,255,30)
+        self.lowBlue = (0,200,0)
+        self.highRed = (30, 30, 255)
+        self.lowRed = (0, 0, 200)
+        self.highWhite = (255,255,255)
+        self.lowWhite = (210, 210, 210)
+        ## ////////////////////
