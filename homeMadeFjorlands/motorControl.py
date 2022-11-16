@@ -51,7 +51,7 @@ class MotorControl:
 
     def turnToPos(self, pos):
         speed = self.turnSpeed
-        if pos in range(-50, 50):
+        if pos in range(-150, 150):
             speed = int(speed* 0.7)
         if pos > 0:
             self.turnRight(speed)
