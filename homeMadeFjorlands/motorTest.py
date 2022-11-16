@@ -33,7 +33,7 @@ def startVideoCapture():
             elif subtask ==2:
                 test2(image)  
             elif subtask == 3:
-                
+
                 break   
         except:
             motorControl.stop()
@@ -48,7 +48,7 @@ def test1(image):
     print("Executing subtask 2")
     cupPos, cupInImage, cupIsClose = cupModule.analyzeImage(image)
     if not cupInImage:
-        motorControl.turnLeft(35)
+        motorControl.turnLeft(const.turnSpeed)
     else:
         motorControl.turnToPos(cupPos)
     if cupPos in range(-cupDistBuffer, cupDistBuffer):
