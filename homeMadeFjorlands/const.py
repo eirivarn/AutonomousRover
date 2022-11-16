@@ -3,7 +3,7 @@ import numpy as np
 class Const:
     def __init__(self):
         self.speed = 30
-        self.turnSpeed = 25
+        self.turnSpeed = 17
         self.cupDistBuffer = 2
         self.cupPosBuffer = 70
         self.lineDistBuffer = 2
