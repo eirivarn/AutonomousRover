@@ -53,13 +53,19 @@ def improveLine(pic):
         pic = cv2.dilate(pic, kernel, iterations=4)
         return pic
     
-def preProcessAngle(ang, w, h):
+'''def preProcessAngle(ang, w, h):
     if ang > 45 and w>h:
         ang = -(90-ang)
     elif ang <= 45 and h<w:
         ang = -(90-ang)
-    return ang
+    return ang'''
 
+def preProcessAngle(ang):
+    if ang > 45:
+        ang = -(90-ang)
+    elif ang <= 45:
+        ang = -(90-ang)
+    return ang
 
 
 def ekstraBox(image):
