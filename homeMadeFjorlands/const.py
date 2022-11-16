@@ -34,5 +34,5 @@ class Const:
         self.highRed = (80, 40, 255)
         self.lowRed = (0, 0, 160)
         self.highWhite = (255,255,255)
-        self.lowWhite = (130, 130, 130)
+        self.lowWhite = (170, 170, 170)
         ## ////////////////////
