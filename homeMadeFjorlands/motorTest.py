@@ -20,6 +20,7 @@ cupDistBuffer = 70
 
 subtask = 1
 def startVideoCapture():
+    global subtask
     time.sleep(0.1)
     for frame in camera.capture_continuous(rawCapture, format=("bgr"), use_video_port=True):
         time.sleep(0.0001)
