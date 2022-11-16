@@ -32,11 +32,11 @@ class Const:
 
         ## //// Cup colors //// hsv ///
         self.highBlue = np.array([130, 255, 255])
-        self.lowBlue =  np.array([90 , 50 , 50 ])
+        self.lowBlue =  np.array([90 , 100 , 100 ])
         self.highRed1 = np.array([20 , 255, 255])
-        self.lowRed1 =  np.array([0  , 50 , 50 ])
+        self.lowRed1 =  np.array([0  , 100 , 100 ])
         self.highRed2 = np.array([179, 255, 255])
-        self.lowRed2 =  np.array([160, 50 , 50 ])
-        self.highWhite =np.array([179, 10 , 255])
-        self.lowWhite = np.array([0  , 0  , 235])
+        self.lowRed2 =  np.array([160, 100 , 100 ])
+        self.highWhite =np.array([179, 20 , 255])
+        self.lowWhite = np.array([0  , 0  , 225])
         ## ////////////////////////////
