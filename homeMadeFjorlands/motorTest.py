@@ -27,8 +27,8 @@ def startVideoCapture():
         image = frame.array
         frame.truncate(0)
         
-        if test1(image):
-            break
+        test1(image):
+            
 
         if cv2.waitKey(1) & 0xff == ord('q'):
             break
@@ -44,6 +44,6 @@ def test1(image):
     if cupPos in range(-cupDistBuffer, cupDistBuffer):
         motorControl.stop()
         print("Subtask 2 complete")
-        return True
+        
 
 startVideoCapture()
