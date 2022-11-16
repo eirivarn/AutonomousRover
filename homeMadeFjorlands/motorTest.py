@@ -27,7 +27,7 @@ def startVideoCapture():
         image = frame.array
         frame.truncate(0)
         
-        test1(image):
+        test1(image)
             
 
         if cv2.waitKey(1) & 0xff == ord('q'):
