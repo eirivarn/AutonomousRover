@@ -1,9 +1,85 @@
 import cv2
 
+
+
+
 class CupModule:
     def __init__(self, isHedless ,const):
         self.isHeadless = isHedless
         self.const = const
+        self.xCenter = 1
+        self.yCenter = 1
+        self.highBlue = const.highBlue
+        self.lowBlue = const.lowBlue
+        self.highRed1 = const.highRed1
+        self.lowRed1 = const.lowRed1
+        self.highRed2 = const.highRed2
+        self.lowRed2 = const.lowRed2
+        self.highWhite = const.highWhite
+        self.lowWhite = const.lowWhite
+
+
+    def analyzeImage(self, image):
+
+        height, width  = image.shape[:2]
+        self.middleX = int(width/2)
+        self.xCenter = 1
+        self.yCenter = 1
+
+        
+
+        blurredImage = cv2.GaussianBlur(image, (5,5), 0)
+        hsv = cv2.cvtColor(blurredImage, cv2.COLOR_BGR2HSV)
+
+        maskBlue = cv2.inRange(hsv, self.lowBlue, self.highBlue)
+        maskRed1 = cv2.inRange(hsv, self.lowRed1, self.highRed1)
+        maskRed2 = cv2.inRange(hsv, self.lowRed2, self.highRed2)
+        maskWhite = cv2.inRange(hsv, self.lowWhite, self.highWhite)
+
+        mask = maskBlue | maskRed1 | maskRed2 | maskWhite
+        '''_, contourBlue, _ = cv2.findContours(maskBlue,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+        _, contourRed, _ = cv2.findContours(maskRed,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+        _, contourWhite, _ = cv2.findContours(maskWhite,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+'''
+
+        contours, _ = cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+
+        cupInImage = False
+        for contour in contours:
+            if cv2.contourArea(contour) > 1000:
+                x, y, w ,h = cv2.boundingRect(contour)
+                cv2.rectangle(image, (x,y), (x + w, y + h), (0,255,0), 3)
+                cv2.drawContours(image, contour, -1, (0,255,0), 3)
+                self.xCenter = int(x + w/2)
+                self.yCenter = int(y + h/2)
+                cv2.circle(image, (self.xCenter, self.yCenter), 3, (255,0,255), thickness=-1)
+                cupInImage = True
+        
+        cv2.imshow('Cup', image)
+
+        cupPosX = self.getCupPos(cupInImage)
+        cupIsClose = self.cupIsClose()
+
+        return cupPosX, cupInImage, cupIsClose
+        
+
+    def getCupPos(self, cupInImage):
+        if cupInImage:
+            #xCenter = self.objectInfo[0][1][0] #TODO legg in sort slik at den koppen med høyest sikkerhet er den posisjonen som returneres
+            return self.xCenter - self.middleX
+
+    def cupIsClose(self):
+        #TODO   enten return yCenter>terskel, eller let etter screenshot i bunn av bildet.
+        return self.yCenter > self.const.cupIsClose
+
+    def quit(self):
+        self.breakLoop = True
+        cv2.destroyAllWindows()
+
+
+
+
+'''
         self.classNames = []
         self.classFile = "/home/pi/Desktop/Object_Detection_Files/coco.names"
         with open(self.classFile,"rt") as f:
@@ -66,17 +142,4 @@ class CupModule:
                         cv2.putText(img,str(round(confidence*100,2)),(box[0]+200,box[1]+30),
                         cv2.FONT_HERSHEY_COMPLEX,1,(0,255,0),2)
                                 
-        return img,objectInfo
-
-    def getCupPos(self, cupInImage):
-        if cupInImage:
-            xCenter = self.objectInfo[0][1][0] #TODO legg in sort slik at den koppen med høyest sikkerhet er den posisjonen som returneres
-            return xCenter - self.middleX
-
-    def cupIsClose(self):
-        #TODO   enten return yCenter>terskel, eller let etter screenshot i bunn av bildet.
-        return self.yCenter > self.const.cupIsClose
-
-    def quit(self):
-        self.breakLoop = True
-        cv2.destroyAllWindows()
+        return img,objectInfo'''

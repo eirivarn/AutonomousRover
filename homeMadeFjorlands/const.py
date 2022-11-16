@@ -1,3 +1,5 @@
+import numpy as np
+
 class Const:
     def __init__(self):
         self.speed = 50
@@ -26,3 +28,15 @@ class Const:
         self.i_line = 2
 
         self.resolution = (640, 380)
+
+
+        ## //// Cup colors //// hsv ///
+        self.highBlue = np.array([130, 255, 255])
+        self.lowBlue =  np.array([90 , 100 , 100 ])
+        self.highRed1 = np.array([10 , 255, 255])
+        self.lowRed1 =  np.array([0  , 150 , 100 ])
+        self.highRed2 = np.array([179, 255, 255])
+        self.lowRed2 =  np.array([160, 150 , 100 ])
+        self.highWhite =np.array([179, 15 , 255])
+        self.lowWhite = np.array([0  , 0  , 210])
+        ## ////////////////////////////
