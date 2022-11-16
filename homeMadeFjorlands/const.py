@@ -1,3 +1,5 @@
+import numpy as np
+
 class Const:
     def __init__(self):
         self.speed = 50
@@ -28,11 +30,11 @@ class Const:
         self.resolution = (640, 380)
 
 
-        ## //// Cup colors //// rgb bgr
-        self.highBlue = (255,80,50)
-        self.lowBlue = (0,130,0)
-        self.highRed = (80, 40, 255)
-        self.lowRed = (0, 0, 160)
-        self.highWhite = (255,255,255)
-        self.lowWhite = (170, 170, 170)
+        ## //// Cup colors //// hsv
+        self.highBlue = (130,255,255)
+        self.lowBlue = (90,120,150)
+        self.highRed = (20, 255,  255)
+        self.lowRed = (160, 175, 175)
+        self.highWhite = (180,25,255)
+        self.lowWhite = (0, 0, 225)
         ## ////////////////////
