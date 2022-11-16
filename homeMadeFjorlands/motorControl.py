@@ -21,8 +21,8 @@ class MotorControl:
 
         self.prevAngle, self.prevDist = 0, 0
 
-        self.kp = 0.1
-        self.ap = 0.5
+        self.kp = const.sp
+        self.ap = const.ap
  
     def followLine(self, line, angle, lateralOffset ,speed):
         if angle and lateralOffset == 999: 
