@@ -33,6 +33,7 @@ def startVideoCapture():
             elif subtask ==2:
                 test2(image)  
             elif subtask == 3:
+                
                 break   
         except:
             motorControl.stop()
