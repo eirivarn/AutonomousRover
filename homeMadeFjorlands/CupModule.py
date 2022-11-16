@@ -50,8 +50,8 @@ class CupModule:
                 x, y, w ,h = cv2.boundingRect(contour)
                 cv2.rectangle(image, (x,y), (x + w, y + h), (0,255,0), 3)
                 cv2.drawContours(image, contour, -1, (0,255,0), 3)
-                self.xCenter = x + w/2
-                self.yCenter = y + h/2
+                self.xCenter = int(x + w/2)
+                self.yCenter = int(y + h/2)
                 cv2.circle(image, (self.xCenter, self.yCenter), 3, (255,0,255), thickness=-1)
                 cupInImage = True
         
