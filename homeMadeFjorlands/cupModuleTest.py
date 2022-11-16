@@ -1,6 +1,6 @@
 import time
-from LineModule import LineModule
-from motorControl import MotorControl
+#from LineModule import LineModule
+#from motorControl import MotorControl
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 import cv2
@@ -13,8 +13,8 @@ rawCapture = PiRGBArray(camera, size=(640, 480))
 image = None
 
 const = Const()
-motorControl = MotorControl(const)
-lineModule = LineModule(True, None , const)
+#motorControl = MotorControl(const)
+#lineModule = LineModule(True, None , const)
 cupModule = CupModule(True, const)
 cupDistBuffer = 10
 
