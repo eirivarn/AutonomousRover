@@ -7,8 +7,8 @@ class CupModule:
     def __init__(self, isHedless ,const):
         self.isHeadless = isHedless
         self.const = const
-        self.xCenter = 0
-        self.yCenter = 0
+        self.xCenter = 1
+        self.yCenter = 1
         self.highBlue = const.highBlue
         self.lowBlue = const.lowBlue
         self.highRed1 = const.highRed1
@@ -23,6 +23,8 @@ class CupModule:
 
         height, width  = image.shape[:2]
         self.middleX = int(width/2)
+        self.xCenter = 1
+        self.yCenter = 1
 
         
 
