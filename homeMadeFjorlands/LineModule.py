@@ -68,13 +68,11 @@ class LineModule:
         inverted_y3 = self.const.resolution[1]*1/8
         inverted_x3 = self.predict(self.const.resolution[1]*1/8)
 
-        y0 = self.flipPoint(inverted_y0)
-        x0 = self.flipPoint(inverted_x0)
+        y0, x0 = self.flipPoint(inverted_y0) , self.flipPoint(inverted_x0)
 
-        y3 = self.flipPoint(inverted_y3)
-        x3 = self.flipPoint(inverted_x3)
+        y3, x3 = self.flipPoint(inverted_y3), self.flipPoint(inverted_x3)
 
-        cv2.line(repackedImg, (x0, y0), (x3, y3), (0, 255, 0), thickness=3)
+        cv2.line(repackedImg, (x0, y3), (x0, y0), (0, 255, 0), thickness=3)
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
 
@@ -90,8 +88,8 @@ class LineModule:
 
         return list, atCross, angle, offset
 
-    def flipPoint(self, point):
-        return int(self.const.resolution[0]/2 - point)
+    def flipPoint(self, x, y):
+        return int(self.const.resolution[0]/2 - x), 
 
     def predict(self, y):
         f_y = (y - self.c)/self.m
