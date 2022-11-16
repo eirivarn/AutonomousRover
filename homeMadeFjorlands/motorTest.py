@@ -55,10 +55,10 @@ def test1(image):
 def test2(image):
     global subtask
     cupPos, cupInImage, cupIsClose = cupModule.analyzeImage(image)
-    if cupIsClose:
-        motorControl.stop()
-        subTask = 3
-        return
+    #if cupIsClose:
+     #   motorControl.stop()
+      #  subTask = 3
+       # return
     motorControl.goToCup(cupPos)
         
 
