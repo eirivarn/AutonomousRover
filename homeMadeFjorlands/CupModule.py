@@ -1,8 +1,5 @@
 import cv2
 
-
-
-
 class CupModule:
     def __init__(self, isHedless ,const):
         self.isHeadless = isHedless
