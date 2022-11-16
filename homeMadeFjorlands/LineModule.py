@@ -57,6 +57,8 @@ class LineModule:
         if inversedAngle < 0:
             angle = -90 - inversedAngle
 
+        angle = preProcessAngle(angle)
+
         offset = self.predict(self.const.resolution[1]/2)
 
         ####TODO ////////Printing linReg line
