@@ -77,7 +77,6 @@ class LineModule:
         cv2.line(image, (x0, y0), (x3, y3), (0, 255, 0), thickness=3)
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
-        
 
         if not self.isHeadless:
             cv2.imshow('Image', repackedImg)
@@ -92,7 +91,7 @@ class LineModule:
         return list, atCross, angle, offset
 
     def flipPoint(self, point):
-        return self.const.resolution[0]/2 - point
+        return int(self.const.resolution[0]/2 - point)
 
     def predict(self, y):
         f_y = (y - self.c)/self.m
