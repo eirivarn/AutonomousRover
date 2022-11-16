@@ -58,25 +58,25 @@ class LineModule:
 
         offset = self.predict(self.const.resolution[1]/2)
 
-        ##TODO ////////Printing linReg line
-
-         # x og y position ved øverste punkt, ivertert
-        inverted_y0 = self.const.resolution[1]*7/8
-        inverted_x0 = self.predict(self.const.resolution[1]*7/8)
-
-        # x og y position ved nederste punkt, invertert 
-        inverted_y3 = self.const.resolution[1]*1/8
-        inverted_x3 = self.predict(self.const.resolution[1]*1/8)
-
-        y0 = self.flipPoint(inverted_y0) 
-        x0 = self.flipPoint(inverted_x0)
-
-        y3= self.flipPoint(inverted_y3)
-        x3 = self.flipPoint(inverted_x3)
-
-        cv2.line(repackedImg, (x0, y3), (x3, y0), (255, 20, 0), thickness=3)
-        #angle, lateralOffset= ekstraBox(repackedImg)
-        #printInfo(self.images)
+        ####TODO ////////Printing linReg line
+##
+        ## # x og y position ved øverste punkt, ivertert
+        ##inverted_y0 = self.const.resolution[1]*7/8
+        ##inverted_x0 = self.predict(self.const.resolution[1]*7/8)
+##
+        ### x og y position ved nederste punkt, invertert 
+        ##inverted_y3 = self.const.resolution[1]*1/8
+        ##inverted_x3 = self.predict(self.const.resolution[1]*1/8)
+##
+        ##y0 = self.flipPoint(inverted_y0) 
+        ##x0 = self.flipPoint(inverted_x0)
+##
+        ##y3= self.flipPoint(inverted_y3)
+        ##x3 = self.flipPoint(inverted_x3)
+##
+        ##cv2.line(repackedImg, (x0, y3), (x3, y0), (255, 20, 0), thickness=3)
+        ###angle, lateralOffset= ekstraBox(repackedImg)
+        ###printInfo(self.images)
 
         if not self.isHeadless:
             cv2.imshow('Image', repackedImg)
