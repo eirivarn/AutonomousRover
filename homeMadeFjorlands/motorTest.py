@@ -39,6 +39,7 @@ def startVideoCapture():
 
 
 def test1(image):
+    global subtask
     print("Executing subtask 2")
     cupPos, cupInImage, cupIsClose = cupModule.analyzeImage(image)
     if not cupInImage:
@@ -51,6 +52,7 @@ def test1(image):
         subtask = 2
 
 def test2(image):
+    global subtask
     cupPos, cupInImage, cupIsClose = cupModule.analyzeImage(image)
     if cupIsClose:
         motorControl.stop()

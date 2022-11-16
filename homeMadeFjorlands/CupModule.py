@@ -33,7 +33,7 @@ class CupModule:
         maskRed2 = cv2.inRange(hsv, self.lowRed2, self.highRed2)
         maskWhite = cv2.inRange(hsv, self.lowWhite, self.highWhite)
 
-        mask = maskBlue | maskRed1 | maskRed2 | maskWhite
+        mask = maskBlue | maskRed1 | maskRed2 # | maskWhite
         '''_, contourBlue, _ = cv2.findContours(maskBlue,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
         _, contourRed, _ = cv2.findContours(maskRed,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
         _, contourWhite, _ = cv2.findContours(maskWhite,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
