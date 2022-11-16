@@ -62,7 +62,7 @@ class MotorControl:
     
     def goToCup(self, cupPos):
         if cupPos in range(-self.const.cupPosBuffer, self.const.cupPosBuffer):
-            self.curve(cupPos, self.speed)
+            self.curve(cupPos*self.kp, self.speed)
         else:
             self.turnToPos(cupPos)
 

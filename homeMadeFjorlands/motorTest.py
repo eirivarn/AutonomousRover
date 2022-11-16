@@ -18,7 +18,7 @@ lineModule = LineModule(True, None , const)
 cupModule = CupModule(True, const)
 cupDistBuffer = 70
 
-    
+subtask = 1
 def startVideoCapture():
     time.sleep(0.1)
     for frame in camera.capture_continuous(rawCapture, format=("bgr"), use_video_port=True):
@@ -27,8 +27,12 @@ def startVideoCapture():
         image = frame.array
         frame.truncate(0)
         
-        test1(image)
-            
+        if subtask == 1:
+            test1(image)
+        elif subtask ==2:
+            test2(image)  
+        elif subtask == 3:
+            break      
 
         if cv2.waitKey(1) & 0xff == ord('q'):
             break
@@ -44,6 +48,15 @@ def test1(image):
     if cupPos in range(-cupDistBuffer, cupDistBuffer):
         motorControl.stop()
         print("Subtask 2 complete")
+        subtask = 2
+
+def test2(image):
+    cupPos, cupInImage, cupIsClose = cupModule.analyzeImage(image)
+    if cupIsClose:
+        motorControl.stop()
+        subTask = 3
+        return
+    motorControl.goToCup(cupPos)
         
 
 startVideoCapture()

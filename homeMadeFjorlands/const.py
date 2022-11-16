@@ -7,7 +7,7 @@ class Const:
         self.cupDistBuffer = 2
         self.cupPosBuffer = 70
         self.lineDistBuffer = 2
-        self.posDistBuffer = 2
+        self.posDistBuffer = 30
         self.need4speed = 70  #tør me å vinna??
 
         self.lSpeedPin = 7
