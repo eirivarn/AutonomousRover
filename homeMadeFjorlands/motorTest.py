@@ -27,13 +27,16 @@ def startVideoCapture():
 
         image = frame.array
         frame.truncate(0)
-        
-        if subtask == 1:
-            test1(image)
-        elif subtask ==2:
-            test2(image)  
-        elif subtask == 3:
-            break      
+        try:
+            if subtask == 1:
+                test1(image)
+            elif subtask ==2:
+                test2(image)  
+            elif subtask == 3:
+                break   
+        except:
+            motorControl.stop()
+            break   
 
         if cv2.waitKey(1) & 0xff == ord('q'):
             break
