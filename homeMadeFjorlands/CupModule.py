@@ -50,6 +50,8 @@ class CupModule:
                 self.yCenter = y + h/2
                 cv2.circle(image, (self.xCenter, self.yCenter), 3, (255,0,255), thickness=-1)
                 cupInImage = True
+        
+        cv2.imshow('Cup', image)
 
         cupPosX = self.getCupPos(cupInImage)
         cupIsClose = self.cupIsClose()
@@ -59,8 +61,8 @@ class CupModule:
 
     def getCupPos(self, cupInImage):
         if cupInImage:
-            xCenter = self.objectInfo[0][1][0] #TODO legg in sort slik at den koppen med høyest sikkerhet er den posisjonen som returneres
-            return xCenter - self.middleX
+            #xCenter = self.objectInfo[0][1][0] #TODO legg in sort slik at den koppen med høyest sikkerhet er den posisjonen som returneres
+            return self.xCenter - self.middleX
 
     def cupIsClose(self):
         #TODO   enten return yCenter>terskel, eller let etter screenshot i bunn av bildet.
