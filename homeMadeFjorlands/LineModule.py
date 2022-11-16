@@ -50,20 +50,31 @@ class LineModule:
 
         self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
         
-        # x og y position ved øverste punk
-        y0 = self.const.resolution[1]*7/8
-        x0 = self.predict(self.const.resolution[1]*7/8)
+        inversedAngle = np.rad2deg(np.arctan(self.m))
+        if inversedAngle >= 0:
+            angle = 90 - inversedAngle
+        if inversedAngle < 0:
+            angle = -90 - inversedAngle
 
-        # x og y position ved nederste punkt
-        y3 = self.const.resolution[1]*1/8
-        x3 = self.predict(self.const.resolution[1]*1/8)
-
-
-        angle = np.rad2deg(np.arctan(self.m))
         offset = self.predict(self.const.resolution[1]/2)
 
         ##TODO ////////Printing linReg line
 
+         # x og y position ved øverste punkt, ivertert
+        inverted_y0 = self.const.resolution[1]*7/8
+        inverted_x0 = self.predict(self.const.resolution[1]*7/8)
+
+        # x og y position ved nederste punkt, invertert 
+        inverted_y3 = self.const.resolution[1]*1/8
+        inverted_x3 = self.predict(self.const.resolution[1]*1/8)
+
+        y0 = self.flipPoint(inverted_y0)
+        x0 = self.flipPoint(inverted_x0)
+
+        y3 = self.flipPoint(inverted_y3)
+        x3 = self.flipPoint(inverted_x3)
+
+        cv2.line(image, (x0, y0), (x3, y3), (0, 255, 0), thickness=3)
         #angle, lateralOffset= ekstraBox(repackedImg)
         #printInfo(self.images)
         
@@ -79,6 +90,9 @@ class LineModule:
         print ("{:<8} {:<15} {:<15} ".format("{0:.3f}".format(angle), "{0:.3f}".format(offset), atCross))   
 
         return list, atCross, angle, offset
+
+    def flipPoint(self, point):
+        return self.const.resolution[0]/2 - point
 
     def predict(self, y):
         f_y = (y - self.c)/self.m
