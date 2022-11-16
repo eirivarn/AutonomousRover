@@ -61,10 +61,10 @@ def improveLine(pic):
     return ang'''
 
 def preProcessAngle(ang):
-    if ang > 45:
-        ang = -(90-ang)
-    elif ang <= 45:
-        ang = -(90-ang)
+    if ang < -90:
+        ang = -ang-90
+    elif ang >= 90:
+        ang = -ang -90
     return ang
 
 
