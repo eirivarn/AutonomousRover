@@ -91,7 +91,7 @@ class LineModule:
         return list, atCross, angle, offset
 
     def flipPoint(self, x):
-        return int(self.const.resolution[0]/2 - x), 
+        return int(self.const.resolution[0]/2 - x)
 
     def predict(self, y):
         f_y = (y - self.c)/self.m
