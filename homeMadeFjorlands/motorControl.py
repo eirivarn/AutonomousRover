@@ -21,7 +21,7 @@ class MotorControl:
 
         self.prevAngle, self.prevDist = 0, 0
 
-        self.kp = const.sp
+        self.kp = const.kp
         self.ap = const.ap
  
     def followLine(self, line, angle, lateralOffset ,speed):
