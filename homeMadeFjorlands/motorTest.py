@@ -16,7 +16,7 @@ const = Const()
 motorControl = MotorControl(const)
 lineModule = LineModule(True, None , const)
 cupModule = CupModule(True, const)
-cupDistBuffer = 10
+cupDistBuffer = 70
 
     
 def startVideoCapture():
@@ -27,7 +27,8 @@ def startVideoCapture():
         image = frame.array
         frame.truncate(0)
         
-        test1(image)
+        if test1(image):
+            break
 
         if cv2.waitKey(1) & 0xff == ord('q'):
             break
@@ -43,5 +44,6 @@ def test1(image):
     if cupPos in range(-cupDistBuffer, cupDistBuffer):
         motorControl.stop()
         print("Subtask 2 complete")
+        return True
 
 startVideoCapture()

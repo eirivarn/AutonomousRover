@@ -5,7 +5,7 @@ class Const:
         self.speed = 50
         self.turnSpeed = 80
         self.cupDistBuffer = 2
-        self.cupPosBuffer = 10
+        self.cupPosBuffer = 70
         self.lineDistBuffer = 2
         self.posDistBuffer = 2
         self.need4speed = 70  #tør me å vinna??
