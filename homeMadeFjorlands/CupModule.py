@@ -42,7 +42,7 @@ class CupModule:
 
         cupInImage = False
         for contour in contours:
-            if cv2.contourArea > 10:
+            if cv2.contourArea(contour) > 100:
                 x, y, w ,h = cv2.boundingRect(contour)
                 cv2.rectangle(image, (x,y), (x + w, y + h), (0,255,0), 3)
                 cv2.drawContours(image, contour, -1, (0,255,0), 3)
