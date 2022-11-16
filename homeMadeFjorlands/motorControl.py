@@ -27,7 +27,9 @@ class MotorControl:
     def followLine(self, line, angle, lateralOffset ,speed):
         if angle and lateralOffset == 999: 
             print("No line found")
-        elif (lateralOffset == 0 and angle == 0):
+            self.backward(speed)
+            
+        elif (lateralOffset in range(-40, 40) and angle in range (-5,5)):
             self.forward(speed)
 
         elif (lateralOffset < 0 and angle == 0):
