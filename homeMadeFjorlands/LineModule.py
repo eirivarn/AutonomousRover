@@ -42,8 +42,8 @@ class LineModule:
 
         y = np.array(y)
         #prøver å kun bruke de 3/4 øverste punktene til lin reg. har økt til 8 punkter:
-        x = x[:int(self.const.offsetPosition)]
-        y = y[:int(self.const.offsetPosition)]
+        #x = x[:int(self.const.offsetPosition)]
+        #y = y[:int(self.const.offsetPosition)]
 
         A = np.vstack([x, np.ones(len(x))]).T
 
@@ -55,8 +55,8 @@ class LineModule:
         if inversedAngle < 0:
             angle = -90 - inversedAngle
 
-        #offset = self.predict(self.const.resolution[1]*self.const.offsetPosition)
-        offset = self.predict(self.const.resolution[1]/2)
+        offset = self.predict(self.const.resolution[1]*self.const.offsetPosition)
+        #offset = self.predict(self.const.resolution[1]/2)
 
         try:
             y1 = self.const.linRegPlotY1
