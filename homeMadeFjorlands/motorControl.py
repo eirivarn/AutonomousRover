@@ -39,7 +39,7 @@ class MotorControl:
         elif (lateralOffset in range(-400,-80) and angle in range (10, 30)) or (lateralOffset in range(-80,400) and angle in range(-30,-10)):
             self.forward(speed)
 
-        elif (lateralOffset in range(-80, 800) and angle > 0) or (lateralOffset in range(-800, 40) and angle < 0):
+        elif (lateralOffset in range(-80, 800) and angle > 0) or (lateralOffset in range(-800, 80) and angle < 0):
             self.curve(angle*self.ap*np.abs(lateralOffset*self.kp), speed)
         
         elif (angle in range (-80, 80)):
@@ -136,7 +136,6 @@ class MotorControl:
     def curve(self, curveRate, speed):
         self.leftMotor.forward(speed + curveRate)
         self.rightMotor.forward(speed - curveRate)
-        print('curve right', curveRate)
        
     def getSpeed(self):
         return self.leftMotor.getSpeed()
