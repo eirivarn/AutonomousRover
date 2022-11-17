@@ -84,7 +84,7 @@ class LineModule:
         return int(self.const.resolution[0]/2 - x)
 
     def predict(self, y):
-        f_y = (y - self.c)/self.m
+        f_y = (y + self.c)/self.m
         return f_y
 
     def quit(self):
