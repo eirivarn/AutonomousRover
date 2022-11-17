@@ -23,7 +23,10 @@ class MotorControl:
 
         self.kp = const.kp
         self.ap = const.ap
- 
+    
+    def pid(self, line, angle, lateralOffset ,speed):
+        pass
+
     def followLine(self, line, angle, lateralOffset ,speed):
         angle = int(angle)
         lateralOffset = int(lateralOffset)
