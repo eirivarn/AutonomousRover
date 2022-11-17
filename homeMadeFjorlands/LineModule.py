@@ -34,23 +34,30 @@ class LineModule:
             repackedImg = RepackImages(self.images)
 
         ##/// Making LinReg line ///
-
+        '''
         for i in range(len(list)):
             if list[i] == 0:
-                list[i] = np.average(list)
+                list[i] = np.average(list)'''
 
-        x = np.array(list)
+        x = []
         y = []
-
         h, w  = image.shape[:2]
 
         for i in range(self.N_SLICES):
-            y.append(h/(self.N_SLICES*2) + h/self.N_SLICES*i)
+            if list[i] != 0:
+                #list[i] = np.average(list)
+                x.append(list[i])
+                y.append(h/(self.N_SLICES*2) + h/self.N_SLICES*i)
 
+        if len(x)==0:
+            x.append(0)
+            y.append(h/2)
+        
+        x = np.array(list)
         y = np.array(y)
         #prøver å kun bruke de 3/4 øverste punktene til lin reg. har økt til 8 punkter:
-        x = x[:int(self.N_SLICES * self.const.offsetPosition)]
-        y = y[:int(self.N_SLICES * self.const.offsetPosition)]
+        #x = x[:int(self.N_SLICES * self.const.offsetPosition)]
+        #y = y[:int(self.N_SLICES * self.const.offsetPosition)]
 
         A = np.vstack([x, np.ones(len(x))]).T
 
@@ -69,7 +76,7 @@ class LineModule:
         try:
             y1 = self.const.linRegPlotY1
             x1 = int(self.const.resolution[0]/2 + self.predict(y1))
-            y2 = self.const.linRegPlotY2
+            y2 = h-1
             x2 = int(self.const.resolution[0]/2 + self.predict(y2))
 
             cv2.line(repackedImg, (x1,y1), (x2,y2), (0,0,255), 3)
