@@ -29,7 +29,8 @@ class LineModule:
             SlicePart(removedBgImg, self.images, self.N_SLICES)
             for i in range(self.N_SLICES-2):
                 offs = self.images[i].getOffset()
-                if offs in range (-self.const.resolution[0]/2, self.const.resolution[0]/2) and offs != 0:
+                #if offs in range (-self.const.resolution[0]/2, self.const.resolution[0]/2) and offs != 0:
+                if offs != 0:
                     list.append(offs)
                 if self.images[i].crossFound():
                     self.robot.updateCrossConf(i) 
