@@ -18,7 +18,7 @@ class Const:
         self.rDirPin = 15
 
         self.kp = 0.3
-        self.ap = 0.3
+        self.ap = 0.15
 
         self.n_slices = 8
         self.threshGrey = 65
