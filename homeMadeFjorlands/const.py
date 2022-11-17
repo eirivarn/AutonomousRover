@@ -4,7 +4,7 @@ class Const:
     def __init__(self):
         self.isHeadless = False
 
-        self.speed = 30
+        self.speed = 25
         self.turnSpeed = 25
         self.cupDistBuffer = 2
         self.cupPosBuffer = 70
@@ -22,7 +22,7 @@ class Const:
 
         self.n_slices = 8
         self.threshGrey = 65
-        self.crossWidth = 300
+        self.crossWidth = 450
         self.cupConfidence = 0.55
         self.cupObjects = ['cup','bowl']
         self.cupIsClose = 100
