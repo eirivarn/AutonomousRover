@@ -28,15 +28,17 @@ class LineModule:
         if removedBgImg is not None:
             SlicePart(removedBgImg, self.images, self.N_SLICES)
             for i in range(self.N_SLICES):
-                offs = self.images[i].getOffset()
-                #if offs in range (-self.const.resolution[0]/2, self.const.resolution[0]/2) and offs != 0:
-                if offs != 0:
-                    list.append(offs)
+                list.append(self.images[i].getOffset())
                 if self.images[i].crossFound():
                     self.robot.updateCrossConf(i) 
             repackedImg = RepackImages(self.images)
 
         ##/// Making LinReg line ///
+
+        for i in range(len(list)):
+            if list[i] == 0:
+                list[i] = np.average(list)
+
         x = np.array(list)
         y = []
 
