@@ -99,7 +99,7 @@ class Image:
         return area, w, offset
 
     def getOffset(self):
-        return -(self.middleX-self.contourCenterX)
+        return (self.middleX-self.contourCenterX)
 
     def crossFound(self):
         x,y,w,h = cv2.boundingRect(self.MainContour)

@@ -17,8 +17,8 @@ class Const:
         self.rSpeedPin = 13
         self.rDirPin = 15
 
-        self.kp = 0.13
-        self.ap = 0.2
+        self.kp = 0.1
+        self.kd = 0.3
 
         self.n_slices = 8
         self.threshGrey = 65

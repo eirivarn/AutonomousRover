@@ -22,12 +22,14 @@ class MotorControl:
         self.prevAngle, self.prevDist = 0, 0
 
         self.kp = const.kp
-        self.ap = const.ap
+        self.kd = const.kd
     
-    def pid(self, line, angle, lateralOffset ,speed):
-        pass
+    def followLine(self, line, angle, offset ,speed):  #pid
+        error = self.kp * offset + self.kd * angle
+        self.curve(error, speed)
+        
 
-    def followLine(self, line, angle, lateralOffset ,speed):
+    def followLineOld(self, line, angle, lateralOffset ,speed):
         angle = int(angle)
         lateralOffset = int(lateralOffset)
         if angle and lateralOffset == 999: 
@@ -44,10 +46,10 @@ class MotorControl:
             self.forward(speed)
 
         elif (lateralOffset in range(-80, 800) and angle > 0) or (lateralOffset in range(-800, 80) and angle < 0):
-            self.curve(angle*self.ap*np.abs(lateralOffset*self.kp), speed)
+            self.curve(angle*self.kd*np.abs(lateralOffset*self.kp), speed)
         
         elif (angle in range (-80, 80)):
-            self.curve(angle*self.ap, speed)
+            self.curve(angle*self.kd, speed)
 
         elif (angle in range(-89,89)):
             self.turnToPos(angle)
