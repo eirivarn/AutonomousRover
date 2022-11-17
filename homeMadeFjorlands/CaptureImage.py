@@ -27,4 +27,5 @@ class CaptureImage:
   
             if cv2.waitKey(1) & 0xff == ord('q'):
                 robot.motor.stop()
+                cv2.destroyAllWindows()
                 break

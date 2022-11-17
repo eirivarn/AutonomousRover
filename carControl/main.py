@@ -59,15 +59,15 @@ def settings(motorControl):
     4: exit
     ''')
     ans = input('>')
-    if ans == 1:
+    if ans == '1':
         print(f'turn speed = {turnSpeed}')
         turnSpeed = input('New val >')
         print('done')
-    elif ans == 2:
+    elif ans == '2':
         print(f'speed = {speed}')
         speed = input('New val >')
         print('done')
-    elif ans == 3:
+    elif ans == '3':
         print(f'Curv-rate senitivity = {curvRateSenitivity}')
         curvRateSenitivity = input('New val >')
         print('done')

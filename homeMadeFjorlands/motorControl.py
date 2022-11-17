@@ -1,7 +1,6 @@
 from DCmotor import DCmotor
 import numpy as np
 from servo import servo
-from getkey import getkey, keys
  
 class MotorControl:
     def __init__(self, const):
@@ -31,9 +30,24 @@ class MotorControl:
 
         elif (lateralOffset in range(-40, 40) and angle in range (-5,5)):
             self.forward(speed)
-        elif (lateralOffset in range(40,400) and angle in range (5, 30)) or (lateralOffset in range(-40,-200) and angle in range(1,2)):
-            pass
 
+        elif (angle in range(-10,10)):
+            self.curve(lateralOffset*self.kp, speed)
+
+        elif (lateralOffset in range(-400,-80) and angle in range (10, 30)) or (lateralOffset in range(-80,400) and angle in range(-30,-10)):
+            self.forward(speed)
+
+        elif (lateralOffset in range(-80, 800) and angle > 0) or (lateralOffset in range(-800, 40) and angle < 0):
+            self.curve(angle*self.ap*np.abs(lateralOffset*self.kp), speed)
+        
+        elif (angle in range (-80, 80)):
+            self.curve(angle*self.ap, speed)
+        elif (angle in range(-89,89)):
+            self.turnToPos(angle)
+        else:
+            print('Nå er det et tilfelle som ikke er tatt høyde for!!!!!!')
+            print('angle: ', angle, '\t\t', 'offset: ', lateralOffset )
+            self.stop()
 
         '''
         elif (lateralOffset < 0 and angle == 0):
