@@ -13,11 +13,11 @@ from const import Const
 
 class Robot():
 
-    def __init__(self):
+    def __init__(self, headless):
         self.const = Const()
         self.motor = MotorControl(self.const)
-        self.lineModule = LineModule(False, self, self.const)
-        self.cupModule = CupModule(False, self.const)
+        self.lineModule = LineModule(headless, self, self.const)
+        self.cupModule = CupModule(headless, self.const)
         self.camera = CaptureImage(self.const)
         
         self.task1 = Task1(self.motor, self.lineModule, self.cupModule, self.const)

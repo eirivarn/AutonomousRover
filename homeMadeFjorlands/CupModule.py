@@ -48,7 +48,8 @@ class CupModule:
                 cv2.circle(image, (self.xCenter, self.yCenter), 3, (255,0,255), thickness=-1)
                 cupInImage = True
         
-        cv2.imshow('Cup', image)
+        if not self.isHeadless:
+            cv2.imshow('Cup', image)
 
         cupPosX = self.getCupPos(cupInImage)
         cupIsClose = self.cupIsClose()
