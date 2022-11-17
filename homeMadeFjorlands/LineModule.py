@@ -51,7 +51,9 @@ class LineModule:
 
         if len(x)==0:
             x.append(0)
-            y.append(h/2)
+            x.append(0)
+            y.append(h*(1/3))
+            y.append(h*(2/3))
         
         x = np.array(list)
         y = np.array(y)
