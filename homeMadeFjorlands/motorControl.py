@@ -31,7 +31,7 @@ class MotorControl:
 
         elif (lateralOffset in range(-40, 40) and angle in range (-5,5)):
             self.forward(speed)
-        elif (lateralOffset in range(40,200) and angle in range (5, 30)) or (lateralOffset in range(-40,-200) and angle in range(1,2)):
+        elif (lateralOffset in range(40,400) and angle in range (5, 30)) or (lateralOffset in range(-40,-200) and angle in range(1,2)):
             pass
 
 
