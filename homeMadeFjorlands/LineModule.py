@@ -57,15 +57,16 @@ class LineModule:
 
         offset = self.predict(self.const.resolution[1]*self.const.offsetPosition)
 
-        y1 = self.const.linRegPlotY1
-        x1 = int(self.const.resolution[0]/2 + self.predict(y1))
-        y2 = self.const.linRegPlotY2
-        x2 = int(self.const.resolution[0]/2 + self.predict(y2))
+        try:
+            y1 = self.const.linRegPlotY1
+            x1 = int(self.const.resolution[0]/2 + self.predict(y1))
+            y2 = self.const.linRegPlotY2
+            x2 = int(self.const.resolution[0]/2 + self.predict(y2))
 
-        cv2.line(repackedImg, (x1,y1), (x2,y2), (0,0,255), 3)
-        
-
-
+            cv2.line(repackedImg, (x1,y1), (x2,y2), (0,0,255), 3)
+        except:
+            print('Could not find line')
+            
 
         if not self.isHeadless:
             cv2.imshow('Image', repackedImg)
