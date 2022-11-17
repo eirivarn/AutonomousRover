@@ -1,6 +1,7 @@
 from DCmotor import DCmotor
 import numpy as np
 from servo import servo
+from time import sleep
  
 class MotorControl:
     def __init__(self, const):
@@ -24,6 +25,8 @@ class MotorControl:
         self.ap = const.ap
  
     def followLine(self, line, angle, lateralOffset ,speed):
+        self.stop()
+        sleep(0.1)
         angle = int(angle)
         lateralOffset = int(lateralOffset)
         if angle and lateralOffset == 999: 
