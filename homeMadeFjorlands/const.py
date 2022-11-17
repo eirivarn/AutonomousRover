@@ -4,8 +4,8 @@ class Const:
     def __init__(self):
         self.isHeadless = False
 
-        self.speed = 20
-        self.turnSpeed = 20
+        self.speed = 30
+        self.turnSpeed = 25
         self.cupDistBuffer = 2
         self.cupPosBuffer = 70
         self.lineDistBuffer = 2
