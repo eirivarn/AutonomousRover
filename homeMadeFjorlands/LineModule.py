@@ -55,7 +55,7 @@ class LineModule:
             y.append(h*(1/3))
             y.append(h*(2/3))
         
-        x = np.array(list)
+        x = np.array(x)
         y = np.array(y)
         #prøver å kun bruke de 3/4 øverste punktene til lin reg. har økt til 8 punkter:
         #x = x[:int(self.N_SLICES * self.const.offsetPosition)]
