@@ -35,7 +35,7 @@ class LineModule:
 
         ##/// Making LinReg line ///
         x = np.array(list)
-        y = np.array()
+        y = np.array([])
 
         for i in range(self.N_SLICES):
             y.append(self.const.resolution[1]/(self.N_SLICES*2) + self.const.resolution[1]/self.N_SLICES*i)
