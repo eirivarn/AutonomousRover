@@ -25,8 +25,6 @@ class MotorControl:
         self.ap = const.ap
  
     def followLine(self, line, angle, lateralOffset ,speed):
-        self.stop()
-        sleep(0.1)
         angle = int(angle)
         lateralOffset = int(lateralOffset)
         if angle and lateralOffset == 999: 
@@ -140,7 +138,6 @@ class MotorControl:
     def curve(self, curveRate, speed):
         self.leftMotor.forward(speed + curveRate)
         self.rightMotor.forward(speed - curveRate)
-        sleep(0.1)
 
 
        
