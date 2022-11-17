@@ -35,11 +35,12 @@ class LineModule:
 
         ##/// Making LinReg line ///
         x = np.array(list)
-        y = np.array([])
+        y = []
 
         for i in range(self.N_SLICES):
             y.append(self.const.resolution[1]/(self.N_SLICES*2) + self.const.resolution[1]/self.N_SLICES*i)
 
+        y = np.array(y)
         #prøver å kun bruke de 3/4 øverste punktene til lin reg. har økt til 8 punkter:
         x = x[:int(self.const.offsetPosition)]
         y = y[:int(self.const.offsetPosition)]
