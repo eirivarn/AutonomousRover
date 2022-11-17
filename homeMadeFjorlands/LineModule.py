@@ -42,8 +42,10 @@ class LineModule:
         x = np.array(list)
         y = []
 
+        h, w  = image.shape[:2]
+
         for i in range(self.N_SLICES):
-            y.append(self.const.resolution[1]/(self.N_SLICES*2) + self.const.resolution[1]/self.N_SLICES*i)
+            y.append(h/(self.N_SLICES*2) + h/self.N_SLICES*i)
 
         y = np.array(y)
         #prøver å kun bruke de 3/4 øverste punktene til lin reg. har økt til 8 punkter:
@@ -90,7 +92,7 @@ class LineModule:
         return int(self.const.resolution[0]/2 - x)
 
     def predict(self, y):
-        f_y = (y + self.c)/self.m
+        f_y = (y - self.c)/self.m
         return f_y
 
     def quit(self):
