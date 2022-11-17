@@ -15,6 +15,7 @@ class Robot():
 
     def __init__(self, headless):
         self.const = Const()
+        self.const.isHeadless = headless
         self.motor = MotorControl(self.const)
         self.lineModule = LineModule(headless, self, self.const)
         self.cupModule = CupModule(headless, self.const)

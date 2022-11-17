@@ -2,12 +2,14 @@ import time
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 import cv2
+from getkey import getkey
+
 
 
 class CaptureImage:
 
     def __init__(self, const):
-        
+        self.const = const
         self.camera = PiCamera()
         self.camera.resolution = (640, 480)
         self.rawCapture = PiRGBArray(self.camera, size=(640, 480))
@@ -29,3 +31,8 @@ class CaptureImage:
                 robot.motor.stop()
                 cv2.destroyAllWindows()
                 break
+            if self.const.isHeadless:
+                key = getkey()
+                if key == 'q':
+                    robot.motor.stop()
+                    break

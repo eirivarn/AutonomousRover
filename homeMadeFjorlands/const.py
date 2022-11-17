@@ -2,6 +2,8 @@ import numpy as np
 
 class Const:
     def __init__(self):
+        self.isHeadless = False
+
         self.speed = 20
         self.turnSpeed = 20
         self.cupDistBuffer = 2
@@ -15,8 +17,8 @@ class Const:
         self.rSpeedPin = 13
         self.rDirPin = 15
 
-        self.kp = 0.5
-        self.ap = 0.5
+        self.kp = 0.3
+        self.ap = 0.3
 
         self.n_slices = 8
         self.threshGrey = 65
