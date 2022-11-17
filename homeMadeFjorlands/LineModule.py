@@ -27,7 +27,7 @@ class LineModule:
 
         if removedBgImg is not None:
             SlicePart(removedBgImg, self.images, self.N_SLICES)
-            for i in range(self.N_SLICES-2):
+            for i in range(self.N_SLICES):
                 offs = self.images[i].getOffset()
                 #if offs in range (-self.const.resolution[0]/2, self.const.resolution[0]/2) and offs != 0:
                 if offs != 0:
@@ -45,8 +45,8 @@ class LineModule:
 
         y = np.array(y)
         #prøver å kun bruke de 3/4 øverste punktene til lin reg. har økt til 8 punkter:
-        #x = x[:int(self.const.offsetPosition)]
-        #y = y[:int(self.const.offsetPosition)]
+        x = x[:int(self.N_SLICES * self.const.offsetPosition)]
+        y = y[:int(self.N_SLICES * self.const.offsetPosition)]
 
         A = np.vstack([x, np.ones(len(x))]).T
 

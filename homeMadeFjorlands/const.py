@@ -30,8 +30,8 @@ class Const:
         self.resolution = (640, 380)
         self.offsetPosition = 7/8   #regner offset fra 3/4 ned på skjermen
         self.linRegPlotY1 = 1
-        self.linRegPlotY2 = int(self.resolution[1] * self.offsetPosition)
-
+        #self.linRegPlotY2 = int(self.resolution[1] * self.offsetPosition)
+        self.linRegPlotY2 = 379
 
         ## //// Cup colors //// hsv ///
         self.highBlue = np.array([130, 255, 255])
