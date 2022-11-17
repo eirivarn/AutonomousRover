@@ -54,6 +54,7 @@ class MotorControl:
         else:
             print('Nå er det et tilfelle som ikke er tatt høyde for!!!!!!')
             self.stop()
+        sleep(0.1)
 
         '''
         elif (lateralOffset < 0 and angle == 0):
