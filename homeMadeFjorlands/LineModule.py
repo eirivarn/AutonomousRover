@@ -61,7 +61,7 @@ class LineModule:
         #x = x[:int(self.N_SLICES * self.const.offsetPosition)]
         #y = y[:int(self.N_SLICES * self.const.offsetPosition)]
 
-        print(x, '\n', y)
+        #print(x, '\n', y)
         A = np.vstack([x, np.ones(len(x))]).T
 
         self.m, self.c = np.linalg.lstsq(A, y, rcond=None)[0]
