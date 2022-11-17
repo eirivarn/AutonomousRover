@@ -54,7 +54,7 @@ class MotorControl:
         else:
             print('Nå er det et tilfelle som ikke er tatt høyde for!!!!!!')
             self.stop()
-        sleep(0.1)
+        
 
         '''
         elif (lateralOffset < 0 and angle == 0):
@@ -140,6 +140,9 @@ class MotorControl:
     def curve(self, curveRate, speed):
         self.leftMotor.forward(speed + curveRate)
         self.rightMotor.forward(speed - curveRate)
+        sleep(0.1)
+
+
        
     def getSpeed(self):
         return self.leftMotor.getSpeed()
