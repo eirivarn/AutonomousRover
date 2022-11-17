@@ -24,6 +24,8 @@ class MotorControl:
         self.ap = const.ap
  
     def followLine(self, line, angle, lateralOffset ,speed):
+        angle = int(angle)
+        lateralOffset = int(lateralOffset)
         if angle and lateralOffset == 999: 
             print("No line found")
             self.backward(speed)
@@ -42,11 +44,12 @@ class MotorControl:
         
         elif (angle in range (-80, 80)):
             self.curve(angle*self.ap, speed)
+
         elif (angle in range(-89,89)):
             self.turnToPos(angle)
+
         else:
             print('Nå er det et tilfelle som ikke er tatt høyde for!!!!!!')
-            print('angle: ', angle, '\t\t', 'offset: ', lateralOffset )
             self.stop()
 
         '''
