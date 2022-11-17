@@ -18,7 +18,7 @@ class Const:
         self.kp = 0.1
         self.ap = 0.1
 
-        self.n_slices = 4
+        self.n_slices = 8
         self.threshGrey = 65
         self.crossWidth = 300
         self.cupConfidence = 0.55
@@ -28,6 +28,9 @@ class Const:
         self.i_line = 2
 
         self.resolution = (640, 380)
+        self.offsetPosition = 3/4   #regner offset fra 3/4 ned på skjermen
+        self.linRegPlotY1 = 1
+        self.linRegPlotY2 = int(self.resolution[1] * self.offsetPosition)
 
 
         ## //// Cup colors //// hsv ///

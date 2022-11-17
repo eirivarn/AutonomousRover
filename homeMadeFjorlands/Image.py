@@ -7,7 +7,7 @@ class Image:
         self.image = None
         self.contourCenterX = 0
         self.MainContour = None
-        self.dir = 0
+        #self.dir = 0
         self.consts = consts
         self.middleX = 0
         
@@ -34,14 +34,14 @@ class Image:
             else:
                 self.contourCenterX = 0
             
-            self.dir =  int((self.middleX-self.contourCenterX) * self.getContourExtent(self.MainContour))
+            #self.dir =  int((self.middleX-self.contourCenterX) * self.getContourExtent(self.MainContour))
             
             cv2.drawContours(self.image,self.MainContour,-1,(0,255,0),3) #Draw Contour GREEN
             cv2.circle(self.image, (self.contourCenterX, self.middleY), 7, (255,255,255), -1) #Draw dX circle WHITE
             cv2.circle(self.image, (self.middleX, self.middleY), 3, (0,0,255), -1) #Draw middle circle RED
             
             font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(self.image,str(self.middleX-self.contourCenterX),(self.contourCenterX+20, self.middleY), font, 1,(200,0,200),2)
+            cv2.putText(self.image,str(self.getOffset()),(self.contourCenterX+20, self.middleY), font, 1,(200,0,200),2)
             if self.crossFound():
                 cv2.putText(self.image,"Cross",(self.contourCenterX-20, self.middleY-35), font, 0.5,(200,0,200),1)
             cv2.putText(self.image,"Weight:%.3f"%self.getContourExtent(self.MainContour),(self.contourCenterX+20, self.middleY+35), font, 0.5,(200,0,200),1)
@@ -82,8 +82,8 @@ class Image:
                         if self.getContourCenter(self.MainContour) != 0:
                             self.contourCenterX = self.getContourCenter(self.MainContour)[0]
                             
-    def getDir(self):
-        return self.dir
+    #def getDir(self):
+     #   return self.dir
 
     def setImage(self, image):
         self.image = image
@@ -99,7 +99,7 @@ class Image:
         return area, w, offset
 
     def getOffset(self):
-        return self.middleX-self.contourCenterX
+        return -(self.middleX-self.contourCenterX)
 
     def crossFound(self):
         x,y,w,h = cv2.boundingRect(self.MainContour)

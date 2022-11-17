@@ -28,10 +28,14 @@ class MotorControl:
         if angle and lateralOffset == 999: 
             print("No line found")
             self.backward(speed)
-            
+
         elif (lateralOffset in range(-40, 40) and angle in range (-5,5)):
             self.forward(speed)
+        elif (lateralOffset in range(40,200) and angle in range (5, 30)) or (lateralOffset in range(-40,-200) and angle in range(1,2)):
+            pass
 
+
+        '''
         elif (lateralOffset < 0 and angle == 0):
             self.curveRight(-lateralOffset/10, speed)
 
@@ -48,7 +52,7 @@ class MotorControl:
             self.curveLeft(-angle*self.ap + lateralOffset*self.kp, speed)
 
         elif (lateralOffset < 0 and angle > 0):
-            self.curveRight(angle*self.ap - lateralOffset*self.kp, speed)
+            self.curveRight(angle*self.ap - lateralOffset*self.kp, speed)'''
         
 
     def turnToPos(self, pos):
