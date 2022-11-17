@@ -44,9 +44,9 @@ class LineModule:
         h, w  = image.shape[:2]
 
         for i in range(self.N_SLICES):
-            if list[i] != 0:
-                #list[i] = np.average(list)
-                x.append(list[i])
+            offs = list[i]
+            if offs != 0:
+                x.append(offs)
                 y.append(h/(self.N_SLICES*2) + h/self.N_SLICES*i)
 
         if len(x)==0:
