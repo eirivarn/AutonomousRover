@@ -59,12 +59,13 @@ class Task1(Task):
         line, atCross, angle, lateralOffset = self.lineModule.analyzeImage(image)
         self.motorControl.followLine(line, angle, lateralOffset, self.speed)
         if atCross:
-            print("At cross")
+            self.motorControl.stop()
+            print("At cross, task 1 complete.")
             self.subtask = 2
 
     def subTask2(self,image):
         if self.subtasks[1] == False:
-            print("Localize cup")
+            print("Task 2, localize cup")
             self.subtasks[1] = True
         cupPos, cupInImage = self.cupModule.analyzeImage(image)
         if not cupInImage:
