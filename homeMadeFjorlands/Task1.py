@@ -10,6 +10,7 @@ class Task1(Task):
         self.cupDistBuffer = self.const.cupDistBuffer
         self.lineDistBuffer = self.const.lineDistBuffer
 
+        self.subtask = 1 
         self.subtasks = [False, False, False, False, False, False, False, False, False, False]   
 
     def update(self, image):
