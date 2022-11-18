@@ -30,9 +30,9 @@ class MotorControl:
     
     def followLine(self, line, angle, offset ,speed):  #pid
         np.delete(self.sumOfErrors, 0) 
-        self.sumOfErrors = np.append(self.sumOfErrors, error)
-        error = self.kp * offset + self.kd * angle + self.ki*self.sumOfErrors
-        self.curve(error, speed)
+        self.sumOfErrors = np.append(self.sumOfErrors, self.error)
+        self.error = self.kp * offset + self.kd * angle + self.ki*self.sumOfErrors
+        self.curve(self.error, speed)
         
 
     def followLineOld(self, line, angle, lateralOffset ,speed):
