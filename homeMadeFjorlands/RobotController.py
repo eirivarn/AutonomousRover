@@ -37,7 +37,7 @@ class Robot():
 
     def update(self, image):
         if self.activeTask == 1:
-            task = self.task1
+            task = self.subTask(self, image)
         elif self.activeTask == 2:
             task = self.task2
         elif self.activeTask == 3:
