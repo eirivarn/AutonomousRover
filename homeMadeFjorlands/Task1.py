@@ -1,5 +1,6 @@
 from Task import Task
 from time import sleep
+from servo import servo
 
 
 class Task1(Task):
