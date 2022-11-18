@@ -69,7 +69,7 @@ class Task1(Task):
             self.subtasks[1] = True
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
         if not cupInImage:
-            self.motorControl.turnLeft()
+            self.motorControl.turnLeft(35)
         else:
             self.motorControl.turnToPos(cupPos)
         if cupPos in range(-self.cupDistBuffer, self.cupDistBuffer):
