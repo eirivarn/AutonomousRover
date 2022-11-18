@@ -6,8 +6,8 @@ class servo:
         self.port = port
         self.open_val = 0.6
         self.close_val = 0.15
-        self.up = 0.2
-        self.flat = 0
+        self.up = 45
+        self.flat = 20
         self.cameraFront = 0
         self.cameraLeft = 1
         self.cameraRight = 2      
