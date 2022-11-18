@@ -61,15 +61,16 @@ class Task1(Task):
         if atCross:
             self.motorControl.stop()
             print("At cross, subtask 1 complete.")
-            self.subTask2(image)
+            #self.subTask2(image)
 
     def subTask2(self, image):
         if self.subtasks[1] == False:
             print("Task 2, localize cup")
             self.subtasks[1] = True
+        
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
         if not cupInImage:
-            self.motorControl.turnLeft(35)
+            self.motorControl.turnLeft(10)
         else:
             self.motorControl.turnToPos(cupPos)
         if cupPos in range(-self.cupDistBuffer, self.cupDistBuffer):
