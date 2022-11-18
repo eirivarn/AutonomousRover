@@ -52,7 +52,7 @@ class CupModule:
             cv2.imshow('Cup', image)
 
         cupPosX = self.getCupPos(cupInImage)
-        cupIsClose = self.cupIsClose()
+        cupIsClose = self.cupIsClose(35)
 
         return cupPosX, cupInImage, cupIsClose
         
