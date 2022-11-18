@@ -5,7 +5,7 @@ class Task:
         self.lineModule = lineModule
         self.cupModule = cupModule
         self.image = None
-        self.subtask = 1 
+        self.subTask = 1 
         self.completed = False
         
 
