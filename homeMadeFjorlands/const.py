@@ -31,7 +31,7 @@ class Const:
         self.i_line = 2
 
         self.resolution = (640, 380)
-        self.offsetPosition = 1.4 #regner offset fra litt utenfor skjermen, mot roboten
+        self.offsetPosition = 1.3 #regner offset fra litt utenfor skjermen, mot roboten
         self.linRegPlotY1 = 1
         #self.linRegPlotY2 = int(self.resolution[1] * self.offsetPosition)
         self.linRegPlotY2 = 379
