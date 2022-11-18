@@ -21,11 +21,15 @@ class MotorControl:
 
         self.prevAngle, self.prevDist = 0, 0
 
+        self.prevError = 0
+
         self.kp = const.kp
         self.kd = const.kd
+        self.ki = const.ki
     
     def followLine(self, line, angle, offset ,speed):  #pid
-        error = self.kp * offset + self.kd * angle
+        error = self.kp * offset + self.kd * angle + self.ki*self.prevError
+        self.prevError = error
         self.curve(error, speed)
         
 
