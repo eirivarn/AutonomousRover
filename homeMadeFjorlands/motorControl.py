@@ -21,6 +21,7 @@ class MotorControl:
 
         self.prevAngle, self.prevDist = 0, 0
 
+        self.error = 0
         self.sumOfErrors = np.zeros(20)
 
         self.kp = const.kp
