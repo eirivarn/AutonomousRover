@@ -150,9 +150,9 @@ class MotorControl:
     def curve(self, curveRate, speed):
         if curveRate < 0: 
             self.leftMotor.forward(speed - curveRate)
-            self.rightMotor.forward(speed - 0.5*curveRate)
+            self.rightMotor.forward(speed + 0.5*curveRate)
         else: 
-            self.leftMotor.forward(speed + 0.5*curveRate)
+            self.leftMotor.forward(speed - 0.5*curveRate)
             self.rightMotor.forward(speed+curveRate)
 
        
