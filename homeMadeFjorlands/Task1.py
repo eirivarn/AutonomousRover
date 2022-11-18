@@ -59,7 +59,7 @@ class Task1(Task):
         line, atCross, angle, lateralOffset = self.lineModule.analyzeImage(image)
         self.motorControl.followLine(line, angle, lateralOffset, self.speed)
         if atCross:
-            self.motorControl.stop()
+            #self.motorControl.stop()
             print("At cross, subtask 1 complete.")
             #self.subTask2(image)
 
