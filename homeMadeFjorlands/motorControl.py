@@ -147,7 +147,7 @@ class MotorControl:
         self.rightMotor.forward(speed - curveRate)
         print('curve right', curveRate)
  
-    def curve(self, curveRate, speed):
+    def curve(self, curveRate):
         self.leftMotor.forward(curveRate)
         self.rightMotor.forward(curveRate)
 
