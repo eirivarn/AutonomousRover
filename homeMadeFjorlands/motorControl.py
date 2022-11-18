@@ -21,15 +21,16 @@ class MotorControl:
 
         self.prevAngle, self.prevDist = 0, 0
 
-        self.sumOfErrors = 0
+        self.sumOfErrors = np.zeros(20)
 
         self.kp = const.kp
         self.kd = const.kd
         self.ki = const.ki
     
     def followLine(self, line, angle, offset ,speed):  #pid
+        np.delete(self.sumOfErrors, 0) 
+        self.sumOfErrors = np.append(self.sumOfErrors, error)
         error = self.kp * offset + self.kd * angle + self.ki*self.sumOfErrors
-        self.sumOfErrors += error
         self.curve(error, speed)
         
 
