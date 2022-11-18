@@ -10,7 +10,6 @@ class Task1(Task):
         self.cupDistBuffer = self.const.cupDistBuffer
         self.lineDistBuffer = self.const.lineDistBuffer
 
-        self.subTask = 1 
         self.subtasks = [False, False, False, False, False, False, False, False, False, False]   
 
     def update(self, image):
@@ -61,8 +60,8 @@ class Task1(Task):
         self.motorControl.followLine(line, angle, lateralOffset, self.speed)
         if atCross:
             self.motorControl.stop()
-            print("At cross, task 1 complete.")
-            self.subtask = 2
+            print("At cross, subtask 1 complete.")
+            self.subTask2(self,image)
 
     def subTask2(self,image):
         if self.subtasks[1] == False:
