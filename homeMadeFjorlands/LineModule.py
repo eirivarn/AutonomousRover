@@ -72,7 +72,7 @@ class LineModule:
         if inversedAngle < 0:
             angle = -90 - inversedAngle
 
-        angle = -1
+        angle = -angle
         offset = list[-1]
         #offset = self.predict(self.const.resolution[1]/2)
 
