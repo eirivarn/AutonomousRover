@@ -31,7 +31,7 @@ class Const:
         self.i_line = 2
 
         self.resolution = (640, 380)
-        self.offsetPosition = 1   #regner offset fra 15/16 ned på skjermen
+        self.offsetPosition = 1.2  #regner offset fra 15/16 ned på skjermen
         self.linRegPlotY1 = 1
         #self.linRegPlotY2 = int(self.resolution[1] * self.offsetPosition)
         self.linRegPlotY2 = 379
