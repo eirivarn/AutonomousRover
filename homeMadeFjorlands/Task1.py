@@ -67,7 +67,7 @@ class Task1(Task):
         if self.subtasks[1] == False:
             print("Task 2, localize cup")
             self.subtasks[1] = True
-        cupPos, cupInImage = self.cupModule.analyzeImage(image)
+        cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
         if not cupInImage:
             self.motorControl.turnLeft()
         else:
