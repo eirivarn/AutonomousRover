@@ -33,7 +33,7 @@ class MotorControl:
         sumOfErrors = np.sum(self.sumOfErrors)
         self.sumOfErrors = np.append(self.sumOfErrors, self.error)
         self.error = self.kp * offset + self.kd * angle + self.ki*sumOfErrors
-        self.curve(self.error)
+        self.curve(self.error, speed)
         
 
     def followLineOld(self, line, angle, lateralOffset ,speed):
@@ -147,10 +147,13 @@ class MotorControl:
         self.rightMotor.forward(speed - curveRate)
         print('curve right', curveRate)
  
-    def curve(self, curveRate):
-        self.leftMotor.forward(curveRate)
-        self.rightMotor.forward(curveRate)
-
+    def curve(self, curveRate, speed):
+        if curveRate < 0: 
+            self.leftMotor.forward(speed +curveRate)
+            self.rightMotor.forward(speed)
+        else: 
+            self.leftMotor.forward(speed)
+            self.rightMotor.forward(speed+curveRate)
 
        
     def getSpeed(self):
