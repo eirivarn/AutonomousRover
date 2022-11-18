@@ -61,9 +61,9 @@ class Task1(Task):
         if atCross:
             self.motorControl.stop()
             print("At cross, subtask 1 complete.")
-            self.subTask2(self,image)
+            self.subTask2(image)
 
-    def subTask2(self,image):
+    def subTask2(self, image):
         if self.subtasks[1] == False:
             print("Task 2, localize cup")
             self.subtasks[1] = True
