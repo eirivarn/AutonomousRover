@@ -148,8 +148,8 @@ class MotorControl:
         print('curve right', curveRate)
  
     def curve(self, curveRate, speed):
-        self.leftMotor.forward(speed + curveRate)
-        self.rightMotor.forward(speed - curveRate)
+        self.leftMotor.forward(speed - curveRate)
+        self.rightMotor.forward(speed + curveRate)
 
 
        
