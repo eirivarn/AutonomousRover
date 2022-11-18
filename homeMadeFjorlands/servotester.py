@@ -1,6 +1,6 @@
 from servo import servo
 
-tiltServo = servo(13, "ang")
+tiltServo = servo(13)
 
 tiltServo.lower()
 

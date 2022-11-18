@@ -46,3 +46,12 @@ class Const:
         self.highWhite =np.array([179, 15 , 255])
         self.lowWhite = np.array([0  , 0  , 210])
         ## ////////////////////////////
+
+        ##/////////// Servo //////////
+        self.open_val = 0.6
+        self.close_val = 0.15
+        self.cameraUp = 45
+        self.cameraLower = 20
+
+
+

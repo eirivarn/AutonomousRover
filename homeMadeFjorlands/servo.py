@@ -1,35 +1,24 @@
 from gpiozero import Servo, AngularServo
+from const import Const
  
 class servo:
        
-    def __init__(self, port, angOrCont):
-        self.port = port
-        self.open_val = 0.6
-        self.close_val = 0.15
-        self.up = 45
-        self.flat = 20
-        self.cameraFront = 0
-        self.cameraLeft = 1
-        self.cameraRight = 2      
-        
-        if angOrCont == 'ang':
-            self.servo = AngularServo(self.port, min_pulse_width = 0.0006, max_pulse_width=0.0023)
-        else:
-            self.servo = Servo(self.port)
+    def __init__(self, port):
+        self.servo = Servo(port)
+        self.const = Const()
 
- 
-   
+
     def openGripper(self):
-        self.servo.value = self.open_val
+        self.servo.value = self.const.open_val
  
     def closeGripper(self):
-        self.servo.value = self.close_val
+        self.servo.value = self.const.close_val
 
     def lift(self):
-        self.servo.value = self.up
+        self.servo.value = self.const.cameraUp
  
     def lower(self):
-        self.servo.value = self.flat
+        self.servo.value = self.const.cameraLower 
  
         
         
