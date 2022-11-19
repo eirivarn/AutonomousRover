@@ -56,8 +56,8 @@ class Task1(Task):
         if self.subtasks[0] == False:
             self.subtasks[0] = True
             print("Following line to cross")
-        line, atCross, angle, lateralOffset = self.lineModule.analyzeImage(image)
-        self.motorControl.followLine(line, angle, lateralOffset, self.speed)
+        line, atCross, angle, lateralOffset, lostLine = self.lineModule.analyzeImage(image)
+        self.motorControl.followLine(line, angle, lateralOffset, self.speed, lostLine)
         if atCross:
             self.motorControl.stop()
             print("At cross, subtask 1 complete.")
