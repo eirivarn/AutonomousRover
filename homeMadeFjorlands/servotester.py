@@ -20,7 +20,7 @@ for i in range(5):
     cameraServo.down()
     gripperServo.close()
 
-cameraServo.stop()
-gripperServo.stop()
+cameraServo.detatch()
+gripperServo.detatch()
 
 print("Done")
