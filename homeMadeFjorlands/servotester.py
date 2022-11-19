@@ -1,4 +1,4 @@
-from servo import servo
+from servo import AngularServo
 from time import sleep
 
 tiltServo = servo(12)

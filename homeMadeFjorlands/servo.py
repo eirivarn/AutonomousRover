@@ -1,10 +1,12 @@
-from gpiozero import Servo, AngularServo
+from gpiozero import AngularServo
+from gpiozero.pins.native import NativeFactory
 from const import Const
  
 class servo:
        
     def __init__(self, port):
-        self.servo = Servo(port)
+        AngularServo.pin_factory = NativeFactory()
+        self.servo = AngularServo(port)
         self.const = Const()
 
 
