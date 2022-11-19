@@ -1,12 +1,11 @@
 from gpiozero import AngularServo
-from gpiozero.pins.native import NativeFactory
+from gpiozero.pins.native import PiGPIOFactory
 from const import Const
-import RPi.GPIO as GPIO
  
 class servo:
        
     def __init__(self, port):
-        GPIO.setwarnings(False)
+        AngularServo.pin_factory = PiGPIOFactory
         self.servo = AngularServo(port)
         self.const = Const()
 
