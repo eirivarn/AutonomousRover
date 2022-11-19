@@ -3,6 +3,7 @@ from const import Const
  
 class servo:
     def __init__(self, port):
+        self.servo = AngularServo(port)
         self.const = Const()
 
     def openGripper(self):
