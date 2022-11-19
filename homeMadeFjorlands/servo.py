@@ -1,6 +1,7 @@
 from gpiozero import AngularServo
 from gpiozero.pins.native import NativeFactory
 from const import Const
+import RPi.GPIO as GPIO
  
 class servo:
        
