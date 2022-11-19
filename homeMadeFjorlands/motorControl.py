@@ -30,6 +30,7 @@ class MotorControl:
     
     def followLine(self, line, angle, offset ,speed, lostLine):
         if lostLine: 
+            print("Lost the line")
             self.findLine(speed)  #pid
         np.delete(self.sumOfErrors, 0) 
         sumOfErrors = np.sum(self.sumOfErrors)
