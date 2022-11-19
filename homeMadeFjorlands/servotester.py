@@ -1,11 +1,15 @@
+from gpiozero import Servo
 from time import sleep
-from servo import servo
 
-tiltServo = servo(12)
+servo = Servo(25)
 
-tiltServo.lower()
-
-sleep(2)
-
-tiltServo.lift()
-
+try:
+	while True:
+    	servo.min()
+    	sleep(0.5)
+    	servo.mid()
+    	sleep(0.5)
+    	servo.max()
+    	sleep(0.5)
+except KeyboardInterrupt:
+	print("Program stopped")
