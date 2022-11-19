@@ -50,8 +50,8 @@ class Const:
         ##/////////// Servo //////////
         self.open_val = 0.6
         self.close_val = 0.15
-        self.cameraUp = 0.6
-        self.cameraLower = 0.15
+        self.up = 0.6
+        self.down = 0.15
 
 
 

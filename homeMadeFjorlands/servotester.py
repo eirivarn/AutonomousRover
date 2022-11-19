@@ -1,30 +1,17 @@
-import RPi.GPIO as GPIO
-import time
+from servo import servo 
+from time import sleep
 
-servoPIN = 17
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(servoPIN, GPIO.OUT)
+print("Hello")
+cameraServo = servo(12)
 
-p = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
-p.start(2.5) # Initialization
-try:
-  while True:
-    p.ChangeDutyCycle(5)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(7.5)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(10)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(12.5)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(10)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(7.5)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(5)
-    time.sleep(0.5)
-    p.ChangeDutyCycle(2.5)
-    time.sleep(0.5)
-except KeyboardInterrupt:
-  p.stop()
-  GPIO.cleanup()
+for i in range(5):
+    cameraServo.up()
+    sleep(1)
+    cameraServo.down()
+    sleep(1)
+    cameraServo.up()
+    sleep(1)
+    cameraServo.down()
+
+
+print("Done")

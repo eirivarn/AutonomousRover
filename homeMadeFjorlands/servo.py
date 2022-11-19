@@ -4,9 +4,9 @@ from const import Const
  
 class servo:
     def __init__(self, port):
-        factory = PiGPIOFactory()
-        self.servo = AngularServo(port, pin_factory = factory)
         self.const = Const()
+        factory = PiGPIOFactory()
+        self.servo = AngularServo(port, min_pulse_width=0.0006, max_pulse_width=0.0023, pin_factory=factory)
 
     def openGripper(self):
         self.servo.value = self.const.open_val
