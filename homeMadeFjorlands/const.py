@@ -12,8 +12,8 @@ class Const:
         self.posDistBuffer = 30
         self.need4speed = 70  #tør me å vinna??
 
-        self.lSpeedPin = 7
-        self.lDirPin = 11
+        self.lSpeedPin = 16
+        self.lDirPin = 18
         self.rSpeedPin = 13
         self.rDirPin = 15
 
