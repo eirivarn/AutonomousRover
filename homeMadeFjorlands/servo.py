@@ -14,10 +14,10 @@ class servo:
     def closeGripper(self):
         self.servo.value = self.const.close_val
 
-    def lift(self):
+    def up(self):
         self.servo.value = self.const.cameraUp
  
-    def lower(self):
+    def down(self):
         self.servo.value = self.const.cameraLower 
  
         
