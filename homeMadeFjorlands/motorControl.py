@@ -19,7 +19,7 @@ class MotorControl:
         self.leftMotor = DCmotor(self.lSpeedPin ,self.lDirPin)
         self.rightMotor = DCmotor(self.rSpeedPin ,self.rDirPin)
 
-        self.prevAngle, self.prevDist = 0, 0
+        self.prevAngle, self.prevOffset = 0, 0
 
         self.error = 0
         self.sumOfErrors = np.zeros(20)
@@ -28,12 +28,15 @@ class MotorControl:
         self.kd = const.kd
         self.ki = const.ki
     
-    def followLine(self, line, angle, offset ,speed):  #pid
+    def followLine(self, line, angle, offset ,speed, lostLine):
+        if lostLine: 
+            self.findLine(speed)  #pid
         np.delete(self.sumOfErrors, 0) 
         sumOfErrors = np.sum(self.sumOfErrors)
         self.sumOfErrors = np.append(self.sumOfErrors, self.error)
         self.error = self.kp * offset + self.kd * angle + self.ki*sumOfErrors
         self.curve(self.error, speed)
+        self.prevAngle, self.prevOffset = angle, offset
         
 
     def followLineOld(self, line, angle, lateralOffset ,speed):
@@ -154,6 +157,14 @@ class MotorControl:
         else: 
             self.leftMotor.forward(speed - 0.8*curveRate)
             self.rightMotor.forward(speed+curveRate)
+        
+    def findLine(self, speed):
+        self.stop()
+        sleep(0.1)
+        if self.prevOffset < 0: 
+            self.turnLeft(speed + self.prevAngle*self.kd)
+        else:
+            self.turnRight(speed + self.prevAngle*self.kd)
 
        
     def getSpeed(self):

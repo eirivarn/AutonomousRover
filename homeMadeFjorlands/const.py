@@ -4,7 +4,7 @@ class Const:
     def __init__(self):
         self.isHeadless = False
 
-        self.speed = 12
+        self.speed = 15
         self.turnSpeed = 25
         self.cupDistBuffer = 2
         self.cupPosBuffer = 70
@@ -12,8 +12,8 @@ class Const:
         self.posDistBuffer = 30
         self.need4speed = 70  #tør me å vinna??
 
-        self.lSpeedPin = 16
-        self.lDirPin = 18
+        self.lSpeedPin = 7
+        self.lDirPin = 11
         self.rSpeedPin = 13
         self.rDirPin = 15
 
