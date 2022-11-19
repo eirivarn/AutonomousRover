@@ -1,5 +1,5 @@
 from gpiozero import AngularServo
-from gpiozero.pins.native import PiGPIOFactory
+from gpiozero.pins.pigpio.PiGPIOFactory import PiGPIOFactory
 from const import Const
  
 class servo:
