@@ -1,13 +1,9 @@
 from gpiozero import AngularServo
-from gpiozero.pins.pigpio import PiGPIOFactory
 from const import Const
  
 class servo:
-       
     def __init__(self, port):
-        self.servo = AngularServo(port, pin_factory = PiGPIOFactory)
         self.const = Const()
-
 
     def openGripper(self):
         self.servo.value = self.const.open_val

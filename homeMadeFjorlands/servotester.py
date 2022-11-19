@@ -1,4 +1,3 @@
-from servo import servo
 from time import sleep
 
 
