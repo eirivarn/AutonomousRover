@@ -90,7 +90,7 @@ class LineModule:
             y2 = h-1
             x2 = int(self.const.resolution[0]/2 - self.predict(y2))
 
-            cv2.line(repackedImg, (x1,y1), (x2,y2), (0,0,255), 3)
+            #cv2.line(repackedImg, (x1,y1), (x2,y2), (0,0,255), 3)
         except:
             print('Could not find line')
             
