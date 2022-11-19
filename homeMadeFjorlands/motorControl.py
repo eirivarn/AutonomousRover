@@ -160,8 +160,6 @@ class MotorControl:
             self.rightMotor.forward(speed+curveRate)
         
     def findLine(self, speed):
-        self.stop()
-        sleep(0.1)
         if self.prevOffset < 0: 
             self.turnLeft(speed + self.prevAngle*self.kd)
         else:
