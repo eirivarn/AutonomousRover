@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 class servo:
        
     def __init__(self, port):
-        GPIO.serwarnings(False)
+        GPIO.setwarnings(False)
         self.servo = AngularServo(port)
         self.const = Const()
 
