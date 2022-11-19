@@ -15,10 +15,10 @@ class servo:
         self.servo.value = self.const.close_val
 
     def up(self):
-        self.servo.value = self.const.cameraUp
+        self.servo.value = self.const.up
  
     def down(self):
-        self.servo.value = self.const.cameraLower 
+        self.servo.value = self.const.down
  
         
         
