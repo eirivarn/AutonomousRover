@@ -53,7 +53,7 @@ class LineModule:
             else: 
                 lostPoints += 1 
             
-        if lostPoints > 1: 
+        if lostPoints > 7: 
             lostLine = True
 
 
