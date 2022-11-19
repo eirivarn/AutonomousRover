@@ -50,6 +50,11 @@ class LineModule:
             if offs != 0:
                 x.append(offs)
                 y.append(h/(self.N_SLICES*2) + h/self.N_SLICES*i)
+            else: 
+                lostPoints += 1 
+            
+        if lostPoints > 1: 
+            lostLine = True
 
 
         if len(x)==0:
@@ -87,7 +92,6 @@ class LineModule:
 
             cv2.line(repackedImg, (x1,y1), (x2,y2), (0,0,255), 3)
         except:
-            lostLine = True
             print('Could not find line')
             
 
