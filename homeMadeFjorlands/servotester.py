@@ -1,5 +1,5 @@
 from time import sleep
-
+from servo import servo
 
 tiltServo = servo(12)
 
