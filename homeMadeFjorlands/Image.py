@@ -15,6 +15,9 @@ class Image:
         imgray = cv2.cvtColor(self.image,cv2.COLOR_BGR2GRAY) #Convert to Gray Scale
         ret, thresh = cv2.threshold(imgray,self.consts.threshGrey,255,cv2.THRESH_BINARY_INV) #Get Threshold
 
+        self.middleX = 0
+        self.contourCenterX = 0
+
         self.contours, _ = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE) #Get contour
         
         self.prev_MC = self.MainContour
