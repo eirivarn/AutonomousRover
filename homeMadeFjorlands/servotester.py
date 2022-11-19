@@ -1,9 +1,8 @@
+from gpiozero import Servo
+from time import sleep
 
 from gpiozero.pins.pigpio import PiGPIOFactory
 gpiozero.Device.pin_factory = PiGPIOFactory('127.0.0.1')
-
-from gpiozero import Servo
-from time import sleep
 
 servo = Servo(25)
 
