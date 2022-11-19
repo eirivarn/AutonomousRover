@@ -5,8 +5,7 @@ from const import Const
 class servo:
        
     def __init__(self, port):
-        AngularServo.pin_factory = PiGPIOFactory
-        self.servo = AngularServo(port)
+        self.servo = AngularServo(port, pin_factory = PiGPIOFactory)
         self.const = Const()
 
 
