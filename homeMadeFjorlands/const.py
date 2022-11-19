@@ -17,7 +17,7 @@ class Const:
         self.rSpeedPin = 13
         self.rDirPin = 15
 
-        self.kp = 0.12
+        self.kp = 0.15
         self.kd = 0.45
         self.ki = 0.002
 
