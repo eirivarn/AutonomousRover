@@ -31,13 +31,14 @@ class MotorControl:
     def followLine(self, line, angle, offset ,speed, lostLine):
         if lostLine: 
             print("Lost the line")
-            self.findLine(speed)  #pid
-        np.delete(self.sumOfErrors, 0) 
-        sumOfErrors = np.sum(self.sumOfErrors)
-        self.sumOfErrors = np.append(self.sumOfErrors, self.error)
-        self.error = self.kp * offset + self.kd * angle + self.ki*sumOfErrors
-        self.curve(self.error, speed)
-        self.prevAngle, self.prevOffset = angle, offset
+            self.findLine(speed)
+        else:  #pid
+            np.delete(self.sumOfErrors, 0) 
+            sumOfErrors = np.sum(self.sumOfErrors)
+            self.sumOfErrors = np.append(self.sumOfErrors, self.error)
+            self.error = self.kp * offset + self.kd * angle + self.ki*sumOfErrors
+            self.curve(self.error, speed)
+            self.prevAngle, self.prevOffset = angle, offset
         
 
     def followLineOld(self, line, angle, lateralOffset ,speed):
