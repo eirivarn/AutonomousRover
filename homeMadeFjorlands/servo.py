@@ -5,7 +5,7 @@ from const import Const
 class servo:
        
     def __init__(self, port):
-        AngularServo.pin_factory = NativeFactory()
+        GPIO.serwarnings(False)
         self.servo = AngularServo(port)
         self.const = Const()
 
