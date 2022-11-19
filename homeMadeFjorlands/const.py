@@ -4,22 +4,22 @@ class Const:
     def __init__(self):
         self.isHeadless = False
 
-        self.speed = 12
-        self.turnSpeed = 25
+        self.speed = 15
+        self.turnSpeed = 40
         self.cupDistBuffer = 2
         self.cupPosBuffer = 70
         self.lineDistBuffer = 2
         self.posDistBuffer = 30
         self.need4speed = 70  #tør me å vinna??
 
-        self.lSpeedPin = 16
-        self.lDirPin = 18
+        self.lSpeedPin = 7
+        self.lDirPin = 11
         self.rSpeedPin = 13
         self.rDirPin = 15
 
         self.kp = 0.12
-        self.kd = 0.32
-        self.ki = 0.02
+        self.kd = 0.4
+        self.ki = 0.002
 
         self.n_slices = 8
         self.threshGrey = 65
@@ -31,7 +31,7 @@ class Const:
         self.i_line = 2
 
         self.resolution = (640, 380)
-        self.offsetPosition = 1 #regner offset fra litt utenfor skjermen, mot roboten
+        self.offsetPosition = 0,35 #regner offset fra litt utenfor skjermen, mot roboten
         self.linRegPlotY1 = 1
         #self.linRegPlotY2 = int(self.resolution[1] * self.offsetPosition)
         self.linRegPlotY2 = 379
@@ -48,10 +48,10 @@ class Const:
         ## ////////////////////////////
 
         ##/////////// Servo //////////
-        self.open_val = 0.6
-        self.close_val = 0.15
-        self.cameraUp = 45
-        self.cameraLower = 20
+        self.open_val = 0.15
+        self.close_val = 0.4
+        self.up = 0.6
+        self.down = 0
 
 
 

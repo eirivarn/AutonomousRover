@@ -23,6 +23,8 @@ class LineModule:
         removedBgImg = RemoveBackground(image, True)
         atCross = False
         list = []
+        lostPoints = 0
+        lostLine = False
         
 
         if removedBgImg is not None:
@@ -48,6 +50,12 @@ class LineModule:
             if offs != 0:
                 x.append(offs)
                 y.append(h/(self.N_SLICES*2) + h/self.N_SLICES*i)
+            else: 
+                lostPoints += 1 
+            
+        if lostPoints > 7: 
+            lostLine = True
+
 
         if len(x)==0:
             x.append(0)
@@ -82,7 +90,7 @@ class LineModule:
             y2 = h-1
             x2 = int(self.const.resolution[0]/2 - self.predict(y2))
 
-            cv2.line(repackedImg, (x1,y1), (x2,y2), (0,0,255), 3)
+            #cv2.line(repackedImg, (x1,y1), (x2,y2), (0,0,255), 3)
         except:
             print('Could not find line')
             
@@ -97,7 +105,7 @@ class LineModule:
         print ("\n{:<8} {:<15} {:<15} ".format('Angle','Offset', 'Cross'))
         print ("{:<8} {:<15} {:<15} ".format("{0:.3f}".format(angle), "{0:.3f}".format(offset), atCross))   
 
-        return list, atCross, angle, offset
+        return list, atCross, angle, offset, lostLine
 
     def flipPoint(self, x):
         return int(self.const.resolution[0]/2 - x)

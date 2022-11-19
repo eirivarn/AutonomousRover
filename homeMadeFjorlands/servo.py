@@ -1,24 +1,24 @@
-from gpiozero import Servo, AngularServo
+from gpiozero import AngularServo
+from gpiozero.pins.pigpio import PiGPIOFactory
 from const import Const
  
 class servo:
-       
     def __init__(self, port):
-        self.servo = Servo(port)
         self.const = Const()
+        factory = PiGPIOFactory()
+        self.servo = AngularServo(port, min_pulse_width=0.0006, max_pulse_width=0.0023, pin_factory=factory)
 
-
-    def openGripper(self):
+    def open(self):
         self.servo.value = self.const.open_val
  
-    def closeGripper(self):
+    def close(self):
         self.servo.value = self.const.close_val
 
-    def lift(self):
-        self.servo.value = self.const.cameraUp
+    def up(self):
+        self.servo.value = self.const.up
  
-    def lower(self):
-        self.servo.value = self.const.cameraLower 
+    def down(self):
+        self.servo.value = self.const.down
  
         
         

@@ -1,10 +1,11 @@
-from servo import servo
+from servo import servo 
+from time import sleep
 
-tiltServo = servo(12)
+print("Hello")
+cameraServo = servo(12)
+gripperServo = servo(13)
 
-tiltServo.lower()
+cameraServo.down()
+gripperServo.close()
 
-sleep(2)
-
-tiltServo.lift()
-
+print("Done")

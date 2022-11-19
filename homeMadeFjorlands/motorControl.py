@@ -19,7 +19,7 @@ class MotorControl:
         self.leftMotor = DCmotor(self.lSpeedPin ,self.lDirPin)
         self.rightMotor = DCmotor(self.rSpeedPin ,self.rDirPin)
 
-        self.prevAngle, self.prevDist = 0, 0
+        self.prevAngle, self.prevOffset = 0, 0
 
         self.error = 0
         self.sumOfErrors = np.zeros(20)
@@ -28,63 +28,17 @@ class MotorControl:
         self.kd = const.kd
         self.ki = const.ki
     
-    def followLine(self, line, angle, offset ,speed):  #pid
-        np.delete(self.sumOfErrors, 0) 
-        sumOfErrors = np.sum(self.sumOfErrors)
-        self.sumOfErrors = np.append(self.sumOfErrors, self.error)
-        self.error = self.kp * offset + self.kd * angle + self.ki*sumOfErrors
-        self.curve(self.error, speed)
-        
-
-    def followLineOld(self, line, angle, lateralOffset ,speed):
-        angle = int(angle)
-        lateralOffset = int(lateralOffset)
-        if angle and lateralOffset == 999: 
-            print("No line found")
-            self.backward(speed)
-
-        elif (lateralOffset in range(-40, 40) and angle in range (-5,5)):
-            self.forward(speed)
-
-        elif (angle in range(-10,10)):
-            self.curve(lateralOffset*self.kp, speed)
-
-        elif (lateralOffset in range(-400,-80) and angle in range (10, 30)) or (lateralOffset in range(-80,400) and angle in range(-30,-10)):
-            self.forward(speed)
-
-        elif (lateralOffset in range(-80, 800) and angle > 0) or (lateralOffset in range(-800, 80) and angle < 0):
-            self.curve(angle*self.kd*np.abs(lateralOffset*self.kp), speed)
-        
-        elif (angle in range (-80, 80)):
-            self.curve(angle*self.kd, speed)
-
-        elif (angle in range(-89,89)):
-            self.turnToPos(angle)
-
-        else:
-            print('Nå er det et tilfelle som ikke er tatt høyde for!!!!!!')
-            self.stop()
-        
-
-        '''
-        elif (lateralOffset < 0 and angle == 0):
-            self.curveRight(-lateralOffset/10, speed)
-
-        elif (lateralOffset > 0 and angle == 0):
-            self.curveLeft(lateralOffset/10, speed)
-
-        elif (lateralOffset < 0 and angle < 0):
-            self.forward(speed)
-
-        elif (lateralOffset > 0 and angle > 0):
-            self.forward(speed)
-
-        elif (lateralOffset > 0 and angle < 0):  
-            self.curveLeft(-angle*self.ap + lateralOffset*self.kp, speed)
-
-        elif (lateralOffset < 0 and angle > 0):
-            self.curveRight(angle*self.ap - lateralOffset*self.kp, speed)'''
-        
+    def followLine(self, line, angle, offset ,speed, lostLine):
+        if lostLine: 
+            print("Lost the line")
+            self.findLine(speed)
+        else:  #pid
+            np.delete(self.sumOfErrors, 0) 
+            sumOfErrors = np.sum(self.sumOfErrors)
+            self.sumOfErrors = np.append(self.sumOfErrors, self.error)
+            self.error = self.kp * offset + self.kd * angle + self.ki*sumOfErrors
+            self.curve(self.error, speed)
+            self.prevAngle, self.prevOffset = angle, offset
 
     def turnToPos(self, pos):
         speed = self.turnSpeed
@@ -137,16 +91,6 @@ class MotorControl:
         self.rightMotor.forward(speed)
         self.leftMotor.backward(speed)
  
-    def curveLeft(self, curveRate, speed):
-        self.leftMotor.forward(speed - curveRate)
-        self.rightMotor.forward(speed + curveRate)
-        print('curve left', curveRate)
-
-    def curveRight(self, curveRate, speed):
-        self.leftMotor.forward(speed + curveRate)
-        self.rightMotor.forward(speed - curveRate)
-        print('curve right', curveRate)
- 
     def curve(self, curveRate, speed):
         if curveRate < 0: 
             self.leftMotor.forward(speed - curveRate)
@@ -154,6 +98,12 @@ class MotorControl:
         else: 
             self.leftMotor.forward(speed - 0.8*curveRate)
             self.rightMotor.forward(speed+curveRate)
+        
+    def findLine(self, speed):
+        if self.prevOffset > 0: 
+            self.turnLeft(self.const.turnSpeed)
+        else:
+            self.turnRight(self.const.turnSpeed)
 
        
     def getSpeed(self):
