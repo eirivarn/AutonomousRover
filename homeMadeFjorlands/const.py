@@ -6,7 +6,7 @@ class Const:
 
         self.speed = 13
         self.turnSpeed = 40
-        self.cupDistBuffer = 2
+        self.cupDistBuffer = 1
         self.cupPosBuffer = 70
         self.lineDistBuffer = 2
         self.posDistBuffer = 30
