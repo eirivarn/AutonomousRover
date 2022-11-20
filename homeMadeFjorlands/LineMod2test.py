@@ -42,7 +42,7 @@ def startVideoCapture():
                     cv2.circle(image, (i,j), radius=3, color=(0, 0, 255), thickness=-1)
                     x = np.append(x ,i)
                     y = np.append(y, j)
-        if len(x)!=0:
+        #if len(x)!=0:
             #poly = np.polyfit(x,y,2)
             #draw_x = np.linspace(0,w, int(w/pixels))
             #draw_y = np.polyval(poly, draw_x)
@@ -51,6 +51,7 @@ def startVideoCapture():
             #for point in points:
              #   cv2.circle(image, point, radius=3, color=(0, 0, 255), thickness=-1)
             #cv2.polylines(image, [draw_points], False, (0,0,255))
+
 
         cv2.imshow('image', image)
 
