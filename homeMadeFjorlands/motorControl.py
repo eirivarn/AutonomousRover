@@ -114,9 +114,9 @@ class MotorControl:
             self.turnLeft(self.const.turnSpeed)
         else:
             self.turnRight(self.const.turnSpeed)
-        sleep(0.2)
+        sleep(0.05)
         self.stop()
-        sleep(0.2)
+        sleep(0.05)
 
        
     def getSpeed(self):
