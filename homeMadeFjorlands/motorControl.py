@@ -31,7 +31,7 @@ class MotorControl:
     def followLine(self, line, angle, offset ,speed, lostLine):
         if lostLine: 
             print("Lost the line")
-            self.findLine(speed)
+            self.findLine()
         else:  
             np.delete(self.sumOfErrors, 0) 
             sumOfErrors = np.sum(self.sumOfErrors)
@@ -109,11 +109,12 @@ class MotorControl:
             self.leftMotor.forward(speed - 0.8*curveRate)
             self.rightMotor.forward(speed+curveRate)
         
-    def findLine(self, speed):
+    def findLine(self):
         if self.prevOffset > 0: 
             self.turnLeft(self.const.turnSpeed)
         else:
             self.turnRight(self.const.turnSpeed)
+        sleep(0.2)
 
        
     def getSpeed(self):
