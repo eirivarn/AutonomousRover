@@ -111,9 +111,9 @@ class MotorControl:
         
     def findLine(self):
         if self.prevOffset > 0: 
-            self.turnLeft(self.const.turnSpeed)
+            self.rotateLeft(self.const.turnSpeed)
         else:
-            self.turnRight(self.const.turnSpeed)
+            self.rotateRight(self.const.turnSpeed)
 
 
        
