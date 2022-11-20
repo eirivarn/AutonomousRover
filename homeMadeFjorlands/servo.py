@@ -8,10 +8,10 @@ class servo:
         factory = PiGPIOFactory()
         self.servo = AngularServo(port, min_pulse_width=0.0006, max_pulse_width=0.0023, pin_factory=factory)
 
-    def open(self):
+    def openGripper(self):
         self.servo.value = self.const.open_val
  
-    def close(self):
+    def closeGripper(self):
         self.servo.value = self.const.close_val
 
     def up(self):
