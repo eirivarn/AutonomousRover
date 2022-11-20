@@ -40,8 +40,8 @@ def startVideoCapture():
                 print(image[i][j])
                 if (image[i][j] == [0,0,0]).all():
                     #points.append([i,j])
-                    x.append(i)
-                    y.append(j)
+                    x = np.append(x ,i)
+                    y = np.append(y, j)
         
         poly = np.polyfit(x,y,2)
         draw_x = np.linspace(0,w, w/pixels)
