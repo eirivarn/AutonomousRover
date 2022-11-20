@@ -35,22 +35,22 @@ def startVideoCapture():
         x = np.array([])
         y = np.array([])
 
-        for i in range(0,w,pixels):
-            for j in range(0,h,pixels):
-                if (image[i][j] == [0,0,0]).all():
+        for yi in range(0,h,pixels):
+            for xi in range(0,w,pixels):
+                if (image[yi][xi] == [0,0,0]).all():
                     #points = np.append(points, (i,j))
-                    cv2.circle(image, (i,j), radius=3, color=(0, 0, 255), thickness=-1)
-                    x = np.append(x ,i)
-                    y = np.append(y, j)
-        #if len(x)!=0:
-            #poly = np.polyfit(x,y,2)
-            #draw_x = np.linspace(0,w, int(w/pixels))
-            #draw_y = np.polyval(poly, draw_x)
+                    cv2.circle(image, (xi,yi), radius=3, color=(0, 0, 255), thickness=-1)
+                    x = np.append(x ,xi)
+                    y = np.append(y, yi)
+        if len(x)!=0:
+            poly = np.polyfit(x,y,2)
+            draw_x = np.linspace(0,w, int(w/pixels))
+            draw_y = np.polyval(poly, draw_x)
 
-            #draw_points = (np.asarray([draw_x, draw_y]).T).astype(np.int32)
+            draw_points = (np.asarray([draw_x, draw_y]).T).astype(np.int32)
             #for point in points:
              #   cv2.circle(image, point, radius=3, color=(0, 0, 255), thickness=-1)
-            #cv2.polylines(image, [draw_points], False, (0,0,255))
+            cv2.polylines(image, [draw_points], False, (0,0,255))
 
 
         cv2.imshow('image', image)
