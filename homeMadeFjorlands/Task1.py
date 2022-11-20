@@ -90,7 +90,7 @@ class Task1(Task):
         self.subTask = 5 
 
     def subTask5(self,image):
-        line, crossFound = self.lineModule.analyzeImage(image)
+        line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
         if line == []:
             self.motorControl.turnLeft()
         else:
