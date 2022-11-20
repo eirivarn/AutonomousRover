@@ -104,7 +104,7 @@ class Task1(Task):
                 self.subTask = 6
 
     def subTask6(self):
-        self.motorControl.turnRight(self.const.turnspeed)
+        self.motorControl.turnRight(self.const.turnSpeed)
         sleep(2)
         self.subTask = 7
 
