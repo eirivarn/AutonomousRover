@@ -14,6 +14,8 @@ class Task1(Task):
 
     def update(self, image):
 
+        print("At subtask: " , self.subTask)
+
         if self.subTask == 1: #follow line to cross
             self.subTask1(image)
         
