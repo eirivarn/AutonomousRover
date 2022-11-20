@@ -3,6 +3,7 @@ from LineModule import LineModule
 from CupModule import CupModule
 from CaptureImage import CaptureImage
 from Victory import Victory, Fail
+from time import sleep
 import numpy as np
 
 from Task1 import Task1
