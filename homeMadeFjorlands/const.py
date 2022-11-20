@@ -5,7 +5,7 @@ class Const:
         self.isHeadless = False
 
         self.speed = 13
-        self.turnSpeed = 45
+        self.turnSpeed = 25
         self.cupDistBuffer = 2
         self.cupPosBuffer = 70
         self.lineDistBuffer = 2
