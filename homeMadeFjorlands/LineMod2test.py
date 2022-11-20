@@ -41,13 +41,13 @@ def startVideoCapture():
                     #points.append([i,j])
                     x = np.append(x ,i)
                     y = np.append(y, j)
-        
-        poly = np.polyfit(x,y,2)
-        draw_x = np.linspace(0,w, int(w/pixels))
-        draw_y = np.polyval(poly, draw_x)
+        if x != []:
+            poly = np.polyfit(x,y,2)
+            draw_x = np.linspace(0,w, int(w/pixels))
+            draw_y = np.polyval(poly, draw_x)
 
-        draw_points = (np.asarray([draw_x, draw_y]).T).astype(np.int32)
-        cv2.polylines(image, [draw_points], False, (0,0,255))
+            draw_points = (np.asarray([draw_x, draw_y]).T).astype(np.int32)
+            cv2.polylines(image, [draw_points], False, (0,0,255))
 
         cv2.imshow('image', image)
 
