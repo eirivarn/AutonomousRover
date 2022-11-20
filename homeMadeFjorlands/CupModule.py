@@ -14,12 +14,13 @@ class CupModule:
         self.lowRed2 = const.lowRed2
         self.highWhite = const.highWhite
         self.lowWhite = const.lowWhite
+        self.height, self.width = 0 , 0
 
 
     def analyzeImage(self, image):
 
-        height, width  = image.shape[:2]
-        self.middleX = int(width/2)
+        self.height, self.width  = image.shape[:2]
+        self.middleX = int(self.width/2)
         self.xCenter = 1
         self.yCenter = 1
 
@@ -64,7 +65,7 @@ class CupModule:
 
     def cupIsClose(self):
         #TODO   enten return yCenter>terskel, eller let etter screenshot i bunn av bildet.
-        return self.yCenter > self.const.cupIsClose
+        return self.yCenter > self.height - self.const.cupIsClose
 
     def quit(self):
         self.breakLoop = True
