@@ -53,7 +53,7 @@ class LineModule:
             else: 
                 lostPoints += 1 
             
-        if lostPoints > 7: 
+        if lostPoints > self.N_SLICES - 2: 
             lostLine = True
 
 

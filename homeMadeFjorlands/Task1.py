@@ -86,7 +86,7 @@ class Task1(Task):
         self.motorControl.goToCup(cupPos)
 
     def subTask4(self):
-        self.servo.close()
+        #self.servo.close()
         self.subTask = 5 
 
     def subTask5(self,image):
