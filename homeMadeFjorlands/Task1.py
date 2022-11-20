@@ -83,6 +83,8 @@ class Task1(Task):
     
     def subTask3(self,image):
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
+        print("CupIsClose: " ,cupIsClose)
+        print("cupPos: " ,cupPos)
         if cupIsClose:
             self.motorControl.stop()
             self.subTask = 4
