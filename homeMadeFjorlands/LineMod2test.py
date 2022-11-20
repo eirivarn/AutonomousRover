@@ -41,7 +41,7 @@ def startVideoCapture():
                     #points.append([i,j])
                     x = np.append(x ,i)
                     y = np.append(y, j)
-        if x != []:
+        if len(x)!=0:
             poly = np.polyfit(x,y,2)
             draw_x = np.linspace(0,w, int(w/pixels))
             draw_y = np.polyval(poly, draw_x)
