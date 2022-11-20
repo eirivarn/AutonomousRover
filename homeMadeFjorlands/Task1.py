@@ -74,7 +74,7 @@ class Task1(Task):
         
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
         if not cupInImage:
-            self.motorControl.turnLeft(40)
+            self.motorControl.rotateLeft(40)
         else:
             self.motorControl.turnToPos(cupPos)
         if cupPos in range(-self.cupDistBuffer, self.cupDistBuffer):
@@ -96,7 +96,7 @@ class Task1(Task):
     def subTask5(self,image):
         line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
         if line == []:
-            self.motorControl.turnLeft()
+            self.motorControl.rotateLeft()
         else:
             pos = line[self.const.i_line]
             self.motorControl.turnToPos(pos)  
@@ -104,14 +104,14 @@ class Task1(Task):
                 self.subTask = 6
 
     def subTask6(self):
-        self.motorControl.turnRight(self.const.turnSpeed)
+        self.motorControl.rotateRight(self.const.turnSpeed)
         sleep(2)
         self.subTask = 7
 
     def subTask7(self,image):
         line, crossFound = self.lineModule.analyzeImage(image)
         if line == []:
-            self.motorControl.turnRight()
+            self.motorControl.rotateRight()
         else:
             pos = line[self.const.i_line]
             self.motorControl.turnToPos(pos)  
@@ -124,14 +124,14 @@ class Task1(Task):
 
 
     def subTask9(self):
-        self.motorControl.turnLeft() 
+        self.motorControl.rotateLeft() 
         sleep(2)
         self.subTask = 10
 
     def subTask10(self,image):
         line, crossFound = self.lineModule.analyzeImage(image)
         if line == []:
-            self.motorControl.turnLeft()
+            self.motorControl.rotateLeft()
         else:
             pos = line[self.const.i_line]
             self.motorControl.turnToPos(pos)

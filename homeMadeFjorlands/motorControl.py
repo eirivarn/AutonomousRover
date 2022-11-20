@@ -32,7 +32,7 @@ class MotorControl:
         if lostLine: 
             print("Lost the line")
             self.findLine(speed)
-        else:  #pid
+        else:  
             np.delete(self.sumOfErrors, 0) 
             sumOfErrors = np.sum(self.sumOfErrors)
             self.sumOfErrors = np.append(self.sumOfErrors, self.error)
@@ -80,16 +80,26 @@ class MotorControl:
         print('quit')
  
  
-    def turnRight(self, speed):
+    def rotateRight(self, speed):
         print("Turn right")
         self.rightMotor.backward(speed)
         self.leftMotor.forward(speed)
        
        
-    def turnLeft(self, speed):
+    def rotateLeft(self, speed):
         print("Turn left")
         self.rightMotor.forward(speed)
         self.leftMotor.backward(speed)
+
+    def turnRight(self, speed):
+        print("Turn right")
+        self.rightMotor.backward(0)
+        self.leftMotor.forward(speed)
+
+    def turnLeft(self, speed):
+        print("Turn left")
+        self.rightMotor.forward(speed)
+        self.leftMotor.backward(0)
  
     def curve(self, curveRate, speed):
         if curveRate < 0: 
