@@ -18,8 +18,8 @@ class Const:
         self.rDirPin = 15
 
         self.kp = 0.12
-        self.kd = 0.4
-        self.ki = 0.005
+        self.kd = 0.35
+        self.ki = 0.0001
 
         self.n_slices = 6
         self.threshGrey = 65
@@ -31,7 +31,7 @@ class Const:
         self.i_line = 2
 
         self.resolution = (640, 380)
-        self.offsetPosition = 0,35 #regner offset fra litt utenfor skjermen, mot roboten
+        self.offsetPosition = 0,35 
         self.linRegPlotY1 = 1
         #self.linRegPlotY2 = int(self.resolution[1] * self.offsetPosition)
         self.linRegPlotY2 = 379
