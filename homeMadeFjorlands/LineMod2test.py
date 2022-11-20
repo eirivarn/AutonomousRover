@@ -38,7 +38,7 @@ def startVideoCapture():
         for i in range(0,w,pixels):
             for j in range(0,h,pixels):
                 print(image[i][j])
-                if image[i][j] == [0,0,0]:
+                if (image[i][j] == [0,0,0]).all():
                     #points.append([i,j])
                     x.append(i)
                     y.append(j)
