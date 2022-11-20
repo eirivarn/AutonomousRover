@@ -57,3 +57,4 @@ def startVideoCapture():
             break
 
 startVideoCapture()
+cv2.destroyAllWindows()
