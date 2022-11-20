@@ -35,8 +35,8 @@ def startVideoCapture():
         x = np.array([])
         y = np.array([])
 
-        for yi in range(0,h,pixels):
-            for xi in range(0,w,pixels):
+        for yi in range(0,h-1,pixels):
+            for xi in range(0,w-1,pixels):
                 if (image[yi][xi] == [0,0,0]).all():
                     #points = np.append(points, (i,j))
                     cv2.circle(image, (xi,yi), radius=3, color=(0, 0, 255), thickness=-1)
