@@ -51,7 +51,7 @@ class Const:
         self.open_val = 0.15
         self.close_val = 0.4
         self.up = 0.6
-        self.down = 0
+        self.down = 0.1
 
 
 
