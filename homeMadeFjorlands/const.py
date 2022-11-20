@@ -19,7 +19,7 @@ class Const:
 
         self.kp = 0.12
         self.kd = 0.35
-        self.ki = 0.002
+        self.ki = 0.05
 
         self.n_slices = 6
         self.threshGrey = 65
