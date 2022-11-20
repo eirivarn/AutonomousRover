@@ -3,9 +3,9 @@ from time import sleep
 
 print("Hello")
 cameraServo = servo(12)
-gripperServo = servo(13)
 
 cameraServo.down()
-gripperServo.close()
+sleep(1)
+cameraServo.up()
 
 print("Done")
