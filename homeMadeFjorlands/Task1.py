@@ -81,7 +81,7 @@ class Task1(Task):
             
             self.subTask = 3
     
-    def subTask3(self,image):
+    def subTask3(self,image): #TODO sjekke når den er nærme. 
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
         print("CupIsClose: " ,cupIsClose)
         print("cupPos: " ,cupPos)
@@ -93,9 +93,10 @@ class Task1(Task):
 
     def subTask4(self):
         #self.servo.close()
+        #TODO løfte kamera litt mer?
         self.subTask = 5 
 
-    def subTask5(self,image):
+    def subTask5(self,image): #TODO hardkode denne til å snuy 180 grader? Hva er forskjeld på denn og subtask 7? 
         line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
         if line == []:
             self.motorControl.rotateLeft()
