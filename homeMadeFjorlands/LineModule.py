@@ -95,9 +95,8 @@ class LineModule:
             print('Could not find line')
             
 
-        if not self.isHeadless:
-            cv2.imshow('Image', repackedImg)
-        
+        self.viewImage(repackedImg)
+
         atCross = self.robot.crossConfirmed()
 
 
@@ -114,7 +113,7 @@ class LineModule:
         f_y = (y - self.c)/self.m
         return f_y
 
-    def getEndOfLinePos(image):
+    def getEndOfLinePos(self, image):
         up = 100
         lower = np.array([0, 0, 0], dtype = "uint8")
         upper = np.array([up, up, up], dtype = "uint8")
@@ -122,7 +121,16 @@ class LineModule:
         contours, _ = cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
         contour = max(contours, key=cv2.contourArea)
         x,y,w,h = cv2.boundingRect(contour)
-        return x+w/2, y
+        xPos = int(x+w/2)
+        yPos = y
+        cv2.circle(image, (xPos, yPos), 3, (0,0,255), -1)
+        self.viewImage(image)
+        
+        return xPos, yPos
+
+    def viewImage(self, image):
+        if not self.isHeadless:
+            cv2.imshow('Image', image)
 
     def quit(self):
         cv2.destroyAllWindows()
