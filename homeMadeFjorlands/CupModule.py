@@ -37,17 +37,25 @@ class CupModule:
         mask = maskBlue | maskRed1 | maskRed2 # | maskWhite
         
         contours, _ = cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-
+        contour = None
+        greatestArea = 0
         cupInImage = False
-        for contour in contours:
-            if cv2.contourArea(contour) > 1000:
-                x, y, w ,h = cv2.boundingRect(contour)
-                cv2.rectangle(image, (x,y), (x + w, y + h), (0,255,0), 3)
-                cv2.drawContours(image, contour, -1, (0,255,0), 3)
-                self.xCenter = int(x + w/2)
-                self.yCenter = int(y + h/2)
-                cv2.circle(image, (self.xCenter, self.yCenter), 3, (255,0,255), thickness=-1)
-                cupInImage = True
+        for i in range(len(contours)):
+            area = cv2.contourArea(contours[i])
+            if area > greatestArea:
+                contour = contours[i]
+                greatestArea = area
+
+        if contour != None:
+            x, y, w ,h = cv2.boundingRect(contour)
+            cv2.rectangle(image, (x,y), (x + w, y + h), (0,255,0), 3)
+            cv2.drawContours(image, contour, -1, (0,255,0), 3)
+            self.xCenter = int(x + w/2)
+            self.yCenter = int(y + h/2)
+            cv2.circle(image, (self.xCenter, self.yCenter), 3, (255,0,255), thickness=-1)
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            cv2.putText(image,f"{self.height-self.yCenter}",(self.xCenter-20, self.middleY), font, 0.7,(200,0,200),1)
+            cupInImage = True
         
         if not self.isHeadless:
             cv2.imshow('Cup', image)
