@@ -94,7 +94,7 @@ class LineModule:
         except:
             print('Could not find line')
             
-
+        repackedImg = self.drawSpeed(repackedImg)
         self.viewImage(repackedImg)
 
         atCross = self.robot.crossConfirmed()
@@ -131,6 +131,23 @@ class LineModule:
     def viewImage(self, image):
         if not self.isHeadless:
             cv2.imshow('Image', image)
+
+    def drawSpeed(self, image):
+        lSpeed, rSpeed = self.robot.motor.getSpeed()
+        h, w = image.shape[:2]
+        lx = 10
+        rx = w-10
+        y1 = int(h/2)
+        ly2 = int((lSpeed/100)*(h/2-10) + h/2)
+        ry2 = int((rSpeed/100)*(h/2-10) + h/2) 
+
+        cv2.line(image, (lx,y1), (lx,ly2), (255,0,0), 3)
+        cv2.line(image, (rx,y1), (rx,ry2), (255,0,0), 3)
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        cv2.putText(image,f"{lSpeed}",(lx+7,ly2), font, 0.7,(255,0,0),1)
+        cv2.putText(image,f"{rSpeed}",(rx-15,ry2), font, 0.7,(255,0,0),1)
+
+        return image
 
     def quit(self):
         cv2.destroyAllWindows()

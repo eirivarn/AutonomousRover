@@ -89,7 +89,7 @@ class Task1(Task):
             self.motorControl.stop()
             self.subTask = 4
             return
-        self.motorControl.goToCup(cupPos)
+        self.motorControl.goToPos(cupPos)
 
     def subTask4(self):
         #self.servo.close()

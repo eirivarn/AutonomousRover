@@ -51,12 +51,15 @@ class MotorControl:
         elif pos in range(-self.const.posDistBuffer, self.const.posDistBuffer):
             self.stop()
     
+    '''
     def goToCup(self, cupPos):
         if cupPos in range(-self.const.cupPosBuffer, self.const.cupPosBuffer):
             self.curve(cupPos*self.kp, self.speed)
         else:
-            self.turnToPos(cupPos)
+            self.turnToPos(cupPos)'''
 
+    def goToPos(self, pos, speed):
+        self.followLine(None, 0, pos, speed, False) ##TODO mulighet for å finne ut om vi har mistet linja her?? trengs sannsynlig vis ikke
 
     def forward(self, speed):
         self.leftMotor.forward(speed)
@@ -118,7 +121,7 @@ class MotorControl:
 
        
     def getSpeed(self):
-        return self.leftMotor.getSpeed()
+        return self.leftMotor.getSpeed(), self.rightMotor.getSpeed()
 
     def printSpeeds(self):
         print(self.leftMotor.getSpeed(), self.rightMotor.getSpeed())
