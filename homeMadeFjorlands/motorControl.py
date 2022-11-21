@@ -85,13 +85,13 @@ class MotorControl:
  
  
     def rotateRight(self, speed):
-        print("Turn right")
+        print("Rotate right")
         self.rightMotor.backward(speed)
         self.leftMotor.forward(speed)
        
        
     def rotateLeft(self, speed):
-        print("Turn left")
+        print("Rotate left")
         self.rightMotor.forward(speed)
         self.leftMotor.backward(speed)
 
