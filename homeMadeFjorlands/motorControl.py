@@ -45,9 +45,9 @@ class MotorControl:
         if pos in range(-150, 150):
             speed = int(speed* 0.7)
         if pos > 0:
-            self.turnRight(speed)
+            self.rotateRight(speed)
         elif pos < 0:
-            self.turnLeft(speed)
+            self.rotateLeft(speed)
         elif pos in range(-self.const.posDistBuffer, self.const.posDistBuffer):
             self.stop()
     
