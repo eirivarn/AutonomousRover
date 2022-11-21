@@ -32,16 +32,16 @@ class Task1(Task):
             self.subTask5(image)
             
         elif self.subTask == 6: #turn right for 2 sek TODO adjust this variable
-            self.subTask6()
+            self.subTask6(image)
             
         elif self.subTask == 7:  #keep turning to the sideline
             self.subTask7(image)
             
         elif self.subTask == 8: #drop cup
-            self.subTask8()
+            self.subTask8(image)
             
         elif self.subTask == 9: #turn left for 2 sek TODO adjust this variable
-            self.subTask9()
+            self.subTask9(image)
         
         elif self.subTask == 10: # keep turning to main line
             self.subTask10(image)
@@ -146,5 +146,4 @@ class Task1(Task):
             self.subTask = 11 
         self.motorControl.rotateLeft(self.speed)
 
-    def subTask11(self,image):
-        return
+    
