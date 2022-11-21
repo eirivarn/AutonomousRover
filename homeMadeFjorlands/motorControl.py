@@ -1,6 +1,6 @@
 from DCmotor import DCmotor
 import numpy as np
-from servo import servo
+#from servo import servo
 from time import sleep
  
 class MotorControl:
