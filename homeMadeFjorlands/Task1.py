@@ -102,7 +102,7 @@ class Task1(Task):
         line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
         if lostLine == True: 
             self.motorControl.rotateLeft(self.speed+15)
-        elif lateralOffset > -self.const.resolution[0]+10:
+        elif lateralOffset < -self.const.resolution[0]+10:
             self.subTask = 6
             return
         self.motorControl.rotateLeft(self.speed+15)
