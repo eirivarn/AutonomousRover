@@ -118,14 +118,15 @@ class LineModule:
         upper = np.array([up, up, up], dtype = "uint8")
         mask = cv2.inRange(image, lower, upper)
         contours, _ = cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-        contour = max(contours, key=cv2.contourArea)
-        x,y,w,h = cv2.boundingRect(contour)
-        xPos = int(x+w/2)
-        yPos = y
-        cv2.circle(image, (xPos, yPos), 3, (0,0,255), -1)
-        self.viewImage(image)
-        if xPos and yPos != 999:
-            endOfLineInImage = True
+        if len(contours) != 0:
+            contour = max(contours, key=cv2.contourArea)
+            x,y,w,h = cv2.boundingRect(contour)
+            xPos = int(x+w/2)
+            yPos = y
+            cv2.circle(image, (xPos, yPos), 3, (0,0,255), -1)
+            self.viewImage(image)
+            if xPos and yPos != 999:
+                endOfLineInImage = True
         return xPos, yPos, endOfLineInImage
 
     def endOfLineIsClose(self, yPos):
