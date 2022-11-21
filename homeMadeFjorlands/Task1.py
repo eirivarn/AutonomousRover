@@ -101,9 +101,9 @@ class Task1(Task):
     def subTask5(self,image): #Roterer til den har "passert" hovedveien
         line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
         if lostLine == True: 
-            self.motorControl.rotateLeft(self.speed)
+            self.motorControl.rotateLeft(self.speed+15)
         if lateralOffset > -self.const.resolution[0]:
-            self.motorControl.rotateLeft(self.speed)
+            self.motorControl.rotateLeft(self.speed+15)
         self.subTask = 6
 
     def subTask6(self, image):
