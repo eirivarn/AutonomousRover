@@ -40,11 +40,14 @@ class CupModule:
         contour = None
         greatestArea = 0
         cupInImage = False
+        '''
         for i in range(len(contours)):
             area = cv2.contourArea(contours[i])
             if area > greatestArea:
                 contour = contours[i]
-                greatestArea = area
+                greatestArea = area'''
+
+        contour = max(contours, key=cv2.contourArea)
 
         if len(contour) != 0:
             x, y, w ,h = cv2.boundingRect(contour)
