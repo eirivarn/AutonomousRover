@@ -44,10 +44,9 @@ class CupModule:
             if area > greatestArea:
                 contour = contours[i]
                 greatestArea = area'''
-
-        contour = max(contours, key=cv2.contourArea)
-
+                
         if len(contour) != 0:
+            contour = max(contours, key=cv2.contourArea)
             x, y, w ,h = cv2.boundingRect(contour)
             cv2.rectangle(image, (x,y), (x + w, y + h), (0,255,0), 3)
             cv2.drawContours(image, contour, -1, (0,255,0), 3)
