@@ -152,12 +152,12 @@ class LineModule:
             else:
                 rColor = (0,0,255)
 
-            cv2.line(image, (lx,y1), (lx,ly2), lColor, 3)
-            cv2.line(image, (rx,y1), (rx,ry2), rColor, 3)
+            cv2.line(image, (lx,y1), (lx,ly2), lColor, 5)
+            cv2.line(image, (rx,y1), (rx,ry2), rColor, 5)
             font = cv2.FONT_HERSHEY_SIMPLEX
             
-            cv2.putText(image,f"{int(lSpeed)}",(lx+7,ly2), font, 0.7,lColor,1)
-            cv2.putText(image,f"{int(rSpeed)}",(rx-30,ry2), font, 0.7,rColor,1)
+            cv2.putText(image,f"{int(lSpeed)}",(lx+7,ly2), font, 0.7,lColor,2)
+            cv2.putText(image,f"{int(rSpeed)}",(rx-30,ry2), font, 0.7,rColor,2)
 
         finally:
             return image
