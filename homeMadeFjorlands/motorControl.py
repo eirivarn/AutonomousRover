@@ -59,7 +59,8 @@ class MotorControl:
             self.turnToPos(cupPos)'''
 
     def goToPos(self, pos, speed):
-        self.followLine(None, 0, pos, speed, False) ##TODO mulighet for å finne ut om vi har mistet linja her?? trengs sannsynlig vis ikke
+        if type(pos) == None:
+            self.followLine(None, 0, pos, speed, False) ##TODO mulighet for å finne ut om vi har mistet linja her?? trengs sannsynlig vis ikke
 
     def forward(self, speed):
         self.leftMotor.forward(speed)
