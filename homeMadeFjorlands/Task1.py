@@ -112,7 +112,7 @@ class Task1(Task):
         self.subTask = 7
 
     def subTask7(self,image):
-        line, crossFound = self.lineModule.analyzeImage(image)
+        line, atCross, angle, lateralOffset, lostLine = self.lineModule.analyzeImage(image)
         if line == []:
             self.motorControl.rotateRight()
         else:
