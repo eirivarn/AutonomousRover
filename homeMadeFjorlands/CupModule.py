@@ -44,18 +44,20 @@ class CupModule:
             if area > greatestArea:
                 contour = contours[i]
                 greatestArea = area'''
+
+        if len(contours) != 0:
+            contour = max(contours, key=cv2.contourArea)    
+            if len(contour) != 0:
                 
-        if len(contour) != 0:
-            contour = max(contours, key=cv2.contourArea)
-            x, y, w ,h = cv2.boundingRect(contour)
-            cv2.rectangle(image, (x,y), (x + w, y + h), (0,255,0), 3)
-            cv2.drawContours(image, contour, -1, (0,255,0), 3)
-            self.xCenter = int(x + w/2)
-            self.yCenter = int(y + h/2)
-            cv2.circle(image, (self.xCenter, self.yCenter), 3, (255,0,255), thickness=-1)
-            font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(image,f"{self.height-self.yCenter}",(self.xCenter-20, self.yCenter), font, 0.7,(200,0,200),1)
-            cupInImage = True
+                x, y, w ,h = cv2.boundingRect(contour)
+                cv2.rectangle(image, (x,y), (x + w, y + h), (0,255,0), 3)
+                cv2.drawContours(image, contour, -1, (0,255,0), 3)
+                self.xCenter = int(x + w/2)
+                self.yCenter = int(y + h/2)
+                cv2.circle(image, (self.xCenter, self.yCenter), 3, (255,0,255), thickness=-1)
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                cv2.putText(image,f"{self.height-self.yCenter}",(self.xCenter-20, self.yCenter), font, 0.7,(200,0,200),1)
+                cupInImage = True
         
         if not self.isHeadless:
             cv2.imshow('Cup', image)
