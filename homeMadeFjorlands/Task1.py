@@ -107,8 +107,8 @@ class Task1(Task):
         self.subTask = 6
 
     def subTask6(self, image):
-        line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
-        xPos, yPos, endOfLineInImage = self.lineModule.endOfLineInImage()
+        #line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
+        xPos, yPos, endOfLineInImage = self.lineModule.getEndOfLinePos(image)
         if not endOfLineInImage:
             self.motorControl.rotateLeft(self.speed)
         if xPos in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
@@ -117,9 +117,9 @@ class Task1(Task):
 
 
     def subTask7(self, image):
-        line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
-        xPos, yPos, endOfLineInImage = self.lineModule.endOfLineInImage()
-        if self.lineModule.endOfLineInImage(yPos):
+        #line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
+        xPos, yPos, endOfLineInImage = self.lineModule.getEndOfLinePos(image)
+        if self.lineModule.endOfLineIsClose(yPos):
             self.motorControl.forward(self.speed)
             sleep(0.5)
             self.motorControl.stop()
