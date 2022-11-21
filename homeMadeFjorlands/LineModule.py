@@ -111,7 +111,7 @@ class LineModule:
         return f_y
 
     def getEndOfLinePos(self, image):
-        xPos, yPos = None, None
+        xPos, yPos = 999, 999
         endOfLineInImage = False
         up = 100
         lower = np.array([0, 0, 0], dtype = "uint8")
@@ -124,7 +124,7 @@ class LineModule:
         yPos = y
         cv2.circle(image, (xPos, yPos), 3, (0,0,255), -1)
         self.viewImage(image)
-        if xPos and yPos != None:
+        if xPos and yPos != 999:
             endOfLineInImage = True
         return xPos, yPos, endOfLineInImage
 
