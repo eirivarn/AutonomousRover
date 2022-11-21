@@ -35,12 +35,6 @@ class LineModule:
                     self.robot.updateCrossConf(i) 
             repackedImg = RepackImages(self.images)
 
-        ##/// Making LinReg line ///
-        '''
-        for i in range(len(list)):
-            if list[i] == 0:
-                list[i] = np.average(list)'''
-
         x = []
         y = []
         h, w  = image.shape[:2]
