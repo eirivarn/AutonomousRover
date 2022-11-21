@@ -114,6 +114,16 @@ class LineModule:
         f_y = (y - self.c)/self.m
         return f_y
 
+    def getEndOfLinePos(image):
+        up = 100
+        lower = np.array([0, 0, 0], dtype = "uint8")
+        upper = np.array([up, up, up], dtype = "uint8")
+        mask = cv2.inRange(image, lower, upper)
+        contours, _ = cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+        contour = max(contours, key=cv2.contourArea)
+        x,y,w,h = cv2.boundingRect(contour)
+        return x+w/2, y
+
     def quit(self):
         cv2.destroyAllWindows()
 
