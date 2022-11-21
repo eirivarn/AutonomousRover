@@ -26,7 +26,7 @@ class Const:
         self.crossWidth = 300
         self.cupConfidence = 0.55
         self.cupObjects = ['cup','bowl']
-        self.cupIsClose = 0
+        self.cupIsClose = 55
 
         self.i_line = 2
 
