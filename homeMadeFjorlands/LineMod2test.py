@@ -23,9 +23,7 @@ def startVideoCapture():
         lower = np.array([0, 0, 0], dtype = "uint8")
         upper = np.array([up, up, up], dtype = "uint8")
         mask = cv2.inRange(image, lower, upper)
-        image = cv2.bitwise_and(image, image, mask = mask)
-        image = cv2.bitwise_not(image, image, mask = mask)
-        image = (255-image)
+        
         pixels = 10
 
         w, h  = image.shape[:2]
@@ -37,7 +35,7 @@ def startVideoCapture():
 
         for yi in range(0,h-1,pixels):
             for xi in range(0,w-1,pixels):
-                if (image[yi][xi] == [0,0,0]).all():
+                if (mask[yi][xi] != [0,0,0]).all():
                     #points = np.append(points, (i,j))
                     cv2.circle(image, (xi,yi), radius=3, color=(0, 0, 255), thickness=-1)
                     x = np.append(x ,xi)

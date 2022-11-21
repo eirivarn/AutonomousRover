@@ -37,7 +37,7 @@ class CupModule:
         mask = maskBlue | maskRed1 | maskRed2 # | maskWhite
         
         contours, _ = cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-
+        
         cupInImage = False
         for contour in contours:
             if cv2.contourArea(contour) > 1000:
