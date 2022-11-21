@@ -11,6 +11,7 @@ class LineModule:
         self.N_SLICES = const.n_slices
         self.images = []
         self.const = const
+        self.crossPosition = np.zeros(self.N_SLICES)
 
         self.m = 0
         self.c = 0
@@ -33,6 +34,8 @@ class LineModule:
                 list.append(self.images[i].getOffset())
                 if self.images[i].crossFound():
                     self.robot.updateCrossConf(i) 
+                else: 
+                    self.crossPosition[i] = 1
             repackedImg = RepackImages(self.images)
 
         x = []
@@ -108,6 +111,8 @@ class LineModule:
         return f_y
 
     def getEndOfLinePos(self, image):
+        xPos, yPos = None, None
+        endOfLineInImage = False
         up = 100
         lower = np.array([0, 0, 0], dtype = "uint8")
         upper = np.array([up, up, up], dtype = "uint8")
@@ -119,8 +124,15 @@ class LineModule:
         yPos = y
         cv2.circle(image, (xPos, yPos), 3, (0,0,255), -1)
         self.viewImage(image)
+        if xPos and yPos != None:
+            endOfLineInImage = True
+        return xPos, yPos, endOfLineInImage
 
-        return xPos, yPos
+    def endOfLineIsClose(self, yPos):
+        return yPos > (self.const.resolution[0] - self.const.cupDistBuffer - 10)
+
+    def crossAtPosition(self, position):
+        return self.crossLocation[position]
 
     def viewImage(self, image):
         if not self.isHeadless:

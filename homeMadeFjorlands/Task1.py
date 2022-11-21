@@ -77,7 +77,7 @@ class Task1(Task):
             self.motorControl.rotateLeft(self.const.turnSpeed)
         else:
             self.motorControl.turnToPos(cupPos)
-        if cupPos in range(-self.cupDistBuffer, self.cupDistBuffer):
+        if cupPos in range(-self.const.cupDistBuffer, self.const.cupDistBuffer):
             
             self.subTask = 3
     
@@ -92,51 +92,55 @@ class Task1(Task):
         self.motorControl.goToPos(cupPos)
 
     def subTask4(self):
-        #self.servo.close()
-        #TODO løfte kamera litt mer?
+        self.servo.closeGripper()
         self.subTask = 5 
 
-    def subTask5(self,image): #TODO hardkode denne til å snuy 180 grader? Hva er forskjeld på denn og subtask 7? 
+    def subTask5(self,image): #Roterer til den har "passert" hovedveien
         line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
-        if line == []:
+        if lostLine == True: 
             self.motorControl.rotateLeft()
-        else:
-            pos = line[self.const.i_line]
-            self.motorControl.turnToPos(pos)  
-            if pos in range(-self.lineDistBuffer, self.lineDistBuffer):
-                self.subTask = 6
+        if lateralOffset > -self.const.resolution[0]:
+            self.motorControl.rotateLeft()
+        self.subTask = 6
 
-    def subTask6(self):
-        self.motorControl.rotateRight(self.const.turnSpeed)
-        sleep(2)
-        self.subTask = 7
+    def subTask6(self, image):
+        line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
+        xPos, yPos, endOfLineInImage = self.lineModule.endOfLineInImage()
+        if not endOfLineInImage:
+            self.motorControl.rotateLeft()
+        if xPos in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
+            self.subTask = 7  
+        self.motorControl.turnToPos(xPos)
 
-    def subTask7(self,image):
-        line, atCross, angle, lateralOffset, lostLine = self.lineModule.analyzeImage(image)
-        if line == []:
-            self.motorControl.rotateRight()
-        else:
-            pos = line[self.const.i_line]
-            self.motorControl.turnToPos(pos)  
-            if pos in range(-self.lineDistBuffer, self.lineDistBuffer):
-                self.subTask = 8
 
-    def subTask8(self):
-        self.servo.open()
+    def subTask7(self, image):
+        line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
+        xPos, yPos, endOfLineInImage = self.lineModule.endOfLineInImage()
+        if self.lineModule.endOfLineInImage(yPos):
+            self.motorControl.forward()
+            sleep(0.5)
+            self.motorControl.stop()
+            self.subTask = 8
+        self.motorControl.goToPos(xPos)
+
+    def subTask8(self, image):
+        self.servo.openGripper()
         self.subTask = 9
+            
+    def subTask9(self, image):
+        line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
+        if self.lineModule.crossAtPosition(self.const.n_slices-1):
+            self.motorControl.stop()
+            self.subTask = 9
+        self.motorControl.backward()
 
-
-    def subTask9(self):
-        self.motorControl.rotateLeft() 
-        sleep(2)
-        self.subTask = 10
-
-    def subTask10(self,image):
-        line, crossFound = self.lineModule.analyzeImage(image)
-        if line == []:
+    def subTask10(self, image):
+        line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
+        if lostLine:
             self.motorControl.rotateLeft()
-        else:
-            pos = line[self.const.i_line]
-            self.motorControl.turnToPos(pos)
-            if pos in range(-self.lineDistBuffer, self.lineDistBuffer):
-                self.subTask = 11
+        if lateralOffset in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
+            self.subTask = 11 
+        self.motorControl.rotateLeft()
+
+    def subTask11(self,image):
+        return
