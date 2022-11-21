@@ -156,8 +156,8 @@ class LineModule:
             cv2.line(image, (rx,y1), (rx,ry2), rColor, 3)
             font = cv2.FONT_HERSHEY_SIMPLEX
             
-            cv2.putText(image,f"{lSpeed}",(lx+7,ly2), font, 0.7,lColor,1)
-            cv2.putText(image,f"{rSpeed}",(rx-15,ry2), font, 0.7,rColor,1)
+            cv2.putText(image,f"{int(lSpeed)}",(lx+7,ly2), font, 0.7,lColor,1)
+            cv2.putText(image,f"{int(rSpeed)}",(rx-30,ry2), font, 0.7,rColor,1)
 
         finally:
             return image
