@@ -1,4 +1,4 @@
-from servo import servo
+from servo import Servo
 class Task:
     def __init__(self, motorContorl, lineModule, cupModule, const):
         self.const = const
