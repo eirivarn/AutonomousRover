@@ -113,7 +113,7 @@ class LineModule:
     def getEndOfLinePos(self, image):
         xPos, yPos = 999, 999
         endOfLineInImage = False
-        up = 100
+        up = 50
         lower = np.array([0, 0, 0], dtype = "uint8")
         upper = np.array([up, up, up], dtype = "uint8")
         mask = cv2.inRange(image, lower, upper)
