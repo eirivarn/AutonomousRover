@@ -73,6 +73,7 @@ class Task1(Task):
             print("Task 2, localize cup")
             self.subtasks[1] = True
         self.cameraServo.up()
+        self.gripperServo.closeGripper()
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
         if not cupInImage:
             self.motorControl.rotateLeft(self.const.turnSpeed)
@@ -93,7 +94,7 @@ class Task1(Task):
         self.motorControl.goToPos(cupPos, self.speed)
 
     def subTask4(self):
-        self.servo.closeGripper()
+        self.gripperServo.closeGripper()
         self.subTask = 5 
 
     def subTask5(self,image): #Roterer til den har "passert" hovedveien
