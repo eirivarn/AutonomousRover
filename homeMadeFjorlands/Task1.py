@@ -90,7 +90,7 @@ class Task1(Task):
             self.motorControl.stop()
             self.subTask = 4
             return
-        self.motorControl.goToPos(cupPos)
+        self.motorControl.goToPos(cupPos, self.speed)
 
     def subTask4(self):
         self.servo.closeGripper()
@@ -122,7 +122,7 @@ class Task1(Task):
             sleep(0.5)
             self.motorControl.stop()
             self.subTask = 8
-        self.motorControl.goToPos(xPos)
+        self.motorControl.goToPos(xPos, self.speed)
 
     def subTask8(self, image):
         self.gripperServo.openGripper()
