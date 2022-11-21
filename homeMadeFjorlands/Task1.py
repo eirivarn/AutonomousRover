@@ -55,6 +55,7 @@ class Task1(Task):
 
 
     def subTask1(self,image):
+        self.cameraServo.down()
         if self.subtasks[0] == False:
             self.subtasks[0] = True
             print("Following line to cross")
