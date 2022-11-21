@@ -66,8 +66,6 @@ class Task1(Task):
         if atCross:
             self.motorControl.stop()
             print("At cross, subtask 1 complete.")
-            sleep(5)
-            #self.subTask2(image)
             self.subTask = 2
 
     def subTask2(self, image):
