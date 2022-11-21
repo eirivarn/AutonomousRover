@@ -100,16 +100,16 @@ class Task1(Task):
     def subTask5(self,image): #Roterer til den har "passert" hovedveien
         line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
         if lostLine == True: 
-            self.motorControl.rotateLeft()
+            self.motorControl.rotateLeft(self.speed)
         if lateralOffset > -self.const.resolution[0]:
-            self.motorControl.rotateLeft()
+            self.motorControl.rotateLeft(self.speed)
         self.subTask = 6
 
     def subTask6(self, image):
         line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
         xPos, yPos, endOfLineInImage = self.lineModule.endOfLineInImage()
         if not endOfLineInImage:
-            self.motorControl.rotateLeft()
+            self.motorControl.rotateLeft(self.speed)
         if xPos in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
             self.subTask = 7  
         self.motorControl.turnToPos(xPos)
@@ -119,7 +119,7 @@ class Task1(Task):
         line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
         xPos, yPos, endOfLineInImage = self.lineModule.endOfLineInImage()
         if self.lineModule.endOfLineInImage(yPos):
-            self.motorControl.forward()
+            self.motorControl.forward(self.speed)
             sleep(0.5)
             self.motorControl.stop()
             self.subTask = 8
@@ -135,15 +135,15 @@ class Task1(Task):
         if self.lineModule.crossAtPosition(self.const.n_slices-1):
             self.motorControl.stop()
             self.subTask = 9
-        self.motorControl.backward()
+        self.motorControl.backward(self.speed)
 
     def subTask10(self, image):
         line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
         if lostLine:
-            self.motorControl.rotateLeft()
+            self.motorControl.rotateLeft(self.speed)
         if lateralOffset in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
             self.subTask = 11 
-        self.motorControl.rotateLeft()
+        self.motorControl.rotateLeft(self.speed)
 
     def subTask11(self,image):
         return
