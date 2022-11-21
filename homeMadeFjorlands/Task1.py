@@ -55,6 +55,7 @@ class Task1(Task):
 
 
     def subTask1(self,image):
+        self.cameraServo.down()
         if self.subtasks[0] == False:
             self.subtasks[0] = True
             print("Following line to cross")
@@ -71,7 +72,7 @@ class Task1(Task):
         if self.subtasks[1] == False:
             print("Task 2, localize cup")
             self.subtasks[1] = True
-        
+        self.cameraServo.up()
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
         if not cupInImage:
             self.motorControl.rotateLeft(self.const.turnSpeed)
@@ -124,7 +125,8 @@ class Task1(Task):
         self.motorControl.goToPos(xPos)
 
     def subTask8(self, image):
-        self.servo.openGripper()
+        self.gripperServo.openGripper()
+        self.cameraServo.down()
         self.subTask = 9
             
     def subTask9(self, image):

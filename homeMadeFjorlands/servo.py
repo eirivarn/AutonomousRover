@@ -2,7 +2,7 @@ from gpiozero import AngularServo
 from gpiozero.pins.pigpio import PiGPIOFactory
 from const import Const
  
-class servo:
+class Servo:
     def __init__(self, port):
         self.const = Const()
         factory = PiGPIOFactory()

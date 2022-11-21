@@ -5,7 +5,8 @@ class Task:
         self.motorControl = motorContorl
         self.lineModule = lineModule
         self.cupModule = cupModule
-        #self.cameraServo = servo()
+        self.cameraServo = Servo(12)
+        self.gripperServo = Servo(13)
         self.image = None
         self.subTask = 1 
         self.completed = False
