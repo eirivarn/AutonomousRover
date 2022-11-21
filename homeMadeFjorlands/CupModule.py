@@ -54,7 +54,7 @@ class CupModule:
             self.yCenter = int(y + h/2)
             cv2.circle(image, (self.xCenter, self.yCenter), 3, (255,0,255), thickness=-1)
             font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(image,f"{self.height-self.yCenter}",(self.xCenter-20, self.middleY), font, 0.7,(200,0,200),1)
+            cv2.putText(image,f"{self.height-self.yCenter}",(self.xCenter-20, self.yCenter), font, 0.7,(200,0,200),1)
             cupInImage = True
         
         if not self.isHeadless:
