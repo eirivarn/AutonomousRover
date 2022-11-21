@@ -139,8 +139,8 @@ class LineModule:
             lx = 10
             rx = w-10
             y1 = int(h/2)
-            ly2 = int((lSpeed/100)*(h/2-10) + h/2)
-            ry2 = int((rSpeed/100)*(h/2-10) + h/2) 
+            ly2 = -int((lSpeed/100)*(h/2-10) + h/2)
+            ry2 = -int((rSpeed/100)*(h/2-10) + h/2) 
 
             if lSpeed>0:
                 lColor = (0,255,0)
