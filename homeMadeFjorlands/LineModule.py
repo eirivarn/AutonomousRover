@@ -142,12 +142,23 @@ class LineModule:
             ly2 = int((lSpeed/100)*(h/2-10) + h/2)
             ry2 = int((rSpeed/100)*(h/2-10) + h/2) 
 
-            cv2.line(image, (lx,y1), (lx,ly2), (255,0,0), 3)
-            cv2.line(image, (rx,y1), (rx,ry2), (255,0,0), 3)
+            if lSpeed>0:
+                lColor = (0,255,0)
+            else:
+                lColor = (0,0,255)
+
+            if rSpeed>0:
+                rColor = (0,255,0)
+            else:
+                rColor = (0,0,255)
+
+            cv2.line(image, (lx,y1), (lx,ly2), lColor, 3)
+            cv2.line(image, (rx,y1), (rx,ry2), rColor, 3)
             font = cv2.FONT_HERSHEY_SIMPLEX
-            cv2.putText(image,f"{lSpeed}",(lx+7,ly2), font, 0.7,(255,0,0),1)
-            cv2.putText(image,f"{rSpeed}",(rx-15,ry2), font, 0.7,(255,0,0),1)
             
+            cv2.putText(image,f"{lSpeed}",(lx+7,ly2), font, 0.7,lColor,1)
+            cv2.putText(image,f"{rSpeed}",(rx-15,ry2), font, 0.7,rColor,1)
+
         finally:
             return image
 
