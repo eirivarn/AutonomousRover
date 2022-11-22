@@ -72,7 +72,7 @@ class DCmotor:
     def initMotor(self, speed):
         dir = 1 if speed >=0 else 0
 
-        thread = threading.Thread(target=self.boozt, args=dir)
+        thread = threading.Thread(target=self.boozt, args=[dir])
         thread.start()
     
 
