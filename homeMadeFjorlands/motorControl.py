@@ -36,7 +36,8 @@ class MotorControl:
             np.delete(self.sumOfErrors, 0) 
             sumOfErrors = np.sum(self.sumOfErrors)
             self.sumOfErrors = np.append(self.sumOfErrors, self.error)
-            self.error = self.kp * offset + self.kd * angle + self.ki*sumOfErrors
+            self.error = self.kp * offset + self.kd * angle 
+            speed = speed + self.ki*sumOfErrors
             self.curve(self.error, speed)
             self.prevAngle, self.prevOffset = angle, offset
 
