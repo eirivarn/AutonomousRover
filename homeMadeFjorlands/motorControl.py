@@ -61,7 +61,7 @@ class MotorControl:
 
     def goToPos(self, pos, speed):
         if type(pos) == None:
-            self.followLine(None, 0, pos, speed, False) ##TODO mulighet for å finne ut om vi har mistet linja her?? trengs sannsynlig vis ikke
+            self.followLine(None, 0, -pos, speed, False) ##TODO mulighet for å finne ut om vi har mistet linja her?? trengs sannsynlig vis ikke
 
     def forward(self, speed):
         self.leftMotor.forward(speed)
