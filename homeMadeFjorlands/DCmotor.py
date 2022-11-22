@@ -26,7 +26,7 @@ class DCmotor:
         if not self.sleeping:
             if speed >= 0:
                 if abs(speed-self.speed) < self.const.minSpeed4init and abs(speed)>abs(self.speed):
-                    self.initMotor()
+                    self.initMotor(speed)
                 else:
                     GPIO.output(self.directionPin, 1)
                     self.speed_pwm.ChangeDutyCycle(speed)
@@ -44,7 +44,7 @@ class DCmotor:
         if not self.sleeping:
             if speed >= 0:
                 if abs(speed-self.speed) < self.const.minSpeed4init and abs(speed)>abs(self.speed):
-                    self.initMotor()
+                    self.initMotor(speed)
                 else:
                     GPIO.output(self.directionPin, 0)
                     self.speed_pwm.ChangeDutyCycle(speed)
