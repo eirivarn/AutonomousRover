@@ -5,7 +5,7 @@ class Const:
         self.isHeadless = False
 
         self.speed = 16
-        self.turnSpeed = 45
+        self.turnSpeed = 29
         self.cupDistBuffer = 40
         self.cupPosBuffer = 70
         self.lineDistBuffer = 2
@@ -17,9 +17,9 @@ class Const:
         self.rSpeedPin = 13
         self.rDirPin = 15
 
-        self.kp = 0.13
-        self.kd = 0.47
-        self.ki = 0.0005
+        self.kp = 0.07
+        self.kd = 0.06
+        self.ki = 0.00005
 
         self.n_slices = 6
         self.threshGrey = 65
@@ -29,6 +29,7 @@ class Const:
         self.cupIsClose = 55
 
         self.i_line = 2
+        self.lineArea = 700
 
         self.resolution = (640, 380)
         self.offsetPosition = 0,35 
