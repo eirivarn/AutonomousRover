@@ -96,15 +96,13 @@ class Task1(Task):
 
     def subTask4(self):
         self.gripperServo.closeGripper()
-        self.motorControl.backward(self.speed)
-        sleep(0.4)
         self.subTask = 5 
 
     def subTask5(self,image): #Roterer til den har "passert" hovedveien
         line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
         if lostLine == True: 
             self.motorControl.rotateLeft(self.const.turnSpeed)
-        elif lateralOffset < -250:
+        elif lateralOffset < -215:
             self.motorControl.rotateLeft(self.const.turnSpeed)
             sleep(0.5)
             self.subTask = 6
@@ -115,11 +113,12 @@ class Task1(Task):
     def subTask6(self, image):
         #line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
         xPos, yPos, endOfLineInImage = self.lineModule.getEndOfLinePos(image)
-        if not endOfLineInImage:
-            self.motorControl.rotateLeft(self.speed)
-        if xPos in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
-            self.subTask = 7  
-        self.motorControl.turnToPos(xPos)
+        if endOfLineInImage:
+            if  xPos in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
+                self.subTask = 7  
+            self.motorControl.turnToPos(xPos)
+        self.motorControl.turnRight(-self.speed)
+    
 
 
     def subTask7(self, image):
