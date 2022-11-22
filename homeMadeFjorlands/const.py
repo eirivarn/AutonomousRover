@@ -21,9 +21,9 @@ class Const:
         self.kd = 0.12
         self.ki = 0.00001
 
-        self.n_slices = 6
+        self.n_slices = 5
         self.threshGrey = 65
-        self.crossWidth = 300
+        self.crossWidth = 250
         self.cupConfidence = 0.55
         self.cupObjects = ['cup','bowl']
         self.cupIsClose = 55
