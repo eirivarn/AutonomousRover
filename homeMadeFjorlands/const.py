@@ -4,7 +4,7 @@ class Const:
     def __init__(self):
         self.isHeadless = False
 
-        self.speed = 16
+        self.speed = 15
         self.turnSpeed = 35
         self.cupDistBuffer = 40
         self.cupPosBuffer = 70
@@ -17,13 +17,13 @@ class Const:
         self.rSpeedPin = 13
         self.rDirPin = 15
 
-        self.kp = 0.05
+        self.kp = 0.07
         self.kd = 0.12
-        self.ki = 0.00001
+        self.ki = 0.0005
 
         self.n_slices = 5
         self.threshGrey = 65
-        self.crossWidth = 250
+        self.crossWidth = 300
         self.cupConfidence = 0.55
         self.cupObjects = ['cup','bowl']
         self.cupIsClose = 55
@@ -49,8 +49,8 @@ class Const:
         ## ////////////////////////////
 
         ##/////////// Servo //////////
-        self.open_val = -0.2
-        self.close_val = 0.35
+        self.open_val = 0.11
+        self.close_val = 1
         self.up = 1
         self.down = 0.5
 
