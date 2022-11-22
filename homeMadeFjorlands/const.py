@@ -51,8 +51,8 @@ class Const:
         ##/////////// Servo //////////
         self.open_val = -0.2
         self.close_val = 0.35
-        self.up = -0.25
-        self.down = -0.7
+        self.up = 1
+        self.down = 0.5
 
 
 
