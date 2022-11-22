@@ -96,8 +96,7 @@ class Task1(Task):
 
     def subTask4(self):
         self.gripperServo.closeGripper()
-        self.motorControl.backward(self.speed)
-        sleep(0.4)
+        
         self.subTask = 5 
 
     def subTask5(self,image): #Roterer til den har "passert" hovedveien
