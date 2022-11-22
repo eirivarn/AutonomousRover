@@ -54,5 +54,8 @@ class Const:
         self.up = 1
         self.down = 0.5
 
+        self.initSleep = 0.01
+        self.speedBoozt = 60
+        self.minSpeed4init = 15
 
 

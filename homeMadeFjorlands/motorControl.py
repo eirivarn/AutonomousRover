@@ -16,8 +16,8 @@ class MotorControl:
         self.rSpeedPin = self.const.rSpeedPin
         self.rDirPin = self.const.rDirPin
  
-        self.leftMotor = DCmotor(self.lSpeedPin ,self.lDirPin)
-        self.rightMotor = DCmotor(self.rSpeedPin ,self.rDirPin)
+        self.leftMotor = DCmotor(self.lSpeedPin ,self.lDirPin, const)
+        self.rightMotor = DCmotor(self.rSpeedPin ,self.rDirPin, const)
 
         self.prevAngle, self.prevOffset = 0, 0
 
