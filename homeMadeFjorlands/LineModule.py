@@ -131,7 +131,7 @@ class LineModule:
         return xPos, yPos, endOfLineInImage
 
     def endOfLineIsClose(self, yPos):
-        return yPos > (self.const.resolution[0] - self.const.cupDistBuffer - 10)
+        return yPos > (self.const.resolution[0] - self.const.cupDistBuffer - 20)
 
     def viewImage(self, image):
         if not self.isHeadless:
