@@ -4,7 +4,7 @@ class Const:
     def __init__(self):
         self.isHeadless = False
 
-        self.speed = 14
+        self.speed = 25
         self.turnSpeed = 35
         self.cupDistBuffer = 40
         self.cupPosBuffer = 70
@@ -32,7 +32,7 @@ class Const:
         self.cupIsClose = 100
 
         self.i_line = 2
-        self.lineArea = 700
+        self.lineArea = 900
 
         self.resolution = (640, 380)
         self.offsetPosition = 0,35 
@@ -62,6 +62,6 @@ class Const:
         self.initSleep = 0.08
         self.speedBoozt = 85
         self.minSpeed4init = 1000
-        self.deltaError = 0.2
+        self.deltaError = 0.4
         self.minMotionArea = 2000
         #self.nMotionCount = 4
