@@ -10,6 +10,8 @@ class Task3(Task):
         self.turnSpeed = self.const.turnSpeed
         self.motionError = 1
         self.subTask = 3
+        self.cameraServo.down()
+
 
     def update(self, image, motionError=1):
         self.motionError = motionError
