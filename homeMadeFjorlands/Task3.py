@@ -18,25 +18,25 @@ class Task3(Task):
         if self.subTask == 1: # turn left
             self.subTask1()
         
-        if self.subTask == 2:   #keep tunring left til main line
+        elif self.subTask == 2:   #keep tunring left til main line
             self.subTask2(image)
 
-        if self.subTask == 3:   #follow line to next cross
+        elif self.subTask == 3:   #follow line to next cross
             self.subTask3(image)
 
-        if self.subTask == 4:   #follow line to next cross
+        elif self.subTask == 4:   #follow line to next cross
             self.subTask4(image)
 
-        if self.subTask == 5:   #follow line to next cross
+        elif self.subTask == 5:   #follow line to next cross
             self.subTask5(image)
 
-        if self.subTask == 6:   #follow line to next cross
+        elif self.subTask == 6:   #follow line to next cross
             self.subTask6(image)
 
-        if self.subTask == 7:   #turn left
+        elif self.subTask == 7:   #turn left
             self.subTask8(image)
 
-        if self.subTask == 8:    #task 2 complete
+        elif self.subTask == 8:    #task 2 complete
             super.setActiveTask(4)
 
         else:
