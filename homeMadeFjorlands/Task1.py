@@ -126,11 +126,13 @@ class Task1(Task):
             sleep(self.const.quartRotationTime)
             self.motorControl.rotateRight(self.const.quartRotationSpeed)
             sleep(self.const.quartRotationTime)
+            self.motorControl.stop()
         if self.cupSide == "right":
             self.motorControl.rotateLeft(self.const.quartRotationSpeed)
             sleep(self.const.quartRotationTime)
             self.motorControl.rotateLeft(self.const.quartRotationSpeed)
             sleep(self.const.quartRotationTime)
+            self.motorControl.stop()
         self.subtasks = 6
 
 
