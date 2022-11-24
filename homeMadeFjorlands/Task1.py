@@ -80,12 +80,14 @@ class Task1(Task):
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
         if self.turnCounter == 0:
             self.motorControl.rotateLeft(self.const.quartRotationSpeed)
+            self.turnCounter += 1 
             sleep(self.const.quartRotationTime)
             if cupInImage:
                 self.cupSide = "left"
                 self.subTask = 3
         if 0 < self.turnCounter < 3:
              self.motorControl.rotateRight(self.const.quartRotationSpeed)
+             self.turnCounter += 1 
              sleep(self.const.quartRotationTime)
         else: 
             self.subTask = 3
