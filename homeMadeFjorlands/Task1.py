@@ -9,6 +9,7 @@ class Task1(Task):
         self.speed = self.const.speed
         self.cupDistBuffer = self.const.cupDistBuffer
         self.lineDistBuffer = self.const.lineDistBuffer
+        self.cupSide = ""
 
         self.subtasks = [False, False, False, False, False, False, False, False, False, False]   
 
@@ -76,6 +77,9 @@ class Task1(Task):
             self.subtasks[1] = True
         self.cameraServo.up()
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
+        
+
+
         if not cupInImage:
             self.motorControl.rotateLeft(self.const.turnSpeed)
         else:

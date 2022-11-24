@@ -120,6 +120,21 @@ class MotorControl:
         else:
             self.rotateRight(self.const.turnSpeed)
 
+    def rotate180(self, dir):
+        if dir == "left":
+            self.leftMotor.rotateLeft(self.const.turnSpeed)
+            sleep(1.5)
+        if dir == "right":
+            self.leftMotor.rotateRight(self.const.turnSpeed)
+            sleep(1.5)
+
+    def rotate180(self, dir):
+        if dir == "left":
+            self.leftMotor.rotateLeft(self.const.turnSpeed)
+            sleep(3)
+        if dir == "right":
+            self.leftMotor.rotateRight(self.const.turnSpeed)
+            sleep(3)   
 
        
     def getSpeed(self):
