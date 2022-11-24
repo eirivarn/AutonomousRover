@@ -14,6 +14,7 @@ class Task3(Task):
 
     def update(self, image, motionError=1):
         self.motionError = motionError
+        print(self.subTask)
         if self.subTask == 1: # turn left
             self.subTask1()
         
@@ -35,7 +36,7 @@ class Task3(Task):
         if self.subTask == 7:   #turn left
             self.subTask8(image)
 
-        if self.subTask == 7:    #task 2 complete
+        if self.subTask == 8:    #task 2 complete
             super.setActiveTask(4)
 
         else:
