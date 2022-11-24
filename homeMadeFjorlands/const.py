@@ -59,5 +59,5 @@ class Const:
         self.initSleep = 0.08
         self.speedBoozt = 85
         self.minSpeed4init = 1000
-        self.deltaError = 0.5
+        self.deltaError = 0.05
         self.minMotionArea = 2000
