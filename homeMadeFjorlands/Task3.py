@@ -7,6 +7,7 @@ class Task3(Task):
         super().__init__(motorContorl, lineModule, cupModule, const)
         self.speedHill = self.const.speedTask3Hill  #sett en safe og trygg speed gjennom hinderløpa
         self.speedObsticals = self.const.speedObsticals
+        self.turnSpeed = self.const.turnSpeed
         self.motionError = 1
         self.subTask = 1
 
@@ -41,7 +42,7 @@ class Task3(Task):
 
 
     def subTask1(self):
-        self.motorControl.rotateLeft(self.speed, self.motionError)  #TODO funker egentlig dett??? trengs det? eventuelt legg inn 90 deg sving
+        self.motorControl.rotateLeft(self.turnSpeed, self.motionError)  #TODO funker egentlig dett??? trengs det? eventuelt legg inn 90 deg sving
         sleep(0.4)
         self.subTask = 2
 
