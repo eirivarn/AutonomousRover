@@ -43,8 +43,8 @@ class Task3(Task):
 
     def subTask1(self):
         self.cameraServo.down()
-        self.motorControl.rotateLeft(self.turnSpeed, self.motionError)  #TODO funker egentlig dett??? trengs det? eventuelt legg inn 90 deg sving
-        sleep(0.25)
+        self.motorControl.rotateLeft(self.const.quartRotationSpeed, self.motionError)
+        sleep(self.const.quartRotationTime)  #TODO funker egentlig dett??? trengs det? eventuelt legg inn 90 deg sving
         self.subTask = 2
 
     def subTask2(self,image):
