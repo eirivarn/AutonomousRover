@@ -134,7 +134,7 @@ class Task1(Task):
             self.motorControl.rotateLeft(self.const.quartRotationSpeed)
             sleep(self.const.quartRotationTime)
             self.motorControl.stop()
-        self.subTasks = 6
+        self.subTask = 6
 
 
     def subTask6(self, image):
