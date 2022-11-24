@@ -115,6 +115,17 @@ class LineModule:
             angle = self.preProcessAngle(angle,wc,hc)
             offset = int(320-xb-wb/2)
 
+            cv2.rectangle(image,(xb,yb),(xb+wb,yb+hb),(0,255,0),2) #Bounding box
+            cv2.line(image, (int(xb+wb/2), yb), (int(xb+wb/2), yb+hb),(0,255,0), 2) #bounding box centerline
+            cv2.line(image,(int(xb+wb/2), int(yb+hb/2)), (320, int(yb+hb/2)),(0,0,255), 1)# distance line
+            cv2.line(image, (320, 10), (320, 350),(0,0,255), 1)#center line
+            cv2.drawContours(image, [np.int0(cv2.boxPoints(contourbox))],0,(255,0,0), 2)#draw contourBox
+            cv2.putText(image, f"{str(int(angle))}deg", (360,300),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#text>
+            cv2.putText(image, str(offset)+"dist", (360,330),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#te>
+            cv2.drawContours(image, blackContours,-1,(0,0,255),1)#draws all black contour lines
+            self.viewImage(image)
+
+
 
         return list, atCross, angle, offset, lostLine
 
