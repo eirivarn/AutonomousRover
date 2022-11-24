@@ -111,6 +111,7 @@ class Task1(Task):
         print("CupIsClose: " ,cupIsClose)
         print("cupPos: " ,cupPos)
         if cupIsClose:
+            self.motorControl.stop()
             self.subTask = 4
             return
         self.motorControl.goToPos(cupPos, self.speed, self.motionError)
