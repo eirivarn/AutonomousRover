@@ -11,7 +11,7 @@ class Const:
         self.lineDistBuffer = 60
         self.posDistBuffer = 60
         self.quartRotationTime= 0.165
-        self.quartRotationSpeed= 100
+        self.quartRotationSpeed= 50
 
         self.need4speed = 70  #tør me å vinna??
         self.speedTask3Hill = 30
