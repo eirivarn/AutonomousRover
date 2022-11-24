@@ -61,3 +61,4 @@ class Const:
         self.minSpeed4init = 1000
         self.deltaError = 0.2
         self.minMotionArea = 2000
+        #self.nMotionCount = 4

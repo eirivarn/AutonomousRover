@@ -90,14 +90,14 @@ class MotorControl:
         self.rightMotor.forward(speed * motionError)
         self.leftMotor.backward(speed * motionError)
 
-    def turnRight(self, speed):
+    def turnRight(self, speed, motionError=1):
         print("Turn right")
         self.rightMotor.backward(0)
-        self.leftMotor.forward(speed)
+        self.leftMotor.forward(speed * motionError)
 
-    def turnLeft(self, speed):
+    def turnLeft(self, speed, motionError = 1):
         print("Turn left")
-        self.rightMotor.forward(speed)
+        self.rightMotor.forward(speed * motionError)
         self.leftMotor.backward(0)
  
     def curve(self, curveRate, speed):

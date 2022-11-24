@@ -20,7 +20,7 @@ class Robot():
         self.const.isHeadless = headless
         self.motor = MotorControl(self.const)
         self.lineModule = LineModule(headless, self, self.const)
-        self.cupModule = CupModule(headless, self.const)
+        self.cupModule = CupModule(headless, self.const, self)
         self.camera = CaptureImage(self.const)
         self.motionDetection = MotionDetection(self.const)
         sleep(2)

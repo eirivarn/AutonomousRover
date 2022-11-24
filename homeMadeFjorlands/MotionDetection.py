@@ -10,6 +10,7 @@ class MotionDetection:
         self.error = 1
         self.motionDetected = False
         self.lastFreame = None
+        #self.motionCount = np.zeros(self.const.nMotionCount)
 
     def detectMotion(self, image):
     
@@ -25,19 +26,17 @@ class MotionDetection:
 
 
         frame_delta = cv2.absdiff(self.lastFreame, greyscale_image) 
-        # edit the ** thresh ** depending on the light/dark in room, change the 100(anything pixel value over 100 will become 255(white))
         thresh = cv2.threshold(frame_delta, 40, 255, cv2.THRESH_BINARY)[1]
-        # threshold gives two outputs retval,threshold image. using [1] on the end i am selecting the threshold image that is produced
         dilate_image = cv2.dilate(thresh, None, iterations=2)
         contours, _ = cv2.findContours(dilate_image.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
         self.motionDetected = False
         if len(contours) != 0:
             for c in contours:
-                if cv2.contourArea(c) > self.const.minMotionArea: # if contour area is less then 800 non-zero(not-black) pixels(white)
+                if cv2.contourArea(c) > self.const.minMotionArea: 
                     self.motionDetected = True
                     self.error = 1
-                    (x, y, w, h) = cv2.boundingRect(c) # x,y are the top left of the contour and w,h are the width and hieght 
+                    (x, y, w, h) = cv2.boundingRect(c)
 
                     cv2.rectangle(image, (x,y), (x+w, y+h), (0, 255, 0), 2)
                     break
@@ -47,12 +46,12 @@ class MotionDetection:
         self.lastFreame = greyscale_frame
 
         #now draw text and timestamp on security feed 
-        font = cv2.FONT_HERSHEY_SIMPLEX 
+        '''font = cv2.FONT_HERSHEY_SIMPLEX 
 
        
         cv2.imshow('Security Feed', image)
         cv2.imshow('Threshold(foreground mask)', dilate_image)
-        cv2.imshow('Frame_delta', frame_delta)
+        cv2.imshow('Frame_delta', frame_delta)'''
         return self.error, self.motionDetected
 
         

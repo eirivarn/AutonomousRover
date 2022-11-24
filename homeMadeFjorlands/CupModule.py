@@ -17,8 +17,8 @@ class CupModule:
         self.height, self.width = 0 , 0
 
 
-    def analyzeImage(self, image):
-
+    def analyzeImage(self, image, robot):
+        self.robot = robot
         self.height, self.width  = image.shape[:2]
         self.middleX = int(self.width/2)
         self.xCenter = 1
@@ -59,6 +59,7 @@ class CupModule:
                 cv2.putText(image,f"{self.height-self.yCenter}",(self.xCenter-20, self.yCenter), font, 0.7,(200,0,200),1)
                 cupInImage = True
         
+        image = self.drawSpeed(image)
         if not self.isHeadless:
             cv2.imshow('Cup', image)
 
@@ -78,3 +79,34 @@ class CupModule:
     def quit(self):
         self.breakLoop = True
         cv2.destroyAllWindows()
+
+
+    def drawSpeed(self, image):
+        try:
+            lSpeed, rSpeed = self.robot.motor.getSpeed()
+            h, w = image.shape[:2]
+            lx = 10
+            rx = w-10
+            y1 = int(h/2)
+            ly2 = int(-(lSpeed/100)*(h/2-10) + h/2)
+            ry2 = int(-(rSpeed/100)*(h/2-10) + h/2) 
+
+            if lSpeed>0:
+                lColor = (0,255,0)
+            else:
+                lColor = (0,0,255)
+
+            if rSpeed>0:
+                rColor = (0,255,0)
+            else:
+                rColor = (0,0,255)
+
+            cv2.line(image, (lx,y1), (lx,ly2), lColor, 5)
+            cv2.line(image, (rx,y1), (rx,ry2), rColor, 5)
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            
+            cv2.putText(image,f"{int(lSpeed)}",(lx+7,ly2), font, 0.7,lColor,2)
+            cv2.putText(image,f"{int(rSpeed)}",(rx-30,ry2), font, 0.7,rColor,2)
+
+        finally:
+            return image
