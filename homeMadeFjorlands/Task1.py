@@ -9,7 +9,8 @@ class Task1(Task):
         self.speed = self.const.speed
         self.cupDistBuffer = self.const.cupDistBuffer
         self.lineDistBuffer = self.const.lineDistBuffer
-        self.cupSide = ""
+        self.cupSide = "right"
+        self.turnCounter = 0
 
         self.subtasks = [False, False, False, False, False, False, False, False, False, False]   
 
@@ -17,10 +18,10 @@ class Task1(Task):
 
         print("At subtask: " , self.subTask)
 
-        if self.subTask == 1: #follow line to cross
+        if self.subTask == 1: #Følger linje til kryss
             self.subTask1(image)
         
-        elif self.subTask == 2:  #turn left untill cup is in center
+        elif self.subTask == 2:  #Sjekker hvilke side koppen er på.
             self.subTask2(image)
             
         elif self.subTask == 3:  #turn drive forward to cup
@@ -32,7 +33,7 @@ class Task1(Task):
         elif self.subTask == 5: # turn 90 deg to main line
             self.subTask5(image)
             
-        elif self.subTask == 6: #turn right for 2 sek TODO adjust this variable
+        elif self.subTask == 6: #turn right
             self.subTask6(image)
             
         elif self.subTask == 7:  #keep turning to the sideline
@@ -55,7 +56,7 @@ class Task1(Task):
 
 
 
-    def subTask1(self,image):
+    def subTask1(self,image): 
         self.cameraServo.down()
         self.gripperServo.openGripper()
 
@@ -71,29 +72,28 @@ class Task1(Task):
             print("At cross, subtask 1 complete.")
             self.subTask = 2
 
-    def subTask2(self, image):
+    def subTask2(self, image): #Finner ut hvilke side koppen er på. 
         if self.subtasks[1] == False:
             print("Task 2, localize cup")
             self.subtasks[1] = True
         self.cameraServo.up()
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
-        
-
-
-        if not cupInImage:
+        if self.turnCounter < self.const.quartRotation:
             self.motorControl.rotateLeft(self.const.turnSpeed)
-        else:
-            self.motorControl.turnToPos(cupPos)
-        if cupPos in range(-self.const.cupDistBuffer, self.const.cupDistBuffer):
-            
+            if cupInImage:
+                self.cupSide = "left"
+                self.subTask = 3
+        if self.const.quartRotation < self.turnCounter < self.const.quartRotation:
+             self.motorControl.rotateRight(self.const.turnSpeed)
+        else: 
             self.subTask = 3
+        
     
     def subTask3(self,image): #TODO sjekke når den er nærme. 
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
         print("CupIsClose: " ,cupIsClose)
         print("cupPos: " ,cupPos)
         if cupIsClose:
-            self.motorControl.stop()
             self.subTask = 4
             return
         self.motorControl.goToPos(cupPos, self.speed)
@@ -104,14 +104,23 @@ class Task1(Task):
 
     def subTask5(self,image): #Roterer til den har "passert" hovedveien
         line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
-        if lostLine == True: 
-            self.motorControl.rotateLeft(self.const.turnSpeed)
+        if lostLine == True:
+            if self.cupSide == "left":
+                self.motorControl.rotateLeft(self.const.turnSpeed)
+            if self.cupSide == "right":
+                self.motorControl.rotateLeft(self.const.turnSpeed)
         elif lateralOffset < -215:
-            self.motorControl.rotateLeft(self.const.turnSpeed)
+            if self.cupSide == "left":
+                self.motorControl.rotateLeft(self.const.turnSpeed)
+            if self.cupSide == "right":
+                self.motorControl.rotateLeft(self.const.turnSpeed)
             sleep(0.5)
             self.subTask = 6
             return
-        self.motorControl.rotateLeft(self.speed+15)
+        if self.cupSide == "left":
+            self.motorControl.rotateLeft(self.const.turnSpeed)
+        if self.cupSide == "right":
+            self.motorControl.rotateLeft(self.const.turnSpeed)
         
 
     def subTask6(self, image):
@@ -121,9 +130,8 @@ class Task1(Task):
             if  xPos in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
                 self.subTask = 7  
             self.motorControl.turnToPos(xPos)
-        self.motorControl.turnRight(-self.speed)
+        
     
-
 
     def subTask7(self, image):
         #line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
