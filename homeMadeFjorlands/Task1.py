@@ -34,19 +34,19 @@ class Task1(Task):
             self.subTask4()
                        
         elif self.subTask == 5: # turn 90 deg to main line
-            self.subTask5(image)
+            self.subTask5()
             
         elif self.subTask == 6: #turn right
-            self.subTask6(image)
+            self.subTask6()
             
         elif self.subTask == 7:  #keep turning to the sideline
-            self.subTask7(image)
+            self.subTask7()
             
         elif self.subTask == 8: #drop cup
-            super.setActiveTask(2)
+            self.subtask8(image)
             
-        #elif self.subTask == 9: #turn left for 2 sek TODO adjust this variable
-        #    self.subTask9(image)
+        elif self.subTask == 9: #turn left for 2 sek TODO adjust this variable
+            self.subTask9(image)
         #
         #elif self.subTask == 10: # keep turning to main line
         #    self.subTask10(image)
