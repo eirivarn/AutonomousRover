@@ -31,11 +31,12 @@ class MotionDetection:
         cnt = cv2.findContours(dilate_image.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[1]
 
         self.motionDetected = False
-        for c in cnt:
-            if cv2.contourArea(c) > self.const.minMotionArea: # if contour area is less then 800 non-zero(not-black) pixels(white)
-                self.motionDetected = True
-                self.error = 1
-                break
+        if len(cnt) != 0:
+            for c in cnt:
+                if cv2.contourArea(c) > self.const.minMotionArea: # if contour area is less then 800 non-zero(not-black) pixels(white)
+                    self.motionDetected = True
+                    self.error = 1
+                    break
         if not self.motionDetected:
             self.error += self.const.deltaError
 
