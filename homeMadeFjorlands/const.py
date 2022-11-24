@@ -8,7 +8,7 @@ class Const:
         self.turnSpeed = 35
         self.cupDistBuffer = 40
         self.cupPosBuffer = 70
-        self.lineDistBuffer = 2
+        self.lineDistBuffer = 60
         self.posDistBuffer = 60
         self.quartRotationTime= 0.165
         self.quartRotationSpeed= 100
