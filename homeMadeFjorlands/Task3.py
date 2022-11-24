@@ -9,8 +9,7 @@ class Task3(Task):
         self.speedObsticals = self.const.speedObsticals
         self.turnSpeed = self.const.turnSpeed
         self.motionError = 1
-        self.subTask = 3
-        self.cameraServo.down()
+        self.subTask = 1
 
 
     def update(self, image, motionError=1):
@@ -45,9 +44,9 @@ class Task3(Task):
 
     def subTask1(self):
         self.cameraServo.down()
-        self.motorControl.rotateLeft(self.const.quartRotationSpeed, self.motionError)
-        sleep(self.const.quartRotationTime)  #TODO funker egentlig dett??? trengs det? eventuelt legg inn 90 deg sving
-        self.subTask = 2
+        #self.motorControl.rotateLeft(self.const.quartRotationSpeed, self.motionError)
+        #sleep(self.const.quartRotationTime)  #TODO funker egentlig dett??? trengs det? eventuelt legg inn 90 deg sving
+        self.subTask = 3
 
     def subTask2(self,image):
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
