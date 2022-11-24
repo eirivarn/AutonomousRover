@@ -78,17 +78,18 @@ class Task1(Task):
             self.subtasks[1] = True
         self.cameraServo.up()
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
-        if self.turnCounter < self.const.quartRotation:
-            self.motorControl.rotateLeft(self.const.turnSpeed)
+        if self.turnCounter == 0:
+            self.motorControl.rotateLeft(self.const.quartRotationSpeed)
+            sleep(self.const.quartRotationTime)
             if cupInImage:
                 self.cupSide = "left"
                 self.subTask = 3
-        if self.const.quartRotation < self.turnCounter < self.const.quartRotation:
-             self.motorControl.rotateRight(self.const.turnSpeed)
+        if 0 < self.turnCounter < 3:
+             self.motorControl.rotateRight(self.const.quartRotationSpeed)
+             sleep(self.const.quartRotationTime)
         else: 
             self.subTask = 3
         
-    
     def subTask3(self,image): #TODO sjekke når den er nærme. 
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
         print("CupIsClose: " ,cupIsClose)
