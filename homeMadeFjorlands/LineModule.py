@@ -40,7 +40,7 @@ class LineModule:
                     self.crossPosition[i] = 1
             repackedImg = RepackImages(self.images)
 
-        x = []
+        '''x = []
         y = []
         h, w  = image.shape[:2]
 
@@ -91,7 +91,7 @@ class LineModule:
 
             cv2.line(repackedImg, (x1,y1), (x2,y2), (0,0,255), 3)
         except:
-            print('Could not find line')
+            print('Could not find line')'''
             
         repackedImg = self.drawSpeed(repackedImg)
         self.viewImage(repackedImg)
@@ -123,6 +123,7 @@ class LineModule:
             cv2.putText(image, f"{str(int(angle))}deg", (360,300),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#text>
             cv2.putText(image, str(offset)+"dist", (360,330),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#te>
             cv2.drawContours(image, blackContours,-1,(0,0,255),1)#draws all black contour lines
+            image = self.drawSpeed(image)
             self.viewImage(image)
 
 
