@@ -14,7 +14,7 @@ class MotionDetection:
     def detectMotion(self, image):
     
         greyscale_frame = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) 
-        gaussian_frame = cv2.GaussianBlur(greyscale_frame, (10,10),0)
+        gaussian_frame = cv2.GaussianBlur(greyscale_frame, (11,11),0)
         blur_frame = cv2.blur(gaussian_frame, (3,3)) 
         greyscale_image = blur_frame 
 
