@@ -43,17 +43,17 @@ class Task1(Task):
             self.subTask7(image)
             
         elif self.subTask == 8: #drop cup
-            self.subTask8(image)
-            
-        elif self.subTask == 9: #turn left for 2 sek TODO adjust this variable
-            self.subTask9(image)
-        
-        elif self.subTask == 10: # keep turning to main line
-            self.subTask10(image)
-
-        elif self.subTask == 11: #task is complete
             super.setActiveTask(2)
-
+            
+        #elif self.subTask == 9: #turn left for 2 sek TODO adjust this variable
+        #    self.subTask9(image)
+        #
+        #elif self.subTask == 10: # keep turning to main line
+        #    self.subTask10(image)
+#
+        #elif self.subTask == 11: #task is complete
+        #    super.setActiveTask(2)
+#
         else:
             print('Error in task1. subTaskCount out of bounce')
 
@@ -164,8 +164,7 @@ class Task1(Task):
                 self.motorControl.rotateRight(self.const.quartRotationSpeed)
                 sleep(self.const.quartRotationTime)
                 self.subTask = 9
-        else: 
-            self.motorControl.backward(20)
+        else: self.motorControl.backward(20)
 
 
     #def subTask7(self, image):
