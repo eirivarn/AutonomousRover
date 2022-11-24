@@ -113,8 +113,6 @@ class MotorControl:
             self.rotateLeft(self.const.turnSpeed)
         else:
             self.rotateRight(self.const.turnSpeed)
-
-
        
     def getSpeed(self):
         return self.leftMotor.getSpeed(), self.rightMotor.getSpeed()
