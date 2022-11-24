@@ -114,6 +114,7 @@ class Task1(Task):
             self.subTask = 4
             return
         self.motorControl.goToPos(cupPos, self.speed, self.motionError)
+    
 
     def subTask4(self):
         self.gripperServo.closeGripper()
@@ -143,7 +144,7 @@ class Task1(Task):
         if endOfLineInImage:
             if  xPos in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
                 self.subTask = 7  
-            self.motorControl.turnToPos(xPos)
+            self.motorControl.turnToPos(xPos, self.motionError)
         
     
 
