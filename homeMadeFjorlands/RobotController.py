@@ -50,10 +50,9 @@ class Robot():
         elif self.activeTask == 5:
             Victory(self.motor, self.lineModule)
             return
-        print('vi kjører')
         motionError, motionDetected = self.motionDetection.detectMotion(image)
         print('Motion detected: ', motionDetected)
-        task.update(image)   
+        task.update(image, motionError)   
 
     def setActiveTask(self, task):
         self.activeTask = task
