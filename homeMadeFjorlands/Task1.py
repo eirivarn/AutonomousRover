@@ -59,7 +59,7 @@ class Task1(Task):
 
 
 
-    def subTask1(self,image): 
+    def subTask1(self,image):  # Følger linja
         self.cameraServo.down()
         self.gripperServo.openGripper()
 
@@ -68,8 +68,7 @@ class Task1(Task):
             self.motorControl.forward(35)
             sleep(0.3)
             print("Following line to cross")
-            #self.motorControl.forward(30)
-            #sleep(0.005)
+
         line, atCross, angle, lateralOffset, lostLine = self.lineModule.analyzeImage(image)
         self.motorControl.followLine(line, angle, lateralOffset, self.speed, lostLine, self.motionError)
         if atCross:
