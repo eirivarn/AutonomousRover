@@ -123,17 +123,21 @@ class Task1(Task):
     def subTask5(self,image): #Roterer 180 grader
         if self.cupSide == "left":
             self.motorControl.rotateRight(self.const.quartRotationSpeed)
-            self.motorControl.rotateRight(self.const.quartRotationTime)
+            sleep(self.const.quartRotationTime)
+            self.motorControl.stop()
             sleep(0.5)
             self.motorControl.rotateRight(self.const.quartRotationSpeed)
-            self.motorControl.rotateRight(self.const.quartRotationTime)
+            sleep(self.const.quartRotationTime)
+            self.motorControl.stop()
             sleep(0.5)
         if self.cupSide == "right":
             self.motorControl.rotateLeft(self.const.quartRotationSpeed)
-            self.motorControl.rotateLeft(self.const.quartRotationTime)
+            sleep(self.const.quartRotationTime)
+            self.motorControl.stop()
             sleep(0.5)
             self.motorControl.rotateLeft(self.const.quartRotationSpeed)
-            self.motorControl.rotateLeft(self.const.quartRotationTime)
+            sleep(self.const.quartRotationTime)
+            self.motorControl.stop()
             sleep(0.5)
         self.subtasks = 6
 
