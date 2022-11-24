@@ -42,13 +42,13 @@ class Task3(Task):
 
     def subTask1(self):
         self.motorControl.rotateLeft(self.speed, self.motionError)  #TODO funker egentlig dett??? trengs det? eventuelt legg inn 90 deg sving
-        sleep(1)
+        sleep(0.4)
         self.subTask = 2
 
     def subTask2(self,image):
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
         if lostLine:
-            self.motorControl.rotateLeft(self.speed, self.motionError) #TODO bytt til lost line funk
+            self.motorControl.findLine()        
         else:
             pos = line[2]
             self.motorControl.turnToPos(pos, self.motionError)  #TODO kan være vilket som helst line-punkt, bør testes
@@ -82,7 +82,7 @@ class Task3(Task):
     def subTask7(self,image): #turn left
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
         if lostLine:
-            self.motorControl.rotateLeft(self.speed, self.motionError) #TODO bytt til lost line funk
+            self.motorControl.findLine() #TODO bytt til lost line funk
         else:
             pos = line[2]
             self.motorControl.turnToPos(pos, self.motionError)  #TODO kan være vilket som helst line-punkt, bør testes
