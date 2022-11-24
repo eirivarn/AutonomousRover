@@ -29,11 +29,11 @@ class MotionDetection:
         thresh = cv2.threshold(frame_delta, 100, 255, cv2.THRESH_BINARY)[1]
         # threshold gives two outputs retval,threshold image. using [1] on the end i am selecting the threshold image that is produced
         dilate_image = cv2.dilate(thresh, None, iterations=2)
-        cnt, _ = cv2.findContours(dilate_image.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[1]
+        contours, _ = cv2.findContours(dilate_image.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[1]
 
         self.motionDetected = False
-        if not cnt is None:
-            for c in cnt:
+        if len(contours) != 0:
+            for c in contours:
                 if cv2.contourArea(c) > self.const.minMotionArea: # if contour area is less then 800 non-zero(not-black) pixels(white)
                     self.motionDetected = True
                     self.error = 1
