@@ -90,7 +90,7 @@ class Task1(Task):
              self.turnCounter += 1 
              sleep(self.const.quartRotationTime)
         else: 
-            self.motorController.stop()
+            self.motorControl.stop()
             self.subTask = 3
         
     def subTask3(self,image): #TODO sjekke når den er nærme. 
