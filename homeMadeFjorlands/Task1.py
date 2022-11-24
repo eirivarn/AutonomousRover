@@ -93,14 +93,14 @@ class Task1(Task):
                 self.motorControl.rotateLeft(self.const.quartRotationSpeed)
                 sleep(self.const.quartRotationTime)
                 self.motorControl.stop()
-                sleep(2)
+                sleep(0.5)
             if 15 < self.ticker: 
                 self.turnCounter += 1
             if cupInImage and (10 < self.ticker):
                 self.cupSide = "left"
                 self.motorControl.stop()
                 self.subTask = 3
-        if (3 < self.turnCounter) and (20 < self.ticker) :
+        if (3 <= self.turnCounter) and (20 < self.ticker) :
             self.motorControl.stop()
             self.subTask = 3
         self.ticker += 1 
