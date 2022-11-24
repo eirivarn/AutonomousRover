@@ -117,26 +117,23 @@ class Task1(Task):
         self.gripperServo.closeGripper()
         self.subTask = 5 
 
-    def subTask5(self,image): #Roterer til den har "passert" hovedveien
-        line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
-        if lostLine == True:
-            if self.cupSide == "left":
-                self.motorControl.rotateLeft(self.const.turnSpeed)
-            if self.cupSide == "right":
-                self.motorControl.rotateLeft(self.const.turnSpeed)
-        elif lateralOffset < -215:
-            if self.cupSide == "left":
-                self.motorControl.rotateLeft(self.const.turnSpeed)
-            if self.cupSide == "right":
-                self.motorControl.rotateLeft(self.const.turnSpeed)
-            sleep(0.5)
-            self.subTask = 6
-            return
+    def subTask5(self,image): #Roterer 180 grader
         if self.cupSide == "left":
-            self.motorControl.rotateLeft(self.const.turnSpeed)
+            self.motorControl.rotateRight(self.const.quartRotationSpeed)
+            self.motorControl.rotateRight(self.const.quartRotationTime)
+            sleep(0.5)
+            self.motorControl.rotateRight(self.const.quartRotationSpeed)
+            self.motorControl.rotateRight(self.const.quartRotationTime)
+            sleep(0.5)
         if self.cupSide == "right":
-            self.motorControl.rotateLeft(self.const.turnSpeed)
-        
+            self.motorControl.rotateLeft(self.const.quartRotationSpeed)
+            self.motorControl.rotateLeft(self.const.quartRotationTime)
+            sleep(0.5)
+            self.motorControl.rotateLeft(self.const.quartRotationSpeed)
+            self.motorControl.rotateLeft(self.const.quartRotationTime)
+            sleep(0.5)
+        self.subtasks = 6
+
 
     def subTask6(self, image):
         #line, atCross, angle, lateralOffset, lostLine= self.lineModule.analyzeImage(image)
