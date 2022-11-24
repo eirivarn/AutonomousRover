@@ -10,8 +10,8 @@ class Const:
         self.cupPosBuffer = 70
         self.lineDistBuffer = 2
         self.posDistBuffer = 30
-        self.quartRotationTime= 0.165
-        self.quartRotationSpeed= 100
+        self.quartRotationTime= 0.5
+        self.quartRotationSpeed= 35
 
         self.need4speed = 70  #tør me å vinna??
 
