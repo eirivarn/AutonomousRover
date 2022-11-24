@@ -35,7 +35,7 @@ class Robot():
         for i in range(len(self.completeList)):
             self.completeList[i] = 1
 
-        self.activeTask = 1
+        self.activeTask = 3
 
 
     def update(self, image):
