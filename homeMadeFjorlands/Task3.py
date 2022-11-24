@@ -9,7 +9,7 @@ class Task3(Task):
         self.speedObsticals = self.const.speedObsticals
         self.turnSpeed = self.const.turnSpeed
         self.motionError = 1
-        self.subTask = 1
+        self.subTask = 3
 
     def update(self, image, motionError=1):
         self.motionError = motionError
