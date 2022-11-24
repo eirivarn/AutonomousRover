@@ -157,12 +157,15 @@ class Task1(Task):
         line, atCross, angle, lateralOffset, lostLine = self.lineModule.analyzeImage(image)
         if self.lineModule.isCrossAt(self.const.N_SLICES): 
             if self.cupSide == "right":
-                self.motorControl.rotateLeft(self.const.speed)
+                self.motorControl.rotateLeft(self.const.quartRotationSpeed)
+                sleep(self.const.quartRotationTime)
                 self.subTask = 9
             if self.cupSide == "left":
-                self.motorControl.rotateRight(self.const.speed)
+                self.motorControl.rotateRight(self.const.quartRotationSpeed)
+                sleep(self.const.quartRotationTime)
                 self.subTask = 9
-        self.motorControl.backward(20)
+        else: 
+            self.motorControl.backward(20)
 
 
     #def subTask7(self, image):
