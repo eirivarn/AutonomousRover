@@ -23,7 +23,7 @@ class Const:
         self.rDirPin = 15
 
         self.kp = 0.033
-        self.kd = 0.15
+        self.kd = 0.05
         self.ki = 0.0001
 
         self.n_slices = 4
