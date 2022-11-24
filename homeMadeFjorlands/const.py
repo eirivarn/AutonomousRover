@@ -14,7 +14,7 @@ class Const:
         self.quartRotationSpeed= 50
 
         self.need4speed = 70  #tør me å vinna??
-        self.speedTask3Hill = 12
+        self.speedTask3Hill = 10
         self.speedObsticals = 12
 
         self.lSpeedPin = 7
@@ -24,7 +24,7 @@ class Const:
 
         self.kp = 0.04
         self.kd = 0.12
-        self.ki = 0.0005
+        self.ki = 0.001
 
         self.n_slices = 4
         self.threshGrey = 65
