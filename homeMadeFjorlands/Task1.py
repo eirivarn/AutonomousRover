@@ -74,20 +74,19 @@ class Task1(Task):
             self.subTask = 2
 
     def subTask2(self, image): #Finner ut hvilke side koppen er på. ¨
-        self.ticker += 1 
         print(self.turnCounter)
         if self.subtasks[1] == False:
             print("Task 2, localize cup")
             self.subtasks[1] = True
         self.cameraServo.up()
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
-        if (1 <= self.turnCounter <= 3) and (20 < self.ticker) :
+        if (0 <= self.turnCounter <= 3) and (20 < self.ticker) :
                 self.motorControl.rotateRight(self.const.quartRotationSpeed)
                 self.turnCounter += 1 
                 sleep(self.const.quartRotationTime)
                 self.motorControl.stop()
                 sleep(2)
-        if self.turnCounter == 0:
+        if self.turnCounter == 0 and self.ticker == 0:
             self.motorControl.rotateLeft(self.const.quartRotationSpeed)
             sleep(self.const.quartRotationTime)
             self.motorControl.stop()
@@ -99,6 +98,8 @@ class Task1(Task):
         if (3 < self.turnCounter) and (40 < self.ticker) :
             self.motorControl.stop()
             self.subTask = 3
+        self.ticker += 1 
+        
         
     def subTask3(self,image): #TODO sjekke når den er nærme. 
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
