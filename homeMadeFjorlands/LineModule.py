@@ -40,7 +40,7 @@ class LineModule:
                     self.crossPosition[i] = 1
             repackedImg = RepackImages(self.images)
 
-        '''x = []
+        x = []
         y = []
         h, w  = image.shape[:2]
 
@@ -91,7 +91,7 @@ class LineModule:
 
             cv2.line(repackedImg, (x1,y1), (x2,y2), (0,0,255), 3)
         except:
-            print('Could not find line')'''
+            print('Could not find line')
             
         repackedImg = self.drawSpeed(repackedImg)
         self.viewImage(repackedImg)
@@ -99,10 +99,7 @@ class LineModule:
         atCross = self.robot.crossConfirmed()
 
 
-        ##///////////Printing information
-        print ("\n{:<8} {:<15} {:<15} ".format('Angle','Offset', 'Cross'))
-        print ("{:<8} {:<15} {:<15} ".format("{0:.3f}".format(angle), "{0:.3f}".format(offset), atCross))   
-
+       
         blackAreas = cv2.inRange(image, (0,0,0), (50,50,50))
         blackAreas = self.improveLine(blackAreas)
         blackContours, hierarchy = cv2.findContours(blackAreas.copy(),cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -126,6 +123,9 @@ class LineModule:
             image = self.drawSpeed(image)
             self.viewImage(image)
 
+        ##///////////Printing information
+        print ("\n{:<8} {:<15} {:<15} ".format('Angle','Offset', 'Cross'))
+        print ("{:<8} {:<15} {:<15} ".format("{0:.3f}".format(angle), "{0:.3f}".format(offset), atCross))   
 
 
         return list, atCross, angle, offset, lostLine
