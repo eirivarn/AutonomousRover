@@ -121,7 +121,7 @@ class LineModule:
             cv2.putText(image, str(offset)+"dist", (360,330),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#te>
             cv2.drawContours(image, blackContours,-1,(0,0,255),1)#draws all black contour lines
         if atCross:
-            cv2.putText(image, "CROSS!!!", (320, 10), cv2.FONT_HERSHEY_SIMPLEX,2,(0,0,255),3)
+            cv2.putText(image, "CROSS!!!", (290, 50), cv2.FONT_HERSHEY_SIMPLEX,3,(0,0,255),2)
         image = self.drawSpeed(image)
         self.viewImage(image)
 
