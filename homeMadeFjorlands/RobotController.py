@@ -51,8 +51,8 @@ class Robot():
             Victory(self.motor, self.lineModule)
             return
         print('vi kjører')
-        motionError, motionDetected = self.motionDetection.detectMotion(image)
-        print('Motion detected: ', motionDetected)
+        #motionError, motionDetected = self.motionDetection.detectMotion(image)
+        #print('Motion detected: ', motionDetected)
         task.update(image)   
 
     def setActiveTask(self, task):
