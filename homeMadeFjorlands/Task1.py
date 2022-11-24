@@ -11,6 +11,7 @@ class Task1(Task):
         self.lineDistBuffer = self.const.lineDistBuffer
         self.cupSide = "right"
         self.turnCounter = 0
+        self.ticker = 0
 
         self.subtasks = [False, False, False, False, False, False, False, False, False, False]   
 
@@ -72,14 +73,15 @@ class Task1(Task):
             print("At cross, subtask 1 complete.")
             self.subTask = 2
 
-    def subTask2(self, image): #Finner ut hvilke side koppen er på. 
+    def subTask2(self, image): #Finner ut hvilke side koppen er på. ¨
+        self.ticker += 1 
         print(self.turnCounter)
         if self.subtasks[1] == False:
             print("Task 2, localize cup")
             self.subtasks[1] = True
         self.cameraServo.up()
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
-        if 1 <= self.turnCounter <= 3:
+        if (1 <= self.turnCounter <= 3) and (20 < self.ticker) :
                 self.motorControl.rotateRight(self.const.quartRotationSpeed)
                 self.turnCounter += 1 
                 sleep(self.const.quartRotationTime)
@@ -95,7 +97,7 @@ class Task1(Task):
                 self.cupSide = "left"
                 self.motorControl.stop()
                 self.subTask = 3
-        else: 
+        if (3 < self.turnCounter) and (40 < self.ticker) :
             self.motorControl.stop()
             self.subTask = 3
         
