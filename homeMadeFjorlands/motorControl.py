@@ -28,7 +28,7 @@ class MotorControl:
         self.kd = const.kd
         self.ki = const.ki
     
-    def followLine(self, line, angle, offset ,speed, lostLine):
+    def followLine(self, line, angle, offset ,speed, lostLine, motionError = 1):
         if lostLine: 
             print("Lost the line")
             self.findLine()
@@ -36,13 +36,13 @@ class MotorControl:
             np.delete(self.sumOfErrors, 0) 
             sumOfErrors = np.sum(self.sumOfErrors)
             self.sumOfErrors = np.append(self.sumOfErrors, self.error)
-            self.error = self.kp * offset + self.kd * angle 
-            speed = speed + self.ki*sumOfErrors
+            self.error = self.kp * offset + self.kd * angle + self.ki*sumOfErrors
+            speed = speed*motionError
             self.curve(self.error, speed)
             self.prevAngle, self.prevOffset = angle, offset
 
-    def turnToPos(self, pos):
-        speed = self.turnSpeed
+    def turnToPos(self, pos, motionError = 1):
+        speed = self.turnSpeed * motionError
         if pos in range(-150, 150):
             speed = int(speed* 0.7)
         if pos > 0:
@@ -52,25 +52,19 @@ class MotorControl:
         elif pos in range(-self.const.posDistBuffer, self.const.posDistBuffer):
             self.stop()
     
-    '''
-    def goToCup(self, cupPos):
-        if cupPos in range(-self.const.cupPosBuffer, self.const.cupPosBuffer):
-            self.curve(cupPos*self.kp, self.speed)
-        else:
-            self.turnToPos(cupPos)'''
 
-    def goToPos(self, pos, speed):
+    def goToPos(self, pos, speed, motionError = 1):
         if type(pos) == None:
-            self.followLine(None, 0, -pos, speed, False) ##TODO mulighet for å finne ut om vi har mistet linja her?? trengs sannsynlig vis ikke
+            self.followLine(None, 0, -pos, speed, False, motionError) ##TODO mulighet for å finne ut om vi har mistet linja her?? trengs sannsynlig vis ikke
 
-    def forward(self, speed):
-        self.leftMotor.forward(speed)
-        self.rightMotor.forward(speed)
+    def forward(self, speed, motionError=1):
+        self.leftMotor.forward(speed * motionError)
+        self.rightMotor.forward(speed * motionError)
         print('forward', speed)
  
-    def backward(self, speed):
-        self.leftMotor.backward(speed)
-        self.rightMotor.backward(speed)
+    def backward(self, speed, motionError=1):
+        self.leftMotor.backward(speed * motionError)
+        self.rightMotor.backward(speed * motionError)
         print('backward', speed)
  
  
@@ -85,16 +79,16 @@ class MotorControl:
         print('quit')
  
  
-    def rotateRight(self, speed):
+    def rotateRight(self, speed, motionError = 1):
         print("Rotate right")
-        self.rightMotor.backward(speed)
-        self.leftMotor.forward(speed)
+        self.rightMotor.backward(speed * motionError)
+        self.leftMotor.forward(speed * motionError)
        
        
-    def rotateLeft(self, speed):
+    def rotateLeft(self, speed, motionError = 1):
         print("Rotate left")
-        self.rightMotor.forward(speed)
-        self.leftMotor.backward(speed)
+        self.rightMotor.forward(speed * motionError)
+        self.leftMotor.backward(speed * motionError)
 
     def turnRight(self, speed):
         print("Turn right")

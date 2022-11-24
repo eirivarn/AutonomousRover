@@ -1,3 +1,4 @@
+from MotionDetection import MotionDetection
 from motorControl import MotorControl
 from LineModule import LineModule
 from CupModule import CupModule
@@ -21,6 +22,7 @@ class Robot():
         self.lineModule = LineModule(headless, self, self.const)
         self.cupModule = CupModule(headless, self.const)
         self.camera = CaptureImage(self.const)
+        self.motionDetection = MotionDetection(self.const)
         sleep(2)
         self.task1 = Task1(self.motor, self.lineModule, self.cupModule, self.const)
         self.task2 = Task2(self.motor, self.lineModule, self.cupModule, self.const)
@@ -49,6 +51,8 @@ class Robot():
             Victory(self.motor, self.lineModule)
             return
 
+        motionError, motionDetected = self.motionDetection.detectMotion(image)
+        print('Motion detected: ', motionDetected)
         task.update(image)   
 
     def setActiveTask(self, task):
