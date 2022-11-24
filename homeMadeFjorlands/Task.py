@@ -12,7 +12,7 @@ class Task:
         self.completed = False
         
 
-    def update(self, image):
+    def update(self, image, motionError):
         pass
 
         
