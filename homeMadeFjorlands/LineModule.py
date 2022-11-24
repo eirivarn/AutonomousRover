@@ -36,7 +36,6 @@ class LineModule:
                     self.robot.updateCrossConf(i)
                 elif self.images[i].crossFound():
                     self.robot.updateCrossConf(i) 
-                else: 
                     self.crossPosition[i] = 1
             repackedImg = RepackImages(self.images)
 
@@ -134,9 +133,6 @@ class LineModule:
     def endOfLineIsClose(self, yPos):
         return yPos > (self.const.resolution[0] - self.const.cupDistBuffer - 10)
 
-    def crossAtPosition(self, position):
-        return self.crossLocation[position]
-
     def viewImage(self, image):
         if not self.isHeadless:
             cv2.imshow('Image', image)
@@ -173,3 +169,6 @@ class LineModule:
 
     def quit(self):
         cv2.destroyAllWindows()
+
+    def isCrossAt(self, position):
+        return self.crossAtPosition[position] == 1
