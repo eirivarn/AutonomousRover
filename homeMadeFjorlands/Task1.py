@@ -79,18 +79,20 @@ class Task1(Task):
             self.subtasks[1] = True
         self.cameraServo.up()
         cupPos, cupInImage, cupIsClose = self.cupModule.analyzeImage(image)
+        if 1 <= self.turnCounter <= 3:
+                self.motorControl.rotateRight(self.const.quartRotationSpeed)
+                self.turnCounter += 1 
+                sleep(self.const.quartRotationTime)
+                self.motorController.stop()
         if self.turnCounter == 0:
             self.motorControl.rotateLeft(self.const.quartRotationSpeed)
             self.turnCounter += 1 
             sleep(self.const.quartRotationTime)
+            self.motorController.stop()
             if cupInImage:
                 self.cupSide = "left"
                 self.motorControl.stop()
                 self.subTask = 3
-        if 0 < self.turnCounter <= 3:
-             self.motorControl.rotateRight(self.const.quartRotationSpeed)
-             self.turnCounter += 1 
-             sleep(self.const.quartRotationTime)
         else: 
             self.motorControl.stop()
             self.subTask = 3
