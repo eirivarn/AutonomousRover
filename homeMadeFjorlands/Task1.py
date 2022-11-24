@@ -65,8 +65,8 @@ class Task1(Task):
 
         if self.subtasks[0] == False:
             self.subtasks[0] = True
-            self.motorControl.forward(30)
-            sleep(0.32)
+            self.motorControl.forward(35)
+            sleep(0.3)
             print("Following line to cross")
             #self.motorControl.forward(30)
             #sleep(0.005)
