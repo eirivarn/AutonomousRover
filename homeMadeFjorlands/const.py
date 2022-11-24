@@ -60,4 +60,4 @@ class Const:
         self.speedBoozt = 85
         self.minSpeed4init = 1000
         self.deltaError = 0.1
-        self.minMotionArea = 800
+        self.minMotionArea = 200
