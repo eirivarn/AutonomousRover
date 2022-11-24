@@ -112,7 +112,7 @@ class LineModule:
             contourbox = cv2.minAreaRect(c) #contour tape rectangle
             (xc, yc), (wc,hc), angle = contourbox
             #determine angle and lateral offset
-            angle = self.preProcessAngle(angle,wc,hc)
+            angle = -self.preProcessAngle(angle,wc,hc)
             offset = int(320-xb-wb/2)
 
             cv2.rectangle(image,(xb,yb),(xb+wb,yb+hb),(0,255,0),2) #Bounding box
