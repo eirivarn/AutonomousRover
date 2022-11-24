@@ -1,7 +1,8 @@
 import cv2
 
 class CupModule:
-    def __init__(self, isHedless ,const):
+    def __init__(self, isHedless ,const, robot):
+        self.robot = robot
         self.isHeadless = isHedless
         self.const = const
         self.xCenter = 1
@@ -17,8 +18,7 @@ class CupModule:
         self.height, self.width = 0 , 0
 
 
-    def analyzeImage(self, image, robot):
-        self.robot = robot
+    def analyzeImage(self, image):
         self.height, self.width  = image.shape[:2]
         self.middleX = int(self.width/2)
         self.xCenter = 1
