@@ -73,6 +73,7 @@ class Task1(Task):
             self.subTask = 2
 
     def subTask2(self, image): #Finner ut hvilke side koppen er på. 
+        print(self.turnCounter)
         if self.subtasks[1] == False:
             print("Task 2, localize cup")
             self.subtasks[1] = True
@@ -84,6 +85,7 @@ class Task1(Task):
             sleep(self.const.quartRotationTime)
             if cupInImage:
                 self.cupSide = "left"
+                self.motorControl.stop()
                 self.subTask = 3
         if 0 < self.turnCounter <= 3:
              self.motorControl.rotateRight(self.const.quartRotationSpeed)
