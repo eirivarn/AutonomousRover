@@ -28,6 +28,7 @@ class MotionDetection:
         thresh = cv2.threshold(frame_delta, 100, 255, cv2.THRESH_BINARY)[1]
         # threshold gives two outputs retval,threshold image. using [1] on the end i am selecting the threshold image that is produced
         dilate_image = cv2.dilate(thresh, None, iterations=2)
+        cnt = []
         cnt = cv2.findContours(dilate_image.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[1]
 
         self.motionDetected = False
