@@ -37,19 +37,22 @@ class MotionDetection:
                 if cv2.contourArea(c) > self.const.minMotionArea: # if contour area is less then 800 non-zero(not-black) pixels(white)
                     self.motionDetected = True
                     self.error = 1
+                    (x, y, w, h) = cv2.boundingRect(c) # x,y are the top left of the contour and w,h are the width and hieght 
+
+                    cv2.rectangle(image, (x,y), (x+w, y+h), (0, 255, 0), 2)
                     break
         if not self.motionDetected:
             self.error += self.const.deltaError
 
         self.lastFreame = greyscale_frame
 
-        ''' now draw text and timestamp on security feed 
+        #now draw text and timestamp on security feed 
         font = cv2.FONT_HERSHEY_SIMPLEX 
 
        
-        cv2.imshow('Security Feed', frame)
+        cv2.imshow('Security Feed', image)
         cv2.imshow('Threshold(foreground mask)', dilate_image)
-        cv2.imshow('Frame_delta', frame_delta)'''
+        cv2.imshow('Frame_delta', frame_delta)
         return self.error, self.motionDetected
 
         
