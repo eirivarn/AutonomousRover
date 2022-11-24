@@ -94,7 +94,7 @@ class LineModule:
             print('Could not find line')
             
         repackedImg = self.drawSpeed(repackedImg)
-        self.viewImage(repackedImg)
+        #self.viewImage(repackedImg)
 
         atCross = self.robot.crossConfirmed()
 
@@ -103,8 +103,34 @@ class LineModule:
         print ("\n{:<8} {:<15} {:<15} ".format('Angle','Offset', 'Cross'))
         print ("{:<8} {:<15} {:<15} ".format("{0:.3f}".format(angle), "{0:.3f}".format(offset), atCross))   
 
+        blackAreas = cv2.inRange(image, (0,0,0), (50,50,50))
+        blackAreas = self.improveLine(blackAreas)
+        blackContours, hierarchy = cv2.findContours(blackAreas.copy(),cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        if len(blackContours) > 0:
+            c = max(blackContours, key=cv2.contourArea) #biggest black contour area
+            xb, yb, wb, hb = cv2.boundingRect(c) #bounding box rectangle
+            contourbox = cv2.minAreaRect(c) #contour tape rectangle
+            (xc, yc), (wc,hc), angle = contourbox
+            #determine angle and lateral offset
+            angle = self.preProcessAngle(angle,wc,hc)
+            offset = int(320-xb-wb/2)
+
+
         return list, atCross, angle, offset, lostLine
 
+    def preProcessAngle(self,ang, w, h):
+        if ang > 45 and w>h:
+            ang = -(90-ang)
+        elif ang <= 45 and h<w:
+            ang = -(90-ang)
+        return ang
+
+    def improveLine(self,pic):
+        kernel = np.ones((3,3),np.uint8)
+        pic = cv2.erode(pic, kernel, iterations=4)
+        pic = cv2.dilate(pic, kernel, iterations=4)
+        return pic
+    
     def flipPoint(self, x):
         return int(self.const.resolution[0]/2 - x)
 
