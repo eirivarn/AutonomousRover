@@ -14,7 +14,7 @@ class Const:
         self.quartRotationSpeed= 50
 
         self.need4speed = 70  #tør me å vinna??
-        self.speedTask3Hill = 30
+        self.speedTask3Hill = 14
         self.speedObsticals = 14
 
         self.lSpeedPin = 7
