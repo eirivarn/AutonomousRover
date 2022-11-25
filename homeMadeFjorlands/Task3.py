@@ -81,6 +81,8 @@ class Task3(Task):
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
         self.motorControl.followLine( line, angle, offset ,self.speedObsticals, lostLine, self.motionError)
         if atCross:
+            self.motorControl.stop()
+            sleep(5)
             self.subTask = 7
 
     def subTask7(self,image): #turn left
