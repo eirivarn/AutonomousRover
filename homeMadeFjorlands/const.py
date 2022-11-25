@@ -4,14 +4,14 @@ class Const:
     def __init__(self):
         self.isHeadless = False
 
-        self.speed = 15
+        self.speed = 12
         self.turnSpeed = 10
         self.cupDistBuffer = 40
         self.cupPosBuffer = 70
         self.lineDistBuffer = 60
         self.posDistBuffer = 60
         self.quartRotationTime= 0.167
-        self.quartRotationSpeed= 57
+        self.quartRotationSpeed= 40
 
         self.need4speed = 12.5  #tør me å vinna?? tydelig vis ikkje :((
         self.speedTask3Hill = 10
@@ -57,8 +57,8 @@ class Const:
         ##/////////// Servo //////////
         self.open_val = 0.7
         self.close_val = 1
-        self.up = 1
-        self.down = 0.6
+        self.up = 0.5
+        self.down = 0
 
 
         #//////////init Speed/////////
