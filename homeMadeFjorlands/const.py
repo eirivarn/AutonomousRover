@@ -58,7 +58,7 @@ class Const:
         self.open_val = 0.7
         self.close_val = 1
         self.up = 1
-        self.down = 0.5
+        self.down = 0.56
 
 
         #//////////init Speed/////////
