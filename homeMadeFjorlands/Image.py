@@ -108,6 +108,6 @@ class Image:
 
     def crossFound(self):
         x,y,w,h = cv2.boundingRect(self.MainContour)
-        if w > self.consts.crossWidth and int(x+w/2) in range(220, 420):  
+        if w > self.consts.crossWidth and int(x+w/2) in range(220, 420): 
             return True
         return False
