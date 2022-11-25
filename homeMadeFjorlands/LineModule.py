@@ -21,8 +21,6 @@ class LineModule:
 
 
     def analyzeImage(self, image):
-        self.viewImage('clear',image)
-
         removedBgImg = RemoveBackground(image, True)
         atCross = False
         list = []
@@ -96,7 +94,6 @@ class LineModule:
             print('Could not find line')
             
         repackedImg = self.drawSpeed(repackedImg)
-        self.viewImage('slice',repackedImg)
 
         atCross = self.robot.crossConfirmed()
 
