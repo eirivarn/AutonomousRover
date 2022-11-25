@@ -36,6 +36,7 @@ class Robot():
             self.completeList[i] = 1
 
         self.activeTask = 2
+        self.
 
 
     def update(self, image):
