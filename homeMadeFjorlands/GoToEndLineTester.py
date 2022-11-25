@@ -16,7 +16,6 @@ image = None
 const = Const()
 motorControl = MotorControl(const)
 lineModule = LineModule(True, None , const)
-cupModule = CupModule(False, const)
 cupDistBuffer = 10
 
 
