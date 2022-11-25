@@ -40,8 +40,8 @@ class Task3(Task):
         self.subTask = 2
 
     def subTask2(self, image): #cross to next cross
-        if 5 < self.ticks < 25: 
-            speed = self.speedHill + 25
+        if 5 < self.ticks < 20: 
+            speed = self.speedHill + 15
         else:
             speed = self.speedHill
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)

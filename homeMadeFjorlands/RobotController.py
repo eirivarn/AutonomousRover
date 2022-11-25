@@ -37,7 +37,6 @@ class Robot():
 
         self.activeTask = 1
 
-
     def update(self, image):
         if self.activeTask == 1:
             task = self.task1
