@@ -3,46 +3,57 @@ from Task import Task
 
 
 class Task3(Task):
-    def __init__(self, motorContorl, lineModule, cupModule, const):
-        super().__init__(motorContorl, lineModule, cupModule, const)
-        self.speed = self.const.speed  #sett en safe og trygg speed gjennom hinderløpa
+    def __init__(self, motorContorl, lineModule, cupModule, const, robot):
+        super().__init__(motorContorl, lineModule, cupModule, const ,robot)
+        self.speedHill = self.const.speedTask3Hill  #sett en safe og trygg speed gjennom hinderløpa
+        self.speedObsticals = self.const.speedObsticals
+        self.turnSpeed = self.const.turnSpeed
+        self.motionError = 1
         self.subTask = 1
+        self.ticks = 0
 
-    def update(self, image):
+
+    def update(self, image, motionError=1):
+        self.motionError = motionError
+        print(self.subTask)
         if self.subTask == 1: # turn left
             self.subTask1()
         
-        if self.subTask == 2:   #keep tunring left til main line
+        elif self.subTask == 2:   #follow line
             self.subTask2(image)
 
-        if self.subTask == 3:   #follow line to next cross
+        elif self.subTask == 3:   #turn left
             self.subTask3(image)
 
-        if self.subTask == 4:    #task 2 complete
-            super.setActiveTask(4)
+        elif self.subTask == 4:    #task 2 complete
+            self.robot.setActiveTask(4)
 
         else:
-            print('Error in task3. subTaskCount out of bounce')
+            print(f"Error in task3. subTaskCount out of bounce, subtask is: {self.subTask} ")
 
 
     def subTask1(self):
-        self.motorControl.turnLeft()
-        sleep(1)
+        self.cameraServo.down()
+        self.motorControl.rotateLeft(self.const.quartRotationSpeed, self.motionError)
+        sleep(self.const.quartRotationTime)  
+        self.motorControl.stop()
         self.subTask = 2
 
-    def subTask2(self,image):
-        line, crossFound = self.lineModule.analyzeImage(image)
-        if line == []:
-            self.motorControl.turnLeft()
+    def subTask2(self, image): #cross to next cross
+        if 5 < self.ticks < 25: 
+            speed = self.speedHill + 25
         else:
-            pos = line[2]
-            self.motorControl.turnToPos(pos)  #TODO kan være vilket som helst line-punkt, bør testes
-            if pos in range(-self.lineDistBuffer, self.lineDistBuffer):
-                self.subTask = 3
+            speed = self.speedHill
+        line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
+        self.motorControl.followLine( line, angle, offset ,speed, lostLine, self.motionError)
+        if atCross:
+            self.ticks = 0
+            self.subTask = 3
+        self.ticks += 1
 
-    def subTask3(self, image):
-        line, crossFound = self.lineModule.analyzeImage(image)
-        self.motorControl.followLine(line, self.speed)
-        if crossFound:
-            self.motorControl.goToCross(self.speed)
-            self.subtask = 4
+    def subTask3(self,image): #turn left
+        self.motorControl.rotateLeft(self.const.quartRotationSpeed, self.motionError)
+        sleep(self.const.quartRotationTime) 
+        self.motorControl.stop()
+        self.subTask = 4
+        

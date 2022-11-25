@@ -24,10 +24,10 @@ class Robot():
         self.camera = CaptureImage(self.const)
         self.motionDetection = MotionDetection(self.const)
         sleep(2)
-        self.task1 = Task1(self.motor, self.lineModule, self.cupModule, self.const)
-        self.task2 = Task2(self.motor, self.lineModule, self.cupModule, self.const)
-        self.task3 = Task3(self.motor, self.lineModule, self.cupModule, self.const)
-        self.task4 = Task4(self.motor, self.lineModule, self.cupModule, self.const)
+        self.task1 = Task1(self.motor, self.lineModule, self.cupModule, self.const, self)
+        self.task2 = Task2(self.motor, self.lineModule, self.cupModule, self.const, self)
+        self.task3 = Task3(self.motor, self.lineModule, self.cupModule, self.const, self)
+        self.task4 = Task4(self.motor, self.lineModule, self.cupModule, self.const, self)
 
         self.n_slices = self.const.n_slices
         self.crossConfidence = np.zeros(self.n_slices)
@@ -35,7 +35,8 @@ class Robot():
         for i in range(len(self.completeList)):
             self.completeList[i] = 1
 
-        self.activeTask = 1
+        self.activeTask = 2
+        
 
 
     def update(self, image):

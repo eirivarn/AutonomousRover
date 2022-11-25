@@ -4,35 +4,38 @@ class Const:
     def __init__(self):
         self.isHeadless = False
 
-        self.speed = 25
-        self.turnSpeed = 35
+        self.speed = 15
+        self.turnSpeed = 10
         self.cupDistBuffer = 40
         self.cupPosBuffer = 70
-        self.lineDistBuffer = 2
-        self.posDistBuffer = 30
-        self.quartRotationTime= 0.165
-        self.quartRotationSpeed= 100
+        self.lineDistBuffer = 60
+        self.posDistBuffer = 60
+        self.quartRotationTime= 0.167
+        self.quartRotationSpeed= 57
 
-        self.need4speed = 70  #tør me å vinna??
+        self.need4speed = 12.5  #tør me å vinna?? tydelig vis ikkje :((
+        self.speedTask3Hill = 10
+        self.speedObsticals = 12
 
         self.lSpeedPin = 7
         self.lDirPin = 11
         self.rSpeedPin = 13
         self.rDirPin = 15
 
-        self.kp = 0.07
-        self.kd = 0.12
-        self.ki = 0.0005
+        self.kp = 0.03
+        self.kd = 0.15
+        self.ki = 0.0001
 
-        self.n_slices = 4
+        self.n_slices = 3
         self.threshGrey = 65
-        self.crossWidth = 200
+        self.crossWidth = 300
         self.cupConfidence = 0.55
         self.cupObjects = ['cup','bowl']
         self.cupIsClose = 100
 
         self.i_line = 2
-        self.lineArea = 900
+        self.lineArea = 1000
+        self.minCrossAreaBlue = 110000  #110 000
 
         self.resolution = (640, 380)
         self.offsetPosition = 0,35 
@@ -52,16 +55,16 @@ class Const:
         ## ////////////////////////////
 
         ##/////////// Servo //////////
-        self.open_val = 0.2
-        self.close_val = 0.9
-        self.up = 0.8
-        self.down = 0.5
+        self.open_val = 0.7
+        self.close_val = 1
+        self.up = 1
+        self.down = 0.6
 
 
         #//////////init Speed/////////
         self.initSleep = 0.08
         self.speedBoozt = 85
         self.minSpeed4init = 1000
-        self.deltaError = 0.4
+        self.deltaError = 0.6
         self.minMotionArea = 2000
         #self.nMotionCount = 4

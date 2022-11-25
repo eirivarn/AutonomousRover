@@ -4,8 +4,8 @@ from servo import Servo
 
 
 class Task1(Task):
-    def __init__(self, motorContorl, lineModule, cupModule, const):
-        super().__init__(motorContorl, lineModule, cupModule, const)
+    def __init__(self, motorContorl, lineModule, cupModule, const, robot):
+        super().__init__(motorContorl, lineModule, cupModule, const ,robot)
         self.speed = self.const.speed
         self.cupDistBuffer = self.const.cupDistBuffer
         self.lineDistBuffer = self.const.lineDistBuffer
