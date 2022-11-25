@@ -1,6 +1,6 @@
 import time
 #from LineModule import LineModule
-#from motorControl import MotorControl
+from motorControl import MotorControl
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 import cv2
@@ -13,7 +13,7 @@ rawCapture = PiRGBArray(camera, size=(640, 480))
 image = None
 
 const = Const()
-#motorControl = MotorControl(const)
+motorControl = MotorControl(const)
 #lineModule = LineModule(True, None , const)
 cupModule = CupModule(True, const)
 cupDistBuffer = 10
@@ -37,10 +37,10 @@ def test1(image):
     print("Executing subtask 2")
     cupPos, cupInImage, cupIsClose = cupModule.analyzeImage(image)
     if not cupInImage:
-        motorControl.turnLeft(35)
+        motorControl.turnLeft(17s)
     else:
         motorControl.turnToPos(cupPos)
-    if cupPos in range(-cupDistBuffer, cupDistBuffer):
+    if cupPos in range(-const.cupDistBuffer, const.cupDistBuffer):
         motorControl.stop()
         print("Subtask 2 complete")
 
