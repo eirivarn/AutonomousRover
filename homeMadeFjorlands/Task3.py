@@ -19,25 +19,13 @@ class Task3(Task):
         if self.subTask == 1: # turn left
             self.subTask1()
         
-        elif self.subTask == 2:   #keep tunring left til main line
+        elif self.subTask == 2:   #follow line
             self.subTask2(image)
 
-        elif self.subTask == 3:   #follow line to next cross
+        elif self.subTask == 3:   #turn left
             self.subTask3(image)
 
-        elif self.subTask == 4:   #follow line to next cross
-            self.subTask4(image)
-
-        elif self.subTask == 5:   #follow line to next cross
-           self.subTask5(image)
-
-        elif self.subTask == 6:   #follow line to next cross
-            self.subTask6(image)
-
-        elif self.subTask == 7:   #turn left
-            self.subTask7(image)
-
-        elif self.subTask == 8:    #task 2 complete
+        elif self.subTask == 4:    #task 2 complete
             self.robot.setActiveTask(4)
 
         else:
@@ -46,66 +34,18 @@ class Task3(Task):
 
     def subTask1(self):
         self.cameraServo.down()
-        #self.motorControl.rotateLeft(self.const.quartRotationSpeed, self.motionError)
-        #sleep(self.const.quartRotationTime)  #TODO funker egentlig dett??? trengs det? eventuelt legg inn 90 deg sving
-        self.subTask = 3
+        self.motorControl.rotateLeft(self.const.quartRotationSpeed, self.motionError)
+        sleep(self.const.quartRotationTime)  #TODO funker egentlig dett??? trengs det? eventuelt legg inn 90 deg sving
+        self.subTask = 2
 
-    def subTask2(self,image):
-        line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
-        if lostLine:
-            self.motorControl.findLine()        
-        else:
-            pos = line[2]
-            self.motorControl.turnToPos(pos, self.motionError)  #TODO kan være vilket som helst line-punkt, bør testes
-            if pos in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
-                self.subTask = 3
-
-    def subTask3(self, image): #cross to hill
+    def subTask2(self, image): #cross to next cross
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
         self.motorControl.followLine( line, angle, offset ,self.speedHill, lostLine, self.motionError)
-        if atCross and self.ticks == 5:
-            self.ticks = 0
-            self.subTask = 4
-        self.ticks += 1
+        if atCross:
+            self.subTask = 3
 
-    def subTask4(self, image): #hill to first bump
-        line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
-        self.motorControl.followLine( line, angle, offset ,self.speedHill, lostLine, self.motionError)
-        if atCross and self.ticks == 5:
-            self.ticks = 0
-            self.subTask = 5
-        self.ticks += 1
-        
-    
-    def subTask5(self, image): #bump to bump
-        line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
-        self.motorControl.followLine( line, angle, offset ,self.speedObsticals, lostLine, self.motionError)
-        if atCross and self.ticks == 5:
-            self.ticks = 0
-            self.subTask = 6
-        self.ticks += 1
-        
-    
-    def subTask6(self, image): #bump to bump
-        line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
-        self.motorControl.followLine( line, angle, offset ,self.speedObsticals, lostLine, self.motionError)
-        if atCross and self.ticks == 5:
-            self.ticks = 0
-            self.motorControl.stop()
-            sleep(5)
-            self.subTask = 7
-        self.ticks += 1
-        
-
-    def subTask7(self,image): #turn left
-        line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
-        if lostLine and self.ticks == 5:
-            self.ticks = 0
-            self.motorControl.findLine() #TODO bytt til lost line funk
-        else:
-            pos = line[2]
-            self.motorControl.turnToPos(pos, self.motionError)  #TODO kan være vilket som helst line-punkt, bør testes
-            if pos in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
-                self.subTask = 8
-        self.ticks += 1
+    def subTask3(self,image): #turn left
+        self.motorControl.rotateLeft(self.const.quartRotationSpeed, self.motionError)
+        sleep(self.const.quartRotationTime)  #TODO funker egentlig dett??? trengs det? eventuelt legg inn 90 deg sving
+        self.subTask = 4
         
