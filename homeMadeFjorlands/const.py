@@ -4,29 +4,29 @@ class Const:
     def __init__(self):
         self.isHeadless = False
 
-        self.speed = 14
+        self.speed = 12
         self.turnSpeed = 10
         self.cupDistBuffer = 40
         self.cupPosBuffer = 70
         self.lineDistBuffer = 60
         self.posDistBuffer = 60
-        self.quartRotationTime= 0.167
-        self.quartRotationSpeed= 57
+        self.quartRotationTime= 0.17
+        self.quartRotationSpeed= 40
 
         self.need4speed = 12.5  #tør me å vinna?? tydelig vis ikkje :((
         self.speedTask3Hill = 10
         self.speedObsticals = 12
 
-        self.lSpeedPin = 6
+        self.lSpeedPin = 7
         self.lDirPin = 11
         self.rSpeedPin = 13
         self.rDirPin = 15
 
-        self.kp = 0.04
-        self.kd = 0.15
+        self.kp = 0.033
+        self.kd = 0.11
         self.ki = 0.0001
 
-        self.n_slices = 6
+        self.n_slices = 4
         self.threshGrey = 65
         self.crossWidth = 300
         self.cupConfidence = 0.55
@@ -34,7 +34,7 @@ class Const:
         self.cupIsClose = 100
 
         self.i_line = 2
-        self.lineArea = 1000
+        self.lineArea = 400
         self.minCrossAreaBlue = 110000  #110 000
 
         self.resolution = (640, 380)
@@ -57,8 +57,8 @@ class Const:
         ##/////////// Servo //////////
         self.open_val = 0.7
         self.close_val = 1
-        self.up = 0.5
-        self.down = 0
+        self.up = 0
+        self.down = -0.5
 
 
         #//////////init Speed/////////
