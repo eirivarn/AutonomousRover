@@ -10,6 +10,7 @@ class Task3(Task):
         self.turnSpeed = self.const.turnSpeed
         self.motionError = 1
         self.subTask = 1
+        self.ticks = 0
 
 
     def update(self, image, motionError=1):
@@ -28,7 +29,7 @@ class Task3(Task):
             self.subTask4(image)
 
         elif self.subTask == 5:   #follow line to next cross
-            self.subTask5(image)
+           self.subTask5(image)
 
         elif self.subTask == 6:   #follow line to next cross
             self.subTask6(image)
@@ -62,35 +63,49 @@ class Task3(Task):
     def subTask3(self, image): #cross to hill
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
         self.motorControl.followLine( line, angle, offset ,self.speedHill, lostLine, self.motionError)
-        if atCross:
+        if atCross and self.ticks == 5:
+            self.ticks = 0
             self.subTask = 4
+        self.ticks += 1
 
     def subTask4(self, image): #hill to first bump
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
         self.motorControl.followLine( line, angle, offset ,self.speedHill, lostLine, self.motionError)
-        if atCross:
+        if atCross and self.ticks == 5:
+            self.ticks = 0
             self.subTask = 5
+        self.ticks += 1
+        
     
     def subTask5(self, image): #bump to bump
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
         self.motorControl.followLine( line, angle, offset ,self.speedObsticals, lostLine, self.motionError)
-        if atCross:
+        if atCross and self.ticks == 5:
+            self.ticks = 0
             self.subTask = 6
+        self.ticks += 1
+        
     
     def subTask6(self, image): #bump to bump
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
         self.motorControl.followLine( line, angle, offset ,self.speedObsticals, lostLine, self.motionError)
-        if atCross:
+        if atCross and self.ticks == 5:
+            self.ticks = 0
             self.motorControl.stop()
             sleep(5)
             self.subTask = 7
+        self.ticks += 1
+        
 
     def subTask7(self,image): #turn left
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
-        if lostLine:
+        if lostLine and self.ticks == 5:
+            self.ticks = 0
             self.motorControl.findLine() #TODO bytt til lost line funk
         else:
             pos = line[2]
             self.motorControl.turnToPos(pos, self.motionError)  #TODO kan være vilket som helst line-punkt, bør testes
             if pos in range(-self.const.lineDistBuffer, self.const.lineDistBuffer):
                 self.subTask = 8
+        self.ticks += 1
+        
