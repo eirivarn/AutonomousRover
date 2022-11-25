@@ -41,4 +41,5 @@ def findingEndOfLine(image):
         motorControl.goToPos(xPos, const.speed, const.motionError)
 
 
+startVideoCapture()
 
