@@ -54,7 +54,6 @@ class MotorControl:
     
 
     def goToPos(self, pos, speed, motionError = 1):
-        #if type(pos) != None:
         if not pos is None:
             self.followLine(None, 0, -pos, speed, False, motionError) ##TODO mulighet for å finne ut om vi har mistet linja her?? trengs sannsynlig vis ikke
 
