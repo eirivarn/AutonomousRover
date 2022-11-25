@@ -17,7 +17,7 @@ class Const:
         self.speedTask3Hill = 10
         self.speedObsticals = 12
 
-        self.lSpeedPin = 7
+        self.lSpeedPin = 8
         self.lDirPin = 11
         self.rSpeedPin = 13
         self.rDirPin = 15
