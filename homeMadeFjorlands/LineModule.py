@@ -21,6 +21,8 @@ class LineModule:
 
 
     def analyzeImage(self, image):
+        self.viewImage(repackedImg)
+
         removedBgImg = RemoveBackground(image, True)
         atCross = False
         list = []
