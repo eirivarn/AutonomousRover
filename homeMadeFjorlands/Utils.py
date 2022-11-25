@@ -33,7 +33,7 @@ def Center(moments):
     return x, y
     
 def RemoveBackground(image, b):
-    up = 70
+    up = 60
     # create NumPy arrays from the boundaries
     lower = np.array([0, 0, 0], dtype = "uint8")
     upper = np.array([up, up, up], dtype = "uint8")

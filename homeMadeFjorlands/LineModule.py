@@ -21,7 +21,7 @@ class LineModule:
 
 
     def analyzeImage(self, image):
-        self.viewImage(image)
+        self.viewImage('clear',image)
 
         removedBgImg = RemoveBackground(image, True)
         atCross = False
@@ -96,7 +96,7 @@ class LineModule:
             print('Could not find line')
             
         repackedImg = self.drawSpeed(repackedImg)
-        self.viewImage(repackedImg)
+        self.viewImage('slice',repackedImg)
 
         atCross = self.robot.crossConfirmed()
 
@@ -128,7 +128,7 @@ class LineModule:
         if atCross:
             cv2.putText(image, "CROSS!!!", (290, 50), cv2.FONT_HERSHEY_SIMPLEX,3,(0,0,255),2)
         image = self.drawSpeed(image)
-        self.viewImage(image)
+        self.viewImage('strip', image)
 
         ##///////////Printing information
         print ("\n{:<8} {:<15} {:<15} ".format('Angle','Offset', 'Cross'))
@@ -183,9 +183,9 @@ class LineModule:
     def crossAtPosition(self, position):
         return self.crossLocation[position]
 
-    def viewImage(self, image):
+    def viewImage(self,name, image):
         if not self.isHeadless:
-            cv2.imshow('Image', image)
+            cv2.imshow(name, image)
 
     def drawSpeed(self, image):
         try:
