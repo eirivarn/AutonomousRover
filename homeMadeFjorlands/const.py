@@ -4,7 +4,7 @@ class Const:
     def __init__(self):
         self.speed = 50
         self.turnSpeed = 80
-        self.cupDistBuffer = 2
+        self.cupDistBuffer = 60
         self.cupPosBuffer = 10
         self.lineDistBuffer = 2
         self.posDistBuffer = 2
