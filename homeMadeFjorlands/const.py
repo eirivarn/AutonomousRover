@@ -26,7 +26,7 @@ class Const:
         self.kd = 0.15
         self.ki = 0.0001
 
-        self.n_slices = 8
+        self.n_slices = 6
         self.threshGrey = 65
         self.crossWidth = 300
         self.cupConfidence = 0.55
@@ -34,7 +34,7 @@ class Const:
         self.cupIsClose = 100
 
         self.i_line = 2
-        self.lineArea = 1000
+        self.lineArea = 400
         self.minCrossAreaBlue = 110000  #110 000
 
         self.resolution = (640, 380)
