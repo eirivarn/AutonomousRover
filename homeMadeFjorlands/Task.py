@@ -1,6 +1,7 @@
 from servo import Servo
 class Task:
-    def __init__(self, motorContorl, lineModule, cupModule, const):
+    def __init__(self, motorContorl, lineModule, cupModule, const, robot):
+        self.robot = robot
         self.const = const
         self.motorControl = motorContorl
         self.lineModule = lineModule

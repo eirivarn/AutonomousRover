@@ -5,7 +5,6 @@ from Task import Task
 class Task3(Task):
     def __init__(self, motorContorl, lineModule, cupModule, const, robot):
         super().__init__(motorContorl, lineModule, cupModule, const ,robot)
-        self.robot = robot
         self.speedHill = self.const.speedTask3Hill  #sett en safe og trygg speed gjennom hinderløpa
         self.speedObsticals = self.const.speedObsticals
         self.turnSpeed = self.const.turnSpeed

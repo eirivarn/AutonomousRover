@@ -2,8 +2,8 @@ from Task import Task
 
 
 class Task2(Task):
-    def __init__(self, motorContorl, lineModule, cupModule, const):
-        super().__init__(motorContorl, lineModule, cupModule, const)
+    def __init__(self, motorContorl, lineModule, cupModule, const, robot):
+        super().__init__(motorContorl, lineModule, cupModule, const, robot)
         self.speed = self.const.need4speed 
         
         self.subTask = 1
