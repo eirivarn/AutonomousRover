@@ -26,7 +26,7 @@ class Const:
         self.kd = 0.15
         self.ki = 0.0001
 
-        self.n_slices = 6
+        self.n_slices = 8
         self.threshGrey = 65
         self.crossWidth = 300
         self.cupConfidence = 0.55
