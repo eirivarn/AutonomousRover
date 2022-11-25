@@ -13,7 +13,7 @@ class Const:
         self.quartRotationTime= 0.15
         self.quartRotationSpeed= 50
 
-        self.need4speed = 10  #tør me å vinna?? tydelig vis ikkje :((
+        self.need4speed = 12  #tør me å vinna?? tydelig vis ikkje :((
         self.speedTask3Hill = 10
         self.speedObsticals = 12
 
