@@ -40,10 +40,16 @@ class Task3(Task):
         self.subTask = 2
 
     def subTask2(self, image): #cross to next cross
+        if 5 < self.ticks < 25: 
+            speed = self.speedHill + 25
+        else:
+            speed = self.speedHill
         line, atCross, angle, offset, lostLine = self.lineModule.analyzeImage(image)
-        self.motorControl.followLine( line, angle, offset ,self.speedHill, lostLine, self.motionError)
+        self.motorControl.followLine( line, angle, offset ,speed, lostLine, self.motionError)
         if atCross:
+            self.ticks = 0
             self.subTask = 3
+        self.ticks += 1
 
     def subTask3(self,image): #turn left
         self.motorControl.rotateLeft(self.const.quartRotationSpeed, self.motionError)
