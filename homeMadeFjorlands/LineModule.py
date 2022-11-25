@@ -130,7 +130,7 @@ class LineModule:
         atCross = atCross and wc*hc >= self.const.minCrossAreaBlue  
 
         if atCross:
-            cv2.putText(image, "CROSS!!!", (270, 70), cv2.FONT_HERSHEY_SIMPLEX,3,(0,0,255),2)
+            cv2.putText(image, f"CROSS!!!{wc*hc}", (270, 70), cv2.FONT_HERSHEY_SIMPLEX,3,(0,0,255),2)
         image = self.drawSpeed(image)
         self.viewImage('strip', image)
 
