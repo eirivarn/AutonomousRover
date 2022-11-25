@@ -10,7 +10,7 @@ class Const:
         self.cupPosBuffer = 70
         self.lineDistBuffer = 60
         self.posDistBuffer = 60
-        self.quartRotationTime= 0.15
+        self.quartRotationTime= 0.167
         self.quartRotationSpeed= 50
 
         self.need4speed = 12.5  #tør me å vinna?? tydelig vis ikkje :((
@@ -57,7 +57,7 @@ class Const:
         ##/////////// Servo //////////
         self.open_val = 0.2
         self.close_val = 0.9
-        self.up = 0.9
+        self.up = 1.05
         self.down = 0.7
 
 
