@@ -177,7 +177,7 @@ class LineModule:
             xPos = int(x+w/2)
             yPos = y
             cv2.circle(image, (xPos, yPos), 3, (0,0,255), -1)
-            self.viewImage(image)
+            self.viewImage('image',image)
             if xPos and yPos != 999:
                 endOfLineInImage = True
         return xPos, yPos, endOfLineInImage
