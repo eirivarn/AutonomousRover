@@ -30,8 +30,6 @@ class DCmotor:
             else:'''
             GPIO.output(self.directionPin, 1)
             self.speed_pwm.ChangeDutyCycle(speed)
-            sleep(0.15)
-            self.stop()
         else:
             self.backward(-speed)
 
@@ -50,8 +48,6 @@ class DCmotor:
             else:'''
             GPIO.output(self.directionPin, 0)
             self.speed_pwm.ChangeDutyCycle(speed)
-            sleep(0.15)
-            self.stop()
         else:
             self.forward(-speed)
         self._setSpeed(-speed)
