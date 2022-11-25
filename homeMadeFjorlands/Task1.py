@@ -114,7 +114,7 @@ class Task1(Task):
             self.motorControl.stop()
             self.subTask = 4
             return
-        self.motorControl.goToPos(cupPos, self.speed, self.motionError)
+        self.motorControl.goToPos(cupPos, self.speed, self.motionError*0.5)
     
 
     def subTask4(self):
