@@ -38,7 +38,6 @@ class LineModule:
                     self.robot.updateCrossConf(i)
                 elif self.images[i].crossFound():
                     self.robot.updateCrossConf(i) 
-                else: 
                     self.crossPosition[i] = 1
             repackedImg = RepackImages(self.images)
 
@@ -235,3 +234,6 @@ class LineModule:
 
     def quit(self):
         cv2.destroyAllWindows()
+
+    def isCrossAt(self, position):
+        return self.crossAtPosition[position] == 1

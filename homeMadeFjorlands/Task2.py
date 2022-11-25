@@ -1,4 +1,5 @@
 from Task import Task
+from time import sleep
 
 
 class Task2(Task):
