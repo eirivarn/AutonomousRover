@@ -24,7 +24,7 @@ class Const:
 
         self.kp = 0.033
         self.kd = 0.11
-        self.ki = 0.0004
+        self.ki = 0.0001
 
         self.n_slices = 3
         self.threshGrey = 65
@@ -58,7 +58,7 @@ class Const:
         self.open_val = 0.2
         self.close_val = 0.9
         self.up = 0.9
-        self.down = 0.55
+        self.down = 0.62
 
 
         #//////////init Speed/////////
