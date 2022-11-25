@@ -115,7 +115,7 @@ class LineModule:
                 angle = -self.preProcessAngle(angle,wc,hc)
                 offset = int(320-xb-wb/2)
 
-                cv2.rectangle(image,(xb,yb),(xb+wb,yb+hb),(0,255,0),2) #Bounding box
+                cv2.rectangle(image,(xb,yb),(xb+wb,yb+hb),(0,255,0),2) #Bounding box   rgb bgr
                 cv2.line(image, (int(xb+wb/2), yb), (int(xb+wb/2), yb+hb),(0,255,0), 2) #bounding box centerline
                 cv2.line(image,(int(xb+wb/2), int(yb+hb/2)), (320, int(yb+hb/2)),(0,0,255), 1)# distance line
                 cv2.line(image, (320, 10), (320, 350),(0,0,255), 1)#center line
@@ -124,9 +124,11 @@ class LineModule:
                 cv2.putText(image, str(offset)+"dist", (360,330),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)#te>
                 cv2.drawContours(image, blackContours,-1,(0,0,255),1)#draws all black contour lines
             else:
-                lostLine=True        
+                lostLine=True 
+
+        atCross = atCross and wc*hc >= self.const.minCrossAreaBlue       
         if atCross:
-            cv2.putText(image, "CROSS!!!", (290, 50), cv2.FONT_HERSHEY_SIMPLEX,3,(0,0,255),2)
+            cv2.putText(image, "CROSS!!!", (270, 70), cv2.FONT_HERSHEY_SIMPLEX,3,(0,0,255),2)
         image = self.drawSpeed(image)
         self.viewImage('strip', image)
 
