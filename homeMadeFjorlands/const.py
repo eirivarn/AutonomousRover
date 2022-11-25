@@ -34,7 +34,7 @@ class Const:
         self.cupIsClose = 100
 
         self.i_line = 2
-        self.lineArea = 700
+        self.lineArea = 1000
 
         self.resolution = (640, 380)
         self.offsetPosition = 0,35 
