@@ -100,7 +100,8 @@ class LineModule:
 
         atCross = self.robot.crossConfirmed()
 
-
+        wc=0
+        hc=0
        
         blackAreas = cv2.inRange(image, (0,0,0), (50,50,50))
         blackAreas = self.improveLine(blackAreas)
@@ -126,10 +127,7 @@ class LineModule:
             else:
                 lostLine=True 
 
-        if not wc is None:
-            atCross = atCross and wc*hc >= self.const.minCrossAreaBlue  
-        else:
-            atCross=False     
+        atCross = atCross and wc*hc >= self.const.minCrossAreaBlue  
 
         if atCross:
             cv2.putText(image, "CROSS!!!", (270, 70), cv2.FONT_HERSHEY_SIMPLEX,3,(0,0,255),2)
