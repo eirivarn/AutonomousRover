@@ -34,7 +34,7 @@ class LineModule:
             SlicePart(removedBgImg, self.images, self.N_SLICES)
             for i in range(self.N_SLICES):
                 list.append(self.images[i].getOffset())
-                if i == 0:
+                if i == 0 or i == len(self.N_SLICES)-1:
                     self.robot.updateCrossConf(i)
                 elif self.images[i].crossFound():
                     self.robot.updateCrossConf(i) 
@@ -126,7 +126,11 @@ class LineModule:
             else:
                 lostLine=True 
 
-        atCross = atCross and wc*hc >= self.const.minCrossAreaBlue       
+        if not wc is None:
+            atCross = atCross and wc*hc >= self.const.minCrossAreaBlue  
+        else:
+            atCross=False     
+
         if atCross:
             cv2.putText(image, "CROSS!!!", (270, 70), cv2.FONT_HERSHEY_SIMPLEX,3,(0,0,255),2)
         image = self.drawSpeed(image)
