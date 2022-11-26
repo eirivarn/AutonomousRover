@@ -16,7 +16,7 @@ def main():
     gripperOpen = True
 
     speed = 0
-    curv = 0
+    curve = 0
     acceleration = 5
 
 
