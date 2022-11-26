@@ -38,39 +38,33 @@ def main():
             if speed == 0:
                 speed = 15
                 motor.forward(speed)
-            elif speed > 0:
-                speed = speed + acceleration
-                motor.forward(speed)
-            else:
-                speed = speed + acceleration
-                absSpeed = abs(speed)
-                motor.backward(absSpeed)
+            speed = speed + acceleration
+            motor.forward(speed)
             
         elif key == 's':
             if  speed == 0:
                 speed =  -15
-                absSpeed = abs(speed)
-                motor.backward(absSpeed)
-            elif  speed < 0:
-                speed = speed - acceleration
-                absSpees = abs(speed)
-                motor.backward(absSpees)
-            else:
-                speed = speed - acceleration
-                absSpeed = abs(speed)
-                motor.forward(speed)
+                motor.forward(absSpeed)
+            speed = speed - acceleration
+            absSpeed = abs(speed)
+            motor.backward(absSpeed)
 
         elif key == 'a':
-            if curve < 0:
+            if curve == 0:
+                curveRate = -15
+                motor.rotateLeft(curveRate)
+            elif curve < 0:
                 curve = curve - acceleration
-                curve = abs(curve)
-                motor.curveLeft(curve)
+                motor.curveLeft(absCurve)
             else: 
                 curve = curve + acceleration
                 motor.curveRight(curve)
 
         elif key == 'd':
-            if curve > 0:
+            if curve == 0:
+                absSpeed = speed
+                motor.rotateRight(absSpeed)
+            elif curve > 0:
                 curve = curve - acceleration
                 motor.curveLeft(curve)
             else: 
