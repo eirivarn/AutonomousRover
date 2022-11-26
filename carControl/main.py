@@ -40,12 +40,12 @@ def main():
                 forward = True
                 backward = False
                 motor.forward(speed)
-            if speed > 0:
+            elif speed > 0:
                 speed = speed + acceleration
                 forward = True
                 backward = False
                 motor.forward(speed)
-            else: 
+            elif: 
                 forward = False
                 backward = True
                 speed = speed - acceleration
@@ -57,13 +57,13 @@ def main():
                 backward = True
                 forward = False
                 motor.backward(speed)
-            if  speed < 0:
+            elif  speed < 0:
                 speed = speed - acceleration
                 backward = True
                 forward = False
                 speed = abs(speed)
                 motor.backward(speed)
-            else: 
+            elif: 
                 speed = speed - acceleration
                 forward = True
                 backward = False
