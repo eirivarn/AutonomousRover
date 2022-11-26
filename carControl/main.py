@@ -64,9 +64,10 @@ def main():
                 speed = abs(speed)
                 motor.backward(speed)
             else: 
-                speed = speed - acceleration
+                speed = speed + acceleration
                 forward = True
                 backward = False
+                speed = abs(speed)
                 motor.forward(speed)
 
         elif key == 'a':
