@@ -42,7 +42,7 @@ def main():
                 speed = speed + acceleration
                 motor.forward(speed)
             else:
-                speed = speed - acceleration
+                speed = speed + acceleration
                 absSpeed = abs(speed)
                 motor.backward(absSpeed)
             
