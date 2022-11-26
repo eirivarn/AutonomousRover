@@ -56,12 +56,13 @@ def main():
                 speed = - 18
                 backward = True
                 forward = False
-                motor.backward(-speed)
+                motor.backward(speed)
             if  speed < 0:
                 speed = speed - acceleration
                 backward = True
                 forward = False
-                motor.backward(-speed)
+                speed = abs(speed)
+                motor.backward(speed)
             else: 
                 speed = speed - acceleration
                 forward = True
@@ -71,10 +72,11 @@ def main():
         elif key == 'a':
             if curve < 0:
                 curve = curve - acceleration
-                motor.curveLeft(-curve)
+                curve = abs(curve)
+                motor.curveLeft(curve)
             else: 
                 curve = curve + acceleration
-                motor.curveRight(-curve)
+                motor.curveRight(curve)
 
         elif key == 'd':
             if curve > 0:
@@ -82,6 +84,7 @@ def main():
                 motor.curveLeft(curve)
             else: 
                 curve = curve + acceleration
+                curve = abs(curve)
                 motor.curveRight(curve)
 
         elif key == 'q':
