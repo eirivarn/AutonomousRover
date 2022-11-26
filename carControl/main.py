@@ -44,7 +44,7 @@ def main():
         elif key == 's':
             if  speed == 0:
                 speed =  -15
-                motor.forward(absSpeed)
+                motor.forward(speed)
             speed = speed - acceleration
             motor.forward(speed)
 
