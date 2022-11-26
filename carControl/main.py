@@ -44,7 +44,7 @@ def main():
                 forward = False
                 backward = True
                 speed = speed - acceleration
-                motor.backward(speed)
+                motor.forward(speed)
             
         elif key == 's':
             if  speed < 0:
@@ -56,7 +56,7 @@ def main():
                 speed = speed - acceleration
                 forward = True
                 backward = False
-                motor.forward(speed)
+                motor.backward(speed)
 
         elif key == 'a':
             if curve < 0:
