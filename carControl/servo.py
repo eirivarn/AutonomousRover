@@ -8,7 +8,7 @@ class Servo:
         self.open = 0.2
         self.close = 0.9
         self.up = 0.9
-        self.down = 0.55
+        self.down = 0.3
         factory = PiGPIOFactory()
         self.servo = AngularServo(port, min_pulse_width=0.0006, max_pulse_width=0.0023, pin_factory=factory)
 

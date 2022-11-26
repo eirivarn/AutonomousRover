@@ -17,7 +17,7 @@ def main():
 
     speed = 0
     curve = 0
-    acceleration = 5
+    acceleration = 10
     rotationSpeed = 0
 
     stop = True
