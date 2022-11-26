@@ -28,8 +28,8 @@ class DCmotor:
         GPIO.output(self.directionPin, 0)
         if speed > 100:
             speed = 100
-        self._setSpeed(-speed)
-        self.speed_pwm.ChangeDutyCycle(-speed)
+        self._setSpeed(speed)
+        self.speed_pwm.ChangeDutyCycle(speed)
     
    
  
