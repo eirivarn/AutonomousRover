@@ -17,7 +17,7 @@ def main():
 
     speed = 0
     curv = 0
-    acceleration = 2
+    acceleration = 5
 
 
     stop = True
@@ -36,7 +36,7 @@ def main():
         #key = input('>')
         if key == 'w':
             if speed == 0:
-                speed = 20
+                speed = 25
                 forward = True
                 backward = False
                 motor.forward(speed)
