@@ -47,7 +47,7 @@ def main():
                 motor.forward(absSpeed)
             speed = speed - acceleration
             absSpeed = abs(speed)
-            motor.backward(absSpeed)
+            motor.forward(absSpeed)
 
         elif key == 'a':
             if curve == 0:
