@@ -14,16 +14,11 @@ stop = False
 
 curvRate = 2
 
-motorController = motorControl()
-cameraServo = Servo(12)
-gripperServo = Servo(13)
-
 cameraDown = True
 
 gripperOpen = True
 
- 
- 
+
 def driveForward(motorController):
     backward = False
     rotateRight = False
@@ -75,43 +70,12 @@ def Stop(motorController):
     
 def quit(motorController):
     motorController.quit()
-
- 
-def settings(motorControl):
-    global curvRate
-    global speed
-    global turnSpeed
-    global curvRateSenitivity
-    stop(motorControl)
-    print(f'''Choos setting to change:
-    1: turnSpeed  = {turnSpeed}
-    2: speed = {speed}
-    3: Curv-rate senitivity = {curvRateSenitivity}
-    4: exit
-    ''')
-    ans = input('>')
-    if ans == '1':
-        print(f'turn speed = {turnSpeed}')
-        turnSpeed = input('New val >')
-        print('done')
-    elif ans == '2':
-        print(f'speed = {speed}')
-        speed = input('New val >')
-        print('done')
-    elif ans == '3':
-        print(f'Curv-rate senitivity = {curvRateSenitivity}')
-        curvRateSenitivity = input('New val >')
-        print('done')
-    else:
-        print('done')
  
  
 def main():
-    #tiltServo = servo(30)
-    #gripServo = servo(31)
-    #cameraSeervo = servo(32)
- 
     motor = motorControl()
+    cameraServo = Servo(12)
+    gripperServo = Servo(13)
  
     while True:
         sleep(0.1)
@@ -130,14 +94,15 @@ def main():
             else: 
                 curveLeft(motor)
         elif key == 'd':
-            right(motor)
+            if stop == True:
+                driveRotateRight(motor)
+            else: 
+                curveRight(motor)
         elif key == 'q':
             quit(motor)
             break
         elif key == 'e':
-            stop(motor)
-        elif key == 'i':
-            settings(motor)
+            motor.stop()
         elif key == 'o':
             if cameraDown == True:
                 cameraServo.lift()
@@ -148,11 +113,12 @@ def main():
         elif key == 'SPACE':
             if gripperOpen == True:
                 gripperServo.closeGripper()
+                gripperOpen = False
             else: 
                 gripperServo.openGripper()
+                gripperOpen = False
 
-       
- 
+
 try:
     main()
  
