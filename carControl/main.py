@@ -4,78 +4,24 @@ from motorControl import motorControl
 from servo import Servo
 from getkey import getkey, keys
  
-#settings:
-forward = False
-backward = False
-rotateRight = False
-rotateLeft = False 
-
-stop = False
-
-curvRate = 2
-
-cameraDown = True
-
-gripperOpen = True
-
-
-def driveForward(motorController):
-    backward = False
-    rotateRight = False
-    rotateLeft = False 
-    if forward == False:
-        forward = True
-        speedForward = 15
-    motorController.forward(speedForward)
-    speedForward = speedForward + 2 
- 
-def driveBackward(motorController):
-    forward = False
-    rotateRight = False
-    rotateLeft = False 
-    if backward == False:
-        backward = True
-        speedBackward = 15
-    motorController.backward(speedBackward)
-    speedBackward = speedBackward + 2 
-
-def driveRotateLeft(motorController):
-    forward = False
-    backward = False
-    turnRight = False
-    if rotateLeft == False:
-        rotateLeft = True
-        rotateLeft = 15
-    motorController.rotateLeft(SpeedRotateLeft)
-    SpeedRotateLeft = SpeedRotateLeft + 2
-
-def driveRotateRight(motorController):
-    forward = False
-    backward = False
-    turnLeft = False
-    if rotateRight == False:
-        rotateRight = True
-        rotateRight = 15
-    motorController.rotateLeft(speedRotateRight)
-    speedRotateRight = speedRotateRight + 2
- 
-def curveLeft(motorController):
-    motorController.curveLeft(curvRate)
-
-def curveRight(motorController):
-    motorController.curveRight(curvRate) 
-        
-def Stop(motorController):
-    motorController.stop()
     
-def quit(motorController):
-    motorController.quit()
- 
  
 def main():
     motor = motorControl()
     cameraServo = Servo(12)
     gripperServo = Servo(13)
+
+    cameraDown = True
+    gripperOpen = True
+
+    forward = False
+    backward = False
+    rotateRight = False
+    rotateLeft = False 
+
+    stop = True
+
+    curvRate = 2    
  
     while True:
         sleep(0.1)
@@ -85,21 +31,57 @@ def main():
         motor.printSpeeds()
         #key = input('>')
         if key == 'w':
-            driveForward(motor)
+            stop = False
+            backward = False
+            rotateRight = False
+            rotateLeft = False
+            if forward == False:
+                forward = True
+                speedForward = 15
+            motor.forward(speedForward)
+            speedForward = speedForward + 2 
+        
         elif key == 's':
-            driveBackward(motor)
+            stop = False
+            forward = False
+            rotateRight = False
+            rotateLeft = False 
+            if backward == False:
+                backward = True
+                speedBackward = 15
+            motor.backward(speedBackward)
+            speedBackward = speedBackward + 2 
+        
         elif key == 'a':
+            stop = False
+            forward = False
+            backward = False
+            rotateRight = False
+            if rotateLeft == False:
+                rotateLeft = True
+                speedRotateLeft = 15
             if stop == True:
-                driveRotateLeft(motor)
+                motor.rotateLeft(speedRotateLeft)
             else: 
-                curveLeft(motor)
+                motor.curveLeft(curvRate)
+            SpeedRotateLeft = SpeedRotateLeft + 2
+
         elif key == 'd':
+            stop = False
+            forward = False
+            backward = False
+            rotateLeft = False
+            if rotateRight == False:
+                speedRotateRight = True
+                speedRotateRight = 15
             if stop == True:
-                driveRotateRight(motor)
+                motor.rotateRight(speedRotateRight)
             else: 
-                curveRight(motor)
+                motor.curveRight(curvRate)
+            speedRotateRight = speedRotateRight + 2
+
         elif key == 'q':
-            quit(motor)
+            motor.quit()
             break
         elif key == 'e':
             motor.stop()
