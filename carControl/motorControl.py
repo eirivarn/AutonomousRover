@@ -31,12 +31,16 @@ class motorControl:
         print("Rotate left", speed)
  
     def curve(self, curveRate):
-        self.leftMotor.forward(self.leftMotor.getSpeed() + curveRate)
-        self.rightMotor.backward(self.rightMotor.getSpeed() + curveRate)
         if curveRate < 0:
+            self.leftMotor.forward(self.leftMotor.getSpeed() - curveRate)
+            self.rightMotor.forward(self.rightMotor.getSpeed() + curveRate)
             print("Curve left", curveRate)
-        if curveRate > 0:
+
+        if curveRate < 0:
+            self.leftMotor.forward(self.leftMotor.getSpeed() + curveRate)
+            self.rightMotor.forward(self.rightMotor.getSpeed() - curveRate)
             print("Curve right", curveRate)
+
     def stop(self):
         self.leftMotor.stop()
         self.rightMotor.stop()
