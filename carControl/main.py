@@ -49,24 +49,24 @@ def main():
                 forward = False
                 backward = True
                 speed = speed - acceleration
-                motor.backward(speed)
+                motor.backward(-speed)
             
         elif key == 's':
             if  speed == 0:
                 speed = - 18
                 backward = True
                 forward = False
-                motor.backward(speed)
+                motor.backward(-speed)
             if  speed < 0:
                 speed = speed - acceleration
                 backward = True
                 forward = False
-                motor.backward(speed)
+                motor.backward(-speed)
             else: 
-                speed = speed - acceleration
+                speed = speed + acceleration
                 forward = True
                 backward = False
-                motor.forward(speed)
+                motor.forward(-speed)
 
         elif key == 'a':
             if curve < 0:
