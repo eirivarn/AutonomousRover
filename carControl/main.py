@@ -88,6 +88,7 @@ def main():
             motor.quit()
             break
         elif key == 'e':
+            speed = 0
             motor.stop()
         elif key == 'o':
             if cameraDown == True:
