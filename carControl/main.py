@@ -36,10 +36,14 @@ def main():
             rotateRight = False
             rotateLeft = False
             if forward == False:
-                forward = True
-                speedForward = 15
+                if backward == True:
+                    speedBackward = speedBackward - curvRate
+                    motor.backwards()
+                else:
+                    forward = True
+                    speedForward = 20
             motor.forward(speedForward)
-            speedForward = speedForward + 2 
+            speedForward = speedForward + curvRate
         
         elif key == 's':
             stop = False
@@ -47,10 +51,14 @@ def main():
             rotateRight = False
             rotateLeft = False 
             if backward == False:
-                backward = True
-                speedBackward = 15
+                if forward == True:
+                    speedForward = speedForward - curvRate
+                    motor.forward(speedForward)
+                else:
+                    backward = True
+                    speedBackward = 20
             motor.backward(speedBackward)
-            speedBackward = speedBackward + 2 
+            speedBackward = speedBackward + curvRate
         
         elif key == 'a':
             stop = False
@@ -58,14 +66,20 @@ def main():
             backward = False
             rotateRight = False
             if rotateLeft == False:
-                rotateLeft = True
-                speedRotateLeft = 15
+                if rotateRight == True:
+                    speedRotateRight = speedRotateRight - curvRate
+                    motor.rotateLeft
+                else: 
+                    rotateLeft = True
+                    speedRotateLeft = 20
+            else: 
+                speedRotateLeft = 0
             if stop == True:
                 motor.rotateLeft(speedRotateLeft)
             else: 
                 motor.curveLeft(curvRate)
-                speedRotateLeft = 0
-            SpeedRotateLeft = SpeedRotateLeft + 2
+                curvRate = curvRate + curvRate
+            SpeedRotateLeft = SpeedRotateLeft + curvRate
 
         elif key == 'd':
             stop = False
@@ -73,14 +87,19 @@ def main():
             backward = False
             rotateLeft = False
             if rotateRight == False:
-                speedRotateRight = True
-                speedRotateRight = 15
+                if rotateLeft == True:
+                    speedRotateLeft = speedRotateLeft - curvRate
+                else: 
+                    speedRotateRight = True
+                    speedRotateRight = 20
+            else: 
+                speedRotateLeft = 0
             if stop == True:
                 motor.rotateRight(speedRotateRight)
             else: 
                 motor.curveRight(curvRate)
-                speedRotateRight = 0
-            speedRotateRight = speedRotateRight + 2
+                curvRate = curvRate + curvRate
+            speedRotateRight = speedRotateRight + curvRate
 
         elif key == 'q':
             motor.quit()
