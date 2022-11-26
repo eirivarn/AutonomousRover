@@ -98,7 +98,7 @@ def main():
                 gripperOpen = False
             else: 
                 gripperServo.openGripper()
-                gripperOpen = False
+                gripperOpen = True
 
 
 try:
