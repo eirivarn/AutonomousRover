@@ -52,6 +52,8 @@ def main():
             if curve == 0 and speed == 0:
                 curve = -5
                 motor.rotateLeft(-curve)
+            elif speed == 0:
+                curve = curve - 5
             else: 
                 curve = curve - acceleration
                 motor.curve(curve)
@@ -60,6 +62,8 @@ def main():
             if curve == 0 and speed == 0:
                 curve = 5
                 motor.rotateRight(curve)
+            elif speed == 0:
+                curve = curve + 5
             else: 
                 curve = curve + acceleration
                 motor.curve(curve)
