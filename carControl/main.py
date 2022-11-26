@@ -1,50 +1,81 @@
 from time import sleep
 import keyboard
 from motorControl import motorControl
-from servo import servo
+from servo import Servo
 from getkey import getkey, keys
  
 #settings:
-turnSpeed = 100
-speed = 40
-curvRate = 0
-curvRateNew = 5
-curvRateSenitivity = 2
+forward = False
+backward = False
+rotateRight = False
+rotateLeft = False 
+
+stop = False
+
+curvRate = 2
+
+motorController = motorControl()
+cameraServo = Servo(12)
+gripperServo = Servo(13)
+
+cameraDown = True
+
+gripperOpen = True
+
  
  
-def up(motorControl):
-    curvRate = 0
-    motorControl.forward(speed)
+def driveForward(motorController):
+    backward = False
+    rotateRight = False
+    rotateLeft = False 
+    if forward == False:
+        forward = True
+        speedForward = 15
+    motorController.forward(speedForward)
+    speedForward = speedForward + 2 
  
-def down(motorControl):
-    curvRate = 0
-    motorControl.backward(speed)
+def driveBackward(motorController):
+    forward = False
+    rotateRight = False
+    rotateLeft = False 
+    if backward == False:
+        backward = True
+        speedBackward = 15
+    motorController.backward(speedBackward)
+    speedBackward = speedBackward + 2 
+
+def driveRotateLeft(motorController):
+    forward = False
+    backward = False
+    turnRight = False
+    if rotateLeft == False:
+        rotateLeft = True
+        rotateLeft = 15
+    motorController.rotateLeft(SpeedRotateLeft)
+    SpeedRotateLeft = SpeedRotateLeft + 2
+
+def driveRotateRight(motorController):
+    forward = False
+    backward = False
+    turnLeft = False
+    if rotateRight == False:
+        rotateRight = True
+        rotateRight = 15
+    motorController.rotateLeft(speedRotateRight)
+    speedRotateRight = speedRotateRight + 2
  
-def left(motorControl):
-    global curvRate
-    global curvRateNew
-    curvRate += curvRateSenitivity
-    if motorControl.getSpeed() == 0:
-        motorControl.turnLeft(turnSpeed)
-    else:
-        motorControl.curv(-curvRateNew)
- 
-def right(motorControl):
-    global curvRate
-    global curvRateNew
-    curvRate -= curvRateSenitivity
-    if motorControl.getSpeed() == 0:
-        motorControl.turnRight(turnSpeed)
-    else:
-        motorControl.curv(curvRateNew)
+def curveLeft(motorController):
+    motorController.curveLeft(curvRate)
+
+def curveRight(motorController):
+    motorController.curveRight(curvRate) 
         
-def stop(motorControl):
-    curvRate = 0
-    motorControl.stop()
+def Stop(motorController):
+    motorController.stop()
     
-def quit(motorControl):
-    curvRate = 0
-    motorControl.quit()
+def quit(motorController):
+    motorController.quit()
+
  
 def settings(motorControl):
     global curvRate
@@ -90,11 +121,14 @@ def main():
         motor.printSpeeds()
         #key = input('>')
         if key == 'w':
-            up(motor)
+            driveForward(motor)
         elif key == 's':
-            down(motor)
+            driveBackward(motor)
         elif key == 'a':
-            left(motor)
+            if stop == True:
+                driveRotateLeft(motor)
+            else: 
+                curveLeft(motor)
         elif key == 'd':
             right(motor)
         elif key == 'q':
@@ -104,35 +138,19 @@ def main():
             stop(motor)
         elif key == 'i':
             settings(motor)
-        
-        
-        elif key == 'h':
-            print('''w s a d: kjører
-            q: quit
-            e: stop
-            i: innstillinger
-            o: open
-            c: close
-            l: lift
-            -: lower
-            r: pan camera to right position
-            f: pan camera to front position
-            g: pan camera to left position
-            ''')
-       
-           
-        """elif key == 'c':
-            settings(motor)
-        elif key == 'l':
-            settings(motor)
-        elif key == 'i':
-            settings(motor)
         elif key == 'o':
-            settings(motor)
-        elif key == 's':
-            settings(motor)
-        elif key == 's':
-            settings(motor)"""
+            if cameraDown == True:
+                cameraServo.lift()
+                cameraDown = False
+            else: 
+                cameraServo.lower()
+                cameraDown = True
+        elif key == 'SPACE':
+            if gripperOpen == True:
+                gripperServo.closeGripper()
+            else: 
+                gripperServo.openGripper()
+
        
  
 try:

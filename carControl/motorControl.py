@@ -1,6 +1,5 @@
 from DCmotor import DCmotor
  
- 
 class motorControl:
     def __init__(self):
         self.lSpeedPin = 7
@@ -21,7 +20,6 @@ class motorControl:
         self.rightMotor.backward(speed)
         print('backward', speed)
  
- 
     def stop(self):
         self.leftMotor.stop()
         self.rightMotor.stop()
@@ -32,31 +30,33 @@ class motorControl:
         self.rightMotor.quit()
         print('quit')
  
- 
-    def turnRight(self, speed):
+    def rotateRight(self, speed):
         print("Turn right")
         self.rightMotor.backward(speed)
         self.leftMotor.forward(speed)
        
-       
-    def turnLeft(self, speed):
+    def rotateLeft(self, speed):
         print("Turn left")
         self.rightMotor.forward(speed)
         self.leftMotor.backward(speed)
  
-    def curv(self, curvRate):  #pos curvRate curves to the left, neg curvs right
+    def curvLeft(self, curvRate):  
         leftSpeed = self.leftMotor.getSpeed()
         rightSpeed = self.rightMotor.getSpeed()
-        #if leftSpeed+curvRate<100 or rightSpeed-curvRate>100:
-        #    curvRates = [100-leftSpeed, 100-rightSpeed]
-        #    curvRate = min(curvRates)
-       
  
         self.leftMotor.forward(leftSpeed + curvRate)
         self.rightMotor.forward(rightSpeed - curvRate)
         print(curvRate)
+
+    def curvRight(self, curvRate):  
+        leftSpeed = self.leftMotor.getSpeed()
+        rightSpeed = self.rightMotor.getSpeed()
  
-       
+        self.leftMotor.forward(leftSpeed - curvRate)
+        self.rightMotor.forward(rightSpeed + curvRate)
+        print(curvRate)
+    
+
     def getSpeed(self):
         return self.leftMotor.getSpeed()
 

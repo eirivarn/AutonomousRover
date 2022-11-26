@@ -1,44 +1,33 @@
-from gpiozero import Servo, AngularServo
+from gpiozero import AngularServo
+from gpiozero.pins.pigpio import PiGPIOFactory
+from const import Const
  
-class servo:
+ 
+class Servo:
        
-    def __init__(self, port, angOrCont):
+    def __init__(self, port):
         self.port = port
-        self.open = 70
-        self.close = 120
-        self.up = 45
-        self.flat = 0
-        self.cameraFront = 0
-        self.cameraLeft = 1
-        self.cameraRight = 2      
-        
-        if angOrCont == 'ang':
-            self.servo = AngularServo(self.port, min_pulse_width = 0.0006, max_pulse_width=0.0023)
-        else:
-            self.servo = Servo(self.port)
+        self.open = 0.2
+        self.close = 0.9
+        self.up = 0.9
+        self.down = 0.55
+        factory = PiGPIOFactory()
+        self.servo = AngularServo(port, min_pulse_width=0.0006, max_pulse_width=0.0023, pin_factory=factory)
 
- 
-   
-    def open(self):
+    def openGripper(self):
         self.servo.value = self.open
  
-    def close(self):
+    def closeGripper(self):
         self.servo.value = self.close
- 
+
     def lift(self):
-        self.servo.angle = self.up
+        self.servo.value = self.up
  
     def lower(self):
-        self.servo.angle = self.flat
+        self.servo.value = self.down
  
-    def panRight(self):
-        self.servo.value = self.cameraRight
-   
-    def panLeft(self):
-        self.servo.value = self.cameraRight
-   
-    def panFront(self):
-        self.servo.value = self.cameraRight
+ 
+    
         
         
         
