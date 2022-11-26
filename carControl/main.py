@@ -45,7 +45,7 @@ def main():
                 forward = True
                 backward = False
                 motor.forward(speed)
-            elif: 
+            else:
                 forward = False
                 backward = True
                 speed = speed - acceleration
@@ -63,7 +63,7 @@ def main():
                 forward = False
                 speed = abs(speed)
                 motor.backward(speed)
-            elif: 
+            else:
                 speed = speed - acceleration
                 forward = True
                 backward = False
