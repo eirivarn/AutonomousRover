@@ -55,7 +55,7 @@ def main():
                 motor.backward(absSpees)
             else:
                 speed = speed - acceleration
-                absSpeed = abs(absSpeed)
+                absSpeed = abs(speed)
                 motor.forward(speed)
 
         elif key == 'a':
