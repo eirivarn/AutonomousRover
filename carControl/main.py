@@ -43,7 +43,8 @@ def main():
                 motor.forward(speed)
             else:
                 speed = speed - acceleration
-                motor.backward(speed)
+                absSpeed = abs(speed)
+                motor.backward(absSpeed)
             
         elif key == 's':
             if  speed == 0:
