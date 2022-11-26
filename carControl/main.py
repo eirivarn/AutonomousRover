@@ -51,7 +51,7 @@ def main():
                 speed =  -14
                 motor.forward(speed)
             elif speed < 0: 
-                speed = speed - speed/acceleration
+                speed = speed + speed/acceleration
                 motor.forward(speed)
             else:
                 speed = speed - acceleration
