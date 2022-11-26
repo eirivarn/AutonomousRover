@@ -50,7 +50,7 @@ def main():
 
         elif key == 'a':
             if curve == 0:
-                curve = - 15
+                curve = - 5
                 motor.rotateLeft(-curve)
             else: 
                 curve = curve - acceleration
@@ -58,7 +58,7 @@ def main():
 
         elif key == 'd':
             if curve == 0:
-                curve = 15
+                curve = 5
                 motor.rotateRight(curve)
             else: 
                 curve = curve + acceleration
