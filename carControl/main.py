@@ -4,6 +4,7 @@ from motorControl import motorControl
 from servo import Servo
 from getkey import getkey, keys
  
+
     
  
 def main():
@@ -14,14 +15,17 @@ def main():
     cameraDown = True
     gripperOpen = True
 
-    forward = False
-    backward = False
-    rotateRight = False
-    rotateLeft = False 
+    speed = 0
+    curv = 0
+    acceleration = 2
+
 
     stop = True
 
-    curvRate = 2    
+
+    forward = False
+    backward = False
+
  
     while True:
         sleep(0.1)
@@ -31,75 +35,44 @@ def main():
         motor.printSpeeds()
         #key = input('>')
         if key == 'w':
-            stop = False
-            backward = False
-            rotateRight = False
-            rotateLeft = False
-            if forward == False:
-                if backward == True:
-                    speedBackward = speedBackward - curvRate
-                    motor.backwards()
-                else:
-                    forward = True
-                    speedForward = 20
-            motor.forward(speedForward)
-            speedForward = speedForward + curvRate
-        
+            if speed > 0:
+                speed = speed + acceleration
+                forward = True
+                backward = False
+                motor.forward(speed)
+            else: 
+                forward = False
+                backward = True
+                speed = speed - acceleration
+                motor.backwards(speed)
+            
         elif key == 's':
-            stop = False
-            forward = False
-            rotateRight = False
-            rotateLeft = False 
-            if backward == False:
-                if forward == True:
-                    speedForward = speedForward - curvRate
-                    motor.forward(speedForward)
-                else:
-                    backward = True
-                    speedBackward = 20
-            motor.backward(speedBackward)
-            speedBackward = speedBackward + curvRate
-        
+            if  speed < 0:
+                speed = speed - acceleration
+                backward = True
+                forward = False
+                motor.backwards(-speed)
+            else: 
+                speed = speed - acceleration
+                forward = True
+                backward = False
+                motor.forward(speed)
+
         elif key == 'a':
-            stop = False
-            forward = False
-            backward = False
-            rotateRight = False
-            if rotateLeft == False:
-                if rotateRight == True:
-                    speedRotateRight = speedRotateRight - curvRate
-                    motor.rotateLeft
-                else: 
-                    rotateLeft = True
-                    speedRotateLeft = 20
+            if curve < 0:
+                curve = curve - acceleration
+                motor.curveLeft(-curve)
             else: 
-                speedRotateLeft = 0
-            if stop == True:
-                motor.rotateLeft(speedRotateLeft)
-            else: 
-                motor.curveLeft(curvRate)
-                curvRate = curvRate + curvRate
-            SpeedRotateLeft = SpeedRotateLeft + curvRate
+                curve = curve + acceleration
+                motor.curveRight(-curve)
 
         elif key == 'd':
-            stop = False
-            forward = False
-            backward = False
-            rotateLeft = False
-            if rotateRight == False:
-                if rotateLeft == True:
-                    speedRotateLeft = speedRotateLeft - curvRate
-                else: 
-                    speedRotateRight = True
-                    speedRotateRight = 20
+            if curve > 0:
+                curve = curve - acceleration
+                motor.curveLeft(curve)
             else: 
-                speedRotateLeft = 0
-            if stop == True:
-                motor.rotateRight(speedRotateRight)
-            else: 
-                motor.curveRight(curvRate)
-                curvRate = curvRate + curvRate
-            speedRotateRight = speedRotateRight + curvRate
+                curve = curve + acceleration
+                motor.curveRight(curve)
 
         elif key == 'q':
             motor.quit()
