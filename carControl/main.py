@@ -37,37 +37,25 @@ def main():
         if key == 'w':
             if speed == 0:
                 speed = 15
-                forward = True
-                backward = False
                 motor.forward(speed)
             elif speed > 0:
                 speed = speed + acceleration
-                forward = True
-                backward = False
                 motor.forward(speed)
             else:
-                forward = False
-                backward = True
                 speed = speed - acceleration
                 motor.backward(speed)
             
         elif key == 's':
             if  speed == 0:
-                speed =  15
-                backward = True
-                forward = False
+                speed =  -15
                 motor.backward(speed)
             elif  speed < 0:
                 speed = speed - acceleration
-                backward = True
-                forward = False
-                speed = abs(speed)
-                motor.backward(speed)
+                absSpees = abs(speed)
+                motor.backward(absSpees)
             else:
                 speed = speed - acceleration
-                forward = True
-                backward = False
-                speed = abs(speed)
+                absSpeed = abs(absSpeed)
                 motor.forward(speed)
 
         elif key == 'a':
@@ -85,8 +73,8 @@ def main():
                 motor.curveLeft(curve)
             else: 
                 curve = curve + acceleration
-                curve = abs(curve)
-                motor.curveRight(curve)
+                absCurve = abs(curve)
+                motor.curveRight(absCurve)
 
         elif key == 'q':
             motor.quit()
