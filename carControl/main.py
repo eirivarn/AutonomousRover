@@ -36,7 +36,7 @@ def main():
         #key = input('>')
         if key == 'w':
             if speed == 0:
-                speed = 14
+                speed = 20
                 motor.forward(speed)
             elif speed > 0: 
                 speed = speed + speed/acceleration
@@ -48,7 +48,7 @@ def main():
             
         elif key == 's':
             if  speed == 0:
-                speed =  -14
+                speed =  -20
                 motor.forward(speed)
             elif speed < 0: 
                 speed = speed + speed/acceleration
