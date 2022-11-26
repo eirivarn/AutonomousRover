@@ -35,7 +35,7 @@ def main():
         motor.printSpeeds()
         #key = input('>')
         if key == 'w':
-            if speed > 0:
+            if speed >= 0:
                 speed = speed + acceleration
                 forward = True
                 backward = False
@@ -44,10 +44,10 @@ def main():
                 forward = False
                 backward = True
                 speed = speed - acceleration
-                motor.forward(speed)
+                motor.backward(speed)
             
         elif key == 's':
-            if  speed < 0:
+            if  speed <= 0:
                 speed = speed - acceleration
                 backward = True
                 forward = False
@@ -56,7 +56,7 @@ def main():
                 speed = speed - acceleration
                 forward = True
                 backward = False
-                motor.backward(speed)
+                motor.forward(speed)
 
         elif key == 'a':
             if curve < 0:
