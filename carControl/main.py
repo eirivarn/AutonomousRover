@@ -36,7 +36,7 @@ def main():
         #key = input('>')
         if key == 'w':
             if speed == 0:
-                speed = 25
+                speed = 20
                 forward = True
                 backward = False
                 motor.forward(speed)
@@ -56,17 +56,17 @@ def main():
                 speed = -20
                 backward = True
                 forward = False
-                motor.backward(-speed)
+                motor.backward(speed)
             if  speed < 0:
                 speed = speed - acceleration
                 backward = True
                 forward = False
-                motor.backward(-speed)
+                motor.backward(speed)
             else: 
                 speed = speed - acceleration
                 forward = True
                 backward = False
-                motor.forward(-speed)
+                motor.forward(speed)
 
         elif key == 'a':
             if curve < 0:
