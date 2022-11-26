@@ -17,7 +17,7 @@ def main():
 
     speed = 0
     curve = 0
-    acceleration = 10
+    acceleration = 3
     rotationSpeed = 0
 
     stop = True
@@ -36,17 +36,23 @@ def main():
         #key = input('>')
         if key == 'w':
             if speed == 0:
-                speed = 24
+                speed = 14
                 motor.forward(speed)
-            speed = speed + acceleration
-            motor.forward(speed)
+            elif speed > 0: 
+                speed = speed + speed/acceleration
+            else:
+                speed = speed + acceleration
+                motor.forward(speed)
             
         elif key == 's':
             if  speed == 0:
-                speed =  -24
+                speed =  -14
                 motor.forward(speed)
-            speed = speed - acceleration
-            motor.forward(speed)
+            elif speed < 0: 
+                speed = speed - speed/acceleration
+            else:
+                speed = speed - acceleration
+                motor.forward(speed)
 
         elif key == 'a':
             if curve >= 0 and speed == 0:
