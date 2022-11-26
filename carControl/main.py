@@ -44,14 +44,14 @@ def main():
                 forward = False
                 backward = True
                 speed = speed - acceleration
-                motor.backwards(speed)
+                motor.backward(speed)
             
         elif key == 's':
             if  speed < 0:
                 speed = speed - acceleration
                 backward = True
                 forward = False
-                motor.backwards(-speed)
+                motor.backward(-speed)
             else: 
                 speed = speed - acceleration
                 forward = True
