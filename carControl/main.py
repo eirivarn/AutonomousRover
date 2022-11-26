@@ -48,6 +48,7 @@ def main():
         elif key == 's':
             if  speed == 0:
                 speed =  -15
+                absSpeed = abs(speed)
                 motor.backward(speed)
             elif  speed < 0:
                 speed = speed - acceleration
