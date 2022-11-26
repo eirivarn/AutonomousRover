@@ -64,6 +64,7 @@ def main():
                 motor.rotateLeft(speedRotateLeft)
             else: 
                 motor.curveLeft(curvRate)
+                speedRotateLeft = 0
             SpeedRotateLeft = SpeedRotateLeft + 2
 
         elif key == 'd':
@@ -78,6 +79,7 @@ def main():
                 motor.rotateRight(speedRotateRight)
             else: 
                 motor.curveRight(curvRate)
+                speedRotateRight = 0
             speedRotateRight = speedRotateRight + 2
 
         elif key == 'q':
