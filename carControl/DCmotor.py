@@ -20,24 +20,17 @@ class DCmotor:
         GPIO.output(self.directionPin, 1)
         if speed > 100:
             speed = 100
- 
-        if speed >= 0:
-            self._setSpeed(speed)
-            self.speed_pwm.ChangeDutyCycle(speed)
-        else:
-            self.backward(-speed)
+        self._setSpeed(speed)
+        self.speed_pwm.ChangeDutyCycle(speed)
    
     def backward(self, speed):
         #print("Driving backward")
         GPIO.output(self.directionPin, 0)
         if speed > 100:
             speed = 100
- 
-        if speed >= 0:
-            self._setSpeed(speed)
-            self.speed_pwm.ChangeDutyCycle(speed)
-        else:
-            self.forward(-speed)
+        self._setSpeed(speed)
+        self.speed_pwm.ChangeDutyCycle(speed)
+    
    
  
     def quit(self):

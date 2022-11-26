@@ -36,7 +36,7 @@ def main():
         #key = input('>')
         if key == 'w':
             if speed == 0:
-                speed = 20
+                speed = 18
                 forward = True
                 backward = False
                 motor.forward(speed)
@@ -53,7 +53,7 @@ def main():
             
         elif key == 's':
             if  speed == 0:
-                speed = 20
+                speed = - 18
                 backward = True
                 forward = False
                 motor.backward(speed)
