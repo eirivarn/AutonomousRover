@@ -53,7 +53,7 @@ def main():
             
         elif key == 's':
             if  speed == 0:
-                speed = -20
+                speed = 20
                 backward = True
                 forward = False
                 motor.backward(speed)
