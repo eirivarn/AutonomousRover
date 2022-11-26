@@ -32,7 +32,7 @@ class DCmotor:
         if speed < 0:
             self.forward(-speed)
         else:
-            self._setSpeed(speed)
+            self._setSpeed(-speed)
             self.speed_pwm.ChangeDutyCycle(speed)
    
  
