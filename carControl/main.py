@@ -92,7 +92,7 @@ def main():
             else: 
                 cameraServo.lower()
                 cameraDown = True
-        elif key == 'SPACE':
+        elif key == 'p':
             if gripperOpen == True:
                 gripperServo.closeGripper()
                 gripperOpen = False
