@@ -49,7 +49,7 @@ def main():
             if  speed == 0:
                 speed =  -15
                 absSpeed = abs(speed)
-                motor.backward(speed)
+                motor.backward(absSpeed)
             elif  speed < 0:
                 speed = speed - acceleration
                 absSpees = abs(speed)
