@@ -96,7 +96,7 @@ class LineModule:
             print('Could not find line')
             
         repackedImg = self.drawSpeed(repackedImg)
-        self.viewImage('slice',repackedImg)
+        self.viewImage('slice with line',repackedImg)
 
         atCross = self.robot.crossConfirmed()
 
@@ -132,7 +132,7 @@ class LineModule:
         if atCross:
             cv2.putText(image, f"CROSS!!!{wc*hc}", (270, 70), cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)
         image = self.drawSpeed(image)
-        self.viewImage('strip', image)
+        self.viewImage('Line box', image)
         print(wc*hc)
 
         ##///////////Printing information
@@ -177,7 +177,7 @@ class LineModule:
             xPos = int(x+w/2)
             yPos = y
             cv2.circle(image, (xPos, yPos), 3, (0,0,255), -1)
-            self.viewImage("Kopp", image)
+            self.viewImage("End of line", image)
             if xPos and yPos != 999:
                 endOfLineInImage = True
         return xPos, yPos, endOfLineInImage
